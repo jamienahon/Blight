@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
+using UnityEngine.InputSystem;
 
 public class CameraController : MonoBehaviour
 {
@@ -11,19 +12,21 @@ public class CameraController : MonoBehaviour
     public Animator cameraAnim;
     public CinemachineVirtualCamera lockOnCam;
     public CinemachineFreeLook followCam;
+    public GameObject cameraTarget;
+    public bool hasClicked = false;
 
     private void Update()
     {
         FindLockonPointsInView();
-        if (Input.GetKeyDown(KeyCode.Mouse2))
+        if (Input.GetAxis("Lockon") > 0 && !hasClicked)
         {
+            hasClicked = true;
             if (!stateManager.isLockedOn)
             {
                 lockonPoint = FindClosestLockonPoint();
                 if (lockonPoint != null)
                 {
                     stateManager.isLockedOn = true;
-                    lockOnCam.LookAt = lockonPoint.transform;
                     cameraAnim.Play("TargetCamera");
                 }
             }
@@ -31,8 +34,17 @@ public class CameraController : MonoBehaviour
             {
                 lockonPoint = null;
                 stateManager.isLockedOn = false;
+                followCam.m_XAxis.Value = cameraTarget.transform.rotation.eulerAngles.y;
                 cameraAnim.Play("FollowCamera");
             }
+        }
+
+        if (Input.GetAxis("Lockon") == 0)
+            hasClicked = false;
+
+        if(stateManager.isLockedOn)
+        {
+            cameraTarget.transform.LookAt(lockonPoint.transform);
         }
     }
 

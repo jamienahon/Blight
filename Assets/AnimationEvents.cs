@@ -9,5 +9,6 @@ public class AnimationEvents : MonoBehaviour
     public void EndDodge()
     {
         stateManager.SwitchState(stateManager.idleState);
+        stateManager.animator.SetBool("IsDodging", false);
     }
 }

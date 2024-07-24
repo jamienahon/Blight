@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerStateManager : MonoBehaviour
 {
-    PlayerState currentState;
+    public PlayerState currentState;
 
     public PlayerIdleState idleState = new PlayerIdleState();
     public PlayerWalkState walkState = new PlayerWalkState();
@@ -12,16 +12,13 @@ public class PlayerStateManager : MonoBehaviour
 
     public float moveSpeed;
     public Animator animator;
-    public bool isLockedOn;
+    public bool isLockedOn = false;
 
     private void Start()
     {
         isLockedOn = false;
         currentState = idleState;
         currentState.EnterState(this);
-
-        animator = GetComponentInChildren<Animator>();
-        isLockedOn = false;
     }
 
     private void Update()

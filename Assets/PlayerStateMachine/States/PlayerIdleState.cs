@@ -8,6 +8,8 @@ public class PlayerIdleState : PlayerState
     public override void EnterState(PlayerStateManager stateManager)
     {
         stateManager.animator.SetBool("IsMoving", false);
+        stateManager.animator.SetFloat("HorizontalMovement", 0);
+        stateManager.animator.SetFloat("VerticalMovement", 0);
     }
 
     public override void UpdateState(PlayerStateManager stateManager)

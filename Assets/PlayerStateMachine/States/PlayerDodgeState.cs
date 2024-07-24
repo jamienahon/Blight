@@ -4,14 +4,19 @@ using UnityEngine;
 
 public class PlayerDodgeState : PlayerState
 {
+    public float y;
     public override void EnterState(PlayerStateManager stateManager)
     {
-        stateManager.animator.Play("Unarmed-DiveRoll-Forward1");
+        stateManager.animator.SetBool("IsDodging", true);
+        Vector3 movDirection = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
+        Vector3 dodgeDirection = Quaternion.Euler(0, Camera.main.transform.eulerAngles.y, 0) * movDirection;
+        stateManager.animator.transform.rotation = Quaternion.LookRotation(dodgeDirection);
+
     }
 
     public override void UpdateState(PlayerStateManager stateManager)
     {
-        stateManager.transform.Translate(stateManager.animator.gameObject.transform.forward * stateManager.moveSpeed * Time.deltaTime);
+        stateManager.transform.Translate(stateManager.animator.transform.forward * stateManager.moveSpeed * Time.deltaTime);
     }
 
     public override void HandleInputs(PlayerStateManager stateManager)
