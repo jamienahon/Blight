@@ -7,7 +7,7 @@ public class PlayerIdleState : PlayerState
 {
     public override void EnterState(PlayerStateManager stateManager)
     {
-
+        stateManager.animator.SetBool("IsMoving", false);
     }
 
     public override void UpdateState(PlayerStateManager stateManager)
@@ -21,6 +21,11 @@ public class PlayerIdleState : PlayerState
             stateManager.SwitchState(stateManager.walkState);
         else if (Input.GetAxis("Dodge") > 0)
             stateManager.SwitchState(stateManager.dodgeState);
+    }
+
+    public override void HandleAnimations(PlayerStateManager stateManager)
+    {
+        
     }
 
     public override void OnCollisionEnter(PlayerStateManager stateManager, Collision collision)

@@ -10,6 +10,8 @@ public abstract class PlayerState
 
     public abstract void HandleInputs(PlayerStateManager stateManager);
 
+    public abstract void HandleAnimations(PlayerStateManager stateManager);
+
     public abstract void OnCollisionEnter(PlayerStateManager stateManager, Collision collision);
 
     public abstract void OnCollisionExit(PlayerStateManager stateManager, Collision collision);
