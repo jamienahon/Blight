@@ -6,80 +6,105 @@ using UnityEngine.InputSystem;
 public class CameraController : MonoBehaviour
 {
     public PlayerStateManager stateManager;
-    public GameObject[] lockonPoints;
-    public List<GameObject> lockonPointsInView = new List<GameObject>();
-    public GameObject lockonPoint;
+    public Transform currentLockOnPoint;
     public Animator cameraAnim;
     public CinemachineVirtualCamera lockOnCam;
     public CinemachineFreeLook followCam;
     public GameObject cameraTarget;
-    public bool hasClicked = false;
+    public bool isClicking = false;
+
+    [Header("Settings")]
+    [SerializeField] float noticeZone = 10;
+    [Tooltip("Angle_Degree")] [SerializeField] float maxNoticeAngle = 60;
+
+    [SerializeField] LayerMask targetLayers;
+
+    public Canvas lockOnCanvas;
+    public float lockOnScale;
 
     private void Update()
     {
-        FindLockonPointsInView();
-        if (Input.GetAxis("Lockon") > 0 && !hasClicked)
+        if (Input.GetAxis("Lockon") > 0 && !isClicking)
         {
-            hasClicked = true;
-            if (!stateManager.isLockedOn)
+            isClicking = true;
+            if (stateManager.isLockedOn)
             {
-                lockonPoint = FindClosestLockonPoint();
-                if (lockonPoint != null)
-                {
-                    stateManager.isLockedOn = true;
-                    cameraAnim.Play("TargetCamera");
-                }
-            }
-            else
-            {
-                lockonPoint = null;
+                //If there is already a target, Reset.
+                EndLockOn();
                 stateManager.isLockedOn = false;
-                followCam.m_XAxis.Value = cameraTarget.transform.rotation.eulerAngles.y;
-                cameraAnim.Play("FollowCamera");
+                return;
             }
+
+            currentLockOnPoint = ScanNearBy();
+            if (currentLockOnPoint)
+                StartLockOn();
+            else
+                EndLockOn();
+        }
+
+        if (stateManager.isLockedOn)
+        {
+            if (!LockOnPointInRange())
+                EndLockOn();
         }
 
         if (Input.GetAxis("Lockon") == 0)
-            hasClicked = false;
+            isClicking = false;
 
-        if(stateManager.isLockedOn)
+        if (stateManager.isLockedOn)
         {
-            cameraTarget.transform.LookAt(lockonPoint.transform);
+            cameraTarget.transform.LookAt(currentLockOnPoint);
+            lockOnCanvas.transform.position = currentLockOnPoint.position;
+            lockOnCanvas.transform.localScale = Vector3.one * ((lockOnCam.transform.position - currentLockOnPoint.transform.position).magnitude * lockOnScale);
         }
     }
 
-    void FindLockonPointsInView()
+    void EndLockOn()
     {
-        foreach (GameObject point in lockonPoints)
+        lockOnCanvas.gameObject.SetActive(false);
+        currentLockOnPoint = null;
+        stateManager.isLockedOn = false;
+        if (stateManager.currentState == stateManager.walkState)
+            stateManager.SwitchState(stateManager.idleState);
+        followCam.m_XAxis.Value = cameraTarget.transform.rotation.eulerAngles.y;
+        //change this to lockOnCam y damping
+        followCam.m_YAxis.Value = 0.5f;
+        cameraAnim.Play("FollowCamera");
+    }
+
+    private Transform ScanNearBy()
+    {
+        Collider[] nearbyTargets = Physics.OverlapSphere(stateManager.transform.position, noticeZone, targetLayers);
+        float closestAngle = maxNoticeAngle;
+        Transform closestTarget = null;
+        if (nearbyTargets.Length <= 0) return null;
+
+        for (int i = 0; i < nearbyTargets.Length; i++)
         {
-            if (Camera.main.WorldToViewportPoint(point.transform.position).z > 1)
+            Vector3 dir = nearbyTargets[i].transform.position - Camera.main.transform.position;
+            dir.y = 0;
+            float _angle = Vector3.Angle(Camera.main.transform.forward, dir);
+
+            if (_angle < closestAngle)
             {
-                if (!lockonPointsInView.Contains(point))
-                    lockonPointsInView.Add(point);
-            }
-            else
-            {
-                if (lockonPointsInView.Contains(point))
-                    lockonPointsInView.Remove(point);
+                closestTarget = nearbyTargets[i].transform;
+                closestAngle = _angle;
             }
         }
+        return closestTarget;
     }
 
-    GameObject FindClosestLockonPoint()
+    void StartLockOn()
     {
-        GameObject closestPoint = lockonPoints[0];
-        foreach (GameObject point in lockonPoints)
-        {
-            if (FindDistanceFromCenterOfCamera(point) < FindDistanceFromCenterOfCamera(closestPoint))
-                closestPoint = point;
-        }
-        return closestPoint;
+        lockOnCanvas.gameObject.SetActive(true);
+        lockOnCam.LookAt = currentLockOnPoint;
+        cameraAnim.Play("TargetCamera");
+        stateManager.isLockedOn = true;
     }
 
-    float FindDistanceFromCenterOfCamera(GameObject obj)
+    bool LockOnPointInRange()
     {
-        Vector3 worldPos = Camera.main.WorldToViewportPoint(obj.transform.position);
-        worldPos = new Vector3(worldPos.x - 0.5f, worldPos.y - 0.5f, 0);
-        return worldPos.magnitude;
+        float dis = (stateManager.transform.position - currentLockOnPoint.position).magnitude;
+        if (dis / 2 > noticeZone) return false; else return true;
     }
 }

@@ -36,7 +36,7 @@ public class PlayerWalkState : PlayerState
             stateManager.animator.SetFloat("VerticalMovement", movementDirection.z);
 
             movementDirection = Quaternion.Euler(0, stateManager.animator.transform.eulerAngles.y, 0) * movementDirection;
-            stateManager.animator.transform.LookAt(GameObject.Find("Cam").GetComponent<CameraController>().lockonPoint.transform);
+            stateManager.animator.transform.LookAt(Camera.main.GetComponent<CameraController>().currentLockOnPoint);
             stateManager.animator.transform.position = new Vector3(stateManager.transform.position.x, 0, stateManager.transform.position.z);
             stateManager.animator.transform.rotation = Quaternion.Euler(0, stateManager.animator.transform.rotation.eulerAngles.y, 0);
         }
