@@ -905,6 +905,8 @@ MonoBehaviour:
   moveSpeed: 3
   animator: {fileID: 1668582510}
   isLockedOn: 0
+  movementDirection: {x: 0, y: 0, z: 0}
+  jumpHeight: 5
 --- !u!4 &742843623
 Transform:
   m_ObjectHideFlags: 0

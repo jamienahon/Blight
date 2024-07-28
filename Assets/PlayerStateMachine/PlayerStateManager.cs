@@ -9,10 +9,14 @@ public class PlayerStateManager : MonoBehaviour
     public PlayerIdleState idleState = new PlayerIdleState();
     public PlayerWalkState walkState = new PlayerWalkState();
     public PlayerDodgeState dodgeState = new PlayerDodgeState();
+    public PlayerJumpState jumpState = new PlayerJumpState();
 
     public float moveSpeed;
     public Animator animator;
     public bool isLockedOn = false;
+
+    public Vector3 movementDirection = new Vector3();
+    public float jumpHeight;
 
     private void Start()
     {
@@ -23,7 +27,7 @@ public class PlayerStateManager : MonoBehaviour
 
     private void Update()
     {
-        currentState.UpdateState(this);
+        currentState.UpdateState();
 
         Cursor.lockState = CursorLockMode.Confined;
         Cursor.visible = false;
@@ -37,11 +41,11 @@ public class PlayerStateManager : MonoBehaviour
 
     public void OnCollisionEnter(Collision collision)
     {
-        currentState.OnCollisionEnter(this, collision);
+        currentState.OnCollisionEnter(collision);
     }
 
     public void OnCollisionExit(Collision collision)
     {
-        currentState.OnCollisionExit(this, collision);
+        currentState.OnCollisionExit(collision);
     }
 }
