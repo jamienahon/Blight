@@ -8,14 +8,16 @@ public class PlayerStateManager : MonoBehaviour
 
     public PlayerIdleState idleState = new PlayerIdleState();
     public PlayerWalkState walkState = new PlayerWalkState();
+    public PlayerSprintState sprintState = new PlayerSprintState();
     public PlayerDodgeState dodgeState = new PlayerDodgeState();
     public PlayerJumpState jumpState = new PlayerJumpState();
 
-    public float moveSpeed;
     public Animator animator;
     public bool isLockedOn = false;
 
     public Vector3 movementDirection = new Vector3();
+    public float moveSpeed;
+    public float sprintSpeed;
     public float jumpHeight;
 
     private void Start()

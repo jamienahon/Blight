@@ -25,9 +25,11 @@ public class PlayerIdleState : PlayerState
     {
         if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
             stateManager.SwitchState(stateManager.walkState);
-        else if (Input.GetAxis("Dodge") > 0)
+
+        if (Input.GetAxis("Dodge") > 0)
             stateManager.SwitchState(stateManager.dodgeState);
-        else if (Input.GetAxis("Jump") > 0)
+
+        if (Input.GetAxis("Jump") > 0)
             stateManager.SwitchState(stateManager.jumpState);
     }
 

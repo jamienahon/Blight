@@ -14,8 +14,8 @@ public class AnimationEvents : MonoBehaviour
 
     public void EndJump()
     {
-        stateManager.SwitchState(stateManager.idleState);
         stateManager.jumpState.rb.useGravity = false;
+        stateManager.SwitchState(stateManager.idleState);
     }
 
     public void StartFalling()

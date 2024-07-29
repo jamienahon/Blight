@@ -25,6 +25,9 @@ public class PlayerWalkState : PlayerState
         stateManager.movementDirection.x = Input.GetAxisRaw("Horizontal");
         stateManager.movementDirection.z = Input.GetAxisRaw("Vertical");
 
+        if (Input.GetAxis("Sprint") > 0)
+            stateManager.SwitchState(stateManager.sprintState);
+
         if (Input.GetAxis("Dodge") > 0)
             stateManager.SwitchState(stateManager.dodgeState);
 
@@ -40,8 +43,8 @@ public class PlayerWalkState : PlayerState
         if (stateManager.isLockedOn && stateManager.currentState == this)
         {
             LookAtLockOnPoint();
-            stateManager.animator.SetFloat("HorizontalMovement", stateManager.movementDirection.x);
-            stateManager.animator.SetFloat("VerticalMovement", stateManager.movementDirection.z);
+            stateManager.animator.SetFloat("HorizontalMovement", Input.GetAxis("Horizontal"));
+            stateManager.animator.SetFloat("VerticalMovement", Input.GetAxis("Vertical"));
         }
         else
         {

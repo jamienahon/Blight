@@ -19,8 +19,6 @@ public class PlayerJumpState : PlayerState
         rb.AddForce(new Vector3(0, stateManager.jumpHeight, 0), ForceMode.Impulse);
 
         HandleAnimations();
-
-        //stateManager.movementDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
     }
 
     public override void UpdateState()
