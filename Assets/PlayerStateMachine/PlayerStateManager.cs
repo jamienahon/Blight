@@ -12,25 +12,32 @@ public class PlayerStateManager : MonoBehaviour
     public PlayerDodgeState dodgeState = new PlayerDodgeState();
     public PlayerJumpState jumpState = new PlayerJumpState();
 
-    public Animator animator;
-    public bool isLockedOn = false;
+    [HideInInspector] public Animator animator;
+    [HideInInspector] public bool isLockedOn = false;
+    [HideInInspector] public bool switchStates = false;
 
-    public Vector3 movementDirection = new Vector3();
+    [HideInInspector] public Vector3 movementDirection = new Vector3();
+
     public float moveSpeed;
     public float sprintSpeed;
     public float jumpHeight;
+    public float jumpSpeedWalk;
+    public float jumpSpeedSprint;
 
-    public bool switchStates = false;
 
     private void Start()
     {
         isLockedOn = false;
         currentState = idleState;
         currentState.EnterState(this);
+        animator = GetComponentInChildren<Animator>();
     }
 
     public void Update()
     {
+        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = false;
+
         if(switchStates)
         {
             currentState.EnterState(this);
@@ -38,9 +45,6 @@ public class PlayerStateManager : MonoBehaviour
         }
 
         currentState.UpdateState();
-
-        Cursor.lockState = CursorLockMode.Confined;
-        Cursor.visible = false;
     }
 
     public void SwitchState(PlayerState state)

@@ -56,6 +56,7 @@ public class CameraController : MonoBehaviour
             cameraTarget.transform.LookAt(currentLockOnPoint);
             lockOnCanvas.transform.position = currentLockOnPoint.position;
             lockOnCanvas.transform.localScale = Vector3.one * ((lockOnCam.transform.position - currentLockOnPoint.transform.position).magnitude * lockOnScale);
+
         }
     }
 

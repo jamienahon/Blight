@@ -22,9 +22,9 @@ public class PlayerJumpState : PlayerState
         isJumping = true;
 
         if (Input.GetAxis("Sprint") > 0)
-            jumpMoveSpeed = stateManager.sprintSpeed;
+            jumpMoveSpeed = stateManager.jumpSpeedSprint;
         else
-            jumpMoveSpeed = stateManager.moveSpeed;
+            jumpMoveSpeed = stateManager.jumpSpeedWalk;
     }
 
     public override void UpdateState()
@@ -59,7 +59,9 @@ public class PlayerJumpState : PlayerState
         stateManager.movementDirection.x = Input.GetAxisRaw("Horizontal");
         stateManager.movementDirection.z = Input.GetAxisRaw("Vertical");
         stateManager.movementDirection = Quaternion.Euler(0, Camera.main.transform.eulerAngles.y, 0) * stateManager.movementDirection;
-        stateManager.animator.gameObject.transform.rotation = Quaternion.LookRotation(stateManager.movementDirection);
+        Vector3 lookDirection = new Vector3(stateManager.movementDirection.x, 0.0f, stateManager.movementDirection.z);
+        if (lookDirection != Vector3.zero)
+            stateManager.animator.gameObject.transform.rotation = Quaternion.LookRotation(lookDirection);
     }
 
     void ApplyJumpForce()
