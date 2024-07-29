@@ -14,6 +14,8 @@ public abstract class PlayerState
 
     public abstract void HandleAnimations();
 
+    public abstract void SetAnimationParameters();
+
     public abstract void OnCollisionEnter(Collision collision);
 
     public abstract void OnCollisionExit(Collision collision);

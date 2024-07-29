@@ -20,6 +20,8 @@ public class PlayerStateManager : MonoBehaviour
     public float sprintSpeed;
     public float jumpHeight;
 
+    public bool switchStates = false;
+
     private void Start()
     {
         isLockedOn = false;
@@ -27,8 +29,14 @@ public class PlayerStateManager : MonoBehaviour
         currentState.EnterState(this);
     }
 
-    private void Update()
+    public void Update()
     {
+        if(switchStates)
+        {
+            currentState.EnterState(this);
+            switchStates = false;
+        }
+
         currentState.UpdateState();
 
         Cursor.lockState = CursorLockMode.Confined;
@@ -38,7 +46,7 @@ public class PlayerStateManager : MonoBehaviour
     public void SwitchState(PlayerState state)
     {
         currentState = state;
-        state.EnterState(this);
+        switchStates = true;
     }
 
     public void OnCollisionEnter(Collision collision)

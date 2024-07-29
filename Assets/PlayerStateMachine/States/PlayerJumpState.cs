@@ -8,23 +8,29 @@ public class PlayerJumpState : PlayerState
 
     public Rigidbody rb;
     public bool isJumping;
+    public float jumpMoveSpeed;
 
     public override void EnterState(PlayerStateManager stateManager)
     {
         this.stateManager = stateManager;
+
+        SetAnimationParameters();
+        LookAtMovementDirection();
+        ApplyJumpForce();
+        HandleAnimations();
+
         isJumping = true;
 
-        rb = stateManager.GetComponent<Rigidbody>();
-        rb.useGravity = true;
-        rb.AddForce(new Vector3(0, stateManager.jumpHeight, 0), ForceMode.Impulse);
-
-        HandleAnimations();
+        if (Input.GetAxis("Sprint") > 0)
+            jumpMoveSpeed = stateManager.sprintSpeed;
+        else
+            jumpMoveSpeed = stateManager.moveSpeed;
     }
 
     public override void UpdateState()
     {
         if (rb.velocity.y != 0)
-            stateManager.transform.Translate(stateManager.movementDirection * stateManager.moveSpeed * Time.deltaTime);
+            stateManager.transform.Translate(stateManager.movementDirection * jumpMoveSpeed * Time.deltaTime);
         else if (!isJumping)
         {
             stateManager.movementDirection = Vector3.zero;
@@ -40,6 +46,27 @@ public class PlayerJumpState : PlayerState
     public override void HandleAnimations()
     {
         stateManager.animator.Play("Unarmed-Jump");
+    }
+
+    public override void SetAnimationParameters()
+    {
+        stateManager.animator.SetBool("IsJumping", true);
+        stateManager.animator.SetBool("IsDodging", false);
+    }
+
+    void LookAtMovementDirection()
+    {
+        stateManager.movementDirection.x = Input.GetAxisRaw("Horizontal");
+        stateManager.movementDirection.z = Input.GetAxisRaw("Vertical");
+        stateManager.movementDirection = Quaternion.Euler(0, Camera.main.transform.eulerAngles.y, 0) * stateManager.movementDirection;
+        stateManager.animator.gameObject.transform.rotation = Quaternion.LookRotation(stateManager.movementDirection);
+    }
+
+    void ApplyJumpForce()
+    {
+        rb = stateManager.GetComponent<Rigidbody>();
+        rb.useGravity = true;
+        rb.AddForce(new Vector3(0, stateManager.jumpHeight, 0), ForceMode.Impulse);
     }
 
     public override void OnCollisionEnter(Collision collision)

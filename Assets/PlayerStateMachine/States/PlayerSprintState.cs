@@ -9,7 +9,8 @@ public class PlayerSprintState : PlayerState
     public override void EnterState(PlayerStateManager stateManager)
     {
         this.stateManager = stateManager;
-        stateManager.animator.SetBool("IsSprinting", true);
+        SetAnimationParameters();
+
         stateManager.animator.speed = 1.5f;
     }
 
@@ -28,9 +29,13 @@ public class PlayerSprintState : PlayerState
 
         if (Input.GetAxis("Sprint") == 0)
         {
-            stateManager.animator.SetBool("IsSprinting", false);
             stateManager.animator.speed = 1;
             stateManager.SwitchState(stateManager.walkState);
+        }
+
+        if (Input.GetAxis("Jump") > 0)
+        {
+            stateManager.SwitchState(stateManager.jumpState);
         }
 
         if (Input.GetAxis("Horizontal") == 0 && Input.GetAxis("Vertical") == 0)
@@ -41,6 +46,11 @@ public class PlayerSprintState : PlayerState
     {
         LookAtMovementDirection();
         stateManager.animator.Play("Unarmed-Run-Forward");
+    }
+
+    public override void SetAnimationParameters()
+    {
+        stateManager.animator.SetBool("IsSprinting", true);
     }
 
     void LookAtMovementDirection()

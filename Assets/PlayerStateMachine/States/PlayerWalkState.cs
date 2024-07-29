@@ -9,14 +9,14 @@ public class PlayerWalkState : PlayerState
     public override void EnterState(PlayerStateManager stateManager)
     {
         this.stateManager = stateManager;
-
-        stateManager.animator.SetBool("IsMoving", true);
+        SetAnimationParameters();
     }
 
     public override void UpdateState()
     {
         HandleInputs();
         HandleAnimations();
+
         stateManager.transform.Translate(stateManager.movementDirection.normalized * stateManager.moveSpeed * Time.deltaTime);
     }
 
@@ -40,7 +40,7 @@ public class PlayerWalkState : PlayerState
 
     public override void HandleAnimations()
     {
-        if (stateManager.isLockedOn && stateManager.currentState == this)
+        if (stateManager.isLockedOn)
         {
             LookAtLockOnPoint();
             stateManager.animator.SetFloat("HorizontalMovement", Input.GetAxis("Horizontal"));
@@ -51,6 +51,12 @@ public class PlayerWalkState : PlayerState
             LookAtMovementDirection();
             stateManager.animator.Play("Unarmed-Run-Forward");
         }
+    }
+
+    public override void SetAnimationParameters()
+    {
+        stateManager.animator.SetBool("IsMoving", true);
+        stateManager.animator.SetBool("IsSprinting", false);
     }
 
     void LookAtLockOnPoint()
@@ -64,9 +70,9 @@ public class PlayerWalkState : PlayerState
     void LookAtMovementDirection()
     {
         stateManager.movementDirection = Quaternion.Euler(0, Camera.main.transform.eulerAngles.y, 0) * stateManager.movementDirection;
-        Vector3 movement = new Vector3(stateManager.movementDirection.x, 0.0f, stateManager.movementDirection.z);
-        if (movement != Vector3.zero)
-            stateManager.animator.gameObject.transform.rotation = Quaternion.LookRotation(movement);
+        Vector3 lookDirection = new Vector3(stateManager.movementDirection.x, 0.0f, stateManager.movementDirection.z);
+        if (lookDirection != Vector3.zero)
+            stateManager.animator.gameObject.transform.rotation = Quaternion.LookRotation(lookDirection);
     }
 
     public override void OnCollisionEnter(Collision collision)

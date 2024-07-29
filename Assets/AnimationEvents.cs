@@ -16,6 +16,7 @@ public class AnimationEvents : MonoBehaviour
     {
         stateManager.jumpState.rb.useGravity = false;
         stateManager.SwitchState(stateManager.idleState);
+        stateManager.animator.SetBool("IsJumping", false);
     }
 
     public void StartFalling()

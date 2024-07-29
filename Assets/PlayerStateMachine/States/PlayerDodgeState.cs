@@ -9,6 +9,8 @@ public class PlayerDodgeState : PlayerState
     public override void EnterState(PlayerStateManager stateManager)
     {
         this.stateManager = stateManager;
+        SetAnimationParameters();
+
         HandleAnimations();
     }
 
@@ -25,7 +27,12 @@ public class PlayerDodgeState : PlayerState
     public override void HandleAnimations()
     {
         LookAtDodgeDirection();
+    }
+
+    public override void SetAnimationParameters()
+    {
         stateManager.animator.SetBool("IsDodging", true);
+        stateManager.animator.SetBool("IsJumping", false);
     }
 
     void LookAtDodgeDirection()
