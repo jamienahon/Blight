@@ -29,6 +29,7 @@ public class PlayerStateManager : MonoBehaviour
     public float jumpSpeedWalk;
     public float jumpSpeedSprint;
     public float attackMoveAmount;
+    public float health;
 
 
     private void Start()
@@ -47,6 +48,11 @@ public class PlayerStateManager : MonoBehaviour
             switchStates = false;
         }
         currentState.UpdateState();
+
+        if(health <= 0)
+        {
+            //do death code
+        }
     }
 
     public void SwitchState(PlayerState state)
@@ -59,7 +65,10 @@ public class PlayerStateManager : MonoBehaviour
     public void OnTriggerEnter(Collider collider)
     {
         if (collider.gameObject.tag == "Enemy" && !isInvincible)
+        {
+            health--;
             SwitchState(getHitState);
+        }
         //currentState.OnCollisionEnter(collider);
     }
 
