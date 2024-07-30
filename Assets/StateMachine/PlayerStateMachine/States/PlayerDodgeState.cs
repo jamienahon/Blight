@@ -16,17 +16,18 @@ public class PlayerDodgeState : PlayerState
 
     public override void UpdateState()
     {
-        stateManager.transform.Translate(stateManager.animator.transform.forward * stateManager.moveSpeed * Time.deltaTime);
+        stateManager.transform.Translate(stateManager.animator.transform.forward * stateManager.dodgeMoveSpeed * Time.deltaTime);
     }
 
     public override void HandleInputs()
     {
-        
+
     }
 
     public override void HandleAnimations()
     {
         LookAtDodgeDirection();
+        stateManager.animator.Play("Unarmed-DiveRoll-Forward1");
     }
 
     public override void SetAnimationParameters()
@@ -39,16 +40,17 @@ public class PlayerDodgeState : PlayerState
     {
         Vector3 movDirection = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
         Vector3 dodgeDirection = Quaternion.Euler(0, Camera.main.transform.eulerAngles.y, 0) * movDirection;
-        stateManager.animator.transform.rotation = Quaternion.LookRotation(dodgeDirection);
+        if (dodgeDirection != Vector3.zero)
+            stateManager.animator.transform.rotation = Quaternion.LookRotation(dodgeDirection);
     }
 
-    public override void OnCollisionEnter(Collision collision)
+    public override void OnCollisionEnter(Collider collider)
     {
-        
+
     }
 
-    public override void OnCollisionExit(Collision collision)
+    public override void OnCollisionExit(Collider collider)
     {
-        
+
     }
 }

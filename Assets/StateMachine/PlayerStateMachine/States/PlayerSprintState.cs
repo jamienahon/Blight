@@ -61,12 +61,12 @@ public class PlayerSprintState : PlayerState
             stateManager.animator.gameObject.transform.rotation = Quaternion.LookRotation(movement);
     }
 
-    public override void OnCollisionEnter(Collision collision)
+    public override void OnCollisionEnter(Collider collider)
     {
 
     }
 
-    public override void OnCollisionExit(Collision collision)
+    public override void OnCollisionExit(Collider collider)
     {
 
     }

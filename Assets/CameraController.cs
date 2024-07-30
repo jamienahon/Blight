@@ -24,6 +24,9 @@ public class CameraController : MonoBehaviour
 
     private void Update()
     {
+        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = false;
+
         if (Input.GetAxis("Lockon") > 0 && !isClicking)
         {
             isClicking = true;
@@ -65,8 +68,8 @@ public class CameraController : MonoBehaviour
         lockOnCanvas.gameObject.SetActive(false);
         currentLockOnPoint = null;
         stateManager.isLockedOn = false;
-        if (stateManager.currentState == stateManager.walkState)
-            stateManager.SwitchState(stateManager.idleState);
+        //if (stateManager.currentState == stateManager.walkState)
+        //    stateManager.SwitchState(stateManager.idleState);
         followCam.m_XAxis.Value = cameraTarget.transform.rotation.eulerAngles.y;
         //change this to lockOnCam y damping
         followCam.m_YAxis.Value = 0.5f;
@@ -84,12 +87,12 @@ public class CameraController : MonoBehaviour
         {
             Vector3 dir = nearbyTargets[i].transform.position - Camera.main.transform.position;
             dir.y = 0;
-            float _angle = Vector3.Angle(Camera.main.transform.forward, dir);
+            float angle = Vector3.Angle(Camera.main.transform.forward, dir);
 
-            if (_angle < closestAngle)
+            if (angle < closestAngle)
             {
                 closestTarget = nearbyTargets[i].transform;
-                closestAngle = _angle;
+                closestAngle = angle;
             }
         }
         return closestTarget;

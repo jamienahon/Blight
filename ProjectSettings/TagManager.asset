@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - lockon point
+  - Enemy
   layers:
   - Default
   - TransparentFX

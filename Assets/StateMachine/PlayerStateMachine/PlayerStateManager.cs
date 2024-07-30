@@ -11,18 +11,24 @@ public class PlayerStateManager : MonoBehaviour
     public PlayerSprintState sprintState = new PlayerSprintState();
     public PlayerDodgeState dodgeState = new PlayerDodgeState();
     public PlayerJumpState jumpState = new PlayerJumpState();
+    public PlayerLAttackState lAttackState = new PlayerLAttackState();
+    public PlayerHAttackState hAttackState = new PlayerHAttackState();
+    public PlayerGetHitState getHitState = new PlayerGetHitState();
 
     [HideInInspector] public Animator animator;
     [HideInInspector] public bool isLockedOn = false;
     [HideInInspector] public bool switchStates = false;
+    [HideInInspector] public bool isInvincible = false;
 
     [HideInInspector] public Vector3 movementDirection = new Vector3();
 
     public float moveSpeed;
     public float sprintSpeed;
+    public float dodgeMoveSpeed;
     public float jumpHeight;
     public float jumpSpeedWalk;
     public float jumpSpeedSprint;
+    public float attackMoveAmount;
 
 
     private void Start()
@@ -33,17 +39,13 @@ public class PlayerStateManager : MonoBehaviour
         animator = GetComponentInChildren<Animator>();
     }
 
-    public void Update()
+    public void FixedUpdate()
     {
-        Cursor.lockState = CursorLockMode.Confined;
-        Cursor.visible = false;
-
-        if(switchStates)
+        if (switchStates)
         {
             currentState.EnterState(this);
             switchStates = false;
         }
-
         currentState.UpdateState();
     }
 
@@ -53,13 +55,16 @@ public class PlayerStateManager : MonoBehaviour
         switchStates = true;
     }
 
-    public void OnCollisionEnter(Collision collision)
+
+    public void OnTriggerEnter(Collider collider)
     {
-        currentState.OnCollisionEnter(collision);
+        if (collider.gameObject.tag == "Enemy" && !isInvincible)
+            SwitchState(getHitState);
+        //currentState.OnCollisionEnter(collider);
     }
 
-    public void OnCollisionExit(Collision collision)
+    public void OnTriggerExit(Collider collider)
     {
-        currentState.OnCollisionExit(collision);
+        //currentState.OnCollisionExit(collider);
     }
 }

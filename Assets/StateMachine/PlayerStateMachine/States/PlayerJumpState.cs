@@ -71,12 +71,12 @@ public class PlayerJumpState : PlayerState
         rb.AddForce(new Vector3(0, stateManager.jumpHeight, 0), ForceMode.Impulse);
     }
 
-    public override void OnCollisionEnter(Collision collision)
+    public override void OnCollisionEnter(Collider collider)
     {
 
     }
 
-    public override void OnCollisionExit(Collision collision)
+    public override void OnCollisionExit(Collider collider)
     {
 
     }

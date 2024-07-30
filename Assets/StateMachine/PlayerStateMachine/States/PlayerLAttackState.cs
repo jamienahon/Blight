@@ -1,38 +1,36 @@
+using RPGCharacterAnims.Actions;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
-public class PlayerIdleState : PlayerState
+public class PlayerLAttackState : PlayerState
 {
     public override PlayerStateManager stateManager { get; set; }
+    public bool move;
 
     public override void EnterState(PlayerStateManager stateManager)
     {
         this.stateManager = stateManager;
+        move = false;
+        HandleAnimations();
         SetAnimationParameters();
     }
 
     public override void UpdateState()
     {
-        HandleInputs();
+        if (move)
+        {
+            stateManager.transform.Translate(stateManager.animator.transform.forward * stateManager.attackMoveAmount * Time.deltaTime);
+        }
     }
 
     public override void HandleInputs()
     {
-        if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
-            stateManager.SwitchState(stateManager.walkState);
-
-        if (Input.GetAxis("Dodge") > 0)
-            stateManager.SwitchState(stateManager.dodgeState);
-
-        if (Input.GetAxis("Jump") > 0)
-            stateManager.SwitchState(stateManager.jumpState);
     }
 
     public override void HandleAnimations()
     {
-        
+        stateManager.animator.Play("Unarmed-Attack-L1");
     }
 
     public override void SetAnimationParameters()
@@ -43,12 +41,12 @@ public class PlayerIdleState : PlayerState
         stateManager.animator.SetFloat("VerticalMovement", 0);
     }
 
-    public override void OnCollisionEnter(Collision collision)
+    public override void OnCollisionEnter(Collider collider)
     {
 
     }
 
-    public override void OnCollisionExit(Collision collision)
+    public override void OnCollisionExit(Collider collider)
     {
 
     }

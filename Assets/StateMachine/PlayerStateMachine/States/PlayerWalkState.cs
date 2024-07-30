@@ -34,6 +34,12 @@ public class PlayerWalkState : PlayerState
         if (Input.GetAxis("Jump") > 0)
             stateManager.SwitchState(stateManager.jumpState);
 
+        if (Input.GetAxis("LAttack") > 0)
+            stateManager.SwitchState(stateManager.lAttackState);
+
+        if (Input.GetAxis("HAttack") > 0)
+            stateManager.SwitchState(stateManager.hAttackState);
+
         if (Input.GetAxis("Horizontal") == 0 && Input.GetAxis("Vertical") == 0)
             stateManager.SwitchState(stateManager.idleState);
     }
@@ -75,12 +81,12 @@ public class PlayerWalkState : PlayerState
             stateManager.animator.gameObject.transform.rotation = Quaternion.LookRotation(lookDirection);
     }
 
-    public override void OnCollisionEnter(Collision collision)
+    public override void OnCollisionEnter(Collider collider)
     {
 
     }
 
-    public override void OnCollisionExit(Collision collision)
+    public override void OnCollisionExit(Collider collider)
     {
 
     }
