@@ -5,6 +5,8 @@ using UnityEngine;
 public class PlayerAnimationEvents : MonoBehaviour
 {
     public PlayerStateManager stateManager;
+    public Collider lHitbox;
+    public Collider hHitbox;
 
     public void StartDodge()
     {
@@ -51,5 +53,21 @@ public class PlayerAnimationEvents : MonoBehaviour
     public void EndGetHit()
     {
         stateManager.SwitchState(stateManager.idleState);
+    }
+
+    public void EnableHitboxL()
+    {
+        lHitbox.enabled = true;
+    }
+
+    public void EnableHitboxH()
+    {
+        hHitbox.enabled = true;
+    }
+
+    public void DisableHitbox()
+    {
+        lHitbox.enabled = false;
+        hHitbox.enabled = false;
     }
 }

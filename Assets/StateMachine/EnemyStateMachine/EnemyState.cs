@@ -14,7 +14,7 @@ public abstract class EnemyState
 
     public abstract void SetAnimationParameters();
 
-    public abstract void OnCollisionEnter(Collision collision);
+    public abstract void OnTriggerEnter(Collider collider);
 
-    public abstract void OnCollisionExit(Collision collision);
+    public abstract void OnTriggerExit(Collider collider);
 }

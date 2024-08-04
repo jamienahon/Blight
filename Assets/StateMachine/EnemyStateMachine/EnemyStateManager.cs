@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyStateManager : MonoBehaviour
 {
     public EnemyState currentState;
+    public EnemyHealthSystem healthSystem;
 
     public EnemyIdleState idleState = new EnemyIdleState();
     public EnemyAttackState attackState = new EnemyAttackState();
@@ -28,7 +29,7 @@ public class EnemyStateManager : MonoBehaviour
         nextAttack = Time.time + Random.Range(timeBetweenAttacks.x, timeBetweenAttacks.y);
     }
 
-    public void Update()
+    public void FixedUpdate()
     {
         if (switchStates)
         {
@@ -50,13 +51,17 @@ public class EnemyStateManager : MonoBehaviour
         return Vector3.Distance(transform.position, player.transform.position) < attackRange;
     }
 
-    public void OnCollisionEnter(Collision collision)
+    public void OnTriggerEnter(Collider collider)
     {
-        currentState.OnCollisionEnter(collision);
+        //if (collider.gameObject.tag == "Player")
+        //{
+        //    collider.GetComponentInParent<PlayerHealth>().DoDamage(1);
+        //    collider.GetComponentInParent<PlayerStateManager>().SwitchState(collider.GetComponentInParent<PlayerStateManager>().getHitState);
+        //}
     }
 
-    public void OnCollisionExit(Collision collision)
+    public void OnTriggerExit(Collider collider)
     {
-        currentState.OnCollisionExit(collision);
+        
     }
 }

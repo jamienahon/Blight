@@ -63,7 +63,7 @@ public class CameraController : MonoBehaviour
         }
     }
 
-    void EndLockOn()
+    public void EndLockOn()
     {
         lockOnCanvas.gameObject.SetActive(false);
         currentLockOnPoint = null;

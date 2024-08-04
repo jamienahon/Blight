@@ -33,12 +33,12 @@ public class EnemyMoveState : EnemyState
         stateManager.animator.SetBool("IsMoving", true);
     }
 
-    public override void OnCollisionEnter(Collision collision)
+    public override void OnTriggerEnter(Collider collider)
     {
 
     }
 
-    public override void OnCollisionExit(Collision collision)
+    public override void OnTriggerExit(Collider collider)
     {
 
     }
