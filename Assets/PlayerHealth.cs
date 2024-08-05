@@ -13,6 +13,8 @@ public class PlayerHealth : MonoBehaviour
     public int healthCharges;
     public int healAmount;
     bool hasClicked = false;
+    public float healCooldown;
+    float canHeal;
 
     public void DoDamage(float damage)
     {
@@ -26,6 +28,7 @@ public class PlayerHealth : MonoBehaviour
 
     public void Heal(float healAmount)
     {
+        canHeal = Time.time + healCooldown;
         if (healthCharges <= 0)
             return;
 
@@ -40,7 +43,7 @@ public class PlayerHealth : MonoBehaviour
     private void Update()
     {
         healthChargesText.text = healthCharges.ToString();
-        if(Input.GetAxis("Heal") > 0 && !hasClicked)
+        if(Input.GetAxis("Heal") > 0 && !hasClicked && Time.time >= canHeal)
         {
             hasClicked = true;
             Heal(healAmount);
