@@ -28,18 +28,23 @@ public class PlayerStateManager : MonoBehaviour
     [Header("Movement")]
     public float moveSpeed;
     public float sprintSpeed;
+    public float sprintStaminaCost;
 
     [Header("Dodging")]
     public float dodgeMoveSpeed;
+    public float dodgeStaminaCost;
 
     [Header("Jumping")]
     public float jumpHeight;
     public float jumpSpeedWalk;
     public float jumpSpeedSprint;
+    public float jumpStaminaCost;
 
     [Header("Attacking")]
     public float attackMoveSpeed;
     public float damage;
+    public float lAttackStaminaCost;
+    public float hAttackStaminaCost;
 
 
     private void Start()

@@ -25,16 +25,16 @@ public class PlayerIdleState : PlayerState
         if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
             stateManager.SwitchState(stateManager.walkState);
 
-        if (Input.GetAxis("Dodge") > 0)
+        if (Input.GetAxis("Dodge") > 0 && stateManager.healthSystem.staminaBar.fillAmount > 0)
             stateManager.SwitchState(stateManager.dodgeState);
 
-        if (Input.GetAxis("Jump") > 0)
+        if (Input.GetAxis("Jump") > 0 && stateManager.healthSystem.staminaBar.fillAmount > 0)
             stateManager.SwitchState(stateManager.jumpState);
 
-        if (Input.GetAxis("LAttack") > 0)
+        if (Input.GetAxis("LAttack") > 0 && stateManager.healthSystem.staminaBar.fillAmount > 0)
             stateManager.SwitchState(stateManager.lAttackState);
 
-        if (Input.GetAxis("HAttack") > 0)
+        if (Input.GetAxis("HAttack") > 0 && stateManager.healthSystem.staminaBar.fillAmount > 0)
             stateManager.SwitchState(stateManager.hAttackState);
     }
 

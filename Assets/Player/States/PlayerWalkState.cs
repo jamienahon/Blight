@@ -25,19 +25,19 @@ public class PlayerWalkState : PlayerState
         stateManager.movementDirection.x = Input.GetAxisRaw("Horizontal");
         stateManager.movementDirection.z = Input.GetAxisRaw("Vertical");
 
-        if (Input.GetAxis("Sprint") > 0)
+        if (Input.GetAxis("Sprint") > 0 && stateManager.healthSystem.staminaBar.fillAmount > 0)
             stateManager.SwitchState(stateManager.sprintState);
 
-        if (Input.GetAxis("Dodge") > 0)
+        if (Input.GetAxis("Dodge") > 0 && stateManager.healthSystem.staminaBar.fillAmount > 0)
             stateManager.SwitchState(stateManager.dodgeState);
 
-        if (Input.GetAxis("Jump") > 0)
+        if (Input.GetAxis("Jump") > 0 && stateManager.healthSystem.staminaBar.fillAmount > 0)
             stateManager.SwitchState(stateManager.jumpState);
 
-        if (Input.GetAxis("LAttack") > 0)
+        if (Input.GetAxis("LAttack") > 0 && stateManager.healthSystem.staminaBar.fillAmount > 0)
             stateManager.SwitchState(stateManager.lAttackState);
 
-        if (Input.GetAxis("HAttack") > 0)
+        if (Input.GetAxis("HAttack") > 0 && stateManager.healthSystem.staminaBar.fillAmount > 0)
             stateManager.SwitchState(stateManager.hAttackState);
 
         if (Input.GetAxis("Horizontal") == 0 && Input.GetAxis("Vertical") == 0)

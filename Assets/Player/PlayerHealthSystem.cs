@@ -9,8 +9,10 @@ public class PlayerHealthSystem : MonoBehaviour
 {
     PlayerStateManager stateManager;
     public float maxHealth;
+    public float maxStamina;
+    public float staminaRefillSpeed;
     public Image healthBar;
-    public Slider staminaBar;
+    public Image staminaBar;
     public TextMeshProUGUI healthChargesText;
     public int healthCharges;
     public int healAmount;
@@ -18,9 +20,27 @@ public class PlayerHealthSystem : MonoBehaviour
     public float healCooldown;
     float canHeal;
 
+    public float timeBeforeStaminaRefill;
+    float refillStamina;
+
     void Start()
     {
         stateManager = GetComponent<PlayerStateManager>();
+    }
+    private void Update()
+    {
+        healthChargesText.text = healthCharges.ToString();
+        if (Input.GetAxis("Heal") > 0 && !hasClicked && Time.time >= canHeal)
+        {
+            hasClicked = true;
+            Heal(healAmount);
+        }
+
+        if (Input.GetAxis("Heal") == 0)
+            hasClicked = false;
+
+        if (Time.time >= refillStamina && staminaBar.fillAmount < 1)
+            RefillStamina();
     }
 
     public void DoDamage(float damage)
@@ -48,16 +68,17 @@ public class PlayerHealthSystem : MonoBehaviour
         healthCharges--;
     }
 
-    private void Update()
+    public void ConsumeStamina(float consumeAmount)
     {
-        healthChargesText.text = healthCharges.ToString();
-        if(Input.GetAxis("Heal") > 0 && !hasClicked && Time.time >= canHeal)
+        if (staminaBar.fillAmount > 0)
         {
-            hasClicked = true;
-            Heal(healAmount);
+            refillStamina = Time.time + timeBeforeStaminaRefill;
+            staminaBar.fillAmount -= consumeAmount * (1 / maxStamina);
         }
+    }
 
-        if (Input.GetAxis("Heal") == 0)
-            hasClicked = false;
+    void RefillStamina()
+    {
+        staminaBar.fillAmount += staminaRefillSpeed * Time.deltaTime;
     }
 }

@@ -766,7 +766,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 372186417}
-  m_LocalRotation: {x: -0.09853766, y: -0.0000000040927395, z: 0.0000000014323702, w: 0.99513334}
+  m_LocalRotation: {x: -0.09853766, y: 0.000000032222104, z: -0.000000011277036, w: 0.99513334}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1753,12 +1753,17 @@ MonoBehaviour:
   movementDirection: {x: 0, y: 0, z: 0}
   moveSpeed: 5
   sprintSpeed: 7.5
+  sprintStaminaCost: 1
   dodgeMoveSpeed: 2
+  dodgeStaminaCost: 1
   jumpHeight: 5
   jumpSpeedWalk: 3
   jumpSpeedSprint: 5
+  jumpStaminaCost: 1
   attackMoveSpeed: 0
   damage: 1
+  lAttackStaminaCost: 1
+  hAttackStaminaCost: 2
 --- !u!4 &742843623
 Transform:
   m_ObjectHideFlags: 0
@@ -1819,12 +1824,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 10
+  maxStamina: 10
+  staminaRefillSpeed: 0.3
   healthBar: {fileID: 1464870740}
-  staminaBar: {fileID: 1315312180}
+  staminaBar: {fileID: 1452758312}
   healthChargesText: {fileID: 116440945}
   healthCharges: 3
   healAmount: 2
   healCooldown: 3
+  timeBeforeStaminaRefill: 2
 --- !u!1 &782511364
 GameObject:
   m_ObjectHideFlags: 3
@@ -2651,7 +2659,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!54 &1042516148
 Rigidbody:
   m_ObjectHideFlags: 0

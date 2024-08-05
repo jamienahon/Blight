@@ -14,6 +14,7 @@ public class PlayerLAttackState : PlayerState
         move = false;
         HandleAnimations();
         SetAnimationParameters();
+        stateManager.healthSystem.ConsumeStamina(stateManager.lAttackStaminaCost);
     }
 
     public override void UpdateState()

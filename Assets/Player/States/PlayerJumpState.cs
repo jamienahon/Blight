@@ -19,6 +19,8 @@ public class PlayerJumpState : PlayerState
         ApplyJumpForce();
         HandleAnimations();
 
+        stateManager.healthSystem.ConsumeStamina(stateManager.jumpStaminaCost);
+
         isJumping = true;
 
         if (Input.GetAxis("Sprint") > 0)

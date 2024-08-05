@@ -13,6 +13,7 @@ public class PlayerHAttackState : PlayerState
         move = false;
         HandleAnimations();
         SetAnimationParameters();
+        stateManager.healthSystem.ConsumeStamina(stateManager.hAttackStaminaCost);
     }
 
     public override void UpdateState()

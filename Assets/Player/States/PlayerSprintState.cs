@@ -17,6 +17,8 @@ public class PlayerSprintState : PlayerState
         HandleInputs();
         HandleAnimations();
 
+        stateManager.healthSystem.ConsumeStamina(stateManager.sprintStaminaCost * Time.deltaTime);
+
         stateManager.transform.Translate(stateManager.movementDirection.normalized * stateManager.sprintSpeed * Time.deltaTime);
     }
 
@@ -44,6 +46,9 @@ public class PlayerSprintState : PlayerState
 
         if (Input.GetAxis("HAttack") > 0)
             stateManager.SwitchState(stateManager.hAttackState);
+
+        if (stateManager.healthSystem.staminaBar.fillAmount == 0)
+            stateManager.SwitchState(stateManager.idleState);
 
         if (Input.GetAxis("Horizontal") == 0 && Input.GetAxis("Vertical") == 0)
             stateManager.SwitchState(stateManager.idleState);

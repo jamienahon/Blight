@@ -12,6 +12,7 @@ public class PlayerDodgeState : PlayerState
         SetAnimationParameters();
 
         HandleAnimations();
+        stateManager.healthSystem.ConsumeStamina(stateManager.dodgeStaminaCost);
     }
 
     public override void UpdateState()
