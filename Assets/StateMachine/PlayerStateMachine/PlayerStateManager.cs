@@ -16,6 +16,7 @@ public class PlayerStateManager : MonoBehaviour
     public PlayerLAttackState lAttackState = new PlayerLAttackState();
     public PlayerHAttackState hAttackState = new PlayerHAttackState();
     public PlayerGetHitState getHitState = new PlayerGetHitState();
+    public PlayerHealState healState = new PlayerHealState();
 
     [HideInInspector] public Animator animator;
     [HideInInspector] public bool isLockedOn = false;
@@ -26,11 +27,15 @@ public class PlayerStateManager : MonoBehaviour
 
     public float moveSpeed;
     public float sprintSpeed;
+    public float healingMoveSpeed;
     public float dodgeMoveSpeed;
     public float jumpHeight;
     public float jumpSpeedWalk;
     public float jumpSpeedSprint;
     public float attackMoveAmount;
+    public float lengthOfHeal;
+    public float endHeal;
+    public float healAmount;
 
 
     private void Start()
@@ -62,12 +67,12 @@ public class PlayerStateManager : MonoBehaviour
     {
         if (collider.gameObject.tag == "EnemyHit" && !isInvincible)
         {
-            healthSystem.DoDamage(0);
+            healthSystem.DoDamage(3);
             SwitchState(getHitState);
         }
         else if(collider.gameObject.tag == "Enemy")
         {
-            collider.GetComponentInParent<EnemyHealthSystem>().DoDamage(0);
+            collider.GetComponentInParent<EnemyHealthSystem>().DoDamage(1);
         }
         //currentState.OnCollisionEnter(collider);
     }

@@ -34,6 +34,9 @@ public class PlayerIdleState : PlayerState
 
         if (Input.GetAxis("HAttack") > 0)
             stateManager.SwitchState(stateManager.hAttackState);
+
+        //if(Input.GetAxis("Heal") > 0)
+        //    stateManager.SwitchState(stateManager.healState);
     }
 
     public override void HandleAnimations()
@@ -43,6 +46,7 @@ public class PlayerIdleState : PlayerState
 
     public override void SetAnimationParameters()
     {
+        stateManager.animator.speed = 1;
         stateManager.animator.SetBool("IsMoving", false);
         stateManager.animator.SetBool("IsSprinting", false);
         stateManager.animator.SetFloat("HorizontalMovement", 0);

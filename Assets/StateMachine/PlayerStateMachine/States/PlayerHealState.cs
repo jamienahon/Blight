@@ -1,50 +1,32 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerWalkState : PlayerState
+public class PlayerHealState : PlayerState
 {
-    public float moveSpeed;
-
     public override PlayerStateManager stateManager { get; set; }
 
     public override void EnterState(PlayerStateManager stateManager)
     {
         this.stateManager = stateManager;
         SetAnimationParameters();
+
+        stateManager.endHeal = Time.time + stateManager.lengthOfHeal;
     }
 
     public override void UpdateState()
     {
-        HandleInputs();
         HandleAnimations();
 
-        stateManager.transform.Translate(stateManager.movementDirection.normalized * stateManager.moveSpeed * Time.deltaTime);
+        if (Time.time >= stateManager.endHeal)
+            stateManager.SwitchState(stateManager.idleState);
+
+        stateManager.transform.Translate(stateManager.movementDirection.normalized * stateManager.healingMoveSpeed * Time.deltaTime);
     }
 
     public override void HandleInputs()
     {
-        stateManager.movementDirection.x = Input.GetAxisRaw("Horizontal");
-        stateManager.movementDirection.z = Input.GetAxisRaw("Vertical");
 
-        if (Input.GetAxis("Sprint") > 0)
-            stateManager.SwitchState(stateManager.sprintState);
-
-        if (Input.GetAxis("Dodge") > 0)
-            stateManager.SwitchState(stateManager.dodgeState);
-
-        if (Input.GetAxis("Jump") > 0)
-            stateManager.SwitchState(stateManager.jumpState);
-
-        if (Input.GetAxis("LAttack") > 0)
-            stateManager.SwitchState(stateManager.lAttackState);
-
-        if (Input.GetAxis("HAttack") > 0)
-            stateManager.SwitchState(stateManager.hAttackState);
-
-        //if (Input.GetAxis("Heal") > 0)
-        //    stateManager.SwitchState(stateManager.healState);
-
-        if (Input.GetAxis("Horizontal") == 0 && Input.GetAxis("Vertical") == 0)
-            stateManager.SwitchState(stateManager.idleState);
     }
 
     public override void HandleAnimations()
@@ -64,8 +46,10 @@ public class PlayerWalkState : PlayerState
 
     public override void SetAnimationParameters()
     {
-        stateManager.animator.SetBool("IsMoving", true);
+        stateManager.animator.speed = 0.75f;
         stateManager.animator.SetBool("IsSprinting", false);
+        stateManager.animator.SetBool("IsDodging", false);
+        stateManager.animator.SetBool("IsJumping", false);
     }
 
     void LookAtLockOnPoint()
