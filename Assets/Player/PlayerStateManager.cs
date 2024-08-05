@@ -45,6 +45,7 @@ public class PlayerStateManager : MonoBehaviour
     public float damage;
     public float lAttackStaminaCost;
     public float hAttackStaminaCost;
+    public float gemRechargeAmount;
 
 
     private void Start()
@@ -78,6 +79,8 @@ public class PlayerStateManager : MonoBehaviour
         if (collider.gameObject.tag == "Enemy")
         {
             collider.GetComponentInParent<EnemyHealthSystem>().DoDamage(damage);
+            if (healthSystem.rechargeGem)
+                healthSystem.RechargeGem(gemRechargeAmount);
         }
     }
 

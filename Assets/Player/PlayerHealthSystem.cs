@@ -13,7 +13,7 @@ public class PlayerHealthSystem : MonoBehaviour
     public float staminaRefillSpeed;
     public Image healthBar;
     public Image staminaBar;
-    public TextMeshProUGUI healthChargesText;
+    public List<Image> healingGemImages;
     public int healthCharges;
     public int healAmount;
     bool hasClicked = false;
@@ -22,6 +22,8 @@ public class PlayerHealthSystem : MonoBehaviour
 
     public float timeBeforeStaminaRefill;
     float refillStamina;
+    public bool rechargeGem = false;
+    public float maxRecharge;
 
     void Start()
     {
@@ -29,7 +31,6 @@ public class PlayerHealthSystem : MonoBehaviour
     }
     private void Update()
     {
-        healthChargesText.text = healthCharges.ToString();
         if (Input.GetAxis("Heal") > 0 && !hasClicked && Time.time >= canHeal)
         {
             hasClicked = true;
@@ -41,6 +42,13 @@ public class PlayerHealthSystem : MonoBehaviour
 
         if (Time.time >= refillStamina && staminaBar.fillAmount < 1)
             RefillStamina();
+
+        if(rechargeGem && healingGemImages[0].fillAmount == 1)
+        {
+            healingGemImages[0].color = new Color(1, 1, 1, 1);
+            rechargeGem = false;
+            healthCharges = 1;
+        }
     }
 
     public void DoDamage(float damage)
@@ -66,6 +74,18 @@ public class PlayerHealthSystem : MonoBehaviour
 
         healthBar.fillAmount += healAmount * (1 / maxHealth);
         healthCharges--;
+
+        if (healingGemImages.Count > 1)
+        {
+            healingGemImages[0].gameObject.SetActive(false);
+            healingGemImages.RemoveAt(0);
+        }
+        else
+        {
+            rechargeGem = true;
+            healingGemImages[0].color = new Color(1, 1, 1, 0.3f);
+            healingGemImages[0].fillAmount = 0;
+        }
     }
 
     public void ConsumeStamina(float consumeAmount)
@@ -79,6 +99,11 @@ public class PlayerHealthSystem : MonoBehaviour
 
     void RefillStamina()
     {
-        staminaBar.fillAmount += staminaRefillSpeed * Time.deltaTime;
+        staminaBar.fillAmount += staminaRefillSpeed * (1 / maxStamina) * Time.deltaTime;
+    }
+
+    public void RechargeGem(float recharge)
+    {
+        healingGemImages[0].fillAmount += recharge * (1 / maxRecharge);
     }
 }
