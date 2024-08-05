@@ -67,7 +67,7 @@ public class EnemyStateManager : MonoBehaviour
         //}
         if (collider.gameObject.tag == "Player")
         {
-            collider.GetComponentInParent<PlayerHealth>().DoDamage(damage);
+            collider.GetComponentInParent<PlayerHealthSystem>().DoDamage(damage);
         }
     }
 

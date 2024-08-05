@@ -8,7 +8,7 @@ public class PlayerStateManager : MonoBehaviour
     public PlayerState currentState;
 
     [HideInInspector] public Animator animator;
-    [HideInInspector] public PlayerHealth healthSystem;
+    [HideInInspector] public PlayerHealthSystem healthSystem;
 
     public PlayerIdleState idleState = new PlayerIdleState();
     public PlayerWalkState walkState = new PlayerWalkState();
@@ -48,7 +48,7 @@ public class PlayerStateManager : MonoBehaviour
         currentState = idleState;
         currentState.EnterState(this);
         animator = GetComponentInChildren<Animator>();
-        healthSystem = GetComponent<PlayerHealth>();
+        healthSystem = GetComponent<PlayerHealthSystem>();
     }
 
     public void FixedUpdate()

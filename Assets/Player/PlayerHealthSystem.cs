@@ -5,10 +5,11 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
 
-public class PlayerHealth : MonoBehaviour
+public class PlayerHealthSystem : MonoBehaviour
 {
     PlayerStateManager stateManager;
-    public Slider healthBar;
+    public float maxHealth;
+    public Image healthBar;
     public Slider staminaBar;
     public TextMeshProUGUI healthChargesText;
     public int healthCharges;
@@ -29,10 +30,10 @@ public class PlayerHealth : MonoBehaviour
         else
             stateManager.SwitchState(stateManager.getHitState);
 
-        healthBar.value -= damage;
-        if (healthBar.value <= 0)
+        healthBar.fillAmount -= damage * (1 / maxHealth);
+        if (healthBar.fillAmount <= 0)
         {
-            healthBar.value = 0;
+            healthBar.fillAmount = 0;
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
@@ -43,12 +44,8 @@ public class PlayerHealth : MonoBehaviour
         if (healthCharges <= 0)
             return;
 
-        healthBar.value += healAmount;
+        healthBar.fillAmount += healAmount * (1 / maxHealth);
         healthCharges--;
-        if (healthBar.value >= healthBar.maxValue)
-        {
-            healthBar.value = healthBar.maxValue;
-        }
     }
 
     private void Update()
