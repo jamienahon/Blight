@@ -31,6 +31,9 @@ public class PlayerHealthSystem : MonoBehaviour
     }
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Escape))
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+
         if (Input.GetAxis("Heal") > 0 && !hasClicked && Time.time >= canHeal)
         {
             hasClicked = true;
