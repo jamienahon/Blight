@@ -20,7 +20,7 @@ public class EnemyAttackState : EnemyState
     public override void UpdateState()
     {
         if (move)
-            stateManager.transform.Translate(stateManager.animator.transform.forward * stateManager.attackMoveAmount * Time.deltaTime);
+            stateManager.transform.Translate(stateManager.animator.transform.forward * stateManager.attackMoveSpeed * Time.deltaTime);
 
         if (rotate)
         {

@@ -10,8 +10,6 @@ public class PlayerSprintState : PlayerState
     {
         this.stateManager = stateManager;
         SetAnimationParameters();
-
-        stateManager.animator.speed = 1.5f;
     }
 
     public override void UpdateState()
@@ -38,8 +36,14 @@ public class PlayerSprintState : PlayerState
             stateManager.SwitchState(stateManager.jumpState);
         }
 
-        //if (Input.GetAxis("Heal") > 0)
-        //    stateManager.SwitchState(stateManager.healState);
+        if (Input.GetAxis("Dodge") > 0)
+            stateManager.SwitchState(stateManager.dodgeState);
+
+        if (Input.GetAxis("LAttack") > 0)
+            stateManager.SwitchState(stateManager.lAttackState);
+
+        if (Input.GetAxis("HAttack") > 0)
+            stateManager.SwitchState(stateManager.hAttackState);
 
         if (Input.GetAxis("Horizontal") == 0 && Input.GetAxis("Vertical") == 0)
             stateManager.SwitchState(stateManager.idleState);
@@ -53,6 +57,7 @@ public class PlayerSprintState : PlayerState
 
     public override void SetAnimationParameters()
     {
+        stateManager.animator.speed = 1.5f;
         stateManager.animator.SetBool("IsSprinting", true);
     }
 

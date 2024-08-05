@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class EnemyHealthSystem : MonoBehaviour
 {
-    public PlayerStateManager stateManager;
     public CameraController camCont;
     public Slider healthBar;
 
@@ -16,7 +15,6 @@ public class EnemyHealthSystem : MonoBehaviour
         {
             healthBar.value = 0;
             Destroy(gameObject);
-            stateManager.isLockedOn = false;
             camCont.EndLockOn();
         }
     }

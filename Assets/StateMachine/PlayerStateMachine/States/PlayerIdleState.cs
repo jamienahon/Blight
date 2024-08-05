@@ -16,6 +16,14 @@ public class PlayerIdleState : PlayerState
     public override void UpdateState()
     {
         HandleInputs();
+        if (stateManager.isLockedOn)
+        {
+            LookAtLockOnPoint();
+        }
+        else
+        {
+            LookAtMovementDirection();
+        }
     }
 
     public override void HandleInputs()
@@ -34,9 +42,6 @@ public class PlayerIdleState : PlayerState
 
         if (Input.GetAxis("HAttack") > 0)
             stateManager.SwitchState(stateManager.hAttackState);
-
-        //if(Input.GetAxis("Heal") > 0)
-        //    stateManager.SwitchState(stateManager.healState);
     }
 
     public override void HandleAnimations()
@@ -51,6 +56,22 @@ public class PlayerIdleState : PlayerState
         stateManager.animator.SetBool("IsSprinting", false);
         stateManager.animator.SetFloat("HorizontalMovement", 0);
         stateManager.animator.SetFloat("VerticalMovement", 0);
+    }
+
+    void LookAtLockOnPoint()
+    {
+        stateManager.movementDirection = Quaternion.Euler(0, stateManager.animator.transform.eulerAngles.y, 0) * stateManager.movementDirection;
+        stateManager.animator.transform.LookAt(Camera.main.GetComponent<CameraController>().currentLockOnPoint);
+        stateManager.animator.transform.position = new Vector3(stateManager.transform.position.x, 0, stateManager.transform.position.z);
+        stateManager.animator.transform.rotation = Quaternion.Euler(0, stateManager.animator.transform.rotation.eulerAngles.y, 0);
+    }
+
+    void LookAtMovementDirection()
+    {
+        stateManager.movementDirection = Quaternion.Euler(0, Camera.main.transform.eulerAngles.y, 0) * stateManager.movementDirection;
+        Vector3 lookDirection = new Vector3(stateManager.movementDirection.x, 0.0f, stateManager.movementDirection.z);
+        if (lookDirection != Vector3.zero)
+            stateManager.animator.gameObject.transform.rotation = Quaternion.LookRotation(lookDirection);
     }
 
     public override void OnCollisionEnter(Collider collider)

@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class PlayerStateManager : MonoBehaviour
 {
-    public PlayerHealth healthSystem;
 
     public PlayerState currentState;
+
+    [HideInInspector] public Animator animator;
+    [HideInInspector] public PlayerHealth healthSystem;
 
     public PlayerIdleState idleState = new PlayerIdleState();
     public PlayerWalkState walkState = new PlayerWalkState();
@@ -16,26 +18,28 @@ public class PlayerStateManager : MonoBehaviour
     public PlayerLAttackState lAttackState = new PlayerLAttackState();
     public PlayerHAttackState hAttackState = new PlayerHAttackState();
     public PlayerGetHitState getHitState = new PlayerGetHitState();
-    public PlayerHealState healState = new PlayerHealState();
 
-    [HideInInspector] public Animator animator;
     [HideInInspector] public bool isLockedOn = false;
     [HideInInspector] public bool switchStates = false;
     [HideInInspector] public bool isInvincible = false;
 
     [HideInInspector] public Vector3 movementDirection = new Vector3();
 
+    [Header("Movement")]
     public float moveSpeed;
     public float sprintSpeed;
-    public float healingMoveSpeed;
+
+    [Header("Dodging")]
     public float dodgeMoveSpeed;
+
+    [Header("Jumping")]
     public float jumpHeight;
     public float jumpSpeedWalk;
     public float jumpSpeedSprint;
-    public float attackMoveAmount;
-    public float lengthOfHeal;
-    public float endHeal;
-    public float healAmount;
+
+    [Header("Attacking")]
+    public float attackMoveSpeed;
+    public float damage;
 
 
     private void Start()
@@ -44,6 +48,7 @@ public class PlayerStateManager : MonoBehaviour
         currentState = idleState;
         currentState.EnterState(this);
         animator = GetComponentInChildren<Animator>();
+        healthSystem = GetComponent<PlayerHealth>();
     }
 
     public void FixedUpdate()
@@ -65,20 +70,14 @@ public class PlayerStateManager : MonoBehaviour
 
     public void OnTriggerEnter(Collider collider)
     {
-        if (collider.gameObject.tag == "EnemyHit" && !isInvincible)
+        if (collider.gameObject.tag == "Enemy")
         {
-            healthSystem.DoDamage(3);
-            SwitchState(getHitState);
+            collider.GetComponentInParent<EnemyHealthSystem>().DoDamage(damage);
         }
-        else if(collider.gameObject.tag == "Enemy")
-        {
-            collider.GetComponentInParent<EnemyHealthSystem>().DoDamage(1);
-        }
-        //currentState.OnCollisionEnter(collider);
     }
 
     public void OnTriggerExit(Collider collider)
     {
-        //currentState.OnCollisionExit(collider);
+
     }
 }

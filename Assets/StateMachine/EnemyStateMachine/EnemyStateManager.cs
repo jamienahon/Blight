@@ -5,27 +5,34 @@ using UnityEngine;
 public class EnemyStateManager : MonoBehaviour
 {
     public EnemyState currentState;
-    public EnemyHealthSystem healthSystem;
+
+    public GameObject player;
+    [HideInInspector] public EnemyHealthSystem healthSystem;
+    [HideInInspector] public Animator animator;
 
     public EnemyIdleState idleState = new EnemyIdleState();
     public EnemyAttackState attackState = new EnemyAttackState();
     public EnemyMoveState moveState = new EnemyMoveState();
 
-    public Animator animator;
     [HideInInspector] public bool switchStates = false;
 
+    [Header("Movement")]
+    public float moveSpeed;
+
+    [Header("Attacking")]
     public Vector2 timeBetweenAttacks;
     [HideInInspector] public float nextAttack;
-    public float attackMoveAmount;
-    public GameObject player;
+    public float attackMoveSpeed;
     public float attackRange;
-    public float moveSpeed;
+    public float damage;
+
 
     private void Start()
     {
         currentState = idleState;
         currentState.EnterState(this);
-        //animator = GetComponentInChildren<Animator>();
+        animator = GetComponentInChildren<Animator>();
+        healthSystem = GetComponent<EnemyHealthSystem>();
         nextAttack = Time.time + Random.Range(timeBetweenAttacks.x, timeBetweenAttacks.y);
     }
 
@@ -58,10 +65,14 @@ public class EnemyStateManager : MonoBehaviour
         //    collider.GetComponentInParent<PlayerHealth>().DoDamage(1);
         //    collider.GetComponentInParent<PlayerStateManager>().SwitchState(collider.GetComponentInParent<PlayerStateManager>().getHitState);
         //}
+        if (collider.gameObject.tag == "Player")
+        {
+            collider.GetComponentInParent<PlayerHealth>().DoDamage(damage);
+        }
     }
 
     public void OnTriggerExit(Collider collider)
     {
-        
+
     }
 }

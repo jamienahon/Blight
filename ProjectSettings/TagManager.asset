@@ -7,6 +7,7 @@ TagManager:
   - lockon point
   - Enemy
   - EnemyHit
+  - PlayerHit
   layers:
   - Default
   - TransparentFX

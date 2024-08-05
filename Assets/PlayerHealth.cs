@@ -7,6 +7,7 @@ using TMPro;
 
 public class PlayerHealth : MonoBehaviour
 {
+    PlayerStateManager stateManager;
     public Slider healthBar;
     public Slider staminaBar;
     public TextMeshProUGUI healthChargesText;
@@ -16,8 +17,18 @@ public class PlayerHealth : MonoBehaviour
     public float healCooldown;
     float canHeal;
 
+    void Start()
+    {
+        stateManager = GetComponent<PlayerStateManager>();
+    }
+
     public void DoDamage(float damage)
     {
+        if (stateManager.isInvincible)
+            return;
+        else
+            stateManager.SwitchState(stateManager.getHitState);
+
         healthBar.value -= damage;
         if (healthBar.value <= 0)
         {

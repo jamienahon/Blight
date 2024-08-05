@@ -40,9 +40,6 @@ public class PlayerWalkState : PlayerState
         if (Input.GetAxis("HAttack") > 0)
             stateManager.SwitchState(stateManager.hAttackState);
 
-        //if (Input.GetAxis("Heal") > 0)
-        //    stateManager.SwitchState(stateManager.healState);
-
         if (Input.GetAxis("Horizontal") == 0 && Input.GetAxis("Vertical") == 0)
             stateManager.SwitchState(stateManager.idleState);
     }

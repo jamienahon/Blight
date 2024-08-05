@@ -20,7 +20,7 @@ public class PlayerLAttackState : PlayerState
     {
         if (move)
         {
-            stateManager.transform.Translate(stateManager.animator.transform.forward * stateManager.attackMoveAmount * Time.deltaTime);
+            stateManager.transform.Translate(stateManager.animator.transform.forward * stateManager.attackMoveSpeed * Time.deltaTime);
         }
     }
 
@@ -35,8 +35,10 @@ public class PlayerLAttackState : PlayerState
 
     public override void SetAnimationParameters()
     {
+        stateManager.animator.speed = 1f;
         stateManager.animator.SetBool("IsMoving", false);
         stateManager.animator.SetBool("IsSprinting", false);
+        stateManager.animator.SetBool("IsDodging", false);
         stateManager.animator.SetFloat("HorizontalMovement", 0);
         stateManager.animator.SetFloat("VerticalMovement", 0);
     }

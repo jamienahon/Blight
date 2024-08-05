@@ -1317,23 +1317,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe9d9b4ffc30f8f49b1b7de237a0c250, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthSystem: {fileID: 742843626}
   animator: {fileID: 1668582510}
+  healthSystem: {fileID: 742843626}
   isLockedOn: 0
   switchStates: 0
   isInvincible: 0
   movementDirection: {x: 0, y: 0, z: 0}
   moveSpeed: 5
   sprintSpeed: 7.5
-  healingMoveSpeed: 3
   dodgeMoveSpeed: 2
   jumpHeight: 5
   jumpSpeedWalk: 3
   jumpSpeedSprint: 5
-  attackMoveAmount: 8
-  lengthOfHeal: 1
-  endHeal: 0
-  healAmount: 0
+  attackMoveSpeed: 0
+  damage: 1
 --- !u!4 &742843623
 Transform:
   m_ObjectHideFlags: 0
@@ -2142,16 +2139,16 @@ GameObject:
   m_Component:
   - component: {fileID: 1042516151}
   - component: {fileID: 1042516150}
+  - component: {fileID: 1042516152}
   - component: {fileID: 1042516149}
   - component: {fileID: 1042516148}
-  - component: {fileID: 1042516152}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!54 &1042516148
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2194,15 +2191,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3c0f4a6af1d944408c2f9e235f70ee7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 742843621}
   healthSystem: {fileID: 1042516152}
   animator: {fileID: 1845290577}
   switchStates: 0
+  moveSpeed: 3
   timeBetweenAttacks: {x: 1, y: 4}
   nextAttack: 0
-  attackMoveAmount: 10
-  player: {fileID: 742843621}
+  attackMoveSpeed: 0
   attackRange: 3
-  moveSpeed: 3
+  damage: 3
 --- !u!4 &1042516151
 Transform:
   m_ObjectHideFlags: 0
@@ -2232,7 +2230,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a50bcf24609598499d299da4efec93b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stateManager: {fileID: 742843622}
   camCont: {fileID: 963194230}
   healthBar: {fileID: 967729618}
 --- !u!1 &1046143894
@@ -2825,7 +2822,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -3740296770690840957, guid: 25f76e473f551e64a8438e7c32a0ec8e, type: 3}
       propertyPath: m_TagString
-      value: Player
+      value: PlayerHit
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 25f76e473f551e64a8438e7c32a0ec8e, type: 3}
       propertyPath: m_Name
@@ -2837,7 +2834,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2110310026285431580, guid: 25f76e473f551e64a8438e7c32a0ec8e, type: 3}
       propertyPath: m_TagString
-      value: Player
+      value: PlayerHit
       objectReference: {fileID: 0}
     - target: {fileID: 5866666021909216657, guid: 25f76e473f551e64a8438e7c32a0ec8e, type: 3}
       propertyPath: m_Controller

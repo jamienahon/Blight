@@ -68,10 +68,8 @@ public class CameraController : MonoBehaviour
         lockOnCanvas.gameObject.SetActive(false);
         currentLockOnPoint = null;
         stateManager.isLockedOn = false;
-        //if (stateManager.currentState == stateManager.walkState)
-        //    stateManager.SwitchState(stateManager.idleState);
+        stateManager.SwitchState(stateManager.idleState);
         followCam.m_XAxis.Value = cameraTarget.transform.rotation.eulerAngles.y;
-        //change this to lockOnCam y damping
         followCam.m_YAxis.Value = 0.5f;
         cameraAnim.Play("FollowCamera");
     }

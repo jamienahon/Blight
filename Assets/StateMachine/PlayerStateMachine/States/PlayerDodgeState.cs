@@ -32,6 +32,7 @@ public class PlayerDodgeState : PlayerState
 
     public override void SetAnimationParameters()
     {
+        stateManager.animator.speed = 1f;
         stateManager.animator.SetBool("IsDodging", true);
         stateManager.animator.SetBool("IsJumping", false);
     }
