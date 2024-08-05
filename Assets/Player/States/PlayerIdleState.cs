@@ -17,13 +17,7 @@ public class PlayerIdleState : PlayerState
     {
         HandleInputs();
         if (stateManager.isLockedOn)
-        {
             LookAtLockOnPoint();
-        }
-        else
-        {
-            LookAtMovementDirection();
-        }
     }
 
     public override void HandleInputs()
