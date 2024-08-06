@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PlayerStateManager : MonoBehaviour
 {
-
     public PlayerState currentState;
 
     [HideInInspector] public Animator animator;
@@ -26,26 +25,32 @@ public class PlayerStateManager : MonoBehaviour
     [HideInInspector] public Vector3 movementDirection = new Vector3();
 
     [Header("Movement")]
-    public float moveSpeed;
+    public float runSpeed;
     public float sprintSpeed;
-    public float sprintStaminaCost;
+    public float sprintStamCost;
 
     [Header("Dodging")]
     public float dodgeMoveSpeed;
-    public float dodgeStaminaCost;
+    public float dodgeStamCost;
 
     [Header("Jumping")]
     public float jumpHeight;
     public float jumpSpeedWalk;
     public float jumpSpeedSprint;
-    public float jumpStaminaCost;
+    public float jumpStamCost;
 
     [Header("Attacking")]
     public float attackMoveSpeed;
-    public float damage;
-    public float lAttackStaminaCost;
-    public float hAttackStaminaCost;
-    public float gemRechargeAmount;
+
+    [Header("Light Attack")]
+    public float lightAttackDamage;
+    public float lightAttackStamCost;
+    public float lightAttackGemRecharge;
+
+    [Header("Heavy Attack")]
+    public float heavyAttackDamage;
+    public float heavyAttackStamCost;
+    public float heavyAttackGemRecharge;
 
 
     private void Start()
@@ -76,12 +81,7 @@ public class PlayerStateManager : MonoBehaviour
 
     public void OnTriggerEnter(Collider collider)
     {
-        if (collider.gameObject.tag == "Enemy")
-        {
-            collider.GetComponentInParent<EnemyHealthSystem>().DoDamage(damage);
-            if (healthSystem.rechargeGem)
-                healthSystem.RechargeGem(gemRechargeAmount);
-        }
+        currentState.OnCollisionEnter(collider);
     }
 
     public void OnTriggerExit(Collider collider)

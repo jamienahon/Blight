@@ -350,7 +350,7 @@ AnimatorStateMachine:
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: 3766800348005934688}
-    m_Position: {x: -210, y: 90, z: 0}
+    m_Position: {x: -180, y: 60, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -2111842124001938847}
     m_Position: {x: 30, y: 170, z: 0}
@@ -362,25 +362,25 @@ AnimatorStateMachine:
     m_Position: {x: 280, y: 130, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 857312398989797754}
-    m_Position: {x: -220, y: 520, z: 0}
+    m_Position: {x: -270, y: 560, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 5344338845972172268}
     m_Position: {x: 310, y: 520, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 9190127323970757995}
-    m_Position: {x: -20, y: 470, z: 0}
+    m_Position: {x: 10, y: 460, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 8164031296860011788}
-    m_Position: {x: -210, y: 260, z: 0}
+    m_Position: {x: -260, y: 210, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -7709351749718374193}
-    m_Position: {x: 280, y: 260, z: 0}
+    m_Position: {x: 310, y: 250, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -2384969119122176197}
     m_Position: {x: 130, y: 340, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 4970811877680482670}
-    m_Position: {x: -210, y: 390, z: 0}
+    m_Position: {x: -300, y: 410, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 2768087307411190610}
     m_Position: {x: 310, y: 390, z: 0}
@@ -404,7 +404,7 @@ AnimatorStateMachine:
     m_Position: {x: 1040, y: 400, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 8882158196255399945}
-    m_Position: {x: 570, y: 440, z: 0}
+    m_Position: {x: 480, y: 440, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1519257923983034265}
     m_Position: {x: 580, y: 40, z: 0}
@@ -688,37 +688,37 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: HorizontalMovement
     m_Type: 1
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: VerticalMovement
     m_Type: 1
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: IsDodging
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: IsSprinting
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: IsJumping
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer

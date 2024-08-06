@@ -17,7 +17,7 @@ public class PlayerWalkState : PlayerState
         HandleInputs();
         HandleAnimations();
 
-        stateManager.transform.Translate(stateManager.movementDirection.normalized * stateManager.moveSpeed * Time.deltaTime);
+        stateManager.transform.Translate(stateManager.movementDirection.normalized * stateManager.runSpeed * Time.deltaTime);
     }
 
     public override void HandleInputs()

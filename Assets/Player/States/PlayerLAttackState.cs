@@ -14,7 +14,7 @@ public class PlayerLAttackState : PlayerState
         move = false;
         HandleAnimations();
         SetAnimationParameters();
-        stateManager.healthSystem.ConsumeStamina(stateManager.lAttackStaminaCost);
+        stateManager.healthSystem.ConsumeStamina(stateManager.lightAttackStamCost);
     }
 
     public override void UpdateState()
@@ -46,7 +46,12 @@ public class PlayerLAttackState : PlayerState
 
     public override void OnCollisionEnter(Collider collider)
     {
-
+        if (collider.gameObject.tag == "Enemy")
+        {
+            collider.GetComponentInParent<EnemyHealthSystem>().DoDamage(stateManager.lightAttackDamage);
+            if (stateManager.healthSystem.rechargeGem)
+                stateManager.healthSystem.RechargeGem(stateManager.lightAttackGemRecharge);
+        }
     }
 
     public override void OnCollisionExit(Collider collider)

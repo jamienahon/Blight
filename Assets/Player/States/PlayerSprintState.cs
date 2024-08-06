@@ -17,7 +17,7 @@ public class PlayerSprintState : PlayerState
         HandleInputs();
         HandleAnimations();
 
-        stateManager.healthSystem.ConsumeStamina(stateManager.sprintStaminaCost * Time.deltaTime);
+        stateManager.healthSystem.ConsumeStamina(stateManager.sprintStamCost * Time.deltaTime);
 
         stateManager.transform.Translate(stateManager.movementDirection.normalized * stateManager.sprintSpeed * Time.deltaTime);
     }

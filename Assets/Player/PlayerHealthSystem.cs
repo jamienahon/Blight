@@ -8,22 +8,28 @@ using TMPro;
 public class PlayerHealthSystem : MonoBehaviour
 {
     PlayerStateManager stateManager;
+
+    [Header("Health")]
+    public Image healthBar;
     public float maxHealth;
+
+    [Header("Stamina")]
+    public Image staminaBar;
     public float maxStamina;
     public float staminaRefillSpeed;
-    public Image healthBar;
-    public Image staminaBar;
+    public float timeBeforeStaminaRefill;
+
+    [Header("Healing")]
     public List<Image> healingGemImages;
     public int healthCharges;
     public int healAmount;
-    bool hasClicked = false;
     public float healCooldown;
-    float canHeal;
-
-    public float timeBeforeStaminaRefill;
-    float refillStamina;
-    public bool rechargeGem = false;
     public float maxRecharge;
+
+    float canHeal;
+    float refillStamina;
+    [HideInInspector] public bool rechargeGem = false;
+    [HideInInspector] bool hasClicked = false;
 
     void Start()
     {

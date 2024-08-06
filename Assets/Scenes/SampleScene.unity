@@ -1337,20 +1337,22 @@ MonoBehaviour:
   switchStates: 0
   isInvincible: 0
   movementDirection: {x: 0, y: 0, z: 0}
-  moveSpeed: 5
+  runSpeed: 5
   sprintSpeed: 7.5
-  sprintStaminaCost: 5
+  sprintStamCost: 10
   dodgeMoveSpeed: 2
-  dodgeStaminaCost: 15
+  dodgeStamCost: 10
   jumpHeight: 5
   jumpSpeedWalk: 3
   jumpSpeedSprint: 5
-  jumpStaminaCost: 15
-  attackMoveSpeed: 0
-  damage: 1
-  lAttackStaminaCost: 10
-  hAttackStaminaCost: 20
-  gemRechargeAmount: 20
+  jumpStamCost: 10
+  attackMoveSpeed: 10
+  lightAttackDamage: 1
+  lightAttackStamCost: 10
+  lightAttackGemRecharge: 10
+  heavyAttackDamage: 2
+  heavyAttackStamCost: 20
+  heavyAttackGemRecharge: 10
 --- !u!4 &742843623
 Transform:
   m_ObjectHideFlags: 0
@@ -1410,11 +1412,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88a548c97a1c672458e13b0e8fdfb3f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  healthBar: {fileID: 1464870740}
   maxHealth: 10
+  staminaBar: {fileID: 1452758312}
   maxStamina: 100
   staminaRefillSpeed: 30
-  healthBar: {fileID: 1464870740}
-  staminaBar: {fileID: 1452758312}
+  timeBeforeStaminaRefill: 1
   healingGemImages:
   - {fileID: 580279377}
   - {fileID: 735132503}
@@ -1424,9 +1427,8 @@ MonoBehaviour:
   healthCharges: 5
   healAmount: 3
   healCooldown: 2
-  timeBeforeStaminaRefill: 2
-  rechargeGem: 0
   maxRecharge: 100
+  rechargeGem: 0
 --- !u!1 &782511364
 GameObject:
   m_ObjectHideFlags: 3
@@ -2365,7 +2367,7 @@ MonoBehaviour:
   moveSpeed: 3
   timeBetweenAttacks: {x: 1, y: 4}
   nextAttack: 0
-  attackMoveSpeed: 0
+  attackMoveSpeed: 10
   attackRange: 3
   damage: 3
 --- !u!4 &1042516151
@@ -3110,6 +3112,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: PlayerHit
       objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: 25f76e473f551e64a8438e7c32a0ec8e, type: 3}
+      propertyPath: m_Avatar
+      value: 
+      objectReference: {fileID: 9000000, guid: 25f76e473f551e64a8438e7c32a0ec8e, type: 3}
     - target: {fileID: 5866666021909216657, guid: 25f76e473f551e64a8438e7c32a0ec8e, type: 3}
       propertyPath: m_Controller
       value: 
