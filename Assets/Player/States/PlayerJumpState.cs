@@ -18,15 +18,11 @@ public class PlayerJumpState : PlayerState
         LookAtMovementDirection();
         ApplyJumpForce();
         HandleAnimations();
+        HandleInputs();
 
         stateManager.healthSystem.ConsumeStamina(stateManager.jumpStamCost);
 
         isJumping = true;
-
-        if (Input.GetAxis("Sprint") > 0)
-            jumpMoveSpeed = stateManager.jumpSpeedSprint;
-        else
-            jumpMoveSpeed = stateManager.jumpSpeedWalk;
     }
 
     public override void UpdateState()
@@ -42,7 +38,10 @@ public class PlayerJumpState : PlayerState
 
     public override void HandleInputs()
     {
-
+        if (Input.GetAxis("Sprint") > 0)
+            jumpMoveSpeed = stateManager.jumpSpeedSprint;
+        else
+            jumpMoveSpeed = stateManager.jumpSpeedWalk;
     }
 
     public override void HandleAnimations()
