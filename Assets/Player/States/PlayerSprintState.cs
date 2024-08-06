@@ -33,10 +33,10 @@ public class PlayerSprintState : PlayerState
             stateManager.SwitchState(stateManager.walkState);
         }
 
-        if (Input.GetAxis("Jump") > 0)
-        {
-            stateManager.SwitchState(stateManager.jumpState);
-        }
+        //if (Input.GetAxis("Jump") > 0)
+        //{
+        //    stateManager.SwitchState(stateManager.jumpState);
+        //}
 
         if (Input.GetAxis("Dodge") > 0)
             stateManager.SwitchState(stateManager.dodgeState);

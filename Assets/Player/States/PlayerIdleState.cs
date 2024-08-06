@@ -28,8 +28,8 @@ public class PlayerIdleState : PlayerState
         if (Input.GetAxis("Dodge") > 0 && stateManager.healthSystem.staminaBar.fillAmount > 0)
             stateManager.SwitchState(stateManager.dodgeState);
 
-        if (Input.GetAxis("Jump") > 0 && stateManager.healthSystem.staminaBar.fillAmount > 0)
-            stateManager.SwitchState(stateManager.jumpState);
+        //if (Input.GetAxis("Jump") > 0 && stateManager.healthSystem.staminaBar.fillAmount > 0)
+        //    stateManager.SwitchState(stateManager.jumpState);
 
         if (Input.GetAxis("LAttack") > 0 && stateManager.healthSystem.staminaBar.fillAmount > 0)
             stateManager.SwitchState(stateManager.lAttackState);
@@ -56,7 +56,7 @@ public class PlayerIdleState : PlayerState
     {
         stateManager.movementDirection = Quaternion.Euler(0, stateManager.animator.transform.eulerAngles.y, 0) * stateManager.movementDirection;
         stateManager.animator.transform.LookAt(Camera.main.GetComponent<CameraController>().currentLockOnPoint);
-        stateManager.animator.transform.position = new Vector3(stateManager.transform.position.x, 0, stateManager.transform.position.z);
+        //stateManager.animator.transform.position = new Vector3(stateManager.transform.position.x, 0, stateManager.transform.position.z);
         stateManager.animator.transform.rotation = Quaternion.Euler(0, stateManager.animator.transform.rotation.eulerAngles.y, 0);
     }
 

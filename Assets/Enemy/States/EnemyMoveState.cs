@@ -16,6 +16,7 @@ public class EnemyMoveState : EnemyState
     {
         Vector3 lookDir = new Vector3(stateManager.player.transform.position.x, 0, stateManager.player.transform.position.z);
         stateManager.animator.transform.LookAt(lookDir);
+        stateManager.animator.transform.rotation = Quaternion.Euler(0, stateManager.animator.transform.rotation.eulerAngles.y, 0);
 
         stateManager.transform.Translate(stateManager.animator.transform.forward * stateManager.moveSpeed * Time.deltaTime);
 
