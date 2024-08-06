@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class PlayerStateManager : MonoBehaviour
 {
@@ -17,6 +18,7 @@ public class PlayerStateManager : MonoBehaviour
     public PlayerLAttackState lAttackState = new PlayerLAttackState();
     public PlayerHAttackState hAttackState = new PlayerHAttackState();
     public PlayerGetHitState getHitState = new PlayerGetHitState();
+    public PlayerParryState parryState = new PlayerParryState();
 
     [HideInInspector] public bool isLockedOn = false;
     [HideInInspector] public bool switchStates = false;
@@ -51,6 +53,9 @@ public class PlayerStateManager : MonoBehaviour
     public float heavyAttackDamage;
     public float heavyAttackStamCost;
     public float heavyAttackGemRecharge;
+
+    [Header("Parrying")]
+    public float parryStamCost;
 
 
     private void Start()

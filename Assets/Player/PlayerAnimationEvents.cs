@@ -70,4 +70,19 @@ public class PlayerAnimationEvents : MonoBehaviour
         lHitbox.enabled = false;
         hHitbox.enabled = false;
     }
+
+    public void StartParryTiming()
+    {
+        stateManager.parryState.isParry = true;
+    }
+
+    public void EndParryTiming()
+    {
+        stateManager.parryState.isParry = false;
+    }
+
+    public void EndParry()
+    {
+        stateManager.SwitchState(stateManager.idleState);
+    }
 }

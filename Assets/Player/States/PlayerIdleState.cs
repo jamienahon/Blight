@@ -36,6 +36,9 @@ public class PlayerIdleState : PlayerState
 
         if (Input.GetAxis("HAttack") > 0 && stateManager.healthSystem.staminaBar.fillAmount > 0)
             stateManager.SwitchState(stateManager.hAttackState);
+
+        if (Input.GetAxis("Parry") < 0 && stateManager.healthSystem.staminaBar.fillAmount > 0)
+            stateManager.SwitchState(stateManager.parryState);
     }
 
     public override void HandleAnimations()

@@ -13,6 +13,7 @@ public class EnemyStateManager : MonoBehaviour
     public EnemyIdleState idleState = new EnemyIdleState();
     public EnemyAttackState attackState = new EnemyAttackState();
     public EnemyMoveState moveState = new EnemyMoveState();
+    public EnemyStunnedState stunnedState = new EnemyStunnedState();
 
     [HideInInspector] public bool switchStates = false;
 
@@ -25,6 +26,9 @@ public class EnemyStateManager : MonoBehaviour
     public float attackMoveSpeed;
     public float attackRange;
     public float damage;
+
+    public float stunnedLength;
+    [HideInInspector] public float endStun;
 
 
     private void Start()
@@ -67,7 +71,11 @@ public class EnemyStateManager : MonoBehaviour
         //}
         if (collider.gameObject.tag == "Player")
         {
-            collider.GetComponentInParent<PlayerHealthSystem>().DoDamage(damage);
+            PlayerStateManager playerStateManager = collider.GetComponentInParent<PlayerStateManager>();
+            if (playerStateManager.parryState.isParry)
+                SwitchState(stunnedState);
+            else
+                collider.GetComponentInParent<PlayerHealthSystem>().DoDamage(damage);
         }
     }
 

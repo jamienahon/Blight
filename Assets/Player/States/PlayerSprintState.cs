@@ -50,6 +50,9 @@ public class PlayerSprintState : PlayerState
         if (stateManager.healthSystem.staminaBar.fillAmount == 0)
             stateManager.SwitchState(stateManager.idleState);
 
+        if (Input.GetAxis("Parry") < 0 && stateManager.healthSystem.staminaBar.fillAmount > 0)
+            stateManager.SwitchState(stateManager.parryState);
+
         if (Input.GetAxis("Horizontal") == 0 && Input.GetAxis("Vertical") == 0)
             stateManager.SwitchState(stateManager.idleState);
     }
