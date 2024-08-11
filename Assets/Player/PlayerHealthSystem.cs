@@ -16,7 +16,8 @@ public class PlayerHealthSystem : MonoBehaviour
     [Header("Stamina")]
     public Image staminaBar;
     public float maxStamina;
-    public float staminaRefillSpeed;
+    public float normalStamRefillSpeed;
+    public float blockStamRefillSpeed;
     public float timeBeforeStaminaRefill;
 
     [Header("Healing")]
@@ -52,7 +53,7 @@ public class PlayerHealthSystem : MonoBehaviour
         if (Time.time >= refillStamina && staminaBar.fillAmount < 1)
             RefillStamina();
 
-        if(rechargeGem && healingGemImages[0].fillAmount == 1)
+        if (rechargeGem && healingGemImages[0].fillAmount == 1)
         {
             healingGemImages[0].color = new Color(1, 1, 1, 1);
             rechargeGem = false;
@@ -64,10 +65,18 @@ public class PlayerHealthSystem : MonoBehaviour
     {
         if (stateManager.isInvincible)
             return;
-        else
-            stateManager.SwitchState(stateManager.getHitState);
 
-        healthBar.fillAmount -= damage * (1 / maxHealth);
+        if (stateManager.currentState == stateManager.blockState)
+        {
+            healthBar.fillAmount -= (damage * (1 / maxHealth)) * stateManager.blockDamageReduction;
+            stateManager.endBlockPause = Time.time + stateManager.blockPauseTime;
+            ConsumeStamina(stateManager.blockStamCost);
+        }
+        else
+        {
+            healthBar.fillAmount -= damage * (1 / maxHealth);
+            stateManager.SwitchState(stateManager.getHitState);
+        }
         if (healthBar.fillAmount <= 0)
         {
             healthBar.fillAmount = 0;
@@ -108,7 +117,10 @@ public class PlayerHealthSystem : MonoBehaviour
 
     void RefillStamina()
     {
-        staminaBar.fillAmount += staminaRefillSpeed * (1 / maxStamina) * Time.deltaTime;
+        if (stateManager.currentState == stateManager.blockState)
+            staminaBar.fillAmount += blockStamRefillSpeed * (1 / maxStamina) * Time.deltaTime;
+        else
+            staminaBar.fillAmount += normalStamRefillSpeed * (1 / maxStamina) * Time.deltaTime;
     }
 
     public void RechargeGem(float recharge)

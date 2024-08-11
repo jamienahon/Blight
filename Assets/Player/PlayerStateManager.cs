@@ -19,6 +19,7 @@ public class PlayerStateManager : MonoBehaviour
     public PlayerHAttackState hAttackState = new PlayerHAttackState();
     public PlayerGetHitState getHitState = new PlayerGetHitState();
     public PlayerParryState parryState = new PlayerParryState();
+    public PlayerBlockState blockState = new PlayerBlockState();
 
     [HideInInspector] public bool isLockedOn = false;
     [HideInInspector] public bool switchStates = false;
@@ -56,6 +57,13 @@ public class PlayerStateManager : MonoBehaviour
 
     [Header("Parrying")]
     public float parryStamCost;
+
+    [Header("Blocking")]
+    public float blockDamageReduction;
+    public float blockStamCost;
+    public float blockMoveSpeed;
+    public float blockPauseTime;
+    [HideInInspector] public float endBlockPause;
 
 
     private void Start()

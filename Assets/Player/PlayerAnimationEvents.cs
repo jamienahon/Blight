@@ -85,4 +85,9 @@ public class PlayerAnimationEvents : MonoBehaviour
     {
         stateManager.SwitchState(stateManager.idleState);
     }
+
+    public void PauseBlock()
+    {
+        stateManager.animator.speed = 0;
+    }
 }

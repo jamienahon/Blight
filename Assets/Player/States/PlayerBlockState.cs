@@ -1,9 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
-public class PlayerIdleState : PlayerState
+public class PlayerBlockState : PlayerState
 {
     public override PlayerStateManager stateManager { get; set; }
 
@@ -11,49 +10,52 @@ public class PlayerIdleState : PlayerState
     {
         this.stateManager = stateManager;
         SetAnimationParameters();
+        HandleAnimations();
     }
 
     public override void UpdateState()
     {
         HandleInputs();
+
         if (stateManager.isLockedOn)
+        {
             LookAtLockOnPoint();
+        }
+        else
+        {
+            LookAtMovementDirection();
+        }
+
+        stateManager.transform.Translate(stateManager.movementDirection.normalized * stateManager.blockMoveSpeed * Time.deltaTime);
     }
 
     public override void HandleInputs()
     {
-        if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
-            stateManager.SwitchState(stateManager.walkState);
+        if (Time.time >= stateManager.endBlockPause)
+        {
+            stateManager.movementDirection.x = Input.GetAxisRaw("Horizontal");
+            stateManager.movementDirection.z = Input.GetAxisRaw("Vertical");
+        }
+        else
+        {
+            stateManager.movementDirection.x = 0;
+            stateManager.movementDirection.z = 0;
+        }
 
-        if (Input.GetAxis("Dodge") > 0 && stateManager.healthSystem.staminaBar.fillAmount > 0)
-            stateManager.SwitchState(stateManager.dodgeState);
-
-        //if (Input.GetAxis("Jump") > 0 && stateManager.healthSystem.staminaBar.fillAmount > 0)
-        //    stateManager.SwitchState(stateManager.jumpState);
-
-        if (Input.GetAxis("LAttack") > 0 && stateManager.healthSystem.staminaBar.fillAmount > 0)
-            stateManager.SwitchState(stateManager.lAttackState);
-
-        if (Input.GetAxis("HAttack") > 0 && stateManager.healthSystem.staminaBar.fillAmount > 0)
-            stateManager.SwitchState(stateManager.hAttackState);
-
-        if (Input.GetAxis("Block") > 0)
-            stateManager.SwitchState(stateManager.blockState);
-
-        if (Input.GetAxis("Parry") < 0 && stateManager.healthSystem.staminaBar.fillAmount > 0)
-            stateManager.SwitchState(stateManager.parryState);
+        if (Input.GetAxis("Block") == 0)
+            stateManager.SwitchState(stateManager.idleState);
     }
 
     public override void HandleAnimations()
     {
-
+        stateManager.animator.Play("Unarmed-Attack-L2");
     }
 
     public override void SetAnimationParameters()
     {
-        stateManager.animator.speed = 1;
-        stateManager.animator.SetBool("IsMoving", false);
         stateManager.animator.SetBool("IsSprinting", false);
+        stateManager.animator.SetBool("IsDodging", false);
+        stateManager.animator.SetBool("IsJumping", false);
         stateManager.animator.SetFloat("HorizontalMovement", 0);
         stateManager.animator.SetFloat("VerticalMovement", 0);
     }
