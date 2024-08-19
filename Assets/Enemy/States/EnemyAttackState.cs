@@ -13,6 +13,7 @@ public class EnemyAttackState : EnemyState
         this.stateManager = stateManager;
         move = false;
         rotate = true;
+        stateManager.attackMoveSpeed = Vector3.Distance(stateManager.transform.position, stateManager.player.transform.position) * 4;
         HandleAnimations();
         SetAnimationParameters();
     }

@@ -20,6 +20,7 @@ public class PlayerStateManager : MonoBehaviour
     public PlayerGetHitState getHitState = new PlayerGetHitState();
     public PlayerParryState parryState = new PlayerParryState();
     public PlayerBlockState blockState = new PlayerBlockState();
+    public PlayerShootState shootState = new PlayerShootState();
 
     [HideInInspector] public bool isLockedOn = false;
     [HideInInspector] public bool switchStates = false;
@@ -46,6 +47,7 @@ public class PlayerStateManager : MonoBehaviour
     public float attackMoveSpeed;
 
     [Header("Light Attack")]
+    public GameObject projectile;
     public float lightAttackDamage;
     public float lightAttackStamCost;
     public float lightAttackGemRecharge;
@@ -89,6 +91,23 @@ public class PlayerStateManager : MonoBehaviour
     {
         currentState = state;
         switchStates = true;
+    }
+
+    public void SpawnProjectile()
+    {
+        Vector3 position = new Vector3(transform.position.x, transform.position.y + 3, transform.position.z);
+        GameObject newProjectile = Instantiate(projectile, position, projectile.transform.rotation);
+        if (isLockedOn)
+        {
+            Vector3 lockOnPos = Camera.main.gameObject.GetComponent<CameraController>().currentLockOnPoint.gameObject.transform.position;
+            
+            newProjectile.transform.up = (lockOnPos - newProjectile.transform.position).normalized;
+        }
+        else
+        {
+            Vector3 projPos = new Vector3(newProjectile.transform.position.x, newProjectile.transform.position.y - 0.5f, newProjectile.transform.position.z);
+            newProjectile.transform.up = (projPos - Camera.main.transform.position).normalized;
+        }
     }
 
 

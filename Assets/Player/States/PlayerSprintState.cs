@@ -42,7 +42,7 @@ public class PlayerSprintState : PlayerState
             stateManager.SwitchState(stateManager.dodgeState);
 
         if (Input.GetAxis("LAttack") > 0)
-            stateManager.SwitchState(stateManager.lAttackState);
+            stateManager.SwitchState(stateManager.shootState);
 
         if (Input.GetAxis("HAttack") > 0)
             stateManager.SwitchState(stateManager.hAttackState);
