@@ -35,7 +35,7 @@ public class PlayerWalkState : PlayerState
         //    stateManager.SwitchState(stateManager.jumpState);
 
         if (Input.GetAxis("LAttack") > 0 && stateManager.healthSystem.staminaBar.fillAmount > 0)
-            stateManager.SwitchState(stateManager.lAttackState);
+            stateManager.SwitchState(stateManager.shootState);
 
         if (Input.GetAxis("HAttack") > 0 && stateManager.healthSystem.staminaBar.fillAmount > 0)
             stateManager.SwitchState(stateManager.hAttackState);
