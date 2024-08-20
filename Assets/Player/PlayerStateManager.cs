@@ -76,11 +76,12 @@ public class PlayerStateManager : MonoBehaviour
     private void Start()
     {
         isLockedOn = false;
-        currentState = idleState;
-        currentState.EnterState(this);
         animator = GetComponentInChildren<Animator>();
         healthSystem = GetComponent<PlayerHealthSystem>();
         playerAudio = GetComponent<AudioSource>();
+
+        currentState = idleState;
+        currentState.EnterState(this);
     }
 
     public void FixedUpdate()
@@ -91,7 +92,6 @@ public class PlayerStateManager : MonoBehaviour
             switchStates = false;
         }
         currentState.UpdateState();
-        Debug.Log(playerAudio.isPlaying);
     }
 
     public void SwitchState(PlayerState state)
