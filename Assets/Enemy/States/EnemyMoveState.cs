@@ -5,11 +5,14 @@ using UnityEngine;
 public class EnemyMoveState : EnemyState
 {
     public override EnemyStateManager stateManager { get; set; }
+    public AudioClip moveSound;
 
     public override void EnterState(EnemyStateManager stateManager)
     {
         this.stateManager = stateManager;
         SetAnimationParameters();
+
+        stateManager.enemySound.clip = moveSound;
     }
 
     public override void UpdateState()

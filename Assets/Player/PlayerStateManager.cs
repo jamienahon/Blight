@@ -10,6 +10,7 @@ public class PlayerStateManager : MonoBehaviour
 
     [HideInInspector] public Animator animator;
     [HideInInspector] public PlayerHealthSystem healthSystem;
+    [HideInInspector]public AudioSource playerAudio;
 
     public PlayerIdleState idleState = new PlayerIdleState();
     public PlayerWalkState walkState = new PlayerWalkState();
@@ -79,6 +80,7 @@ public class PlayerStateManager : MonoBehaviour
         currentState.EnterState(this);
         animator = GetComponentInChildren<Animator>();
         healthSystem = GetComponent<PlayerHealthSystem>();
+        playerAudio = GetComponent<AudioSource>();
     }
 
     public void FixedUpdate()

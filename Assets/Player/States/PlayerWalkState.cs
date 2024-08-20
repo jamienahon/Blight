@@ -3,6 +3,7 @@ using UnityEngine;
 public class PlayerWalkState : PlayerState
 {
     public float moveSpeed;
+    public AudioClip walkingSound;
 
     public override PlayerStateManager stateManager { get; set; }
 
@@ -10,6 +11,7 @@ public class PlayerWalkState : PlayerState
     {
         this.stateManager = stateManager;
         SetAnimationParameters();
+        stateManager.playerAudio.clip = walkingSound;
     }
 
     public override void UpdateState()

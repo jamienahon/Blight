@@ -10,6 +10,8 @@ public class EnemyIdleState : EnemyState
     {
         this.stateManager = stateManager;
         SetAnimationParameters();
+
+        stateManager.enemySound.clip = null;
     }
 
     public override void UpdateState()
