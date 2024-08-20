@@ -74,11 +74,7 @@ public class EnemyStateManager : MonoBehaviour
         //}
         if (collider.gameObject.tag == "Player")
         {
-            PlayerStateManager playerStateManager = collider.GetComponentInParent<PlayerStateManager>();
-            if (playerStateManager.parryState.isParry)
-                SwitchState(stunnedState);
-            else
-                collider.GetComponentInParent<PlayerHealthSystem>().DoDamage(damage);
+            collider.GetComponentInParent<PlayerHealthSystem>().DoDamage(damage);
         }
     }
 

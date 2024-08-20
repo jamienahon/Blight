@@ -865,7 +865,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 372186417}
-  m_LocalRotation: {x: -0.16596514, y: 0.000000019092113, z: -0.000000005122274, w: 0.98613167}
+  m_LocalRotation: {x: -0.16596515, y: -0.000000020489097, z: 0.0000000057043508, w: 0.98613167}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2379,12 +2379,14 @@ MonoBehaviour:
   runSpeed: 3.5
   sprintSpeed: 7
   sprintStamCost: 10
+  healingMoveSpeed: 1.75
   dodgeMoveSpeed: 10
   dodgeStamCost: 20
   jumpHeight: 5
   jumpSpeedWalk: 3
   jumpSpeedSprint: 5
   jumpStamCost: 10
+  arrowTrackingStrength: 1.5
   attackMoveSpeed: 10
   projectile: {fileID: 6815989925127939019, guid: 934c8b52ec595f649b1391287fda618f, type: 3}
   lightAttackDamage: 1
@@ -2393,13 +2395,13 @@ MonoBehaviour:
   heavyAttackDamage: 4
   heavyAttackStamCost: 35
   heavyAttackGemRecharge: 20
-  parryStamCost: 10
   blockDamageReduction: 0.1
   blockStamCost: 15
   blockMoveSpeed: 2
   blockPauseTime: 0.5
   endBlockPause: 0
-  arrowTrackingStrength: 1.5
+  healLengthSeconds: 1
+  healAmount: 3
 --- !u!4 &742843623
 Transform:
   m_ObjectHideFlags: 0

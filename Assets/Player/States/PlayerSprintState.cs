@@ -48,13 +48,13 @@ public class PlayerSprintState : PlayerState
             stateManager.SwitchState(stateManager.shootState);
 
         if (Input.GetAxis("HAttack") > 0)
-            stateManager.SwitchState(stateManager.heavyShoot);
+            stateManager.SwitchState(stateManager.heavyShootState);
 
         if (stateManager.healthSystem.staminaBar.fillAmount == 0)
             stateManager.SwitchState(stateManager.idleState);
 
-        if (Input.GetAxis("Parry") < 0 && stateManager.healthSystem.staminaBar.fillAmount > 0)
-            stateManager.SwitchState(stateManager.parryState);
+        if (Input.GetAxis("Heal") > 0 && stateManager.healthSystem.healthCharges > 0)
+            stateManager.SwitchState(stateManager.healState);
 
         if (Input.GetAxis("Horizontal") == 0 && Input.GetAxis("Vertical") == 0)
             stateManager.SwitchState(stateManager.idleState);

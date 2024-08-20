@@ -36,13 +36,13 @@ public class PlayerIdleState : PlayerState
             stateManager.SwitchState(stateManager.shootState);
 
         if (Input.GetAxis("HAttack") > 0 && stateManager.healthSystem.staminaBar.fillAmount > 0)
-            stateManager.SwitchState(stateManager.heavyShoot);
+            stateManager.SwitchState(stateManager.heavyShootState);
 
         if (Input.GetAxis("Block") > 0)
             stateManager.SwitchState(stateManager.blockState);
 
-        if (Input.GetAxis("Parry") < 0 && stateManager.healthSystem.staminaBar.fillAmount > 0)
-            stateManager.SwitchState(stateManager.parryState);
+        if (Input.GetAxis("Heal") > 0 && stateManager.healthSystem.healthCharges > 0)
+            stateManager.SwitchState(stateManager.healState);
     }
 
     public override void HandleAnimations()

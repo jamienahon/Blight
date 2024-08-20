@@ -1,9 +1,13 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 
-public class PlayerWalkState : PlayerState
+public class PlayerHealState : PlayerState
 {
     public AudioClip walkingSound;
     public bool loopSound;
+    float endHeal;
 
     public override PlayerStateManager stateManager { get; set; }
 
@@ -12,6 +16,9 @@ public class PlayerWalkState : PlayerState
         this.stateManager = stateManager;
         SetAnimationParameters();
         HandleAudio();
+
+        endHeal = Time.time + stateManager.healLengthSeconds;
+        stateManager.healthSystem.Heal(stateManager.healAmount);
     }
 
     public override void UpdateState()
@@ -19,37 +26,16 @@ public class PlayerWalkState : PlayerState
         HandleInputs();
         HandleAnimations();
 
-        stateManager.transform.Translate(stateManager.movementDirection.normalized * stateManager.runSpeed * Time.deltaTime);
+        stateManager.transform.Translate(stateManager.movementDirection.normalized * stateManager.healingMoveSpeed * Time.deltaTime);
+
+        if (Time.time >= endHeal)
+            stateManager.SwitchState(stateManager.idleState);
     }
 
     public override void HandleInputs()
     {
         stateManager.movementDirection.x = Input.GetAxisRaw("Horizontal");
         stateManager.movementDirection.z = Input.GetAxisRaw("Vertical");
-
-        if (Input.GetAxis("Sprint") > 0 && stateManager.healthSystem.staminaBar.fillAmount > 0)
-            stateManager.SwitchState(stateManager.sprintState);
-
-        if (Input.GetAxis("Dodge") > 0 && stateManager.healthSystem.staminaBar.fillAmount > 0)
-            stateManager.SwitchState(stateManager.dodgeState);
-
-        //if (Input.GetAxis("Jump") > 0 && stateManager.healthSystem.staminaBar.fillAmount > 0)
-        //    stateManager.SwitchState(stateManager.jumpState);
-
-        if (Input.GetAxis("LAttack") > 0 && stateManager.healthSystem.staminaBar.fillAmount > 0)
-            stateManager.SwitchState(stateManager.shootState);
-
-        if (Input.GetAxis("HAttack") > 0 && stateManager.healthSystem.staminaBar.fillAmount > 0)
-            stateManager.SwitchState(stateManager.heavyShootState);
-
-        if (Input.GetAxis("Heal") > 0 && stateManager.healthSystem.healthCharges > 0)
-            stateManager.SwitchState(stateManager.healState);
-
-        if (Input.GetAxis("Block") > 0)
-            stateManager.SwitchState(stateManager.blockState);
-
-        if (Input.GetAxis("Horizontal") == 0 && Input.GetAxis("Vertical") == 0)
-            stateManager.SwitchState(stateManager.idleState);
     }
 
     public override void HandleAnimations()
@@ -69,6 +55,7 @@ public class PlayerWalkState : PlayerState
 
     public override void SetAnimationParameters()
     {
+        stateManager.animator.speed = 0.5f;
         stateManager.animator.SetBool("IsMoving", true);
         stateManager.animator.SetBool("IsSprinting", false);
     }

@@ -41,8 +41,8 @@ public class AudioManager : MonoBehaviour
         playerStateManager.shootState.shootSound = playerLightAttack.audioClip;
         playerStateManager.shootState.loopSound = playerLightAttack.loop;
 
-        playerStateManager.heavyShoot.heavyShootSound = playerHeavyAttack.audioClip;
-        playerStateManager.heavyShoot.loopSound = playerHeavyAttack.loop;
+        playerStateManager.heavyShootState.heavyShootSound = playerHeavyAttack.audioClip;
+        playerStateManager.heavyShootState.loopSound = playerHeavyAttack.loop;
 
         enemyStateManager.moveState.moveSound = enemyWalking.audioClip;
         enemyStateManager.moveState.loopSound = enemyWalking.loop;
