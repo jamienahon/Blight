@@ -45,7 +45,7 @@ public class PlayerSprintState : PlayerState
             stateManager.SwitchState(stateManager.shootState);
 
         if (Input.GetAxis("HAttack") > 0)
-            stateManager.SwitchState(stateManager.hAttackState);
+            stateManager.SwitchState(stateManager.heavyShoot);
 
         if (stateManager.healthSystem.staminaBar.fillAmount == 0)
             stateManager.SwitchState(stateManager.idleState);

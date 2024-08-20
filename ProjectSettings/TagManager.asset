@@ -8,6 +8,7 @@ TagManager:
   - Enemy
   - EnemyHit
   - PlayerHit
+  - Arrow
   layers:
   - Default
   - TransparentFX
