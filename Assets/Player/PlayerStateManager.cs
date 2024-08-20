@@ -20,10 +20,10 @@ public class PlayerStateManager : MonoBehaviour
     public PlayerLAttackState lAttackState = new PlayerLAttackState();
     public PlayerHAttackState hAttackState = new PlayerHAttackState();
     public PlayerGetHitState getHitState = new PlayerGetHitState();
-    public PlayerParryState parryState = new PlayerParryState();
     public PlayerBlockState blockState = new PlayerBlockState();
     public PlayerShootState shootState = new PlayerShootState();
-    public PlayerHeavyShootState heavyShoot = new PlayerHeavyShootState();
+    public PlayerHeavyShootState heavyShootState = new PlayerHeavyShootState();
+    public PlayerHealState healState = new PlayerHealState();
 
     [HideInInspector] public bool isLockedOn = false;
     [HideInInspector] public bool switchStates = false;
@@ -35,6 +35,7 @@ public class PlayerStateManager : MonoBehaviour
     public float runSpeed;
     public float sprintSpeed;
     public float sprintStamCost;
+    public float healingMoveSpeed;
 
     [Header("Dodging")]
     public float dodgeMoveSpeed;
@@ -47,6 +48,7 @@ public class PlayerStateManager : MonoBehaviour
     public float jumpStamCost;
 
     [Header("Attacking")]
+    public float arrowTrackingStrength;
     public float attackMoveSpeed;
 
     [Header("Light Attack")]
@@ -60,9 +62,6 @@ public class PlayerStateManager : MonoBehaviour
     public float heavyAttackStamCost;
     public float heavyAttackGemRecharge;
 
-    [Header("Parrying")]
-    public float parryStamCost;
-
     [Header("Blocking")]
     public float blockDamageReduction;
     public float blockStamCost;
@@ -70,17 +69,19 @@ public class PlayerStateManager : MonoBehaviour
     public float blockPauseTime;
     [HideInInspector] public float endBlockPause;
 
-    public float arrowTrackingStrength;
-
+    [Header("Healing")]
+    public float healLengthSeconds;
+    public float healAmount;
 
     private void Start()
     {
         isLockedOn = false;
-        currentState = idleState;
-        currentState.EnterState(this);
         animator = GetComponentInChildren<Animator>();
         healthSystem = GetComponent<PlayerHealthSystem>();
         playerAudio = GetComponent<AudioSource>();
+
+        currentState = idleState;
+        currentState.EnterState(this);
     }
 
     public void FixedUpdate()
@@ -91,7 +92,6 @@ public class PlayerStateManager : MonoBehaviour
             switchStates = false;
         }
         currentState.UpdateState();
-        Debug.Log(playerAudio.isPlaying);
     }
 
     public void SwitchState(PlayerState state)

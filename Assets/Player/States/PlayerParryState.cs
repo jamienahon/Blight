@@ -13,7 +13,6 @@ public class PlayerParryState : PlayerSprintState
         this.stateManager = stateManager;
         HandleAnimations();
         SetAnimationParameters();
-        stateManager.healthSystem.ConsumeStamina(stateManager.parryStamCost);
     }
 
     public override void UpdateState()

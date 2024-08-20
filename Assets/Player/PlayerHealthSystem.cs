@@ -23,14 +23,10 @@ public class PlayerHealthSystem : MonoBehaviour
     [Header("Healing")]
     public List<Image> healingGemImages;
     public int healthCharges;
-    public int healAmount;
-    public float healCooldown;
     public float maxRecharge;
 
-    float canHeal;
     float refillStamina;
     [HideInInspector] public bool rechargeGem = false;
-    [HideInInspector] bool hasClicked = false;
 
     void Start()
     {
@@ -40,15 +36,6 @@ public class PlayerHealthSystem : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-
-        if (Input.GetAxis("Heal") > 0 && !hasClicked && Time.time >= canHeal)
-        {
-            hasClicked = true;
-            Heal(healAmount);
-        }
-
-        if (Input.GetAxis("Heal") == 0)
-            hasClicked = false;
 
         if (Time.time >= refillStamina && staminaBar.fillAmount < 1)
             RefillStamina();
@@ -86,7 +73,6 @@ public class PlayerHealthSystem : MonoBehaviour
 
     public void Heal(float healAmount)
     {
-        canHeal = Time.time + healCooldown;
         if (healthCharges <= 0)
             return;
 
