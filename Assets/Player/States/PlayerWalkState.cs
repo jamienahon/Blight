@@ -38,7 +38,7 @@ public class PlayerWalkState : PlayerState
             stateManager.SwitchState(stateManager.shootState);
 
         if (Input.GetAxis("HAttack") > 0 && stateManager.healthSystem.staminaBar.fillAmount > 0)
-            stateManager.SwitchState(stateManager.hAttackState);
+            stateManager.SwitchState(stateManager.heavyShoot);
 
         if (Input.GetAxis("Parry") < 0 && stateManager.healthSystem.staminaBar.fillAmount > 0)
             stateManager.SwitchState(stateManager.parryState);

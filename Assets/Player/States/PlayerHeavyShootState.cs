@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerShootState : PlayerState
+public class PlayerHeavyShootState : PlayerState
 {
     public override PlayerStateManager stateManager { get; set; }
 
@@ -11,7 +11,7 @@ public class PlayerShootState : PlayerState
         this.stateManager = stateManager;
         HandleAnimations();
         SetAnimationParameters();
-        stateManager.SpawnProjectile();
+        stateManager.SpawnMultiProjectile();
         stateManager.healthSystem.ConsumeStamina(stateManager.lightAttackStamCost);
     }
 

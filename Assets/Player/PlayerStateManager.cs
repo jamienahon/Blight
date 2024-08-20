@@ -21,6 +21,7 @@ public class PlayerStateManager : MonoBehaviour
     public PlayerParryState parryState = new PlayerParryState();
     public PlayerBlockState blockState = new PlayerBlockState();
     public PlayerShootState shootState = new PlayerShootState();
+    public PlayerHeavyShootState heavyShoot = new PlayerHeavyShootState();
 
     [HideInInspector] public bool isLockedOn = false;
     [HideInInspector] public bool switchStates = false;
@@ -95,18 +96,43 @@ public class PlayerStateManager : MonoBehaviour
 
     public void SpawnProjectile()
     {
-        Vector3 position = new Vector3(transform.position.x, transform.position.y + 3, transform.position.z);
+        Vector3 position = new Vector3(transform.position.x, transform.position.y + 2.25f, transform.position.z);
         GameObject newProjectile = Instantiate(projectile, position, projectile.transform.rotation);
         if (isLockedOn)
         {
             Vector3 lockOnPos = Camera.main.gameObject.GetComponent<CameraController>().currentLockOnPoint.gameObject.transform.position;
-            
+
             newProjectile.transform.up = (lockOnPos - newProjectile.transform.position).normalized;
         }
         else
         {
-            Vector3 projPos = new Vector3(newProjectile.transform.position.x, newProjectile.transform.position.y - 0.5f, newProjectile.transform.position.z);
-            newProjectile.transform.up = (projPos - Camera.main.transform.position).normalized;
+            newProjectile.transform.up = (newProjectile.transform.position - Camera.main.transform.position).normalized;
+        }
+    }
+
+    public void SpawnMultiProjectile()
+    {
+        Vector3 position = new Vector3(transform.position.x, transform.position.y + 2.25f, transform.position.z);
+        if (isLockedOn)
+        {
+            for (int rotation = -15; rotation <= 15; rotation += 15)
+            {
+                GameObject newProjectile = Instantiate(projectile, position, projectile.transform.rotation);
+
+                Vector3 lockOnPos = Camera.main.gameObject.GetComponent<CameraController>().currentLockOnPoint.gameObject.transform.position;
+                newProjectile.transform.up = (lockOnPos - newProjectile.transform.position).normalized;
+                newProjectile.transform.up = Quaternion.Euler(0, rotation, 0) * newProjectile.transform.up;
+            }
+        }
+        else
+        {
+            for (int rotation = -15; rotation <= 15; rotation += 15)
+            {
+                GameObject newProjectile = Instantiate(projectile, position, projectile.transform.rotation);
+
+                newProjectile.transform.up = (newProjectile.transform.position - Camera.main.transform.position).normalized;
+                newProjectile.transform.up = Quaternion.Euler(0, rotation, 0) * newProjectile.transform.up;
+            }
         }
     }
 
