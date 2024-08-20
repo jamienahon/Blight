@@ -34,12 +34,13 @@ public class EnemyStateManager : MonoBehaviour
 
     private void Start()
     {
-        currentState = idleState;
-        currentState.EnterState(this);
+        
         animator = GetComponentInChildren<Animator>();
         healthSystem = GetComponent<EnemyHealthSystem>();
         enemyAudio = GetComponent<AudioSource>();
         nextAttack = Time.time + Random.Range(timeBetweenAttacks.x, timeBetweenAttacks.y);
+        currentState = idleState;
+        currentState.EnterState(this);
     }
 
     public void FixedUpdate()
