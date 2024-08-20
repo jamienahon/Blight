@@ -865,7 +865,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 372186417}
-  m_LocalRotation: {x: -0.16596515, y: -0.000000020489097, z: 0.0000000057043508, w: 0.98613167}
+  m_LocalRotation: {x: -0.16596514, y: 0.000000019092113, z: -0.000000005122274, w: 0.98613167}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -4078,9 +4078,9 @@ MonoBehaviour:
   player: {fileID: 742843621}
   healthSystem: {fileID: 1042516152}
   animator: {fileID: 1845290577}
-  enemySound: {fileID: 0}
+  enemyAudio: {fileID: 0}
   switchStates: 0
-  moveSpeed: 0
+  moveSpeed: 2.5
   timeBetweenAttacks: {x: 1, y: 4}
   nextAttack: 0
   attackMoveSpeed: 48
@@ -5371,25 +5371,25 @@ MonoBehaviour:
   playerStateManager: {fileID: 742843622}
   enemyStateManager: {fileID: 1042516150}
   playerWalking:
-    audioClip: {fileID: 0}
+    audioClip: {fileID: 8300000, guid: ddf8572cd387e2949a59eb6a48c96ce9, type: 3}
     loop: 0
   playerSprinting:
-    audioClip: {fileID: 0}
+    audioClip: {fileID: 8300000, guid: 330cff3b99299f749be0f6a1e007514a, type: 3}
     loop: 0
   playerDodging:
-    audioClip: {fileID: 0}
+    audioClip: {fileID: 8300000, guid: 413bb618fa656084ca466ca71335e851, type: 3}
     loop: 0
   playerLightAttack:
-    audioClip: {fileID: 0}
+    audioClip: {fileID: 8300000, guid: c7323c92a5c60714c941d866816d97ea, type: 3}
     loop: 0
   playerHeavyAttack:
-    audioClip: {fileID: 0}
+    audioClip: {fileID: 8300000, guid: cefdeabfacb232747936c1235c0a9126, type: 3}
     loop: 0
   enemyWalking:
-    audioClip: {fileID: 0}
+    audioClip: {fileID: 8300000, guid: f320d00ef8ef27146b41078bf61e38b1, type: 3}
     loop: 0
   enemyAttack:
-    audioClip: {fileID: 0}
+    audioClip: {fileID: 8300000, guid: 9b9148f481253594d91ca32c98e3341b, type: 3}
     loop: 0
 --- !u!4 &1630789328
 Transform:

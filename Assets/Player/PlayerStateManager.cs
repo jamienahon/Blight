@@ -91,6 +91,7 @@ public class PlayerStateManager : MonoBehaviour
             switchStates = false;
         }
         currentState.UpdateState();
+        Debug.Log(playerAudio.isPlaying);
     }
 
     public void SwitchState(PlayerState state)
