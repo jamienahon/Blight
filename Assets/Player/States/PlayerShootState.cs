@@ -7,16 +7,16 @@ public class PlayerShootState : PlayerState
 {
     public override PlayerStateManager stateManager { get; set; }
     public AudioClip shootSound;
+    public bool loopSound;
 
     public override void EnterState(PlayerStateManager stateManager)
     {
         this.stateManager = stateManager;
         HandleAnimations();
         SetAnimationParameters();
+        HandleAudio();
         stateManager.SpawnProjectile();
         stateManager.healthSystem.ConsumeStamina(stateManager.lightAttackStamCost);
-
-        stateManager.playerAudio.clip = shootSound;
     }
 
     public override void UpdateState()
@@ -42,6 +42,13 @@ public class PlayerShootState : PlayerState
         stateManager.animator.SetBool("IsDodging", false);
         stateManager.animator.SetFloat("HorizontalMovement", 0);
         stateManager.animator.SetFloat("VerticalMovement", 0);
+    }
+
+    public override void HandleAudio()
+    {
+        stateManager.playerAudio.clip = shootSound;
+        stateManager.playerAudio.loop = loopSound;
+        stateManager.playerAudio.Play();
     }
 
     public override void OnCollisionEnter(Collider collider)

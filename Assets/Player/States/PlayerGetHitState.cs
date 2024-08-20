@@ -37,6 +37,11 @@ public class PlayerGetHitState : PlayerState
         stateManager.animator.SetFloat("VerticalMovement", 0);
     }
 
+    public override void HandleAudio()
+    {
+
+    }
+
     public override void OnCollisionEnter(Collider collider)
     {
 

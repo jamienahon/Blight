@@ -11,8 +11,7 @@ public class PlayerIdleState : PlayerState
     {
         this.stateManager = stateManager;
         SetAnimationParameters();
-
-        stateManager.playerAudio.clip = null;
+        HandleAudio();
     }
 
     public override void UpdateState()
@@ -58,6 +57,11 @@ public class PlayerIdleState : PlayerState
         stateManager.animator.SetBool("IsSprinting", false);
         stateManager.animator.SetFloat("HorizontalMovement", 0);
         stateManager.animator.SetFloat("VerticalMovement", 0);
+    }
+
+    public override void HandleAudio()
+    {
+        stateManager.playerAudio.Stop();
     }
 
     void LookAtLockOnPoint()

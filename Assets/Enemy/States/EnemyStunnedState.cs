@@ -33,6 +33,11 @@ public class EnemyStunnedState : EnemyState
         stateManager.animator.SetBool("IsStunned", true);
     }
 
+    public override void HandleAuido()
+    {
+
+    }
+
     public override void OnTriggerEnter(Collider collider)
     {
 

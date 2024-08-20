@@ -4,6 +4,7 @@ public class PlayerWalkState : PlayerState
 {
     public float moveSpeed;
     public AudioClip walkingSound;
+    public bool loopSound;
 
     public override PlayerStateManager stateManager { get; set; }
 
@@ -11,7 +12,7 @@ public class PlayerWalkState : PlayerState
     {
         this.stateManager = stateManager;
         SetAnimationParameters();
-        stateManager.playerAudio.clip = walkingSound;
+        HandleAudio();
     }
 
     public override void UpdateState()
@@ -71,6 +72,13 @@ public class PlayerWalkState : PlayerState
     {
         stateManager.animator.SetBool("IsMoving", true);
         stateManager.animator.SetBool("IsSprinting", false);
+    }
+
+    public override void HandleAudio()
+    {
+        stateManager.playerAudio.clip = walkingSound;
+        stateManager.playerAudio.loop = loopSound;
+        stateManager.playerAudio.Play();
     }
 
     void LookAtLockOnPoint()

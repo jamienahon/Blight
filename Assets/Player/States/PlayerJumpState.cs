@@ -55,6 +55,11 @@ public class PlayerJumpState : PlayerState
         stateManager.animator.SetBool("IsDodging", false);
     }
 
+    public override void HandleAudio()
+    {
+
+    }
+
     void LookAtMovementDirection()
     {
         stateManager.movementDirection.x = Input.GetAxisRaw("Horizontal");

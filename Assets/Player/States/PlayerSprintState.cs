@@ -6,12 +6,13 @@ public class PlayerSprintState : PlayerState
 {
     public override PlayerStateManager stateManager { get; set; }
     public AudioClip sprintSound;
+    public bool loopSound;
 
     public override void EnterState(PlayerStateManager stateManager)
     {
         this.stateManager = stateManager;
         SetAnimationParameters();
-        stateManager.playerAudio.clip = sprintSound;
+        HandleAudio();
     }
 
     public override void UpdateState()
@@ -69,6 +70,13 @@ public class PlayerSprintState : PlayerState
     {
         stateManager.animator.speed = 1.5f;
         stateManager.animator.SetBool("IsSprinting", true);
+    }
+
+    public override void HandleAudio()
+    {
+        stateManager.playerAudio.clip = sprintSound;
+        stateManager.playerAudio.loop = loopSound;
+        stateManager.playerAudio.Play();
     }
 
     void LookAtMovementDirection()

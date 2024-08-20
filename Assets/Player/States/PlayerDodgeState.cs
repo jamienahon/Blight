@@ -6,16 +6,16 @@ public class PlayerDodgeState : PlayerState
 {
     public override PlayerStateManager stateManager { get; set; }
     public AudioClip dodgeSound;
+    public bool loopSound;
 
     public override void EnterState(PlayerStateManager stateManager)
     {
         this.stateManager = stateManager;
         SetAnimationParameters();
+        HandleAudio();
 
         HandleAnimations();
         stateManager.healthSystem.ConsumeStamina(stateManager.dodgeStamCost);
-
-        stateManager.playerAudio.clip = dodgeSound;
     }
 
     public override void UpdateState()
@@ -39,6 +39,13 @@ public class PlayerDodgeState : PlayerState
         stateManager.animator.speed = 1f;
         stateManager.animator.SetBool("IsDodging", true);
         stateManager.animator.SetBool("IsJumping", false);
+    }
+
+    public override void HandleAudio()
+    {
+        stateManager.playerAudio.clip = dodgeSound;
+        stateManager.playerAudio.loop = loopSound;
+        stateManager.playerAudio.Play();
     }
 
     void LookAtDodgeDirection()

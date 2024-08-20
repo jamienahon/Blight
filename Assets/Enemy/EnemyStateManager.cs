@@ -9,7 +9,7 @@ public class EnemyStateManager : MonoBehaviour
     public GameObject player;
     [HideInInspector] public EnemyHealthSystem healthSystem;
     [HideInInspector] public Animator animator;
-    [HideInInspector] public AudioSource enemySound;
+    [HideInInspector] public AudioSource enemyAudio;
 
     public EnemyIdleState idleState = new EnemyIdleState();
     public EnemyAttackState attackState = new EnemyAttackState();
@@ -38,7 +38,7 @@ public class EnemyStateManager : MonoBehaviour
         currentState.EnterState(this);
         animator = GetComponentInChildren<Animator>();
         healthSystem = GetComponent<EnemyHealthSystem>();
-        enemySound = GetComponent<AudioSource>();
+        enemyAudio = GetComponent<AudioSource>();
         nextAttack = Time.time + Random.Range(timeBetweenAttacks.x, timeBetweenAttacks.y);
     }
 

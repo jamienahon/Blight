@@ -1,6 +1,14 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
+[Serializable]
+public struct AudioSetting
+{
+    public AudioClip audioClip;
+    public bool loop;
+}
 
 public class AudioManager : MonoBehaviour
 {
@@ -9,25 +17,37 @@ public class AudioManager : MonoBehaviour
     public EnemyStateManager enemyStateManager;
 
     [Header("Player")]
-    public AudioClip playerWalking;
-    public AudioClip playerSprinting;
-    public AudioClip playerDodging;
-    public AudioClip playerLightAttack;
-    public AudioClip playerHeavyAttack;
+    public AudioSetting playerWalking;
+    public AudioSetting playerSprinting;
+    public AudioSetting playerDodging;
+    public AudioSetting playerLightAttack;
+    public AudioSetting playerHeavyAttack;
 
     [Header("Enemy")]
-    public AudioClip enemyWalking;
-    public AudioClip enemyAttack;
+    public AudioSetting enemyWalking;
+    public AudioSetting enemyAttack;
 
     private void Start()
     {
-        playerStateManager.walkState.walkingSound = playerWalking;
-        playerStateManager.sprintState.sprintSound = playerSprinting;
-        playerStateManager.dodgeState.dodgeSound = playerDodging;
-        playerStateManager.shootState.shootSound = playerLightAttack;
-        playerStateManager.heavyShoot.heavyShootSound = playerHeavyAttack;
+        playerStateManager.walkState.walkingSound = playerWalking.audioClip;
+        playerStateManager.walkState.loopSound = playerWalking.loop;
 
-        enemyStateManager.moveState.moveSound = enemyWalking;
-        enemyStateManager.attackState.attackSound = enemyAttack;
+        playerStateManager.sprintState.sprintSound = playerSprinting.audioClip;
+        playerStateManager.sprintState.loopSound = playerSprinting.loop;
+
+        playerStateManager.dodgeState.dodgeSound = playerDodging.audioClip;
+        playerStateManager.dodgeState.loopSound = playerDodging.loop;
+
+        playerStateManager.shootState.shootSound = playerLightAttack.audioClip;
+        playerStateManager.shootState.loopSound = playerLightAttack.loop;
+
+        playerStateManager.heavyShoot.heavyShootSound = playerHeavyAttack.audioClip;
+        playerStateManager.heavyShoot.loopSound = playerHeavyAttack.loop;
+
+        enemyStateManager.moveState.moveSound = enemyWalking.audioClip;
+        enemyStateManager.moveState.loopSound = enemyWalking.loop;
+
+        enemyStateManager.attackState.attackSound = enemyAttack.audioClip;
+        enemyStateManager.attackState.loopSound = enemyAttack.loop;
     }
 }

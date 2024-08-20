@@ -10,8 +10,7 @@ public class EnemyIdleState : EnemyState
     {
         this.stateManager = stateManager;
         SetAnimationParameters();
-
-        stateManager.enemySound.clip = null;
+        HandleAuido();
     }
 
     public override void UpdateState()
@@ -43,6 +42,11 @@ public class EnemyIdleState : EnemyState
     public override void SetAnimationParameters()
     {
         stateManager.animator.SetBool("IsMoving", false);
+    }
+
+    public override void HandleAuido()
+    {
+        stateManager.enemyAudio.Stop();
     }
 
     public override void OnTriggerEnter(Collider collider)

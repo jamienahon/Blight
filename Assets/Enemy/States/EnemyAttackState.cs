@@ -6,6 +6,7 @@ public class EnemyAttackState : EnemyState
 {
     public override EnemyStateManager stateManager { get; set; }
     public AudioClip attackSound;
+    public bool loopSound;
     public bool move;
     public bool rotate;
 
@@ -17,8 +18,7 @@ public class EnemyAttackState : EnemyState
         stateManager.attackMoveSpeed = Vector3.Distance(stateManager.transform.position, stateManager.player.transform.position) * 4;
         HandleAnimations();
         SetAnimationParameters();
-
-        stateManager.enemySound.clip = attackSound;
+        HandleAuido();
     }
 
     public override void UpdateState()
@@ -42,6 +42,13 @@ public class EnemyAttackState : EnemyState
     public override void SetAnimationParameters()
     {
         stateManager.animator.SetBool("IsMoving", false);
+    }
+
+    public override void HandleAuido()
+    {
+        stateManager.enemyAudio.clip = attackSound;
+        stateManager.enemyAudio.loop = loopSound;
+        stateManager.enemyAudio.Play();
     }
 
     public override void OnTriggerEnter(Collider collider)

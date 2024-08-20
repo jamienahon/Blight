@@ -6,13 +6,13 @@ public class EnemyMoveState : EnemyState
 {
     public override EnemyStateManager stateManager { get; set; }
     public AudioClip moveSound;
+    public bool loopSound;
 
     public override void EnterState(EnemyStateManager stateManager)
     {
         this.stateManager = stateManager;
         SetAnimationParameters();
-
-        stateManager.enemySound.clip = moveSound;
+        HandleAuido();
     }
 
     public override void UpdateState()
@@ -35,6 +35,13 @@ public class EnemyMoveState : EnemyState
     public override void SetAnimationParameters()
     {
         stateManager.animator.SetBool("IsMoving", true);
+    }
+
+    public override void HandleAuido()
+    {
+        stateManager.enemyAudio.clip = moveSound;
+        stateManager.enemyAudio.loop = loopSound;
+        stateManager.enemyAudio.Play();
     }
 
     public override void OnTriggerEnter(Collider collider)

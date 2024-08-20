@@ -60,6 +60,11 @@ public class PlayerBlockState : PlayerState
         stateManager.animator.SetFloat("VerticalMovement", 0);
     }
 
+    public override void HandleAudio()
+    {
+
+    }
+
     void LookAtLockOnPoint()
     {
         stateManager.movementDirection = Quaternion.Euler(0, stateManager.animator.transform.eulerAngles.y, 0) * stateManager.movementDirection;
