@@ -32,6 +32,7 @@ public class PlayerHealthSystem : MonoBehaviour
     {
         stateManager = GetComponent<PlayerStateManager>();
     }
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))

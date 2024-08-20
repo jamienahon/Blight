@@ -2388,7 +2388,7 @@ MonoBehaviour:
   jumpStamCost: 10
   arrowTrackingStrength: 1.5
   attackMoveSpeed: 10
-  projectile: {fileID: 6815989925127939019, guid: 934c8b52ec595f649b1391287fda618f, type: 3}
+  projectile: {fileID: 3732929822983303577, guid: 3cdcbf1be24af6744af5d4fbc85c3c5e, type: 3}
   lightAttackDamage: 1
   lightAttackStamCost: 10
   lightAttackGemRecharge: 10
@@ -2475,8 +2475,6 @@ MonoBehaviour:
   - {fileID: 879122651}
   - {fileID: 604118592}
   healthCharges: 5
-  healAmount: 3
-  healCooldown: 1
   maxRecharge: 100
   rechargeGem: 0
 --- !u!82 &742843627

@@ -115,13 +115,10 @@ public class PlayerStateManager : MonoBehaviour
             Vector3 lockOnPos = Camera.main.gameObject.GetComponent<CameraController>().currentLockOnPoint.gameObject.transform.position;
 
             newProjectile.transform.up = (lockOnPos - newProjectile.transform.position).normalized;
-            newProjectile.transform.up = Quaternion.Euler(0, 45, 0) * newProjectile.transform.up;
         }
         else
         {
-            arrowScript.target = null;
-            newProjectile.transform.up = (newProjectile.transform.position - Camera.main.transform.position).normalized;
-            newProjectile.transform.up = Quaternion.Euler(0, 45, 0) * newProjectile.transform.up;
+            newProjectile.transform.up = animator.transform.forward;
         }
     }
 
@@ -149,7 +146,7 @@ public class PlayerStateManager : MonoBehaviour
             {
                 GameObject newProjectile = Instantiate(projectile, position, projectile.transform.rotation);
 
-                newProjectile.transform.up = (newProjectile.transform.position - Camera.main.transform.position).normalized;
+                newProjectile.transform.up = animator.transform.forward;
                 newProjectile.transform.up = Quaternion.Euler(0, rotation, 0) * newProjectile.transform.up;
             }
         }
