@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
+using static UnityEditor.FilePathAttribute;
 
 public class PlayerStateManager : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class PlayerStateManager : MonoBehaviour
 
     [HideInInspector] public Animator animator;
     [HideInInspector] public PlayerHealthSystem healthSystem;
+    [HideInInspector]public AudioSource playerAudio;
 
     public PlayerIdleState idleState = new PlayerIdleState();
     public PlayerWalkState walkState = new PlayerWalkState();
@@ -68,6 +70,8 @@ public class PlayerStateManager : MonoBehaviour
     public float blockPauseTime;
     [HideInInspector] public float endBlockPause;
 
+    public float arrowTrackingStrength;
+
 
     private void Start()
     {
@@ -76,6 +80,7 @@ public class PlayerStateManager : MonoBehaviour
         currentState.EnterState(this);
         animator = GetComponentInChildren<Animator>();
         healthSystem = GetComponent<PlayerHealthSystem>();
+        playerAudio = GetComponent<AudioSource>();
     }
 
     public void FixedUpdate()
@@ -98,15 +103,24 @@ public class PlayerStateManager : MonoBehaviour
     {
         Vector3 position = new Vector3(transform.position.x, transform.position.y + 2.25f, transform.position.z);
         GameObject newProjectile = Instantiate(projectile, position, projectile.transform.rotation);
+        MoveProjectile arrowScript = newProjectile.GetComponent<MoveProjectile>();
+        arrowScript.player = gameObject;
+        arrowScript.trackingStrength = arrowTrackingStrength;
+
+
         if (isLockedOn)
         {
+            arrowScript.target = Camera.main.gameObject.GetComponent<CameraController>().currentLockOnPoint.gameObject;
             Vector3 lockOnPos = Camera.main.gameObject.GetComponent<CameraController>().currentLockOnPoint.gameObject.transform.position;
 
             newProjectile.transform.up = (lockOnPos - newProjectile.transform.position).normalized;
+            newProjectile.transform.up = Quaternion.Euler(0, 45, 0) * newProjectile.transform.up;
         }
         else
         {
+            arrowScript.target = null;
             newProjectile.transform.up = (newProjectile.transform.position - Camera.main.transform.position).normalized;
+            newProjectile.transform.up = Quaternion.Euler(0, 45, 0) * newProjectile.transform.up;
         }
     }
 
@@ -115,9 +129,13 @@ public class PlayerStateManager : MonoBehaviour
         Vector3 position = new Vector3(transform.position.x, transform.position.y + 2.25f, transform.position.z);
         if (isLockedOn)
         {
-            for (int rotation = -15; rotation <= 15; rotation += 15)
+            for (int rotation = -45; rotation <= 45; rotation += 45)
             {
                 GameObject newProjectile = Instantiate(projectile, position, projectile.transform.rotation);
+                MoveProjectile arrowScript = newProjectile.GetComponent<MoveProjectile>();
+                arrowScript.target = Camera.main.gameObject.GetComponent<CameraController>().currentLockOnPoint.gameObject;
+                arrowScript.player = gameObject;
+                arrowScript.trackingStrength = arrowTrackingStrength;
 
                 Vector3 lockOnPos = Camera.main.gameObject.GetComponent<CameraController>().currentLockOnPoint.gameObject.transform.position;
                 newProjectile.transform.up = (lockOnPos - newProjectile.transform.position).normalized;
@@ -126,7 +144,7 @@ public class PlayerStateManager : MonoBehaviour
         }
         else
         {
-            for (int rotation = -15; rotation <= 15; rotation += 15)
+            for (int rotation = -45; rotation <= 45; rotation += 45)
             {
                 GameObject newProjectile = Instantiate(projectile, position, projectile.transform.rotation);
 

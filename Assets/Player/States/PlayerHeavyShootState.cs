@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerHeavyShootState : PlayerState
 {
     public override PlayerStateManager stateManager { get; set; }
+    public AudioClip heavyShootSound;
 
     public override void EnterState(PlayerStateManager stateManager)
     {
@@ -13,6 +14,8 @@ public class PlayerHeavyShootState : PlayerState
         SetAnimationParameters();
         stateManager.SpawnMultiProjectile();
         stateManager.healthSystem.ConsumeStamina(stateManager.lightAttackStamCost);
+
+        stateManager.playerAudio.clip = heavyShootSound;
     }
 
     public override void UpdateState()

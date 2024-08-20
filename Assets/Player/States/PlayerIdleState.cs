@@ -11,6 +11,8 @@ public class PlayerIdleState : PlayerState
     {
         this.stateManager = stateManager;
         SetAnimationParameters();
+
+        stateManager.playerAudio.clip = null;
     }
 
     public override void UpdateState()

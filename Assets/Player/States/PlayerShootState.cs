@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerShootState : PlayerState
 {
     public override PlayerStateManager stateManager { get; set; }
+    public AudioClip shootSound;
 
     public override void EnterState(PlayerStateManager stateManager)
     {
@@ -13,6 +15,8 @@ public class PlayerShootState : PlayerState
         SetAnimationParameters();
         stateManager.SpawnProjectile();
         stateManager.healthSystem.ConsumeStamina(stateManager.lightAttackStamCost);
+
+        stateManager.playerAudio.clip = shootSound;
     }
 
     public override void UpdateState()

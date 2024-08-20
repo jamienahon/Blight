@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerDodgeState : PlayerState
 {
     public override PlayerStateManager stateManager { get; set; }
+    public AudioClip dodgeSound;
 
     public override void EnterState(PlayerStateManager stateManager)
     {
@@ -13,6 +14,8 @@ public class PlayerDodgeState : PlayerState
 
         HandleAnimations();
         stateManager.healthSystem.ConsumeStamina(stateManager.dodgeStamCost);
+
+        stateManager.playerAudio.clip = dodgeSound;
     }
 
     public override void UpdateState()

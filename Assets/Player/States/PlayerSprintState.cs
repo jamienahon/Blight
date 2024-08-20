@@ -5,11 +5,13 @@ using UnityEngine;
 public class PlayerSprintState : PlayerState
 {
     public override PlayerStateManager stateManager { get; set; }
+    public AudioClip sprintSound;
 
     public override void EnterState(PlayerStateManager stateManager)
     {
         this.stateManager = stateManager;
         SetAnimationParameters();
+        stateManager.playerAudio.clip = sprintSound;
     }
 
     public override void UpdateState()

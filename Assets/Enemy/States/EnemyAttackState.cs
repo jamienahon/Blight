@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyAttackState : EnemyState
 {
     public override EnemyStateManager stateManager { get; set; }
+    public AudioClip attackSound;
     public bool move;
     public bool rotate;
 
@@ -16,6 +17,8 @@ public class EnemyAttackState : EnemyState
         stateManager.attackMoveSpeed = Vector3.Distance(stateManager.transform.position, stateManager.player.transform.position) * 4;
         HandleAnimations();
         SetAnimationParameters();
+
+        stateManager.enemySound.clip = attackSound;
     }
 
     public override void UpdateState()
