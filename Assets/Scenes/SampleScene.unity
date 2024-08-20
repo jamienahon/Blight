@@ -700,7 +700,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 88, y: 13.9999695}
+  m_AnchoredPosition: {x: 88, y: 14}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &284266634 stripped
@@ -2397,6 +2397,7 @@ MonoBehaviour:
   blockMoveSpeed: 2
   blockPauseTime: 0.5
   endBlockPause: 0
+  arrowTrackingStrength: 1.5
 --- !u!4 &742843623
 Transform:
   m_ObjectHideFlags: 0
@@ -3979,7 +3980,7 @@ MonoBehaviour:
   healthSystem: {fileID: 1042516152}
   animator: {fileID: 1845290577}
   switchStates: 0
-  moveSpeed: 2.5
+  moveSpeed: 0
   timeBetweenAttacks: {x: 1, y: 4}
   nextAttack: 0
   attackMoveSpeed: 48
