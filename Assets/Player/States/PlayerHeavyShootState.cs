@@ -14,6 +14,7 @@ public class PlayerHeavyShootState : PlayerState
         HandleAnimations();
         SetAnimationParameters();
         HandleAudio();
+        LookAtCameraDirection();
         stateManager.SpawnMultiProjectile();
         stateManager.healthSystem.ConsumeStamina(stateManager.lightAttackStamCost);
     }
@@ -48,6 +49,11 @@ public class PlayerHeavyShootState : PlayerState
         stateManager.playerAudio.clip = heavyShootSound;
         stateManager.playerAudio.loop = loopSound;
         stateManager.playerAudio.Play();
+    }
+
+    void LookAtCameraDirection()
+    {
+        stateManager.animator.transform.rotation = Quaternion.Euler(0, Camera.main.transform.eulerAngles.y, 0);
     }
 
     public override void OnCollisionEnter(Collider collider)

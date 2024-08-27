@@ -1,11 +1,14 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Audio;
 using UnityEngine;
+using UnityEngine.Audio;
 
 [Serializable]
 public struct AudioSetting
-{
+{   
+    public AudioMixerGroup SFX;
     public AudioClip audioClip;
     public bool loop;
 }
