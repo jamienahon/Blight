@@ -1919,7 +1919,7 @@ AudioSource:
   m_GameObject: {fileID: 647244469}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 67ee330aa5b98114c819784960b33ce0, type: 2}
   m_audioClip: {fileID: 8300000, guid: dbc40f4edb7d78343b11c25f65f5b349, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.15
@@ -4160,7 +4160,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!54 &1042516148
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -5478,7 +5478,7 @@ GameObject:
   - component: {fileID: 1630789328}
   - component: {fileID: 1630789327}
   m_Layer: 0
-  m_Name: Audio Manager
+  m_Name: SFXAudioManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5499,24 +5499,31 @@ MonoBehaviour:
   playerStateManager: {fileID: 742843622}
   enemyStateManager: {fileID: 1042516150}
   playerWalking:
+    SFX: {fileID: 24300002, guid: 9107a5625968b6246aeca35394cdb6e9, type: 2}
     audioClip: {fileID: 8300000, guid: ddf8572cd387e2949a59eb6a48c96ce9, type: 3}
     loop: 0
   playerSprinting:
+    SFX: {fileID: 24300002, guid: 9107a5625968b6246aeca35394cdb6e9, type: 2}
     audioClip: {fileID: 8300000, guid: 330cff3b99299f749be0f6a1e007514a, type: 3}
     loop: 0
   playerDodging:
+    SFX: {fileID: 24300002, guid: 9107a5625968b6246aeca35394cdb6e9, type: 2}
     audioClip: {fileID: 8300000, guid: 413bb618fa656084ca466ca71335e851, type: 3}
     loop: 0
   playerLightAttack:
+    SFX: {fileID: 24300002, guid: 9107a5625968b6246aeca35394cdb6e9, type: 2}
     audioClip: {fileID: 8300000, guid: c7323c92a5c60714c941d866816d97ea, type: 3}
     loop: 0
   playerHeavyAttack:
+    SFX: {fileID: 24300002, guid: 9107a5625968b6246aeca35394cdb6e9, type: 2}
     audioClip: {fileID: 8300000, guid: cefdeabfacb232747936c1235c0a9126, type: 3}
     loop: 0
   enemyWalking:
+    SFX: {fileID: 24300002, guid: 9107a5625968b6246aeca35394cdb6e9, type: 2}
     audioClip: {fileID: 8300000, guid: f320d00ef8ef27146b41078bf61e38b1, type: 3}
     loop: 0
   enemyAttack:
+    SFX: {fileID: 24300002, guid: 9107a5625968b6246aeca35394cdb6e9, type: 2}
     audioClip: {fileID: 8300000, guid: 9b9148f481253594d91ca32c98e3341b, type: 3}
     loop: 0
 --- !u!4 &1630789328
