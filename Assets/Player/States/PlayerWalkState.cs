@@ -45,8 +45,8 @@ public class PlayerWalkState : PlayerState
         if (Input.GetAxis("Heal") > 0 && stateManager.healthSystem.healthCharges > 0)
             stateManager.SwitchState(stateManager.healState);
 
-        if (Input.GetAxis("Block") > 0)
-            stateManager.SwitchState(stateManager.blockState);
+        //if (Input.GetAxis("Block") > 0) //FIXME remove this properly - Finn
+        //    stateManager.SwitchState(stateManager.blockState);
 
         if (Input.GetAxis("Horizontal") == 0 && Input.GetAxis("Vertical") == 0)
             stateManager.SwitchState(stateManager.idleState);
