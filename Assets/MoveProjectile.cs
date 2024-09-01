@@ -27,7 +27,7 @@ public class MoveProjectile : MonoBehaviour
     {
         if (other.gameObject.tag == "Enemy")
         {
-            other.gameObject.GetComponent<EnemyHealthSystem>().DoDamage(1);
+            other.gameObject.GetComponent<EnemyHealthSystem>().DoDamage(80);            //this is light projectile dmg
         }
         else if (other.gameObject.tag == "PlayerHit" || other.gameObject.tag == "Player")
             return;

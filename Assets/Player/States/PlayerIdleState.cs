@@ -38,8 +38,8 @@ public class PlayerIdleState : PlayerState
         if (Input.GetAxis("HAttack") > 0 && stateManager.healthSystem.staminaBar.fillAmount > 0)
             stateManager.SwitchState(stateManager.heavyShootState);
 
-        if (Input.GetAxis("Block") > 0)
-            stateManager.SwitchState(stateManager.blockState);
+        //if (Input.GetAxis("Block") > 0) //FIXME remove this properly - Finn
+        //    stateManager.SwitchState(stateManager.blockState);
 
         if (Input.GetAxis("Heal") > 0 && stateManager.healthSystem.healthCharges > 0)
             stateManager.SwitchState(stateManager.healState);
