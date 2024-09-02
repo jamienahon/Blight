@@ -35,8 +35,8 @@ public class PlayerHealthSystem : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        //if (Input.GetKeyDown(KeyCode.Escape))
+        //    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 
         if (Time.time >= refillStamina && staminaBar.fillAmount < 1)
             RefillStamina();
