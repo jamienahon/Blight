@@ -9,8 +9,5 @@ public class Destroy : MonoBehaviour
     public void OnTriggerEnter(Collider Player)
     {
         Destroy(barrier);
-
     }
-
-  
 }
