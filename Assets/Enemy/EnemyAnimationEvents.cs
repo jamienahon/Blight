@@ -14,17 +14,17 @@ public class EnemyAnimationEvents : MonoBehaviour
 
     public void StartMove()
     {
-        stateManager.attackState.move = true;
+        stateManager.meleeAttackState.move = true;
     }
 
     public void EndMove()
     {
-        stateManager.attackState.move = false;
+        stateManager.meleeAttackState.move = false;
     }
 
     public void StopRotate()
     {
-        stateManager.attackState.rotate = false;
+        stateManager.meleeAttackState.rotate = false;
     }
 
     public void EnableHitbox()
@@ -35,5 +35,10 @@ public class EnemyAnimationEvents : MonoBehaviour
     public void DisableHitbox()
     {
         enemyHitbox.enabled = false;
+    }
+
+    public void SpawnProjectile()
+    {
+        stateManager.SpawnProjectile();
     }
 }

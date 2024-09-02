@@ -10,9 +10,11 @@ public class EnemyStateManager : MonoBehaviour
     [HideInInspector] public EnemyHealthSystem healthSystem;
     [HideInInspector] public Animator animator;
     [HideInInspector] public AudioSource enemyAudio;
+    [HideInInspector] public SkinnedMeshRenderer meshRenderer;
 
     public EnemyIdleState idleState = new EnemyIdleState();
-    public EnemyAttackState attackState = new EnemyAttackState();
+    public EnemyAttackState meleeAttackState = new EnemyAttackState();
+    public EnemyRangeAttackState rangeAttackState = new EnemyRangeAttackState();
     public EnemyMoveState moveState = new EnemyMoveState();
     public EnemyStunnedState stunnedState = new EnemyStunnedState();
 
@@ -26,7 +28,16 @@ public class EnemyStateManager : MonoBehaviour
     [HideInInspector] public float nextAttack;
     public float attackMoveSpeed;
     public float attackRange;
+    public float rangedAttackRange;
     public float damage;
+    public GameObject projectile;
+    public float arrowTrackingStrength;
+    public float arrowMoveSpeed;
+
+    [Header("Phases")]
+    [HideInInspector] public bool isInSecondPhase = false;
+    public Color phase1Colour;
+    public Color phase2Colour;
 
     public float stunnedLength;
     [HideInInspector] public float endStun;
@@ -38,6 +49,8 @@ public class EnemyStateManager : MonoBehaviour
         healthSystem = GetComponent<EnemyHealthSystem>();
         enemyAudio = GetComponent<AudioSource>();
         nextAttack = Time.time + Random.Range(timeBetweenAttacks.x, timeBetweenAttacks.y);
+        meshRenderer = GetComponentInChildren<SkinnedMeshRenderer>();
+        meshRenderer.material.color = phase1Colour;
 
         currentState = idleState;
         currentState.EnterState(this);
@@ -63,6 +76,22 @@ public class EnemyStateManager : MonoBehaviour
     public bool IsPlayerInRange()
     {
         return Vector3.Distance(transform.position, player.transform.position) < attackRange;
+    }
+
+    public void SpawnProjectile()
+    {
+        Vector3 position = new Vector3(transform.position.x, transform.position.y + 2.25f, transform.position.z);
+        GameObject newProjectile = Instantiate(projectile, position, projectile.transform.rotation);
+        EnemyProjectile arrowScript = newProjectile.GetComponent<EnemyProjectile>();
+        arrowScript.enemy = gameObject;
+        arrowScript.trackingStrength = arrowTrackingStrength;
+        arrowScript.moveSpeed = arrowMoveSpeed;
+        arrowScript.damage = damage;
+
+        arrowScript.target = player.gameObject;
+        Vector3 targetPos = new Vector3(arrowScript.target.transform.position.x, arrowScript.target.transform.position.y + 2, arrowScript.target.transform.position.z);
+
+        newProjectile.transform.up = (targetPos - newProjectile.transform.position).normalized;
     }
 
     public void OnTriggerEnter(Collider collider)

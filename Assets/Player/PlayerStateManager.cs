@@ -48,6 +48,7 @@ public class PlayerStateManager : MonoBehaviour
     [Header("Attacking")]
     public float arrowTrackingStrength;
     public float attackMoveSpeed;
+    public float arrowMoveSpeed;
 
     [Header("Light Attack")]
     public GameObject projectile;
@@ -102,10 +103,11 @@ public class PlayerStateManager : MonoBehaviour
     {
         Vector3 position = new Vector3(transform.position.x, transform.position.y + 2.25f, transform.position.z);
         GameObject newProjectile = Instantiate(projectile, position, projectile.transform.rotation);
-        MoveProjectile arrowScript = newProjectile.GetComponent<MoveProjectile>();
+        PlayerProjectile arrowScript = newProjectile.GetComponent<PlayerProjectile>();
         arrowScript.player = gameObject;
         arrowScript.trackingStrength = arrowTrackingStrength;
-
+        arrowScript.moveSpeed = arrowMoveSpeed;
+        arrowScript.damage = lightAttackDamage;
 
         if (isLockedOn)
         {
@@ -128,10 +130,11 @@ public class PlayerStateManager : MonoBehaviour
             for (int rotation = -45; rotation <= 45; rotation += 45)
             {
                 GameObject newProjectile = Instantiate(projectile, position, projectile.transform.rotation);
-                MoveProjectile arrowScript = newProjectile.GetComponent<MoveProjectile>();
+                PlayerProjectile arrowScript = newProjectile.GetComponent<PlayerProjectile>();
                 arrowScript.target = Camera.main.gameObject.GetComponent<CameraController>().currentLockOnPoint.gameObject;
                 arrowScript.player = gameObject;
                 arrowScript.trackingStrength = arrowTrackingStrength;
+                arrowScript.damage = lightAttackDamage;
 
                 Vector3 lockOnPos = Camera.main.gameObject.GetComponent<CameraController>().currentLockOnPoint.gameObject.transform.position;
                 newProjectile.transform.up = (lockOnPos - newProjectile.transform.position).normalized;
