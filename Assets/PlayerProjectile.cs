@@ -2,12 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MoveProjectile : MonoBehaviour
+public class PlayerProjectile : MonoBehaviour
 {
     public GameObject player;
     public float moveSpeed;
     public GameObject target;
     public float trackingStrength;
+    public float damage;
 
     private void Update()
     {
@@ -27,7 +28,7 @@ public class MoveProjectile : MonoBehaviour
     {
         if (other.gameObject.tag == "Enemy")
         {
-            other.gameObject.GetComponent<EnemyHealthSystem>().DoDamage(1);
+            other.gameObject.GetComponent<EnemyHealthSystem>().DoDamage(damage);
         }
         else if (other.gameObject.tag == "PlayerHit" || other.gameObject.tag == "Player")
             return;

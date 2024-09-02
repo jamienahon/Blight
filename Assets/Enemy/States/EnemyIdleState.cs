@@ -15,19 +15,53 @@ public class EnemyIdleState : EnemyState
 
     public override void UpdateState()
     {
-        if (stateManager.IsPlayerInRange())
-        {
+        //if (stateManager.IsPlayerInRange() && Time.time >= stateManager.nextAttack)
+        //{
+        //    if (!stateManager.isInSecondPhase)
+        //    {
+        //        stateManager.SwitchState(stateManager.meleeAttackState);
+        //    }
+        //    else
+        //    {
+        //        int randomNum = Random.Range(0, 1);
+        //        if(randomNum == 0)
+        //            stateManager.SwitchState(stateManager.rangeAttackState);
+        //        else
+        //            stateManager.SwitchState(stateManager.meleeAttackState);
+        //    }
+        //    stateManager.nextAttack = Time.time + Random.Range(stateManager.timeBetweenAttacks.x, stateManager.timeBetweenAttacks.y);
+        //}
+        //else
+        //{
+        //    stateManager.SwitchState(stateManager.moveState);
+        //}
 
-            if (Time.time >= stateManager.nextAttack)
+        if (Time.time >= stateManager.nextAttack)
+        {
+            if (!stateManager.isInSecondPhase)
             {
-                stateManager.SwitchState(stateManager.attackState);
-                stateManager.nextAttack = Time.time + Random.Range(stateManager.timeBetweenAttacks.x, stateManager.timeBetweenAttacks.y);
+                if (stateManager.IsPlayerInRange())
+                    stateManager.SwitchState(stateManager.meleeAttackState);
+                else
+                    stateManager.SwitchState(stateManager.moveState);
             }
+            else
+            {
+                if (Vector3.Distance(stateManager.gameObject.transform.position, stateManager.player.gameObject.transform.position) < stateManager.attackRange)
+                {
+                    stateManager.SwitchState(stateManager.meleeAttackState);
+                }
+                else if (Vector3.Distance(stateManager.gameObject.transform.position, stateManager.player.gameObject.transform.position) < stateManager.rangedAttackRange)
+                {
+                    stateManager.SwitchState(stateManager.rangeAttackState);
+                }
+                else
+                    stateManager.SwitchState(stateManager.moveState);
+            }
+            stateManager.nextAttack = Time.time + Random.Range(stateManager.timeBetweenAttacks.x, stateManager.timeBetweenAttacks.y);
         }
         else
-        {
             stateManager.SwitchState(stateManager.moveState);
-        }
 
         Vector3 lookDir = new Vector3(stateManager.player.transform.position.x, 0, stateManager.player.transform.position.z);
         stateManager.animator.transform.LookAt(lookDir);

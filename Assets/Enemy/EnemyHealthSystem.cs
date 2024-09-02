@@ -5,17 +5,37 @@ using UnityEngine.UI;
 
 public class EnemyHealthSystem : MonoBehaviour
 {
+    EnemyStateManager stateManager;
     public CameraController camCont;
     public Image healthBar;
     public float maxHealth;
+
+    private void Start()
+    {
+        stateManager = GetComponent<EnemyStateManager>();
+    }
 
     public void DoDamage(float damage)
     {
         healthBar.fillAmount -= damage * (1 / maxHealth);
         if (healthBar.fillAmount == 0)
         {
-            Destroy(gameObject);
-            camCont.EndLockOn();
+            if (!stateManager.isInSecondPhase)
+            {
+                stateManager.isInSecondPhase = true;
+                TransitionToSecondPhase();
+            }
+            else
+            {
+                Destroy(gameObject);
+                camCont.EndLockOn();
+            }
         }
+    }
+
+    private void TransitionToSecondPhase()
+    {
+        healthBar.fillAmount = maxHealth;
+        stateManager.meshRenderer.material.color = stateManager.phase2Colour;
     }
 }

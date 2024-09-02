@@ -50,7 +50,7 @@ public class AudioManager : MonoBehaviour
         enemyStateManager.moveState.moveSound = enemyWalking.audioClip;
         enemyStateManager.moveState.loopSound = enemyWalking.loop;
 
-        enemyStateManager.attackState.attackSound = enemyAttack.audioClip;
-        enemyStateManager.attackState.loopSound = enemyAttack.loop;
+        enemyStateManager.meleeAttackState.attackSound = enemyAttack.audioClip;
+        enemyStateManager.meleeAttackState.loopSound = enemyAttack.loop;
     }
 }
