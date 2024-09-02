@@ -31,7 +31,7 @@ public class PlayerHeavyShootState : PlayerState
 
     public override void HandleAnimations()
     {
-        stateManager.animator.Play("Unarmed-Attack-L3");
+        stateManager.animator.Play("Heavy Attack");
     }
 
     public override void SetAnimationParameters()

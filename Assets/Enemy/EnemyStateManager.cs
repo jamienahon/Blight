@@ -29,7 +29,8 @@ public class EnemyStateManager : MonoBehaviour
     public float attackMoveSpeed;
     public float attackRange;
     public float rangedAttackRange;
-    public float damage;
+    public float meleeDamage;
+    public float rangedDamage;
     public GameObject projectile;
     public float arrowTrackingStrength;
     public float arrowMoveSpeed;
@@ -86,7 +87,7 @@ public class EnemyStateManager : MonoBehaviour
         arrowScript.enemy = gameObject;
         arrowScript.trackingStrength = arrowTrackingStrength;
         arrowScript.moveSpeed = arrowMoveSpeed;
-        arrowScript.damage = damage;
+        arrowScript.damage = rangedDamage;
 
         arrowScript.target = player.gameObject;
         Vector3 targetPos = new Vector3(arrowScript.target.transform.position.x, arrowScript.target.transform.position.y + 2, arrowScript.target.transform.position.z);
@@ -103,7 +104,7 @@ public class EnemyStateManager : MonoBehaviour
         //}
         if (collider.gameObject.tag == "Player")
         {
-            collider.GetComponentInParent<PlayerHealthSystem>().DoDamage(damage);
+            collider.GetComponentInParent<PlayerHealthSystem>().DoDamage(meleeDamage);
         }
     }
 
