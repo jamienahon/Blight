@@ -24,4 +24,14 @@ public class SceneChange : MonoBehaviour
     {
         Clicker.Play();
     }
+    public void MainMenu()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);// this can load the scene number, scene number is what scene is in build menu
+
+    }
+
+    public void Restartgame()
+    {
+        SceneManager.LoadScene(1);
+    }
 }
