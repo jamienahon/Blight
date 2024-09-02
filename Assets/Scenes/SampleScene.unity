@@ -1221,7 +1221,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 372186417}
-  m_LocalRotation: {x: -0.08860936, y: 0.00000001816079, z: -0.000000004598405, w: 0.9960665}
+  m_LocalRotation: {x: -0.08860936, y: 0.000000009778887, z: -0.0000000023283064, w: 0.9960665}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -7110,7 +7110,7 @@ MonoBehaviour:
     loop: 0
   enemyWalking:
     SFX: {fileID: 24300002, guid: 9107a5625968b6246aeca35394cdb6e9, type: 2}
-    audioClip: {fileID: 8300000, guid: f320d00ef8ef27146b41078bf61e38b1, type: 3}
+    audioClip: {fileID: 8300000, guid: 9acd8581d0861d84eada8483c440377e, type: 3}
     loop: 0
   enemyAttack:
     SFX: {fileID: 24300002, guid: 9107a5625968b6246aeca35394cdb6e9, type: 2}
