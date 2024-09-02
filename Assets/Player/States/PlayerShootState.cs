@@ -32,7 +32,7 @@ public class PlayerShootState : PlayerState
 
     public override void HandleAnimations()
     {
-        stateManager.animator.Play("Unarmed-Attack-L3");
+        stateManager.animator.Play("Light Attack");
     }
 
     public override void SetAnimationParameters()
