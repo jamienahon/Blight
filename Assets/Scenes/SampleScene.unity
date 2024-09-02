@@ -3917,10 +3917,10 @@ MonoBehaviour:
   attackMoveSpeed: 5
   arrowMoveSpeed: 25
   projectile: {fileID: 3732929822983303577, guid: 3cdcbf1be24af6744af5d4fbc85c3c5e, type: 3}
-  lightAttackDamage: 10
+  lightAttackDamage: 15
   lightAttackStamCost: 5
   lightAttackGemRecharge: 10
-  heavyAttackDamage: 20
+  heavyAttackDamage: 45
   heavyAttackStamCost: 35
   heavyAttackGemRecharge: 20
   blockDamageReduction: 0.1
@@ -3993,9 +3993,9 @@ MonoBehaviour:
   maxHealth: 100
   staminaBar: {fileID: 1452758312}
   maxStamina: 100
-  normalStamRefillSpeed: 16
+  normalStamRefillSpeed: 25
   blockStamRefillSpeed: 15
-  timeBeforeStaminaRefill: 1
+  timeBeforeStaminaRefill: 0.7
   healingGemImages:
   - {fileID: 580279377}
   - {fileID: 735132503}
@@ -6598,7 +6598,8 @@ MonoBehaviour:
   attackMoveSpeed: 250
   attackRange: 5
   rangedAttackRange: 20
-  damage: 30
+  meleeDamage: 30
+  rangedDamage: 15
   projectile: {fileID: 3732929822983303577, guid: bef79a126a276c1468c5fa67b27276be, type: 3}
   arrowTrackingStrength: 2
   arrowMoveSpeed: 25
@@ -6638,7 +6639,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   camCont: {fileID: 963194230}
   healthBar: {fileID: 908814163}
-  maxHealth: 2000
+  maxHealth: 1350
 --- !u!82 &1042516153
 AudioSource:
   m_ObjectHideFlags: 0
@@ -11169,7 +11170,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2045391157}
-  m_LocalRotation: {x: -0.00000008940697, y: 0.000000027474016, z: -0.000000009720679, w: 1}
+  m_LocalRotation: {x: -0.000000074505806, y: 0.0000000144355, z: -0.0000000052386895, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
