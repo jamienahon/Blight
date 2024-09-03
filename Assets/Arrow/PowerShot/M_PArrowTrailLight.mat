@@ -37,8 +37,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: M_PArrowTrailLight
-  m_Shader: {fileID: -6465566751694194690, guid: d3861761020ec87499348d76b3e61905,
-    type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: d3861761020ec87499348d76b3e61905, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords:
   - _DISABLE_SSR_TRANSPARENT
