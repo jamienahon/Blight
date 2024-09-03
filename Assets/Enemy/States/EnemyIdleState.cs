@@ -61,7 +61,7 @@ public class EnemyIdleState : EnemyState
             stateManager.nextAttack = Time.time + Random.Range(stateManager.timeBetweenAttacks.x, stateManager.timeBetweenAttacks.y);
         }
         else
-            stateManager.SwitchState(stateManager.moveState);
+            stateManager.SwitchState(stateManager.idleState);
 
         Vector3 lookDir = new Vector3(stateManager.player.transform.position.x, 0, stateManager.player.transform.position.z);
         stateManager.animator.transform.LookAt(lookDir);

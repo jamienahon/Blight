@@ -8,6 +8,7 @@ using TMPro;
 public class PlayerHealthSystem : MonoBehaviour
 {
     PlayerStateManager stateManager;
+    public GameObject deathScreen;
 
     [Header("Health")]
     public Image healthBar;
@@ -68,7 +69,8 @@ public class PlayerHealthSystem : MonoBehaviour
         if (healthBar.fillAmount <= 0)
         {
             healthBar.fillAmount = 0;
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            deathScreen.SetActive(true);
+            stateManager.gameObject.SetActive(false);
         }
     }
 
