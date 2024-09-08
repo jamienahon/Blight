@@ -71,6 +71,8 @@ public class PlayerHealthSystem : MonoBehaviour
             healthBar.fillAmount = 0;
             deathScreen.SetActive(true);
             stateManager.gameObject.SetActive(false);
+            CameraController camCont = Camera.main.GetComponent<CameraController>();
+            camCont.followCam.enabled = false;
         }
     }
 
