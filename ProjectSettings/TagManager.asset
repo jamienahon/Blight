@@ -9,6 +9,7 @@ TagManager:
   - EnemyHit
   - PlayerHit
   - Arrow
+  - BackgroundAudioSource
   layers:
   - Default
   - TransparentFX
