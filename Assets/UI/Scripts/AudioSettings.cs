@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class AudioSettings : MonoBehaviour
 {
+    PersistantData persistantData;
+
     [Header("AudioSources")]
     public List<AudioSource> allAudioSources;
     public AudioSource musicAudioSource;
@@ -17,14 +19,40 @@ public class AudioSettings : MonoBehaviour
 
     private void Start()
     {
+        persistantData = GameObject.Find("PersistantData").GetComponent<PersistantData>();
+
+        FindAudioSources();
+        InitialiseAudioSettings();
+    }
+
+    private void Update()
+    {
+        UpdateMasterVolume();
+        UpdateMusicVolume();
+        UpdateSFXVolume();
+    }
+
+    private void InitialiseAudioSettings()
+    {
+        masterVolumeSlider.value = persistantData.masterVolume;
+
+        musicVolumeSlider.value = persistantData.musicVolumeSliderValue;
+        musicAudioSource.volume = persistantData.musicVolume;
+
+        sfxVolumeSlider.value = persistantData.sfxVolumeSliderValue;
+        foreach (AudioSource audioSource in sfxAudioSources)
+            audioSource.volume = persistantData.sfxVolume;
+    }
+
+    public void FindAudioSources()
+    {
         allAudioSources = new List<AudioSource>(FindObjectsOfType<AudioSource>());
         musicAudioSource = GameObject.Find("BackgroundAudio").GetComponent<AudioSource>();
-
-        sfxAudioSources = allAudioSources;
-        foreach(AudioSource audioSource in sfxAudioSources)
+        sfxAudioSources = new List<AudioSource>();
+        foreach (AudioSource audioSource in allAudioSources)
         {
-            if (audioSource.gameObject.tag == "BackgroundAudioSource")
-                sfxAudioSources.Remove(audioSource);
+            if (audioSource.gameObject.tag != "BackgroundAudioSource")
+                sfxAudioSources.Add(audioSource);
         }
     }
 
@@ -32,16 +60,21 @@ public class AudioSettings : MonoBehaviour
     {
         UpdateMusicVolume();
         UpdateSFXVolume();
+        persistantData.masterVolume = masterVolumeSlider.value;
     }
 
     public void UpdateMusicVolume()
     {
         musicAudioSource.volume = musicVolumeSlider.value * masterVolumeSlider.value;
+        persistantData.musicVolume = musicAudioSource.volume;
+        persistantData.musicVolumeSliderValue = musicVolumeSlider.value;
     }
 
     public void UpdateSFXVolume()
     {
         foreach (AudioSource audioSource in sfxAudioSources)
             audioSource.volume = sfxVolumeSlider.value * masterVolumeSlider.value;
+        persistantData.sfxVolume = sfxAudioSources[0].volume;
+        persistantData.sfxVolumeSliderValue = sfxVolumeSlider.value;
     }
 }
