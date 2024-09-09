@@ -7,6 +7,7 @@ public class EnemyHealthSystem : MonoBehaviour
 {
     EnemyStateManager stateManager;
     public CameraController camCont;
+    public GameObject victoryScreen;
     public Image healthBar;
     public float maxHealth;
 
@@ -29,6 +30,7 @@ public class EnemyHealthSystem : MonoBehaviour
             {
                 Destroy(gameObject);
                 camCont.EndLockOn();
+                victoryScreen.SetActive(true);
             }
         }
     }

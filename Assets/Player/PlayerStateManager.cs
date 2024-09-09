@@ -108,6 +108,7 @@ public class PlayerStateManager : MonoBehaviour
         arrowScript.trackingStrength = arrowTrackingStrength;
         arrowScript.moveSpeed = arrowMoveSpeed;
         arrowScript.damage = lightAttackDamage;
+        arrowScript.gemRechargeAmount = lightAttackGemRecharge;
 
         if (isLockedOn)
         {
@@ -135,6 +136,7 @@ public class PlayerStateManager : MonoBehaviour
                 arrowScript.player = gameObject;
                 arrowScript.trackingStrength = arrowTrackingStrength;
                 arrowScript.damage = lightAttackDamage;
+                arrowScript.gemRechargeAmount = heavyAttackGemRecharge / 3.0f;
 
                 Vector3 lockOnPos = Camera.main.gameObject.GetComponent<CameraController>().currentLockOnPoint.gameObject.transform.position;
                 newProjectile.transform.up = (lockOnPos - newProjectile.transform.position).normalized;

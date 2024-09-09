@@ -30,23 +30,17 @@ public class PlayerWalkState : PlayerState
         if (Input.GetAxis("Sprint") > 0 && stateManager.healthSystem.staminaBar.fillAmount > 0)
             stateManager.SwitchState(stateManager.sprintState);
 
-        if (Input.GetAxis("Dodge") > 0 && stateManager.healthSystem.staminaBar.fillAmount > 0)
+        if (Input.GetAxis("Dodge") > 0 && stateManager.healthSystem.staminaBar.fillAmount >= stateManager.dodgeStamCost * (1 / stateManager.healthSystem.maxHealth))
             stateManager.SwitchState(stateManager.dodgeState);
 
-        //if (Input.GetAxis("Jump") > 0 && stateManager.healthSystem.staminaBar.fillAmount > 0)
-        //    stateManager.SwitchState(stateManager.jumpState);
-
-        if (Input.GetAxis("LAttack") > 0 && stateManager.healthSystem.staminaBar.fillAmount > 0)
+        if (Input.GetAxis("LAttack") > 0 && stateManager.healthSystem.staminaBar.fillAmount >= stateManager.lightAttackStamCost * (1 / stateManager.healthSystem.maxHealth))
             stateManager.SwitchState(stateManager.shootState);
 
-        if (Input.GetAxis("HAttack") > 0 && stateManager.healthSystem.staminaBar.fillAmount > 0)
+        if (Input.GetAxis("HAttack") > 0 && stateManager.healthSystem.staminaBar.fillAmount >= stateManager.heavyAttackStamCost * (1 / stateManager.healthSystem.maxHealth))
             stateManager.SwitchState(stateManager.heavyShootState);
 
         if (Input.GetAxis("Heal") > 0 && stateManager.healthSystem.healthCharges > 0)
             stateManager.SwitchState(stateManager.healState);
-
-        //if (Input.GetAxis("Block") > 0) //FIXME remove this properly - Finn
-        //    stateManager.SwitchState(stateManager.blockState);
 
         if (Input.GetAxis("Horizontal") == 0 && Input.GetAxis("Vertical") == 0)
             stateManager.SwitchState(stateManager.idleState);

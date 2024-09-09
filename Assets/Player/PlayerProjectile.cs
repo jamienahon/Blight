@@ -9,6 +9,7 @@ public class PlayerProjectile : MonoBehaviour
     public GameObject target;
     public float trackingStrength;
     public float damage;
+    public float gemRechargeAmount;
 
     private void Update()
     {
@@ -29,6 +30,7 @@ public class PlayerProjectile : MonoBehaviour
         if (other.gameObject.tag == "Enemy")
         {
             other.gameObject.GetComponent<EnemyHealthSystem>().DoDamage(damage);
+            player.GetComponent<PlayerHealthSystem>().RechargeGem(gemRechargeAmount);
         }
         else if (other.gameObject.tag == "PlayerHit" || other.gameObject.tag == "Player")
             return;
