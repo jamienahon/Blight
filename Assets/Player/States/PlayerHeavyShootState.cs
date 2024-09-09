@@ -16,7 +16,7 @@ public class PlayerHeavyShootState : PlayerState
         HandleAudio();
         LookAtCameraDirection();
         stateManager.SpawnMultiProjectile();
-        stateManager.healthSystem.ConsumeStamina(stateManager.lightAttackStamCost);
+        stateManager.healthSystem.ConsumeStamina(stateManager.heavyAttackStamCost);
     }
 
     public override void UpdateState()
