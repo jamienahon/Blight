@@ -6464,8 +6464,8 @@ MonoBehaviour:
   switchStates: 0
   isInvincible: 0
   movementDirection: {x: 0, y: 0, z: 0}
-  runSpeed: 4
-  sprintSpeed: 7
+  runSpeed: 5
+  sprintSpeed: 9
   sprintStamCost: 8
   healingMoveSpeed: 2.8
   dodgeMoveSpeed: 7.5
@@ -6479,15 +6479,15 @@ MonoBehaviour:
   arrowMoveSpeed: 25
   projectile: {fileID: 3732929822983303577, guid: 3cdcbf1be24af6744af5d4fbc85c3c5e, type: 3}
   lightAttackDamage: 15
-  lightAttackStamCost: 5
+  lightAttackStamCost: 2
   lightAttackGemRecharge: 10
   heavyAttackDamage: 20
-  heavyAttackStamCost: 35
+  heavyAttackStamCost: 40
   heavyAttackGemRecharge: 20
-  blockDamageReduction: 0.1
-  blockStamCost: 15
-  blockMoveSpeed: 2
-  blockPauseTime: 0.5
+  blockDamageReduction: -4.91
+  blockStamCost: -8.25
+  blockMoveSpeed: -29.5
+  blockPauseTime: -9.91
   endBlockPause: 0
   healLengthSeconds: 0.82
   healAmount: 25
@@ -10431,16 +10431,16 @@ MonoBehaviour:
   meshRenderer: {fileID: 0}
   switchStates: 0
   moveSpeed: 4.25
-  timeBetweenAttacks: {x: 1, y: 2}
+  timeBetweenAttacks: {x: 1, y: 1.5}
   nextAttack: 0
-  attackMoveSpeed: 250
-  attackRange: 5
-  rangedAttackRange: 20
+  attackMoveSpeed: 300
+  attackRange: 7
+  rangedAttackRange: 25
   meleeDamage: 30
   rangedDamage: 15
   projectile: {fileID: 3732929822983303577, guid: bef79a126a276c1468c5fa67b27276be, type: 3}
-  arrowTrackingStrength: 2
-  arrowMoveSpeed: 35
+  arrowTrackingStrength: 1.3
+  arrowMoveSpeed: 40
   isInSecondPhase: 0
   phase1Colour: {r: 1, g: 0, b: 0.91752815, a: 0}
   phase2Colour: {r: 0.18910062, g: 0, b: 0.46226418, a: 0}
