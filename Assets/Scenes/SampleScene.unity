@@ -7044,6 +7044,7 @@ MonoBehaviour:
   arrowTrackingStrength: 5
   attackMoveSpeed: 5
   arrowMoveSpeed: 25
+  damageFalloff: 1
   projectile: {fileID: 3732929822983303577, guid: 3cdcbf1be24af6744af5d4fbc85c3c5e, type: 3}
   lightAttackDamage: 15
   lightAttackStamCost: 5
@@ -10968,7 +10969,7 @@ MonoBehaviour:
   followCam: {fileID: 2097968435}
   cameraTarget: {fileID: 1046143894}
   isClicking: 0
-  noticeZone: 50
+  noticeZone: 150
   maxNoticeAngle: 60
   targetLayers:
     serializedVersion: 2
@@ -20893,7 +20894,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2045391157}
-  m_LocalRotation: {x: -0.00000008940697, y: 0.000000027474016, z: -0.000000009720679, w: 1}
+  m_LocalRotation: {x: -0.000000074505806, y: 0.0000000144355, z: -0.0000000052386895, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
