@@ -10,6 +10,7 @@ public class PlayerProjectile : MonoBehaviour
     public float trackingStrength;
     public float damage;
     public float gemRechargeAmount;
+    public float damageFalloff;
 
     private void Update()
     {
@@ -23,6 +24,12 @@ public class PlayerProjectile : MonoBehaviour
             }
         }
         transform.position += transform.up * moveSpeed * Time.deltaTime;
+
+        if (damage > 0)
+            damage -= damageFalloff * Time.deltaTime;
+
+        if (damage <= 0)
+            damage = 0;
     }
 
     private void OnTriggerEnter(Collider other)
