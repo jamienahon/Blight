@@ -50,6 +50,8 @@ public class PlayerStateManager : MonoBehaviour
     public float attackMoveSpeed;
     public float arrowMoveSpeed;
     public float damageFalloff;
+    public bool allowMovementWhileAttacking;
+    public float attackMovementSpeed;
 
     [Header("Light Attack")]
     public GameObject projectile;

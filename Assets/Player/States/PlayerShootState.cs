@@ -22,12 +22,23 @@ public class PlayerShootState : PlayerState
 
     public override void UpdateState()
     {
+        if (stateManager.allowMovementWhileAttacking)
+        {
+            HandleInputs();
 
+            if (stateManager.isLockedOn)
+                stateManager.movementDirection = Quaternion.Euler(0, stateManager.animator.transform.eulerAngles.y, 0) * stateManager.movementDirection;
+            else
+                stateManager.movementDirection = Quaternion.Euler(0, Camera.main.transform.eulerAngles.y, 0) * stateManager.movementDirection;
+
+            stateManager.transform.Translate(stateManager.movementDirection.normalized * stateManager.attackMovementSpeed * Time.deltaTime);
+        }
     }
 
     public override void HandleInputs()
     {
-
+        stateManager.movementDirection.x = Input.GetAxisRaw("Horizontal");
+        stateManager.movementDirection.z = Input.GetAxisRaw("Vertical");
     }
 
     public override void HandleAnimations()
