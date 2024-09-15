@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class AudioSettings : MonoBehaviour
 {
@@ -16,6 +17,11 @@ public class AudioSettings : MonoBehaviour
     public Slider masterVolumeSlider;
     public Slider musicVolumeSlider;
     public Slider sfxVolumeSlider;
+
+    [Header("Text")]
+    public TextMeshProUGUI masterVolumeValue;
+    public TextMeshProUGUI musicVolumeValue;
+    public TextMeshProUGUI sfxVolumeValue;
 
     private void Start()
     {
@@ -61,6 +67,7 @@ public class AudioSettings : MonoBehaviour
         UpdateMusicVolume();
         UpdateSFXVolume();
         persistantData.masterVolume = masterVolumeSlider.value;
+        masterVolumeValue.text = Mathf.RoundToInt(masterVolumeSlider.value * 100).ToString();
     }
 
     public void UpdateMusicVolume()
@@ -68,6 +75,7 @@ public class AudioSettings : MonoBehaviour
         musicAudioSource.volume = musicVolumeSlider.value * masterVolumeSlider.value;
         persistantData.musicVolume = musicAudioSource.volume;
         persistantData.musicVolumeSliderValue = musicVolumeSlider.value;
+        musicVolumeValue.text = Mathf.RoundToInt(musicVolumeSlider.value * 100).ToString();
     }
 
     public void UpdateSFXVolume()
@@ -76,5 +84,6 @@ public class AudioSettings : MonoBehaviour
             audioSource.volume = sfxVolumeSlider.value * masterVolumeSlider.value;
         persistantData.sfxVolume = sfxAudioSources[0].volume;
         persistantData.sfxVolumeSliderValue = sfxVolumeSlider.value;
+        sfxVolumeValue.text = Mathf.RoundToInt(sfxVolumeSlider.value * 100).ToString();
     }
 }
