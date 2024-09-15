@@ -7,7 +7,8 @@ public class UIController : MonoBehaviour
 {
     CameraController camController;
 
-    public GameObject background, mainMenu, settingsMenu, gameplaySettings, graphicsSettings, audioSettings;
+    public GameObject background, mainMenu, settingsMenu, gameplaySettings, graphicsSettings, audioSettings, 
+        tutorialScreen;
     bool isInMenus;
 
 
@@ -20,9 +21,13 @@ public class UIController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if(!isInMenus)
+            if(!isInMenus && !tutorialScreen.activeSelf)
             {
                 OpenMainMenu();
+            }
+            else if(tutorialScreen.activeSelf)
+            {
+                GoBack();
             }
             else
             {
@@ -62,6 +67,11 @@ public class UIController : MonoBehaviour
         {
             audioSettings.SetActive(false);
             OpenSettings();
+        }
+        else if(tutorialScreen.activeSelf)
+        {
+            tutorialScreen.SetActive(false);
+            Time.timeScale = 1;
         }
     }
 
@@ -111,6 +121,12 @@ public class UIController : MonoBehaviour
     {
         settingsMenu.SetActive(false);
         audioSettings.SetActive(true);
+    }
+
+    public void OpenTutorial()
+    {
+        tutorialScreen.SetActive(true);
+        Time.timeScale = 0;
     }
 
     public void QuitGame()
