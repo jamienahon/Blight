@@ -135,7 +135,7 @@ public class PlayerStateManager : MonoBehaviour
                 arrowScript.target = Camera.main.gameObject.GetComponent<CameraController>().currentLockOnPoint.gameObject;
                 arrowScript.player = gameObject;
                 arrowScript.trackingStrength = arrowTrackingStrength;
-                arrowScript.damage = lightAttackDamage;
+                arrowScript.damage = heavyAttackDamage / 3.0f;
                 arrowScript.gemRechargeAmount = heavyAttackGemRecharge / 3.0f;
 
                 Vector3 lockOnPos = Camera.main.gameObject.GetComponent<CameraController>().currentLockOnPoint.gameObject.transform.position;
