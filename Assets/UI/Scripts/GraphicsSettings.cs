@@ -55,23 +55,21 @@ public class GraphicsSettings : MonoBehaviour
             if (currentResolutuionDropdownValue == 0)
                 Screen.SetResolution(1280, 720, Screen.fullScreen);
             else if (currentResolutuionDropdownValue == 1)
-                Screen.SetResolution(1280, 720, Screen.fullScreen);
+                Screen.SetResolution(1600, 900, Screen.fullScreen);
             else if (currentResolutuionDropdownValue == 2)
-                Screen.SetResolution(1280, 720, Screen.fullScreen);
+                Screen.SetResolution(1920, 1080, Screen.fullScreen);
             else if (currentResolutuionDropdownValue == 3)
-                Screen.SetResolution(1280, 720, Screen.fullScreen);
+                Screen.SetResolution(2048, 1152, Screen.fullScreen);
             else if (currentResolutuionDropdownValue == 4)
-                Screen.SetResolution(1280, 720, Screen.fullScreen);
+                Screen.SetResolution(2560, 1080, Screen.fullScreen);
             else if (currentResolutuionDropdownValue == 5)
-                Screen.SetResolution(1280, 720, Screen.fullScreen);
+                Screen.SetResolution(2560, 1440, Screen.fullScreen);
             else if (currentResolutuionDropdownValue == 6)
-                Screen.SetResolution(1280, 720, Screen.fullScreen);
+                Screen.SetResolution(3440, 1440, Screen.fullScreen);
             else if (currentResolutuionDropdownValue == 7)
-                Screen.SetResolution(1280, 720, Screen.fullScreen);
+                Screen.SetResolution(2840, 2160, Screen.fullScreen);
             else if (currentResolutuionDropdownValue == 8)
-                Screen.SetResolution(1280, 720, Screen.fullScreen);
-            else if (currentResolutuionDropdownValue == 9)
-                Screen.SetResolution(1280, 720, Screen.fullScreen);
+                Screen.SetResolution(5120, 720, Screen.fullScreen);
 
         }
     }

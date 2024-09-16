@@ -7,9 +7,10 @@ public class UIController : MonoBehaviour
 {
     CameraController camController;
 
-    public GameObject background, mainMenu, settingsMenu, gameplaySettings, graphicsSettings, audioSettings,
-        tutorialScreen, controls;
+    public GameObject background, mainMenu, settingsMenu, gameplaySettings, graphicsSettings, audioSettings;
     bool isInMenus;
+
+    bool hasClicked = false;
 
 
     private void Start()
@@ -19,21 +20,21 @@ public class UIController : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.JoystickButton7))
+        if (Input.GetAxisRaw("Pause") > 0 && !hasClicked)
         {
-            if (!isInMenus && !tutorialScreen.activeSelf)
+            hasClicked = true;
+            if (!isInMenus)
             {
                 OpenMainMenu();
-            }
-            else if (tutorialScreen.activeSelf)
-            {
-                GoBack();
             }
             else
             {
                 GoBack();
             }
         }
+
+        if (Input.GetAxisRaw("Pause") == 0)
+            hasClicked = false;
     }
 
     private void SetCursorMode(CursorLockMode lockMode, bool isVisible)
@@ -67,16 +68,6 @@ public class UIController : MonoBehaviour
         {
             audioSettings.SetActive(false);
             OpenSettings();
-        }
-        else if (tutorialScreen.activeSelf)
-        {
-            tutorialScreen.SetActive(false);
-            Time.timeScale = 1;
-        }
-        else if (controls.activeSelf)
-        {
-            controls.SetActive(false);
-            OpenGameplaySettings();
         }
     }
 
@@ -126,18 +117,6 @@ public class UIController : MonoBehaviour
     {
         settingsMenu.SetActive(false);
         audioSettings.SetActive(true);
-    }
-
-    public void OpenTutorial()
-    {
-        tutorialScreen.SetActive(true);
-        Time.timeScale = 0;
-    }
-
-    public void OpenControls()
-    {
-        gameplaySettings.SetActive(false);
-        controls.SetActive(true);
     }
 
     public void QuitGame()

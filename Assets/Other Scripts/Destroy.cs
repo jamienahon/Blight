@@ -8,7 +8,7 @@ public class Destroy : MonoBehaviour
     
     public void OnTriggerEnter(Collider Player)
     {
-        GameObject.Find("Menu").GetComponent<UIController>().OpenTutorial();
+        //GameObject.Find("Menu").GetComponent<UIController>().OpenTutorial();
 
         Destroy(barrier);
         Destroy(gameObject);
