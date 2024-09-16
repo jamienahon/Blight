@@ -19,13 +19,13 @@ public class UIController : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.JoystickButton7))
         {
-            if(!isInMenus && !tutorialScreen.activeSelf)
+            if (!isInMenus && !tutorialScreen.activeSelf)
             {
                 OpenMainMenu();
             }
-            else if(tutorialScreen.activeSelf)
+            else if (tutorialScreen.activeSelf)
             {
                 GoBack();
             }
@@ -44,16 +44,16 @@ public class UIController : MonoBehaviour
 
     public void GoBack()
     {
-        if(mainMenu.activeSelf)
+        if (mainMenu.activeSelf)
         {
             CloseMainMenu();
         }
-        else if(settingsMenu.activeSelf)
+        else if (settingsMenu.activeSelf)
         {
             settingsMenu.SetActive(false);
             OpenMainMenu();
         }
-        else if(gameplaySettings.activeSelf)
+        else if (gameplaySettings.activeSelf)
         {
             gameplaySettings.SetActive(false);
             OpenSettings();
@@ -68,12 +68,12 @@ public class UIController : MonoBehaviour
             audioSettings.SetActive(false);
             OpenSettings();
         }
-        else if(tutorialScreen.activeSelf)
+        else if (tutorialScreen.activeSelf)
         {
             tutorialScreen.SetActive(false);
             Time.timeScale = 1;
         }
-        else if(controls.activeSelf)
+        else if (controls.activeSelf)
         {
             controls.SetActive(false);
             OpenGameplaySettings();
@@ -143,5 +143,10 @@ public class UIController : MonoBehaviour
     public void QuitGame()
     {
         Application.Quit();
+    }
+    public void HomeScreen()
+    {
+        SceneManager.LoadScene(0);
+        Time.timeScale = 1;
     }
 }
