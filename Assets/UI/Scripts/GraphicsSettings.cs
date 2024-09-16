@@ -69,7 +69,7 @@ public class GraphicsSettings : MonoBehaviour
             else if (currentResolutuionDropdownValue == 7)
                 Screen.SetResolution(2840, 2160, Screen.fullScreen);
             else if (currentResolutuionDropdownValue == 8)
-                Screen.SetResolution(5120, 720, Screen.fullScreen);
+                Screen.SetResolution(5120, 2160, Screen.fullScreen);
 
         }
     }
