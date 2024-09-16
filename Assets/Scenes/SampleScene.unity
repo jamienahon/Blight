@@ -759,11 +759,11 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 637637272}
         m_TargetAssemblyTypeName: UIController, Assembly-CSharp
-        m_MethodName: OpenAudioSettings
-        m_Mode: 1
+        m_MethodName: OpenMenu
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 2084422710}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -1242,11 +1242,11 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 637637272}
         m_TargetAssemblyTypeName: UIController, Assembly-CSharp
-        m_MethodName: CloseMainMenu
-        m_Mode: 1
+        m_MethodName: OpenMenu
+        m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -1807,11 +1807,11 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 637637272}
         m_TargetAssemblyTypeName: UIController, Assembly-CSharp
-        m_MethodName: OpenControls
-        m_Mode: 1
+        m_MethodName: OpenMenu
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 1192965004}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -2706,11 +2706,11 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 637637272}
         m_TargetAssemblyTypeName: UIController, Assembly-CSharp
-        m_MethodName: OpenGraphicsSettings
-        m_Mode: 1
+        m_MethodName: OpenMenu
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 1328404377}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -6611,13 +6611,9 @@ MonoBehaviour:
   graphicsSettings: {fileID: 1328404377}
   audioSettings: {fileID: 2084422710}
   tutorialScreen: {fileID: 622133168}
-  controls: {fileID: 1192965004}
-  firstMainMenuObject: {fileID: 121308856}
-  firstSettingsObject: {fileID: 1782228740}
-  firstGameplayObject: {fileID: 164911891}
-  firstGraphicsObject: {fileID: 2021744111}
-  firstAudioObject: {fileID: 326209010}
-  firstControlsObject: {fileID: 487781503}
+  controlsScreen: {fileID: 1192965004}
+  currentMenu: {fileID: 0}
+  previousMenu: {fileID: 0}
 --- !u!114 &637637273
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12711,8 +12707,6 @@ MonoBehaviour:
     m_Bits: 64
   lockOnCanvas: {fileID: 880362417}
   lockOnScale: 0.1
-  cursorLockMode: 1
-  isCursorVisible: 0
 --- !u!114 &963194231
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13182,11 +13176,11 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 637637272}
         m_TargetAssemblyTypeName: UIController, Assembly-CSharp
-        m_MethodName: OpenSettings
-        m_Mode: 1
+        m_MethodName: OpenMenu
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 648071013}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -21903,11 +21897,11 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 637637272}
         m_TargetAssemblyTypeName: UIController, Assembly-CSharp
-        m_MethodName: OpenGameplaySettings
-        m_Mode: 1
+        m_MethodName: OpenMenu
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 497562298}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 

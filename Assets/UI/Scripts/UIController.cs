@@ -7,45 +7,32 @@ using UnityEngine.UI;
 
 public class UIController : MonoBehaviour
 {
-    CameraController camController;
     public EventSystem eventSystem;
 
     public GameObject background, mainMenu, settingsMenu, gameplaySettings, graphicsSettings, audioSettings,
-         tutorialScreen, controls;
+         tutorialScreen, controlsScreen;
 
-    bool isInMenus;
     bool hasClicked = false;
 
-    public GameObject firstMainMenuObject;
-    public GameObject firstSettingsObject;
-    public GameObject firstGameplayObject;
-    public GameObject firstGraphicsObject;
-    public GameObject firstAudioObject;
-    public GameObject firstControlsObject;
+    public GameObject currentMenu;
+    public GameObject previousMenu;
 
-
-    private void Start()
-    {
-        camController = Camera.main.GetComponent<CameraController>();
-    }
+    CursorLockMode cursorLockMode;
+    bool isCursorVisible;
 
     private void Update()
     {
+        Cursor.lockState = cursorLockMode;
+        Cursor.visible = isCursorVisible;
+
         if (Input.GetAxisRaw("Pause") > 0 && !hasClicked)
         {
             hasClicked = true;
-            if (!isInMenus && !tutorialScreen.activeSelf)
-            {
-                OpenMainMenu();
-            }
-            else if (tutorialScreen.activeSelf)
-            {
-                GoBack();
-            }
+
+            if (currentMenu == null)
+                OpenMenu(mainMenu);
             else
-            {
                 GoBack();
-            }
         }
 
         if (Input.GetAxisRaw("Pause") == 0)
@@ -54,65 +41,73 @@ public class UIController : MonoBehaviour
 
     private void SetCursorMode(CursorLockMode lockMode, bool isVisible)
     {
-        camController.cursorLockMode = lockMode;
-        camController.isCursorVisible = isVisible;
+        cursorLockMode = lockMode;
+        isCursorVisible = isVisible;
+
     }
 
     public void GoBack()
     {
-        if (mainMenu.activeSelf)
+        currentMenu.SetActive(false);
+
+        if (previousMenu)
         {
-            CloseMainMenu();
+            OpenMenu(previousMenu);
         }
-        else if (settingsMenu.activeSelf)
+        else
         {
-            settingsMenu.SetActive(false);
-            OpenMainMenu();
-        }
-        else if (gameplaySettings.activeSelf)
-        {
-            gameplaySettings.SetActive(false);
-            OpenSettings();
-        }
-        else if (graphicsSettings.activeSelf)
-        {
-            graphicsSettings.SetActive(false);
-            OpenSettings();
-        }
-        else if (audioSettings.activeSelf)
-        {
-            audioSettings.SetActive(false);
-            OpenSettings();
-        }
-        else if (tutorialScreen.activeSelf)
-        {
-            tutorialScreen.SetActive(false);
+            currentMenu = null;
             Time.timeScale = 1;
-        }
-        else if (controls.activeSelf)
-        {
-            controls.SetActive(false);
-            OpenGameplaySettings();
+            SetCursorMode(CursorLockMode.Locked, false);
         }
     }
 
-    public void OpenMainMenu()
+    public void OpenMenu(GameObject menu)
     {
-        eventSystem.SetSelectedGameObject(firstMainMenuObject);
-        isInMenus = true;
+        Time.timeScale = 0;
         SetCursorMode(CursorLockMode.None, true);
 
-        mainMenu.SetActive(true);
-        Time.timeScale = 0;
-    }
-
-    public void CloseMainMenu()
-    {
-        isInMenus = false;
-        SetCursorMode(CursorLockMode.Locked, false);
-
-        mainMenu.SetActive(false);
-        Time.timeScale = 1;
+        if (menu == mainMenu)
+        {
+            currentMenu = mainMenu;
+            previousMenu = null;
+            mainMenu.SetActive(true);
+        }
+        else if(menu == settingsMenu)
+        {
+            currentMenu = settingsMenu;
+            previousMenu = mainMenu;
+            mainMenu.SetActive(false);
+            settingsMenu.SetActive(true);
+        }
+        else if(menu == gameplaySettings)
+        {
+            currentMenu = gameplaySettings;
+            previousMenu = settingsMenu;
+            settingsMenu.SetActive(false);
+            gameplaySettings.SetActive(true);
+        }
+        else if(menu == graphicsSettings)
+        {
+            currentMenu = graphicsSettings;
+            previousMenu = settingsMenu;
+            settingsMenu.SetActive(false);
+            graphicsSettings.SetActive(true);
+        }
+        else if(menu == audioSettings)
+        {
+            currentMenu = audioSettings;
+            previousMenu = settingsMenu;
+            settingsMenu.SetActive(false);
+            audioSettings.SetActive(true);
+        }
+        else if(menu == controlsScreen)
+        {
+            currentMenu = controlsScreen;
+            previousMenu = gameplaySettings;
+            gameplaySettings.SetActive(false);
+            controlsScreen.SetActive(true);
+        }
     }
 
     public void RestartGame()
@@ -121,45 +116,10 @@ public class UIController : MonoBehaviour
         Time.timeScale = 1;
     }
 
-    public void OpenSettings()
-    {
-        eventSystem.SetSelectedGameObject(firstSettingsObject);
-        mainMenu.SetActive(false);
-        settingsMenu.SetActive(true);
-    }
-
-    public void OpenGameplaySettings()
-    {
-        eventSystem.SetSelectedGameObject(firstGameplayObject);
-        settingsMenu.SetActive(false);
-        gameplaySettings.SetActive(true);
-    }
-
-    public void OpenGraphicsSettings()
-    {
-        eventSystem.SetSelectedGameObject(firstGraphicsObject);
-        settingsMenu.SetActive(false);
-        graphicsSettings.SetActive(true);
-    }
-
-    public void OpenAudioSettings()
-    {
-        eventSystem.SetSelectedGameObject(firstAudioObject);
-        settingsMenu.SetActive(false);
-        audioSettings.SetActive(true);
-    }
-
     public void OpenTutorial()
     {
         tutorialScreen.SetActive(true);
         Time.timeScale = 0;
-    }
-
-    public void OpenControls()
-    {
-        eventSystem.SetSelectedGameObject(firstControlsObject);
-        gameplaySettings.SetActive(false);
-        controls.SetActive(true);
     }
 
     public void QuitGame()
