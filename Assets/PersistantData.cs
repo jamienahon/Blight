@@ -6,12 +6,20 @@ public class PersistantData : MonoBehaviour
 {
     public static PersistantData instance;
 
+    [Header("Gameplay Settings")]
+    public float fovValue;
+
+    [Header("Graphics Settings")]
+    public int screenModeValue;
+    public int resolutionDropdownValue;
+
     [Header("Audio Settings")]
     public float masterVolume;
     public float musicVolume;
     public float musicVolumeSliderValue;
     public float sfxVolume;
     public float sfxVolumeSliderValue;
+
 
     private void Awake()
     {

@@ -7,8 +7,8 @@ public class UIController : MonoBehaviour
 {
     CameraController camController;
 
-    public GameObject background, mainMenu, settingsMenu, gameplaySettings, graphicsSettings, audioSettings, 
-        tutorialScreen;
+    public GameObject background, mainMenu, settingsMenu, gameplaySettings, graphicsSettings, audioSettings,
+        tutorialScreen, controls;
     bool isInMenus;
 
 
@@ -73,12 +73,17 @@ public class UIController : MonoBehaviour
             tutorialScreen.SetActive(false);
             Time.timeScale = 1;
         }
+        else if(controls.activeSelf)
+        {
+            controls.SetActive(false);
+            OpenGameplaySettings();
+        }
     }
 
     public void OpenMainMenu()
     {
         isInMenus = true;
-        SetCursorMode(CursorLockMode.Confined, true);
+        SetCursorMode(CursorLockMode.None, true);
 
         mainMenu.SetActive(true);
         Time.timeScale = 0;
@@ -127,6 +132,12 @@ public class UIController : MonoBehaviour
     {
         tutorialScreen.SetActive(true);
         Time.timeScale = 0;
+    }
+
+    public void OpenControls()
+    {
+        gameplaySettings.SetActive(false);
+        controls.SetActive(true);
     }
 
     public void QuitGame()
