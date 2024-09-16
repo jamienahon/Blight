@@ -1,25 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 public class UIController : MonoBehaviour
 {
     CameraController camController;
-    public EventSystem eventSystem;
 
-    public GameObject background, mainMenu, settingsMenu, gameplaySettings, graphicsSettings, audioSettings;
+    public GameObject background, mainMenu, settingsMenu, gameplaySettings, graphicsSettings, audioSettings,
+        tutorialScreen, controls;
     bool isInMenus;
-
-    bool hasClicked = false;
-
-    public GameObject firstMainMenuObject;
-    public GameObject firstSettingsObject;
-    public GameObject firstGameplayObject;
-    public GameObject firstGraphicsObject;
-    public GameObject firstAudioObject;
 
 
     private void Start()
@@ -29,21 +19,21 @@ public class UIController : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetAxisRaw("Pause") > 0 && !hasClicked)
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
-            hasClicked = true;
-            if (!isInMenus)
+            if (!isInMenus && !tutorialScreen.activeSelf)
             {
                 OpenMainMenu();
+            }
+            else if (tutorialScreen.activeSelf)
+            {
+                GoBack();
             }
             else
             {
                 GoBack();
             }
         }
-
-        if (Input.GetAxisRaw("Pause") == 0)
-            hasClicked = false;
     }
 
     private void SetCursorMode(CursorLockMode lockMode, bool isVisible)
@@ -78,11 +68,20 @@ public class UIController : MonoBehaviour
             audioSettings.SetActive(false);
             OpenSettings();
         }
+        else if (tutorialScreen.activeSelf)
+        {
+            tutorialScreen.SetActive(false);
+            Time.timeScale = 1;
+        }
+        else if (controls.activeSelf)
+        {
+            controls.SetActive(false);
+            OpenGameplaySettings();
+        }
     }
 
     public void OpenMainMenu()
     {
-        eventSystem.SetSelectedGameObject(firstMainMenuObject);
         isInMenus = true;
         SetCursorMode(CursorLockMode.None, true);
 
@@ -107,36 +106,45 @@ public class UIController : MonoBehaviour
 
     public void OpenSettings()
     {
-        eventSystem.SetSelectedGameObject(firstSettingsObject);
         mainMenu.SetActive(false);
         settingsMenu.SetActive(true);
     }
 
     public void OpenGameplaySettings()
     {
-        eventSystem.SetSelectedGameObject(firstGameplayObject);
         settingsMenu.SetActive(false);
         gameplaySettings.SetActive(true);
     }
 
     public void OpenGraphicsSettings()
     {
-        eventSystem.SetSelectedGameObject(firstGraphicsObject);
         settingsMenu.SetActive(false);
         graphicsSettings.SetActive(true);
     }
 
     public void OpenAudioSettings()
     {
-        eventSystem.SetSelectedGameObject(firstAudioObject);
         settingsMenu.SetActive(false);
         audioSettings.SetActive(true);
+    }
+
+    public void OpenTutorial()
+    {
+        tutorialScreen.SetActive(true);
+        Time.timeScale = 0;
+    }
+
+    public void OpenControls()
+    {
+        gameplaySettings.SetActive(false);
+        controls.SetActive(true);
     }
 
     public void QuitGame()
     {
         Application.Quit();
     }
+
     public void HomeScreen()
     {
         SceneManager.LoadScene(0);
