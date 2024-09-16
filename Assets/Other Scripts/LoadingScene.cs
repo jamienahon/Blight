@@ -25,6 +25,8 @@ public class LoadingScene : MonoBehaviour
 
             LoadingBarFill.fillAmount = progressValue;
 
+            Time.timeScale = 1;
+
             yield return null;
         }
    

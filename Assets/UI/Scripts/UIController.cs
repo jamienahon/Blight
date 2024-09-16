@@ -1,7 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System;
+using System.Text;
+using UnityEngine.Rendering;
+using UnityEngine.Serialization;
+using UnityEngine.UIElements;
+using static UnityEngine.Rendering.DebugUI;
 
 public class UIController : MonoBehaviour
 {
@@ -10,19 +17,23 @@ public class UIController : MonoBehaviour
     public GameObject background, mainMenu, settingsMenu, gameplaySettings, graphicsSettings, audioSettings;
     bool isInMenus;
 
-
+    [SerializeField]
+    private GameObject m_FirstSelected;
+    private GameObject menuButton;
     private void Start()
     {
         camController = Camera.main.GetComponent<CameraController>();
     }
 
+
+
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.JoystickButton7))
         {
             if(!isInMenus)
             {
-                OpenMainMenu();
+                OpenMainMenu();         
             }
             else
             {
@@ -86,6 +97,11 @@ public class UIController : MonoBehaviour
     public void RestartGame()
     {
         SceneManager.LoadScene(1);
+        Time.timeScale = 1;
+    }
+    public void openMainMenuScene()
+    {
+        SceneManager.LoadScene(0);
         Time.timeScale = 1;
     }
 
