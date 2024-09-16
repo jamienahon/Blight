@@ -1,16 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class UIController : MonoBehaviour
 {
     CameraController camController;
+    public EventSystem eventSystem;
 
     public GameObject background, mainMenu, settingsMenu, gameplaySettings, graphicsSettings, audioSettings;
     bool isInMenus;
 
     bool hasClicked = false;
+
+    public GameObject firstMainMenuObject;
+    public GameObject firstSettingsObject;
+    public GameObject firstGameplayObject;
+    public GameObject firstGraphicsObject;
+    public GameObject firstAudioObject;
 
 
     private void Start()
@@ -73,6 +82,7 @@ public class UIController : MonoBehaviour
 
     public void OpenMainMenu()
     {
+        eventSystem.SetSelectedGameObject(firstMainMenuObject);
         isInMenus = true;
         SetCursorMode(CursorLockMode.None, true);
 
@@ -97,24 +107,28 @@ public class UIController : MonoBehaviour
 
     public void OpenSettings()
     {
+        eventSystem.SetSelectedGameObject(firstSettingsObject);
         mainMenu.SetActive(false);
         settingsMenu.SetActive(true);
     }
 
     public void OpenGameplaySettings()
     {
+        eventSystem.SetSelectedGameObject(firstGameplayObject);
         settingsMenu.SetActive(false);
         gameplaySettings.SetActive(true);
     }
 
     public void OpenGraphicsSettings()
     {
+        eventSystem.SetSelectedGameObject(firstGraphicsObject);
         settingsMenu.SetActive(false);
         graphicsSettings.SetActive(true);
     }
 
     public void OpenAudioSettings()
     {
+        eventSystem.SetSelectedGameObject(firstAudioObject);
         settingsMenu.SetActive(false);
         audioSettings.SetActive(true);
     }
