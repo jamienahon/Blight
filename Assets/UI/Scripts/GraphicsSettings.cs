@@ -27,6 +27,8 @@ public class GraphicsSettings : MonoBehaviour
     {
         screenModeDropdown.value = persistantData.screenModeValue;
         currentScreenModeValue = screenModeDropdown.value;
+
+        resolutionDropdown.value = persistantData.resolutionDropdownValue;
     }
 
     private void UpdateScreenMode()
