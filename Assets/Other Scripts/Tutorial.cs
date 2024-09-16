@@ -1,14 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 
-public class Destroy : MonoBehaviour
+public class Tutorial : MonoBehaviour
 {
-    public GameObject barrier;
-    
     public void OnTriggerEnter(Collider Player)
     {
-        Destroy(barrier);
-        Destroy(gameObject);
+        GameObject.Find("Menu").GetComponent<UIController>().OpenTutorial();
     }
 }
