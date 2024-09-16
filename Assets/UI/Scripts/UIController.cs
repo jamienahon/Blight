@@ -1,39 +1,33 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using System;
-using System.Text;
-using UnityEngine.Rendering;
-using UnityEngine.Serialization;
-using UnityEngine.UIElements;
-using static UnityEngine.Rendering.DebugUI;
 
 public class UIController : MonoBehaviour
 {
     CameraController camController;
 
-    public GameObject background, mainMenu, settingsMenu, gameplaySettings, graphicsSettings, audioSettings;
+    public GameObject background, mainMenu, settingsMenu, gameplaySettings, graphicsSettings, audioSettings,
+        tutorialScreen, controls;
     bool isInMenus;
 
-    [SerializeField]
-    private GameObject m_FirstSelected;
-    private GameObject menuButton;
+
     private void Start()
     {
         camController = Camera.main.GetComponent<CameraController>();
     }
 
-
-
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.JoystickButton7))
         {
-            if(!isInMenus)
+            if (!isInMenus && !tutorialScreen.activeSelf)
             {
-                OpenMainMenu();         
+                OpenMainMenu();
+            }
+            else if (tutorialScreen.activeSelf)
+            {
+                GoBack();
             }
             else
             {
@@ -50,16 +44,16 @@ public class UIController : MonoBehaviour
 
     public void GoBack()
     {
-        if(mainMenu.activeSelf)
+        if (mainMenu.activeSelf)
         {
             CloseMainMenu();
         }
-        else if(settingsMenu.activeSelf)
+        else if (settingsMenu.activeSelf)
         {
             settingsMenu.SetActive(false);
             OpenMainMenu();
         }
-        else if(gameplaySettings.activeSelf)
+        else if (gameplaySettings.activeSelf)
         {
             gameplaySettings.SetActive(false);
             OpenSettings();
@@ -74,12 +68,22 @@ public class UIController : MonoBehaviour
             audioSettings.SetActive(false);
             OpenSettings();
         }
+        else if (tutorialScreen.activeSelf)
+        {
+            tutorialScreen.SetActive(false);
+            Time.timeScale = 1;
+        }
+        else if (controls.activeSelf)
+        {
+            controls.SetActive(false);
+            OpenGameplaySettings();
+        }
     }
 
     public void OpenMainMenu()
     {
         isInMenus = true;
-        SetCursorMode(CursorLockMode.Confined, true);
+        SetCursorMode(CursorLockMode.None, true);
 
         mainMenu.SetActive(true);
         Time.timeScale = 0;
@@ -97,11 +101,6 @@ public class UIController : MonoBehaviour
     public void RestartGame()
     {
         SceneManager.LoadScene(1);
-        Time.timeScale = 1;
-    }
-    public void openMainMenuScene()
-    {
-        SceneManager.LoadScene(0);
         Time.timeScale = 1;
     }
 
@@ -129,8 +128,25 @@ public class UIController : MonoBehaviour
         audioSettings.SetActive(true);
     }
 
+    public void OpenTutorial()
+    {
+        tutorialScreen.SetActive(true);
+        Time.timeScale = 0;
+    }
+
+    public void OpenControls()
+    {
+        gameplaySettings.SetActive(false);
+        controls.SetActive(true);
+    }
+
     public void QuitGame()
     {
         Application.Quit();
+    }
+    public void HomeScreen()
+    {
+        SceneManager.LoadScene(0);
+        Time.timeScale = 1;
     }
 }
