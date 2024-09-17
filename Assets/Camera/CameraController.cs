@@ -22,14 +22,8 @@ public class CameraController : MonoBehaviour
     public Canvas lockOnCanvas;
     public float lockOnScale;
 
-    public CursorLockMode cursorLockMode = CursorLockMode.Locked;
-    public bool isCursorVisible = false;
-
     private void Update()
     {
-        Cursor.lockState = cursorLockMode;
-        Cursor.visible = isCursorVisible;
-
         if (Input.GetAxis("Lockon") > 0 && !isClicking)
         {
             isClicking = true;
