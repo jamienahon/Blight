@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8353107648923167020}
   - component: {fileID: 640541798234165404}
   m_Layer: 0
-  m_Name: Looping heal
+  m_Name: PLACEHOLDER VFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -5,11 +5,13 @@ using UnityEngine;
 public class PlayerProjectile : MonoBehaviour
 {
     public GameObject player;
-    public float moveSpeed;
     public GameObject target;
-    public float trackingStrength;
+    PlayerStateManager stateManager;
+
     public float damage;
     public float gemRechargeAmount;
+    public float moveSpeed;
+    public float trackingStrength;
     public float damageFalloff;
 
     private void Update()
@@ -42,5 +44,19 @@ public class PlayerProjectile : MonoBehaviour
         else if (other.gameObject.tag == "PlayerHit" || other.gameObject.tag == "Player")
             return;
         Destroy(gameObject);
+    }
+
+    public void InitialiseArrowValues(GameObject player, GameObject target, float damage, float gemRechargeAmount)
+    {
+        this.player = player;
+        this.target = target;
+        stateManager = player.gameObject.GetComponent<PlayerStateManager>();
+
+        this.damage = damage;
+        this.gemRechargeAmount = gemRechargeAmount;
+
+        moveSpeed = stateManager.arrowMoveSpeed;
+        trackingStrength = stateManager.arrowTrackingStrength;
+        damageFalloff = stateManager.damageFalloff;
     }
 }

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Rendering;
@@ -25,11 +26,13 @@ public class UIController : MonoBehaviour
     public UIMenu mainMenu, settingsMenu, gameplaySettingsMenu, graphicsSettingsMenu, audioSettingsMenu,
         controlsScreenMenu;
 
+    public GameObject tutorialScreen;
+
     UIMenu currentMenu = null;
     UIMenu previousMenu = null;
 
-    CursorLockMode cursorLockMode;
-    bool isCursorVisible;
+    CursorLockMode cursorLockMode = CursorLockMode.Locked;
+    bool isCursorVisible = false;
 
     bool hasClicked = false;
 
@@ -45,7 +48,13 @@ public class UIController : MonoBehaviour
         {
             hasClicked = true;
 
-            if (currentMenu == null)
+
+            if (tutorialScreen.activeSelf)
+            {
+                tutorialScreen.SetActive(false);
+                Time.timeScale = 1;
+            }
+            else if (currentMenu == null)
                 OpenMenu(mainMenu.menuScreen);
             else
                 GoBack();
@@ -65,7 +74,7 @@ public class UIController : MonoBehaviour
     public void OpenMenu(GameObject menu)
     {
         Time.timeScale = 0;
-        SetCursorMode(CursorLockMode.Locked, false);
+        SetCursorMode(CursorLockMode.None, true);
 
         if (currentMenu != null)
             currentMenu.menuScreen.SetActive(false);
@@ -129,7 +138,8 @@ public class UIController : MonoBehaviour
 
     public void OpenTutorial()
     {
-
+        tutorialScreen.SetActive(true);
+        Time.timeScale = 0;
     }
 
     public void QuitGame()

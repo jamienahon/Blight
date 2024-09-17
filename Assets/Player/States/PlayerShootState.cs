@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class PlayerShootState : PlayerState
 {
@@ -16,7 +17,7 @@ public class PlayerShootState : PlayerState
         SetAnimationParameters();
         HandleAudio();
         LookAtCameraDirection();
-        stateManager.SpawnProjectile();
+        SpawnProjectile();
         stateManager.healthSystem.ConsumeStamina(stateManager.lightAttackStamCost);
     }
 
@@ -66,6 +67,23 @@ public class PlayerShootState : PlayerState
     void LookAtCameraDirection()
     {
         stateManager.animator.transform.rotation = Quaternion.Euler(0, Camera.main.transform.eulerAngles.y, 0);
+    }
+
+    public void SpawnProjectile()
+    {
+        Vector3 position = new Vector3(stateManager.transform.position.x, stateManager.transform.position.y + 2.25f, stateManager.transform.position.z);
+        GameObject newProjectile = Object.Instantiate(stateManager.projectile, position, stateManager.projectile.transform.rotation);
+
+        GameObject target = null;
+        if (stateManager.isLockedOn)
+        {
+            target = Camera.main.gameObject.GetComponent<CameraController>().currentLockOnPoint.gameObject;
+            newProjectile.transform.up = (target.transform.position - newProjectile.transform.position).normalized;
+        }
+        else
+            newProjectile.transform.up = stateManager.animator.transform.forward;
+
+        newProjectile.GetComponent<PlayerProjectile>().InitialiseArrowValues(stateManager.gameObject, target, stateManager.lightAttackDamage, stateManager.lightAttackGemRecharge);
     }
 
     public override void OnCollisionEnter(Collider collider)
