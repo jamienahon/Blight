@@ -102,7 +102,6 @@ public class PlayerStateManager : MonoBehaviour
         switchStates = true;
     }
 
-
     public void OnTriggerEnter(Collider collider)
     {
         currentState.OnCollisionEnter(collider);
