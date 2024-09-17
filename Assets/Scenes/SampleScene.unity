@@ -1158,7 +1158,7 @@ GameObject:
   - component: {fileID: 121308858}
   m_Layer: 5
   m_Name: Resume
-  m_TagString: Untagged
+  m_TagString: FirstSelected
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1242,11 +1242,11 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 637637272}
         m_TargetAssemblyTypeName: UIController, Assembly-CSharp
-        m_MethodName: OpenMenu
-        m_Mode: 2
+        m_MethodName: GoBack
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -1723,7 +1723,7 @@ GameObject:
   - component: {fileID: 164911893}
   m_Layer: 5
   m_Name: Controls
-  m_TagString: Untagged
+  m_TagString: FirstSelected
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2899,7 +2899,7 @@ GameObject:
   - component: {fileID: 326209012}
   m_Layer: 5
   m_Name: Master Volume Slider
-  m_TagString: Untagged
+  m_TagString: FirstSelected
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4361,7 +4361,7 @@ GameObject:
   - component: {fileID: 460546636}
   m_Layer: 5
   m_Name: Screen Mode Dropdown
-  m_TagString: Untagged
+  m_TagString: FirstSelected
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4879,7 +4879,7 @@ GameObject:
   - component: {fileID: 487781505}
   m_Layer: 5
   m_Name: Back
-  m_TagString: Untagged
+  m_TagString: FirstSelected
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6603,17 +6603,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 175f3aa6ead38f14d83d0d03fe858721, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eventSystem: {fileID: 916413137}
-  background: {fileID: 2093463532}
-  mainMenu: {fileID: 2087603595}
-  settingsMenu: {fileID: 648071013}
-  gameplaySettings: {fileID: 497562298}
-  graphicsSettings: {fileID: 1328404377}
-  audioSettings: {fileID: 2084422710}
-  tutorialScreen: {fileID: 622133168}
-  controlsScreen: {fileID: 1192965004}
-  currentMenu: {fileID: 0}
-  previousMenu: {fileID: 0}
+  mainMenu:
+    menuScreen: {fileID: 2087603595}
+    firstUIElement: {fileID: 121308856}
+    selectedUIElement: {fileID: 121308856}
+  settingsMenu:
+    menuScreen: {fileID: 648071013}
+    firstUIElement: {fileID: 1782228740}
+    selectedUIElement: {fileID: 1782228740}
+  gameplaySettingsMenu:
+    menuScreen: {fileID: 497562298}
+    firstUIElement: {fileID: 164911891}
+    selectedUIElement: {fileID: 164911891}
+  graphicsSettingsMenu:
+    menuScreen: {fileID: 1328404377}
+    firstUIElement: {fileID: 460546635}
+    selectedUIElement: {fileID: 460546635}
+  audioSettingsMenu:
+    menuScreen: {fileID: 2084422710}
+    firstUIElement: {fileID: 326209010}
+    selectedUIElement: {fileID: 326209010}
+  controlsScreenMenu:
+    menuScreen: {fileID: 1192965004}
+    firstUIElement: {fileID: 487781503}
+    selectedUIElement: {fileID: 487781503}
 --- !u!114 &637637273
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21813,7 +21826,7 @@ GameObject:
   - component: {fileID: 1782228742}
   m_Layer: 5
   m_Name: Gameplay
-  m_TagString: Untagged
+  m_TagString: FirstSelected
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

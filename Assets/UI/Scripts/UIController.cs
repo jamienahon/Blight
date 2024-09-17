@@ -1,112 +1,123 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+[Serializable]
+public class UIMenu
+{
+    UIMenu()
+    {
+        selectedUIElement = firstUIElement;
+    }
+
+    public GameObject menuScreen;
+    public GameObject firstUIElement;
+    [HideInInspector] public GameObject selectedUIElement;
+}
+
 public class UIController : MonoBehaviour
 {
-    public EventSystem eventSystem;
+    public UIMenu mainMenu, settingsMenu, gameplaySettingsMenu, graphicsSettingsMenu, audioSettingsMenu,
+        controlsScreenMenu;
 
-    public GameObject background, mainMenu, settingsMenu, gameplaySettings, graphicsSettings, audioSettings,
-         tutorialScreen, controlsScreen;
-
-    bool hasClicked = false;
-
-    public GameObject currentMenu;
-    public GameObject previousMenu;
+    UIMenu currentMenu = null;
+    UIMenu previousMenu = null;
 
     CursorLockMode cursorLockMode;
     bool isCursorVisible;
+
+    bool hasClicked = false;
 
     private void Update()
     {
         Cursor.lockState = cursorLockMode;
         Cursor.visible = isCursorVisible;
 
+        if (currentMenu != null)
+            currentMenu.selectedUIElement = EventSystem.current.currentSelectedGameObject;
+
         if (Input.GetAxisRaw("Pause") > 0 && !hasClicked)
         {
             hasClicked = true;
 
             if (currentMenu == null)
-                OpenMenu(mainMenu);
+                OpenMenu(mainMenu.menuScreen);
             else
                 GoBack();
         }
 
         if (Input.GetAxisRaw("Pause") == 0)
             hasClicked = false;
+
     }
 
     private void SetCursorMode(CursorLockMode lockMode, bool isVisible)
     {
         cursorLockMode = lockMode;
         isCursorVisible = isVisible;
-
-    }
-
-    public void GoBack()
-    {
-        currentMenu.SetActive(false);
-
-        if (previousMenu)
-        {
-            OpenMenu(previousMenu);
-        }
-        else
-        {
-            currentMenu = null;
-            Time.timeScale = 1;
-            SetCursorMode(CursorLockMode.Locked, false);
-        }
     }
 
     public void OpenMenu(GameObject menu)
     {
         Time.timeScale = 0;
-        SetCursorMode(CursorLockMode.None, true);
+        SetCursorMode(CursorLockMode.Locked, false);
 
-        if (menu == mainMenu)
+        if (currentMenu != null)
+            currentMenu.menuScreen.SetActive(false);
+
+        if (menu == mainMenu.menuScreen)
         {
             currentMenu = mainMenu;
             previousMenu = null;
-            mainMenu.SetActive(true);
         }
-        else if(menu == settingsMenu)
+        else if (menu == settingsMenu.menuScreen)
         {
             currentMenu = settingsMenu;
             previousMenu = mainMenu;
-            mainMenu.SetActive(false);
-            settingsMenu.SetActive(true);
         }
-        else if(menu == gameplaySettings)
+        else if (menu == gameplaySettingsMenu.menuScreen)
         {
-            currentMenu = gameplaySettings;
+            currentMenu = gameplaySettingsMenu;
             previousMenu = settingsMenu;
-            settingsMenu.SetActive(false);
-            gameplaySettings.SetActive(true);
         }
-        else if(menu == graphicsSettings)
+        else if (menu == graphicsSettingsMenu.menuScreen)
         {
-            currentMenu = graphicsSettings;
+            currentMenu = graphicsSettingsMenu;
             previousMenu = settingsMenu;
-            settingsMenu.SetActive(false);
-            graphicsSettings.SetActive(true);
         }
-        else if(menu == audioSettings)
+        else if (menu == audioSettingsMenu.menuScreen)
         {
-            currentMenu = audioSettings;
+            currentMenu = audioSettingsMenu;
             previousMenu = settingsMenu;
-            settingsMenu.SetActive(false);
-            audioSettings.SetActive(true);
         }
-        else if(menu == controlsScreen)
+        else if (menu == controlsScreenMenu.menuScreen)
         {
-            currentMenu = controlsScreen;
-            previousMenu = gameplaySettings;
-            gameplaySettings.SetActive(false);
-            controlsScreen.SetActive(true);
+            currentMenu = controlsScreenMenu;
+            previousMenu = gameplaySettingsMenu;
+        }
+
+        currentMenu.menuScreen.SetActive(true);
+        EventSystem.current.SetSelectedGameObject(currentMenu.selectedUIElement);
+    }
+
+    public void GoBack()
+    {
+        if (previousMenu != null)
+        {
+            currentMenu.selectedUIElement = currentMenu.firstUIElement;
+            OpenMenu(previousMenu.menuScreen);
+        }
+        else
+        {
+            currentMenu.menuScreen.SetActive(false);
+            currentMenu = null;
+            Time.timeScale = 1;
+            SetCursorMode(CursorLockMode.Locked, false);
         }
     }
 
@@ -118,8 +129,7 @@ public class UIController : MonoBehaviour
 
     public void OpenTutorial()
     {
-        tutorialScreen.SetActive(true);
-        Time.timeScale = 0;
+
     }
 
     public void QuitGame()
