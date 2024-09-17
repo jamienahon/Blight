@@ -79,4 +79,14 @@ public class PlayerAnimationEvents : MonoBehaviour
     {
         stateManager.animator.speed = 0;
     }
+
+    public void SpawnArrow()
+    {
+        stateManager.shootState.SpawnProjectile();
+    }
+
+    public void SpawnMultiArrow()
+    {
+        stateManager.heavyShootState.SpawnMultiProjectile();
+    }
 }

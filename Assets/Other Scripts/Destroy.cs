@@ -5,12 +5,15 @@ using UnityEngine;
 public class Destroy : MonoBehaviour
 {
     public GameObject barrier;
-    
-    public void OnTriggerEnter(Collider Player)
-    {
-        GameObject.Find("Menu").GetComponent<UIController>().OpenTutorial();
 
-        Destroy(barrier);
-        Destroy(gameObject);
+    public void OnTriggerEnter(Collider collider)
+    {
+        if (collider.CompareTag("Player"))
+        {
+            GameObject.Find("Menu").GetComponent<UIController>().OpenTutorial();
+
+            Destroy(barrier);
+            Destroy(gameObject);
+        }
     }
 }

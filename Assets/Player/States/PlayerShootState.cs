@@ -17,7 +17,7 @@ public class PlayerShootState : PlayerState
         SetAnimationParameters();
         HandleAudio();
         LookAtCameraDirection();
-        SpawnProjectile();
+        //SpawnProjectile();
         stateManager.healthSystem.ConsumeStamina(stateManager.lightAttackStamCost);
     }
 

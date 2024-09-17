@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
+using static UnityEditor.FilePathAttribute;
 
 public class PlayerHeavyShootState : PlayerState
 {
@@ -16,7 +17,7 @@ public class PlayerHeavyShootState : PlayerState
         SetAnimationParameters();
         HandleAudio();
         LookAtCameraDirection();
-        SpawnMultiProjectile();
+        //SpawnMultiProjectile();
         stateManager.healthSystem.ConsumeStamina(stateManager.heavyAttackStamCost);
     }
 
@@ -59,34 +60,21 @@ public class PlayerHeavyShootState : PlayerState
 
     public void SpawnMultiProjectile()
     {
-        Vector3 position = new Vector3(stateManager.transform.position.x, stateManager.transform.position.y + 2.25f, stateManager.transform.position.z);
-        if (stateManager.isLockedOn)
+        for (int rotation = -45; rotation <= 45; rotation += 45)
         {
-            for (int rotation = -45; rotation <= 45; rotation += 45)
-            {
-                GameObject newProjectile = Object.Instantiate(stateManager.projectile, position, stateManager.projectile.transform.rotation);
-                PlayerProjectile arrowScript = newProjectile.GetComponent<PlayerProjectile>();
-                arrowScript.target = Camera.main.gameObject.GetComponent<CameraController>().currentLockOnPoint.gameObject;
-                arrowScript.player = stateManager.gameObject;
-                arrowScript.trackingStrength = stateManager.arrowTrackingStrength;
-                arrowScript.damage = stateManager.heavyAttackDamage / 3.0f;
-                arrowScript.gemRechargeAmount = stateManager.heavyAttackGemRecharge / 3.0f;
-                arrowScript.damageFalloff = stateManager.damageFalloff;
+            Vector3 position = new Vector3(stateManager.transform.position.x, stateManager.transform.position.y + 2.25f, stateManager.transform.position.z);
+            GameObject newProjectile = Object.Instantiate(stateManager.projectile, position, stateManager.projectile.transform.rotation);
 
-                Vector3 lockOnPos = Camera.main.gameObject.GetComponent<CameraController>().currentLockOnPoint.gameObject.transform.position;
-                newProjectile.transform.up = (lockOnPos - newProjectile.transform.position).normalized;
-                newProjectile.transform.up = Quaternion.Euler(0, rotation, 0) * newProjectile.transform.up;
-            }
-        }
-        else
-        {
-            for (int rotation = -45; rotation <= 45; rotation += 45)
+            GameObject target = null;
+            if (stateManager.isLockedOn)
             {
-                GameObject newProjectile = Object.Instantiate(stateManager.projectile, position, stateManager.projectile.transform.rotation);
-
-                newProjectile.transform.up = stateManager.animator.transform.forward;
-                newProjectile.transform.up = Quaternion.Euler(0, rotation, 0) * newProjectile.transform.up;
+                target = Camera.main.gameObject.GetComponent<CameraController>().currentLockOnPoint.gameObject;
+                newProjectile.transform.up = Quaternion.Euler(0, rotation, 0) * (target.transform.position - newProjectile.transform.position).normalized;
             }
+            else
+                newProjectile.transform.up = Quaternion.Euler(0, rotation, 0) * stateManager.animator.transform.forward;
+
+            newProjectile.GetComponent<PlayerProjectile>().InitialiseArrowValues(stateManager.gameObject, target, stateManager.lightAttackDamage, stateManager.lightAttackGemRecharge);
         }
     }
 
