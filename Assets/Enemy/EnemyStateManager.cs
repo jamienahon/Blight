@@ -97,11 +97,6 @@ public class EnemyStateManager : MonoBehaviour
 
     public void OnTriggerEnter(Collider collider)
     {
-        //if (collider.gameObject.tag == "Player")
-        //{
-        //    collider.GetComponentInParent<PlayerHealth>().DoDamage(1);
-        //    collider.GetComponentInParent<PlayerStateManager>().SwitchState(collider.GetComponentInParent<PlayerStateManager>().getHitState);
-        //}
         if (collider.gameObject.tag == "Player")
         {
             collider.GetComponentInParent<PlayerHealthSystem>().DoDamage(meleeDamage);
