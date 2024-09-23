@@ -23,12 +23,12 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Platform_1_TEX
-    second: {fileID: 2100000, guid: b4948b290771840489bf970d98e7018e, type: 2}
+    second: {fileID: 2100000, guid: 695e3beb058dec84590007d448acebfe, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Platform_3_TEX
-    second: {fileID: 2100000, guid: 695e3beb058dec84590007d448acebfe, type: 2}
+      name: Platform_2_TEX
+    second: {fileID: 2100000, guid: b4948b290771840489bf970d98e7018e, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
