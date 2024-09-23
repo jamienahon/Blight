@@ -13720,8 +13720,9 @@ MonoBehaviour:
   arrowTrackingStrength: 0.2
   arrowMoveSpeed: 70
   minePrefab: {fileID: 2182488338627037398, guid: c01d3718615d45b4198991a5899c7aa7, type: 3}
-  mineSpawnRange: 10
-  numberOfMines: 20
+  mineDamage: 20
+  mineSpawnRange: 15
+  numberOfMines: 40
   timeToExplosion: 2
   mineAttackLength: 2.5
   phase1Colour: {r: 1, g: 0, b: 0.91752815, a: 0}

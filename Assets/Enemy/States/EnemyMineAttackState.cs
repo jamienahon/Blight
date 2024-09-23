@@ -47,7 +47,10 @@ public class EnemyMineAttackState : EnemyState
             Vector3 position = new Vector3(Random.Range(xMin, xMax), 33.0f, Random.Range(zMin, zMax));
             GameObject newMine = Object.Instantiate(stateManager.minePrefab);
             newMine.transform.position = position;
-            newMine.GetComponent<Mine>().timeToExplosion = stateManager.timeToExplosion;
+
+            Mine mine = newMine.GetComponent<Mine>();
+            mine.timeToExplosion = stateManager.timeToExplosion + Random.Range(-0.5f, 0.5f);
+            mine.damage = stateManager.mineDamage;
         }
     }
 

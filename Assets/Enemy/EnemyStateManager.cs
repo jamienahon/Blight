@@ -38,6 +38,7 @@ public class EnemyStateManager : MonoBehaviour
 
     [Header("Mine Attack")]
     public GameObject minePrefab;
+    public float mineDamage;
     public float mineSpawnRange;
     public float numberOfMines;
     public float timeToExplosion;

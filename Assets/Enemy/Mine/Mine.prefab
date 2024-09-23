@@ -120,6 +120,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeToExplosion: 0
+  damage: 0
   mineCollider: {fileID: 30255291046541509}
 --- !u!135 &30255291046541509
 SphereCollider:
@@ -132,5 +133,5 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 0
   serializedVersion: 2
-  m_Radius: 2
+  m_Radius: 4
   m_Center: {x: 0, y: 0, z: 0}
