@@ -139,7 +139,7 @@ public class UIController : MonoBehaviour
     public void OpenTutorial()
     {
         tutorialScreen.SetActive(true);
-        Time.timeScale = 0;
+        Time.timeScale = 1;
     }
 
     public void QuitGame()
