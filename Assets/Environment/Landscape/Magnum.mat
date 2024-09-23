@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Magnum
-  m_Shader: {fileID: -6465566751694194690, guid: a712caa4a499ecd4680e29591bc61dbe, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: 9f9ec1116d9cbce43850bcbe6c569cf8, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
   m_LightmapFlags: 4
@@ -48,6 +48,30 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _Base_1_NRM:
+        m_Texture: {fileID: 2800000, guid: 9c8ac2347922f5149814b0ef45c5ab75, type: 3}
+        m_Scale: {x: 0.3, y: 0.3}
+        m_Offset: {x: 0, y: 0}
+    - _Base_1_TEX:
+        m_Texture: {fileID: 2800000, guid: f8011d790a464a8468870ca78785b704, type: 3}
+        m_Scale: {x: 0.3, y: 0.3}
+        m_Offset: {x: 0, y: 0}
+    - _Base_2_NRM:
+        m_Texture: {fileID: 2800000, guid: b8ce103bf73a8ec48bacba44b250e84a, type: 3}
+        m_Scale: {x: 0.3, y: 0.3}
+        m_Offset: {x: 0, y: 0}
+    - _Base_2_Tex:
+        m_Texture: {fileID: 2800000, guid: f973601ffbcf4a940a4d9ce213a2d0c2, type: 3}
+        m_Scale: {x: 0.3, y: 0.3}
+        m_Offset: {x: 0, y: 0}
+    - _Base_3_NRM:
+        m_Texture: {fileID: 2800000, guid: a18a8052fc0a4d248829dcb36487ad0a, type: 3}
+        m_Scale: {x: 0.3, y: 0.3}
+        m_Offset: {x: 0, y: 0}
+    - _Base_3_TEX:
+        m_Texture: {fileID: 2800000, guid: 711c429deaa451a4c9b053290e781c4b, type: 3}
+        m_Scale: {x: 0.3, y: 0.3}
+        m_Offset: {x: 0, y: 0}
     - _Base_NRM:
         m_Texture: {fileID: 2800000, guid: 9c8ac2347922f5149814b0ef45c5ab75, type: 3}
         m_Scale: {x: 0.15, y: 0.15}
@@ -64,7 +88,15 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _Blue_NRM_No_Worky:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _Blue_TEX:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Blue_TEX_No_Worky:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -89,11 +121,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Green_NRM:
-        m_Texture: {fileID: 2800000, guid: 477a9981c448765458b9d1c0e5d313e9, type: 3}
+        m_Texture: {fileID: 2800000, guid: a18a8052fc0a4d248829dcb36487ad0a, type: 3}
         m_Scale: {x: 0.3, y: 0.3}
         m_Offset: {x: 0, y: 0}
     - _Green_TEX:
-        m_Texture: {fileID: 2800000, guid: 5db8c2a7c2a394849ac43937b94659fd, type: 3}
+        m_Texture: {fileID: 2800000, guid: 711c429deaa451a4c9b053290e781c4b, type: 3}
         m_Scale: {x: 0.3, y: 0.3}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
@@ -105,8 +137,12 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NoiseTexture:
-        m_Texture: {fileID: 2800000, guid: 84134681dc7c04249a05d6c1cf713344, type: 3}
+        m_Texture: {fileID: 2800000, guid: 817a2c305f1920f47a12c75bff301fa2, type: 3}
         m_Scale: {x: 0, y: 0}
+        m_Offset: {x: 0, y: 0}
+    - _NoiseTexture2:
+        m_Texture: {fileID: 2800000, guid: 9c645a354c802624cb0e93601df8f2f4, type: 3}
+        m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
         m_Texture: {fileID: 0}
@@ -148,6 +184,7 @@ Material:
     m_Floats:
     - _AlphaClip: 0
     - _Blend: 0
+    - _Brightness: 1.5
     - _BumpScale: 1
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
@@ -162,7 +199,9 @@ Material:
     - _GlossyReflections: 0
     - _Metallic: 0
     - _NoiseImpact: 1
-    - _NoiseScale: 3.11
+    - _NoiseScale: 5
+    - _NoiseTransparency: 1
+    - _NormalStrength: 1
     - _OcclusionStrength: 1
     - _Parallax: 0.005
     - _QueueControl: 0
@@ -185,6 +224,7 @@ Material:
     - _Colour4: {r: 1, g: 0, b: 0.92387056, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _Green: {r: 0, g: 0, b: 0, a: 0}
+    - _NoiseTiling: {r: 0.11, g: 0.11, b: 0, a: 0}
     - _Red: {r: 0.97707653, g: 1, b: 0, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []
