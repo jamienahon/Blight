@@ -17,6 +17,7 @@ public class EnemyStateManager : MonoBehaviour
     public EnemyRangeAttackState rangeAttackState = new EnemyRangeAttackState();
     public EnemyMoveState moveState = new EnemyMoveState();
     public EnemyStunnedState stunnedState = new EnemyStunnedState();
+    public EnemyMineAttackState mineAttackState = new EnemyMineAttackState();
 
     [HideInInspector] public bool switchStates = false;
 
@@ -35,10 +36,17 @@ public class EnemyStateManager : MonoBehaviour
     public float arrowTrackingStrength;
     public float arrowMoveSpeed;
 
+    [Header("Mine Attack")]
+    public GameObject minePrefab;
+    public float mineSpawnRange;
+    public float numberOfMines;
+    public float timeToExplosion;
+    public float mineAttackLength;
+
     [Header("Phases")]
-    [HideInInspector] public bool isInSecondPhase = false;
     public Color phase1Colour;
     public Color phase2Colour;
+    [HideInInspector] public bool isInSecondPhase = false;
 
     public float stunnedLength;
     [HideInInspector] public float endStun;

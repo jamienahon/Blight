@@ -13719,9 +13719,14 @@ MonoBehaviour:
   projectile: {fileID: 3732929822983303577, guid: bef79a126a276c1468c5fa67b27276be, type: 3}
   arrowTrackingStrength: 0.2
   arrowMoveSpeed: 70
-  isInSecondPhase: 0
+  minePrefab: {fileID: 2182488338627037398, guid: c01d3718615d45b4198991a5899c7aa7, type: 3}
+  mineSpawnRange: 10
+  numberOfMines: 20
+  timeToExplosion: 2
+  mineAttackLength: 2.5
   phase1Colour: {r: 1, g: 0, b: 0.91752815, a: 0}
   phase2Colour: {r: 0.4716981, g: 0.26485905, b: 0, a: 0}
+  isInSecondPhase: 0
   stunnedLength: 0.7
   endStun: 0
 --- !u!4 &1042516151
@@ -23962,7 +23967,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2045391157}
-  m_LocalRotation: {x: -0.00000008940697, y: 0.000000027474016, z: -0.000000009720679, w: 1}
+  m_LocalRotation: {x: -0.000000074505806, y: 0.0000000144355, z: -0.0000000052386895, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

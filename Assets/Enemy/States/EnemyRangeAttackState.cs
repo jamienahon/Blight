@@ -27,7 +27,7 @@ public class EnemyRangeAttackState : EnemyState
 
     }
 
-    public override void HandleAuido()
+    public override void HandleAudio()
     {
 
     }
