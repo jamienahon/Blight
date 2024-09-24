@@ -47,6 +47,8 @@ public class PlayerStateManager : MonoBehaviour
 
     [Header("Attacking")]
     public float arrowTrackingStrength;
+    public float lockedOnArrowTrackingStrength;
+    public float arrowTrackingRange;
     public float attackMoveSpeed;
     public float arrowMoveSpeed;
     public float damageFalloff;
