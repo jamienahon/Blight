@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -74,16 +75,19 @@ public class PlayerShootState : PlayerState
         Vector3 position = new Vector3(stateManager.transform.position.x, stateManager.transform.position.y + 2.25f, stateManager.transform.position.z);
         GameObject newProjectile = Object.Instantiate(stateManager.projectile, position, stateManager.projectile.transform.rotation);
 
-        GameObject target = null;
+        GameObject target = GameObject.Find("LockOn Point R");
+
         if (stateManager.isLockedOn)
         {
-            target = Camera.main.gameObject.GetComponent<CameraController>().currentLockOnPoint.gameObject;
             newProjectile.transform.up = (target.transform.position - newProjectile.transform.position).normalized;
+            newProjectile.GetComponent<PlayerProjectile>().InitialiseArrowValues(stateManager.gameObject, target, stateManager.lightAttackDamage, stateManager.lightAttackGemRecharge, stateManager.lockedOnArrowTrackingStrength);
         }
         else
+        {
             newProjectile.transform.up = stateManager.animator.transform.forward;
+            newProjectile.GetComponent<PlayerProjectile>().InitialiseArrowValues(stateManager.gameObject, target, stateManager.lightAttackDamage, stateManager.lightAttackGemRecharge, stateManager.arrowTrackingStrength);
+        }
 
-        newProjectile.GetComponent<PlayerProjectile>().InitialiseArrowValues(stateManager.gameObject, target, stateManager.lightAttackDamage, stateManager.lightAttackGemRecharge);
     }
 
     public override void OnCollisionEnter(Collider collider)

@@ -18,8 +18,9 @@ public class PlayerProjectile : MonoBehaviour
     {
         if (target)
         {
-            if (Vector3.Distance(player.transform.position, transform.position) <
-                Vector3.Distance(player.transform.position, target.transform.position))
+            if (Vector3.Distance(gameObject.transform.position, target.transform.position) <
+                Vector3.Distance(player.transform.position, target.transform.position) &&
+                Vector3.Distance(gameObject.transform.position, target.transform.position) < stateManager.arrowTrackingRange)
             {
                 Vector3 delta = (target.transform.position - transform.position).normalized;
                 transform.up = Vector3.RotateTowards(transform.up, delta, trackingStrength * Time.deltaTime, 0.0f);
@@ -46,7 +47,7 @@ public class PlayerProjectile : MonoBehaviour
         Destroy(gameObject);
     }
 
-    public void InitialiseArrowValues(GameObject player, GameObject target, float damage, float gemRechargeAmount)
+    public void InitialiseArrowValues(GameObject player, GameObject target, float damage, float gemRechargeAmount, float trackingStrength)
     {
         this.player = player;
         this.target = target;
@@ -54,9 +55,9 @@ public class PlayerProjectile : MonoBehaviour
 
         this.damage = damage;
         this.gemRechargeAmount = gemRechargeAmount;
+        this.trackingStrength = trackingStrength;
 
         moveSpeed = stateManager.arrowMoveSpeed;
-        trackingStrength = stateManager.arrowTrackingStrength;
         damageFalloff = stateManager.damageFalloff;
     }
 }

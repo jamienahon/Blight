@@ -14,11 +14,9 @@ public class PlayerStateManager : MonoBehaviour
     public PlayerWalkState walkState = new PlayerWalkState();
     public PlayerSprintState sprintState = new PlayerSprintState();
     public PlayerDodgeState dodgeState = new PlayerDodgeState();
-    public PlayerJumpState jumpState = new PlayerJumpState();
     public PlayerLAttackState lAttackState = new PlayerLAttackState();
     public PlayerHAttackState hAttackState = new PlayerHAttackState();
     public PlayerGetHitState getHitState = new PlayerGetHitState();
-    public PlayerBlockState blockState = new PlayerBlockState();
     public PlayerShootState shootState = new PlayerShootState();
     public PlayerHeavyShootState heavyShootState = new PlayerHeavyShootState();
     public PlayerHealState healState = new PlayerHealState();
@@ -39,14 +37,10 @@ public class PlayerStateManager : MonoBehaviour
     public float dodgeMoveSpeed;
     public float dodgeStamCost;
 
-    [Header("Jumping")]
-    public float jumpHeight;
-    public float jumpSpeedWalk;
-    public float jumpSpeedSprint;
-    public float jumpStamCost;
-
     [Header("Attacking")]
     public float arrowTrackingStrength;
+    public float lockedOnArrowTrackingStrength;
+    public float arrowTrackingRange;
     public float attackMoveSpeed;
     public float arrowMoveSpeed;
     public float damageFalloff;
@@ -63,13 +57,6 @@ public class PlayerStateManager : MonoBehaviour
     public float heavyAttackDamage;
     public float heavyAttackStamCost;
     public float heavyAttackGemRecharge;
-
-    [Header("Blocking")]
-    public float blockDamageReduction;
-    public float blockStamCost;
-    public float blockMoveSpeed;
-    public float blockPauseTime;
-    [HideInInspector] public float endBlockPause;
 
     [Header("Healing")]
     public float healLengthSeconds;
