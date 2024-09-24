@@ -14,7 +14,7 @@ public abstract class EnemyState
 
     public abstract void SetAnimationParameters();
 
-    public abstract void HandleAuido();
+    public abstract void HandleAudio();
 
     public abstract void OnTriggerEnter(Collider collider);
 

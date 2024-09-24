@@ -10,7 +10,7 @@ public class EnemyIdleState : EnemyState
     {
         this.stateManager = stateManager;
         SetAnimationParameters();
-        HandleAuido();
+        HandleAudio();
     }
 
     public override void UpdateState()
@@ -41,7 +41,7 @@ public class EnemyIdleState : EnemyState
             if (!stateManager.isInSecondPhase)
             {
                 if (stateManager.IsPlayerInRange())
-                    stateManager.SwitchState(stateManager.meleeAttackState);
+                    stateManager.SwitchState(stateManager.mineAttackState);
                 else
                     stateManager.SwitchState(stateManager.moveState);
             }
@@ -78,7 +78,7 @@ public class EnemyIdleState : EnemyState
         stateManager.animator.SetBool("IsMoving", false);
     }
 
-    public override void HandleAuido()
+    public override void HandleAudio()
     {
         stateManager.enemyAudio.Stop();
     }
