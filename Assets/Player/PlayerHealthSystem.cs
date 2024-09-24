@@ -70,23 +70,16 @@ public class PlayerHealthSystem : MonoBehaviour
         if (stateManager.isInvincible)
             return;
 
-        if (stateManager.currentState == stateManager.blockState)
-        {
-            healthBar.fillAmount -= (damage * (1 / maxHealth)) * stateManager.blockDamageReduction;
-            stateManager.endBlockPause = Time.time + stateManager.blockPauseTime;
-            ConsumeStamina(stateManager.blockStamCost);
-        }
-        else
-        {
-            healthBar.fillAmount -= damage * (1 / maxHealth);
-            stateManager.SwitchState(stateManager.getHitState);
 
-            if (!healthBarSmoothing)
-            {
-                healthBarSmoothing = true;
-                startHealthBarSmoothing = Time.time + healthBarSmoothDelay;
-            }
+        healthBar.fillAmount -= damage * (1 / maxHealth);
+        stateManager.SwitchState(stateManager.getHitState);
+
+        if (!healthBarSmoothing)
+        {
+            healthBarSmoothing = true;
+            startHealthBarSmoothing = Time.time + healthBarSmoothDelay;
         }
+
         if (healthBar.fillAmount <= 0)
         {
             healthBar.fillAmount = 0;
