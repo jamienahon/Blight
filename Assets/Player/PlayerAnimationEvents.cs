@@ -6,6 +6,7 @@ public class PlayerAnimationEvents : MonoBehaviour
     public PlayerStateManager stateManager;
     public Collider lHitbox;
     public Collider hHitbox;
+    public GameObject healVFX;
 
     public void StartDodge()
     {
@@ -78,5 +79,10 @@ public class PlayerAnimationEvents : MonoBehaviour
     public void PauseBlock()
     {
         stateManager.animator.speed = 0;
+    }
+
+    public void SpawnHealVFX()
+    {
+        Instantiate(healVFX, stateManager.transform);
     }
 }

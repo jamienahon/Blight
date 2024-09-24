@@ -46,7 +46,7 @@ public class PlayerHealState : PlayerState
         else
         {
             LookAtMovementDirection();
-            stateManager.animator.Play("Unarmed-Run-Forward");
+            stateManager.animator.Play("Healing");
         }
     }
 
