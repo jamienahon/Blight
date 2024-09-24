@@ -9,16 +9,36 @@ public class EnemyHealthSystem : MonoBehaviour
     public CameraController camCont;
     public GameObject victoryScreen;
     public Image healthBar;
+    public Image healthBarBackground;
     public float maxHealth;
+
+    [Header("BarSmoothing")]
+    public float healthBarSmoothDelay;
+    float startHealthBarSmoothing;
+    public float healthBarSmoothSpeed;
+    bool healthBarSmoothing = false;
 
     private void Start()
     {
         stateManager = GetComponent<EnemyStateManager>();
     }
 
+    private void Update()
+    {
+        if (Time.time >= startHealthBarSmoothing && healthBarSmoothing)
+            SmoothHealthBar();
+    }
+
     public void DoDamage(float damage)
     {
         healthBar.fillAmount -= damage * (1 / maxHealth);
+
+        if (!healthBarSmoothing)
+        {
+            healthBarSmoothing = true;
+            startHealthBarSmoothing = Time.time + healthBarSmoothDelay;
+        }
+
         if (healthBar.fillAmount == 0)
         {
             if (!stateManager.isInSecondPhase)
@@ -32,6 +52,16 @@ public class EnemyHealthSystem : MonoBehaviour
                 camCont.EndLockOn();
                 victoryScreen.SetActive(true);
             }
+        }
+    }
+
+    void SmoothHealthBar()
+    {
+        healthBarBackground.fillAmount -= healthBarSmoothSpeed * Time.deltaTime;
+        if (healthBarBackground.fillAmount <= healthBar.fillAmount)
+        {
+            healthBarBackground.fillAmount = healthBar.fillAmount;
+            healthBarSmoothing = false;
         }
     }
 
