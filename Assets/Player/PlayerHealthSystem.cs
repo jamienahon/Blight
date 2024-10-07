@@ -54,6 +54,7 @@ public class PlayerHealthSystem : MonoBehaviour
         if (rechargeGem && healingGemImages[0].fillAmount == 1)
         {
             healingGemImages[0].color = new Color(1, 1, 1, 1);
+            healingGemImages[1].color = new Color(1, 1, 1, 1);
             rechargeGem = false;
             healthCharges = 1;
         }
@@ -111,7 +112,7 @@ public class PlayerHealthSystem : MonoBehaviour
         if (!healthBarSmoothing)
             healthBarBackground.fillAmount = healthBar.fillAmount;
 
-        if (healingGemImages.Count > 1)
+        if (healingGemImages.Count > 2)
         {
             healingGemImages[0].gameObject.SetActive(false);
             healingGemImages.RemoveAt(0);
@@ -119,8 +120,10 @@ public class PlayerHealthSystem : MonoBehaviour
         else
         {
             rechargeGem = true;
-            healingGemImages[0].color = new Color(1, 1, 1, 0.3f);
+            healingGemImages[0].color = new Color(1, 1, 1, 0.0f);
             healingGemImages[0].fillAmount = 0;
+            healingGemImages[1].color = new Color(1, 1, 1, 0.4f);
+            healingGemImages[1].fillAmount = 0;
         }
     }
 
@@ -160,5 +163,6 @@ public class PlayerHealthSystem : MonoBehaviour
     public void RechargeGem(float recharge)
     {
         healingGemImages[0].fillAmount += recharge * (1 / maxRecharge);
+        healingGemImages[1].fillAmount += recharge * (1 / maxRecharge);
     }
 }

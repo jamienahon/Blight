@@ -28,6 +28,7 @@ public class EnemyStateManager : MonoBehaviour
     public EnemyStunnedState stunnedState = new EnemyStunnedState();
     public EnemyMineAttackState mineAttackState = new EnemyMineAttackState();
     public EnemyMoveTowardPlayerState moveTowardPlayerState = new EnemyMoveTowardPlayerState();
+    public EnemySweepAttackState sweepAttackState = new EnemySweepAttackState();
 
     [HideInInspector] public bool switchStates = false;
 
@@ -88,12 +89,7 @@ public class EnemyStateManager : MonoBehaviour
         }
 
         currentState.UpdateState();
-    }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-            DecideState();
+        DecideState();
     }
 
     public void SwitchState(EnemyState state)
@@ -104,35 +100,13 @@ public class EnemyStateManager : MonoBehaviour
 
     public void DecideState()
     {
-        int attackNumber;
-        do attackNumber = UnityEngine.Random.Range(0, Enum.GetNames(typeof(Attacks)).Length);
-        while (attackNumber == previousAttackNumber);
+        //int attackNumber;
+        //do attackNumber = UnityEngine.Random.Range(0, Enum.GetNames(typeof(Attacks)).Length);
+        //while (attackNumber == previousAttackNumber);
 
-        if (attackNumber == (int)Attacks.SlashAttack)
-        {
-            Debug.Log("Slash Attack");
-            previousAttackNumber = attackNumber;
+        if (Time.time >= attackCooldownEnd)
+            SwitchState(sweepAttackState);
 
-            if (!IsPlayerInRange())
-            {
-                SwitchState(moveTowardPlayerState);
-            }
-        }
-        else if (attackNumber == (int)Attacks.ConeAttack)
-        {
-            Debug.Log("Cone Attack");
-            previousAttackNumber = attackNumber;
-        }
-        else if (attackNumber == (int)Attacks.MineAttack)
-        {
-            Debug.Log("Mine Attack");
-            previousAttackNumber = attackNumber;
-        }
-        else if (attackNumber == (int)Attacks.RangedAttack)
-        {
-            Debug.Log("Ranged Attack");
-            previousAttackNumber = attackNumber;
-        }
     }
 
     public bool IsPlayerInRange()
