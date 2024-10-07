@@ -23,7 +23,7 @@ public class EnemyMoveState : EnemyState
 
         stateManager.transform.Translate(stateManager.animator.transform.forward * stateManager.moveSpeed * Time.deltaTime);
 
-        if (Time.time >= stateManager.nextAttack)
+        if (Time.time >= stateManager.attackCooldownEnd)
         {
             stateManager.SwitchState(stateManager.idleState);
         }

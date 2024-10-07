@@ -36,7 +36,7 @@ public class EnemyIdleState : EnemyState
         //    stateManager.SwitchState(stateManager.moveState);
         //}
 
-        if (Time.time >= stateManager.nextAttack)
+        if (Time.time >= stateManager.attackCooldownEnd)
         {
             if (!stateManager.isInSecondPhase)
             {
@@ -58,7 +58,7 @@ public class EnemyIdleState : EnemyState
                 else
                     stateManager.SwitchState(stateManager.moveState);
             }
-            stateManager.nextAttack = Time.time + Random.Range(stateManager.timeBetweenAttacks.x, stateManager.timeBetweenAttacks.y);
+            stateManager.attackCooldownEnd = Time.time + Random.Range(stateManager.timeBetweenAttacks.x, stateManager.timeBetweenAttacks.y);
         }
         else
             stateManager.SwitchState(stateManager.idleState);
