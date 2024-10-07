@@ -12,7 +12,7 @@ public class EnemyMoveState : EnemyState
     {
         this.stateManager = stateManager;
         SetAnimationParameters();
-        HandleAuido();
+        HandleAudio();
     }
 
     public override void UpdateState()
@@ -23,10 +23,8 @@ public class EnemyMoveState : EnemyState
 
         stateManager.transform.Translate(stateManager.animator.transform.forward * stateManager.moveSpeed * Time.deltaTime);
 
-        if (Time.time >= stateManager.nextAttack)
-        {
+        if (stateManager.IsPlayerInRange())
             stateManager.SwitchState(stateManager.idleState);
-        }
     }
 
     public override void HandleAnimations()
@@ -39,7 +37,7 @@ public class EnemyMoveState : EnemyState
         stateManager.animator.SetBool("IsMoving", true);
     }
 
-    public override void HandleAuido()
+    public override void HandleAudio()
     {
         stateManager.enemyAudio.clip = moveSound;
         stateManager.enemyAudio.loop = loopSound;

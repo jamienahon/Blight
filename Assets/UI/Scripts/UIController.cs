@@ -1,96 +1,133 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+
+[Serializable]
+public class UIMenu
+{
+    UIMenu()
+    {
+        selectedUIElement = firstUIElement;
+    }
+
+    public GameObject menuScreen;
+    public GameObject firstUIElement;
+    [HideInInspector] public GameObject selectedUIElement;
+}
 
 public class UIController : MonoBehaviour
 {
-    CameraController camController;
+    public UIMenu mainMenu, settingsMenu, gameplaySettingsMenu, graphicsSettingsMenu, audioSettingsMenu,
+        controlsScreenMenu;
 
-    public GameObject background, mainMenu, settingsMenu, gameplaySettings, graphicsSettings, audioSettings, 
-        tutorialScreen;
-    bool isInMenus;
+    public GameObject tutorialScreen;
 
+    UIMenu currentMenu = null;
+    UIMenu previousMenu = null;
 
-    private void Start()
-    {
-        camController = Camera.main.GetComponent<CameraController>();
-    }
+    CursorLockMode cursorLockMode = CursorLockMode.Locked;
+    bool isCursorVisible = false;
+
+    bool hasClicked = false;
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        Cursor.lockState = cursorLockMode;
+        Cursor.visible = isCursorVisible;
+
+        if (currentMenu != null)
+            currentMenu.selectedUIElement = EventSystem.current.currentSelectedGameObject;
+
+        if (Input.GetAxisRaw("Pause") > 0 && !hasClicked)
         {
-            if(!isInMenus && !tutorialScreen.activeSelf)
+            hasClicked = true;
+
+
+            if (tutorialScreen.activeSelf)
             {
-                OpenMainMenu();
+                tutorialScreen.SetActive(false);
+                Time.timeScale = 1;
             }
-            else if(tutorialScreen.activeSelf)
-            {
-                GoBack();
-            }
+            else if (currentMenu == null)
+                OpenMenu(mainMenu.menuScreen);
             else
-            {
                 GoBack();
-            }
         }
+
+        if (Input.GetAxisRaw("Pause") == 0)
+            hasClicked = false;
+
     }
 
     private void SetCursorMode(CursorLockMode lockMode, bool isVisible)
     {
-        camController.cursorLockMode = lockMode;
-        camController.isCursorVisible = isVisible;
+        cursorLockMode = lockMode;
+        isCursorVisible = isVisible;
+    }
+
+    public void OpenMenu(GameObject menu)
+    {
+        Time.timeScale = 0;
+        SetCursorMode(CursorLockMode.None, true);
+
+        if (currentMenu != null)
+            currentMenu.menuScreen.SetActive(false);
+
+        if (menu == mainMenu.menuScreen)
+        {
+            currentMenu = mainMenu;
+            previousMenu = null;
+        }
+        else if (menu == settingsMenu.menuScreen)
+        {
+            currentMenu = settingsMenu;
+            previousMenu = mainMenu;
+        }
+        else if (menu == gameplaySettingsMenu.menuScreen)
+        {
+            currentMenu = gameplaySettingsMenu;
+            previousMenu = settingsMenu;
+        }
+        else if (menu == graphicsSettingsMenu.menuScreen)
+        {
+            currentMenu = graphicsSettingsMenu;
+            previousMenu = settingsMenu;
+        }
+        else if (menu == audioSettingsMenu.menuScreen)
+        {
+            currentMenu = audioSettingsMenu;
+            previousMenu = settingsMenu;
+        }
+        else if (menu == controlsScreenMenu.menuScreen)
+        {
+            currentMenu = controlsScreenMenu;
+            previousMenu = gameplaySettingsMenu;
+        }
+
+        currentMenu.menuScreen.SetActive(true);
+        EventSystem.current.SetSelectedGameObject(currentMenu.selectedUIElement);
     }
 
     public void GoBack()
     {
-        if(mainMenu.activeSelf)
+        if (previousMenu != null)
         {
-            CloseMainMenu();
+            currentMenu.selectedUIElement = currentMenu.firstUIElement;
+            OpenMenu(previousMenu.menuScreen);
         }
-        else if(settingsMenu.activeSelf)
+        else
         {
-            settingsMenu.SetActive(false);
-            OpenMainMenu();
-        }
-        else if(gameplaySettings.activeSelf)
-        {
-            gameplaySettings.SetActive(false);
-            OpenSettings();
-        }
-        else if (graphicsSettings.activeSelf)
-        {
-            graphicsSettings.SetActive(false);
-            OpenSettings();
-        }
-        else if (audioSettings.activeSelf)
-        {
-            audioSettings.SetActive(false);
-            OpenSettings();
-        }
-        else if(tutorialScreen.activeSelf)
-        {
-            tutorialScreen.SetActive(false);
+            currentMenu.menuScreen.SetActive(false);
+            currentMenu = null;
             Time.timeScale = 1;
+            SetCursorMode(CursorLockMode.Locked, false);
         }
-    }
-
-    public void OpenMainMenu()
-    {
-        isInMenus = true;
-        SetCursorMode(CursorLockMode.Confined, true);
-
-        mainMenu.SetActive(true);
-        Time.timeScale = 0;
-    }
-
-    public void CloseMainMenu()
-    {
-        isInMenus = false;
-        SetCursorMode(CursorLockMode.Locked, false);
-
-        mainMenu.SetActive(false);
-        Time.timeScale = 1;
     }
 
     public void RestartGame()
@@ -99,38 +136,20 @@ public class UIController : MonoBehaviour
         Time.timeScale = 1;
     }
 
-    public void OpenSettings()
-    {
-        mainMenu.SetActive(false);
-        settingsMenu.SetActive(true);
-    }
-
-    public void OpenGameplaySettings()
-    {
-        settingsMenu.SetActive(false);
-        gameplaySettings.SetActive(true);
-    }
-
-    public void OpenGraphicsSettings()
-    {
-        settingsMenu.SetActive(false);
-        graphicsSettings.SetActive(true);
-    }
-
-    public void OpenAudioSettings()
-    {
-        settingsMenu.SetActive(false);
-        audioSettings.SetActive(true);
-    }
-
     public void OpenTutorial()
     {
         tutorialScreen.SetActive(true);
-        Time.timeScale = 0;
+        Time.timeScale = 1;
     }
 
     public void QuitGame()
     {
         Application.Quit();
+    }
+
+    public void HomeScreen()
+    {
+        SceneManager.LoadScene(0);
+        Time.timeScale = 1;
     }
 }

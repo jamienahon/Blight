@@ -14,11 +14,9 @@ public class PlayerStateManager : MonoBehaviour
     public PlayerWalkState walkState = new PlayerWalkState();
     public PlayerSprintState sprintState = new PlayerSprintState();
     public PlayerDodgeState dodgeState = new PlayerDodgeState();
-    public PlayerJumpState jumpState = new PlayerJumpState();
     public PlayerLAttackState lAttackState = new PlayerLAttackState();
     public PlayerHAttackState hAttackState = new PlayerHAttackState();
     public PlayerGetHitState getHitState = new PlayerGetHitState();
-    public PlayerBlockState blockState = new PlayerBlockState();
     public PlayerShootState shootState = new PlayerShootState();
     public PlayerHeavyShootState heavyShootState = new PlayerHeavyShootState();
     public PlayerHealState healState = new PlayerHealState();
@@ -39,14 +37,10 @@ public class PlayerStateManager : MonoBehaviour
     public float dodgeMoveSpeed;
     public float dodgeStamCost;
 
-    [Header("Jumping")]
-    public float jumpHeight;
-    public float jumpSpeedWalk;
-    public float jumpSpeedSprint;
-    public float jumpStamCost;
-
     [Header("Attacking")]
     public float arrowTrackingStrength;
+    public float lockedOnArrowTrackingStrength;
+    public float arrowTrackingRange;
     public float attackMoveSpeed;
     public float arrowMoveSpeed;
     public float damageFalloff;
@@ -63,13 +57,6 @@ public class PlayerStateManager : MonoBehaviour
     public float heavyAttackDamage;
     public float heavyAttackStamCost;
     public float heavyAttackGemRecharge;
-
-    [Header("Blocking")]
-    public float blockDamageReduction;
-    public float blockStamCost;
-    public float blockMoveSpeed;
-    public float blockPauseTime;
-    [HideInInspector] public float endBlockPause;
 
     [Header("Healing")]
     public float healLengthSeconds;
@@ -101,65 +88,6 @@ public class PlayerStateManager : MonoBehaviour
         currentState = state;
         switchStates = true;
     }
-
-    public void SpawnProjectile()
-    {
-        Vector3 position = new Vector3(transform.position.x, transform.position.y + 2.25f, transform.position.z);
-        GameObject newProjectile = Instantiate(projectile, position, projectile.transform.rotation);
-        PlayerProjectile arrowScript = newProjectile.GetComponent<PlayerProjectile>();
-        arrowScript.player = gameObject;
-        arrowScript.trackingStrength = arrowTrackingStrength;
-        arrowScript.moveSpeed = arrowMoveSpeed;
-        arrowScript.damage = lightAttackDamage;
-        arrowScript.gemRechargeAmount = lightAttackGemRecharge;
-        arrowScript.damageFalloff = damageFalloff;
-
-        if (isLockedOn)
-        {
-            arrowScript.target = Camera.main.gameObject.GetComponent<CameraController>().currentLockOnPoint.gameObject;
-            Vector3 lockOnPos = Camera.main.gameObject.GetComponent<CameraController>().currentLockOnPoint.gameObject.transform.position;
-
-            newProjectile.transform.up = (lockOnPos - newProjectile.transform.position).normalized;
-        }
-        else
-        {
-            newProjectile.transform.up = animator.transform.forward;
-        }
-    }
-
-    public void SpawnMultiProjectile()
-    {
-        Vector3 position = new Vector3(transform.position.x, transform.position.y + 2.25f, transform.position.z);
-        if (isLockedOn)
-        {
-            for (int rotation = -45; rotation <= 45; rotation += 45)
-            {
-                GameObject newProjectile = Instantiate(projectile, position, projectile.transform.rotation);
-                PlayerProjectile arrowScript = newProjectile.GetComponent<PlayerProjectile>();
-                arrowScript.target = Camera.main.gameObject.GetComponent<CameraController>().currentLockOnPoint.gameObject;
-                arrowScript.player = gameObject;
-                arrowScript.trackingStrength = arrowTrackingStrength;
-                arrowScript.damage = heavyAttackDamage / 3.0f;
-                arrowScript.gemRechargeAmount = heavyAttackGemRecharge / 3.0f;
-                arrowScript.damageFalloff = damageFalloff;
-
-                Vector3 lockOnPos = Camera.main.gameObject.GetComponent<CameraController>().currentLockOnPoint.gameObject.transform.position;
-                newProjectile.transform.up = (lockOnPos - newProjectile.transform.position).normalized;
-                newProjectile.transform.up = Quaternion.Euler(0, rotation, 0) * newProjectile.transform.up;
-            }
-        }
-        else
-        {
-            for (int rotation = -45; rotation <= 45; rotation += 45)
-            {
-                GameObject newProjectile = Instantiate(projectile, position, projectile.transform.rotation);
-
-                newProjectile.transform.up = animator.transform.forward;
-                newProjectile.transform.up = Quaternion.Euler(0, rotation, 0) * newProjectile.transform.up;
-            }
-        }
-    }
-
 
     public void OnTriggerEnter(Collider collider)
     {
