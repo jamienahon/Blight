@@ -10,6 +10,7 @@ public class EnemyAnimationEvents : MonoBehaviour
     public void EndAttack()
     {
         stateManager.SwitchState(stateManager.idleState);
+        stateManager.attackCooldownEnd = Time.time + Random.Range(stateManager.timeBetweenAttacks.x, stateManager.timeBetweenAttacks.y);
     }
 
     public void StartMove()

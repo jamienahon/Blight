@@ -31,7 +31,7 @@ MonoBehaviour:
     name: grass1_geo
   - gameObject: {fileID: 4414853822391526180, guid: a33eac39655b3c1418f543c85761950a, type: 3}
     settings:
-      m_Strength: 50
+      m_Strength: 83.390366
       m_RotationRangeMin: {x: 0, y: 0, z: 0}
       m_RotationRangeMax: {x: 0, y: 360, z: 0}
       m_ScaleRangeMin: {x: 3, y: 3, z: 3}
