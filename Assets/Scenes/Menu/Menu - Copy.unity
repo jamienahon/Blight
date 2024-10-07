@@ -5093,21 +5093,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 175f3aa6ead38f14d83d0d03fe858721, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eventSystem: {fileID: 0}
-  background: {fileID: 0}
-  mainMenu: {fileID: 0}
-  settingsMenu: {fileID: 1933933961}
-  gameplaySettings: {fileID: 2039752883}
-  graphicsSettings: {fileID: 109705948}
-  audioSettings: {fileID: 1793300881}
+  mainMenu:
+    menuScreen: {fileID: 0}
+    firstUIElement: {fileID: 0}
+    selectedUIElement: {fileID: 0}
+  settingsMenu:
+    menuScreen: {fileID: 0}
+    firstUIElement: {fileID: 0}
+    selectedUIElement: {fileID: 0}
+  gameplaySettingsMenu:
+    menuScreen: {fileID: 0}
+    firstUIElement: {fileID: 0}
+    selectedUIElement: {fileID: 0}
+  graphicsSettingsMenu:
+    menuScreen: {fileID: 0}
+    firstUIElement: {fileID: 0}
+    selectedUIElement: {fileID: 0}
+  audioSettingsMenu:
+    menuScreen: {fileID: 0}
+    firstUIElement: {fileID: 0}
+    selectedUIElement: {fileID: 0}
+  controlsScreenMenu:
+    menuScreen: {fileID: 0}
+    firstUIElement: {fileID: 0}
+    selectedUIElement: {fileID: 0}
   tutorialScreen: {fileID: 0}
-  controls: {fileID: 174267306}
-  firstMainMenuObject: {fileID: 0}
-  firstSettingsObject: {fileID: 1068690013}
-  firstGameplayObject: {fileID: 1601485998}
-  firstGraphicsObject: {fileID: 1559564395}
-  firstAudioObject: {fileID: 1732828588}
-  firstControlsObject: {fileID: 1406216662}
 --- !u!1 &1171901620
 GameObject:
   m_ObjectHideFlags: 0
