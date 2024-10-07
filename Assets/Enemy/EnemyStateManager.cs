@@ -6,9 +6,7 @@ using UnityEngine;
 public enum Attacks
 {
     SlashAttack,
-    ConeAttack,
-    MineAttack,
-    RangedAttack
+    SpinAttack
 }
 
 public class EnemyStateManager : MonoBehaviour
@@ -100,13 +98,8 @@ public class EnemyStateManager : MonoBehaviour
 
     public void DecideState()
     {
-        //int attackNumber;
-        //do attackNumber = UnityEngine.Random.Range(0, Enum.GetNames(typeof(Attacks)).Length);
-        //while (attackNumber == previousAttackNumber);
-
         if (Time.time >= attackCooldownEnd)
             SwitchState(sweepAttackState);
-
     }
 
     public bool IsPlayerInRange()

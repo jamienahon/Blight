@@ -2,10 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum Hitboxes
+{
+    SpinAttackHitbox,
+    SlashAttackHitboxes
+}
+
 public class EnemyAnimationEvents : MonoBehaviour
 {
     public EnemyStateManager stateManager;
-    public CapsuleCollider enemyHitbox;
+    public Collider spinAttackHitbox;
+    public Collider[] slashAttackHitboxes;
 
     public void EndAttack()
     {
@@ -28,14 +35,20 @@ public class EnemyAnimationEvents : MonoBehaviour
         stateManager.meleeAttackState.rotate = false;
     }
 
-    public void EnableHitbox()
+    public void EnableHitbox(Hitboxes hitbox)
     {
-        enemyHitbox.enabled = true;
+        if(hitbox == Hitboxes.SpinAttackHitbox)
+        {
+            spinAttackHitbox.enabled = true;
+        }
     }
 
-    public void DisableHitbox()
+    public void DisableHitbox(Hitboxes hitbox)
     {
-        enemyHitbox.enabled = false;
+        if (hitbox == Hitboxes.SpinAttackHitbox)
+        {
+            spinAttackHitbox.enabled = false;
+        }
     }
 
     public void SpawnProjectile()
