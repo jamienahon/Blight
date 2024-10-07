@@ -11,6 +11,7 @@ public class PlayerHealState : PlayerState
     public override void EnterState(PlayerStateManager stateManager)
     {
         this.stateManager = stateManager;
+        HandleAnimations();
         SetAnimationParameters();
         HandleAudio();
 
@@ -21,7 +22,18 @@ public class PlayerHealState : PlayerState
     public override void UpdateState()
     {
         HandleInputs();
-        HandleAnimations();
+
+        if (stateManager.isLockedOn)
+        {
+            LookAtLockOnPoint();
+            stateManager.animator.SetFloat("HorizontalMovement", 0);
+            stateManager.animator.SetFloat("VerticalMovement", 0);
+        }
+        else
+        {
+            LookAtMovementDirection();
+        }
+
 
         stateManager.transform.Translate(stateManager.movementDirection.normalized * stateManager.healingMoveSpeed * Time.deltaTime);
 
@@ -37,23 +49,13 @@ public class PlayerHealState : PlayerState
 
     public override void HandleAnimations()
     {
-        if (stateManager.isLockedOn)
-        {
-            LookAtLockOnPoint();
-            stateManager.animator.SetFloat("HorizontalMovement", Input.GetAxis("Horizontal"));
-            stateManager.animator.SetFloat("VerticalMovement", Input.GetAxis("Vertical"));
-        }
-        else
-        {
-            LookAtMovementDirection();
-            stateManager.animator.Play("Unarmed-Run-Forward");
-        }
+        stateManager.animator.Play("Healing");
     }
 
     public override void SetAnimationParameters()
     {
         stateManager.animator.speed = 0.5f;
-        stateManager.animator.SetBool("IsMoving", true);
+        stateManager.animator.SetBool("IsMoving", false);
         stateManager.animator.SetBool("IsSprinting", false);
     }
 

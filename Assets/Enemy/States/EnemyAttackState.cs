@@ -18,7 +18,7 @@ public class EnemyAttackState : EnemyState
         stateManager.attackMoveSpeed = Vector3.Distance(stateManager.transform.position, stateManager.player.transform.position) * 4;
         HandleAnimations();
         SetAnimationParameters();
-        HandleAuido();
+        HandleAudio();
     }
 
     public override void UpdateState()
@@ -44,7 +44,7 @@ public class EnemyAttackState : EnemyState
         stateManager.animator.SetBool("IsMoving", false);
     }
 
-    public override void HandleAuido()
+    public override void HandleAudio()
     {
         stateManager.enemyAudio.clip = attackSound;
         stateManager.enemyAudio.loop = loopSound;

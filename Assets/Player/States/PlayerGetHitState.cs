@@ -25,7 +25,7 @@ public class PlayerGetHitState : PlayerState
 
     public override void HandleAnimations()
     {
-        stateManager.animator.Play("Unarmed-GetHit-F2");
+        stateManager.animator.Play("playerHurt");
     }
 
     public override void SetAnimationParameters()

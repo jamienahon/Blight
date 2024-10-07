@@ -6,6 +6,7 @@ public class PlayerAnimationEvents : MonoBehaviour
     public PlayerStateManager stateManager;
     public Collider lHitbox;
     public Collider hHitbox;
+    public GameObject healVFX;
 
     public void StartDodge()
     {
@@ -17,19 +18,6 @@ public class PlayerAnimationEvents : MonoBehaviour
         stateManager.isInvincible = false;
         stateManager.SwitchState(stateManager.idleState);
         stateManager.animator.SetBool("IsDodging", false);
-    }
-
-    public void EndJump()
-    {
-        stateManager.jumpState.rb.useGravity = false;
-        stateManager.SwitchState(stateManager.idleState);
-        stateManager.animator.SetBool("IsJumping", false);
-    }
-
-    public void StartFalling()
-    {
-        stateManager.animator.speed = 0;
-        stateManager.jumpState.isJumping = false;
     }
 
     public void EndLAttack()
@@ -78,5 +66,10 @@ public class PlayerAnimationEvents : MonoBehaviour
     public void PauseBlock()
     {
         stateManager.animator.speed = 0;
+    }
+
+    public void SpawnHealVFX()
+    {
+        Instantiate(healVFX, stateManager.transform);
     }
 }
