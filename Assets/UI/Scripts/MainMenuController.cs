@@ -24,7 +24,7 @@ public class MainMenuController : MonoBehaviour
 
     [Header("Gameplay Settings")]
     public Slider fovSlider;
-    public int fovValue;
+    public float fovValue;
 
     private void Start()
     {
