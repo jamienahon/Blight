@@ -5,8 +5,8 @@ using UnityEngine;
 
 public enum Attacks
 {
-    SlashAttack,
-    SpinAttack
+    SpinAttack,
+    MineAttack
 }
 
 public class EnemyStateManager : MonoBehaviour
@@ -99,7 +99,14 @@ public class EnemyStateManager : MonoBehaviour
     public void DecideState()
     {
         if (Time.time >= attackCooldownEnd)
-            SwitchState(sweepAttackState);
+        {
+            int attackType = UnityEngine.Random.Range(0, Enum.GetNames(typeof(Attacks)).Length);
+
+            if (attackType == (int)Attacks.SpinAttack)
+                SwitchState(sweepAttackState);
+            else if (attackType == (int)Attacks.MineAttack)
+                SwitchState(mineAttackState);
+        }
     }
 
     public bool IsPlayerInRange()
