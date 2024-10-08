@@ -100,9 +100,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  moveSpeed: 25
   target: {fileID: 0}
+  damage: 0
+  gemRechargeAmount: 0
+  moveSpeed: 25
   trackingStrength: 0
+  damageFalloff: 0
 --- !u!136 &2094107229589407655
 CapsuleCollider:
   m_ObjectHideFlags: 0
