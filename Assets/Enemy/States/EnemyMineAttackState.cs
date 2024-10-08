@@ -11,13 +11,16 @@ public class EnemyMineAttackState : EnemyState
     {
         this.stateManager = stateManager;
         endAttackTime = Time.time + stateManager.mineAttackLength;
+        stateManager.attackCooldownEnd = Time.time + Random.Range(stateManager.timeBetweenAttacks.x, stateManager.timeBetweenAttacks.y) + stateManager.mineAttackLength;
         SpawnMines();
     }
 
     public override void UpdateState()
     {
         if (Time.time >= endAttackTime)
+        {
             stateManager.SwitchState(stateManager.idleState);
+        }
     }
 
     public override void HandleAnimations()
