@@ -39,7 +39,7 @@ public class PlayerProjectile : MonoBehaviour
     {
         if (other.gameObject.tag == "Enemy")
         {
-            other.gameObject.GetComponent<EnemyHealthSystem>().DoDamage(damage);
+            other.gameObject.GetComponentInParent<EnemyHealthSystem>().DoDamage(damage);
             player.GetComponent<PlayerHealthSystem>().RechargeGem(gemRechargeAmount);
         }
         else if (other.gameObject.tag == "PlayerHit" || other.gameObject.tag == "Player")
