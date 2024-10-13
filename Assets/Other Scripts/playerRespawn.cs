@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class playerRespawn : MonoBehaviour
 {
+    public AudioSource Hurt; 
     public float fallThreshold = -10f; // The Y value below which the player will respawn
     private Vector3 startPosition; // To store the starting position of the player
 
@@ -25,6 +26,7 @@ public class playerRespawn : MonoBehaviour
     void Respawn()
     {
         // Reset the player's position to the starting position
+        Hurt.Play();
         transform.position = startPosition;
     }
 }
