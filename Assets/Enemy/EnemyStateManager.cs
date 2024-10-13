@@ -1,6 +1,13 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
+public enum Attacks
+{
+    SpinAttack,
+    MineAttack
+}
 
 public class EnemyStateManager : MonoBehaviour
 {
@@ -18,6 +25,8 @@ public class EnemyStateManager : MonoBehaviour
     public EnemyMoveState moveState = new EnemyMoveState();
     public EnemyStunnedState stunnedState = new EnemyStunnedState();
     public EnemyMineAttackState mineAttackState = new EnemyMineAttackState();
+    public EnemyMoveTowardPlayerState moveTowardPlayerState = new EnemyMoveTowardPlayerState();
+    public EnemySweepAttackState sweepAttackState = new EnemySweepAttackState();
 
     [HideInInspector] public bool switchStates = false;
 
@@ -26,7 +35,7 @@ public class EnemyStateManager : MonoBehaviour
 
     [Header("Attacking")]
     public Vector2 timeBetweenAttacks;
-    [HideInInspector] public float nextAttack;
+    [HideInInspector] public float attackCooldownEnd;
     public float attackMoveSpeed;
     public float attackRange;
     public float rangedAttackRange;
@@ -51,6 +60,7 @@ public class EnemyStateManager : MonoBehaviour
 
     public float stunnedLength;
     [HideInInspector] public float endStun;
+    int previousAttackNumber;
 
 
     private void Start()
@@ -58,12 +68,14 @@ public class EnemyStateManager : MonoBehaviour
         animator = GetComponentInChildren<Animator>();
         healthSystem = GetComponent<EnemyHealthSystem>();
         enemyAudio = GetComponent<AudioSource>();
-        nextAttack = Time.time + Random.Range(timeBetweenAttacks.x, timeBetweenAttacks.y);
+        attackCooldownEnd = Time.time + UnityEngine.Random.Range(timeBetweenAttacks.x, timeBetweenAttacks.y);
         meshRenderer = GetComponentInChildren<SkinnedMeshRenderer>();
         meshRenderer.material.color = phase1Colour;
 
         currentState = idleState;
         currentState.EnterState(this);
+
+        UnityEngine.Random.InitState((int)System.DateTime.Now.Ticks);
     }
 
     public void FixedUpdate()
@@ -75,12 +87,26 @@ public class EnemyStateManager : MonoBehaviour
         }
 
         currentState.UpdateState();
+        DecideState();
     }
 
     public void SwitchState(EnemyState state)
     {
         currentState = state;
         switchStates = true;
+    }
+
+    public void DecideState()
+    {
+        if (Time.time >= attackCooldownEnd)
+        {
+            int attackType = UnityEngine.Random.Range(0, Enum.GetNames(typeof(Attacks)).Length);
+
+            if (attackType == (int)Attacks.SpinAttack)
+                SwitchState(sweepAttackState);
+            else if (attackType == (int)Attacks.MineAttack)
+                SwitchState(mineAttackState);
+        }
     }
 
     public bool IsPlayerInRange()

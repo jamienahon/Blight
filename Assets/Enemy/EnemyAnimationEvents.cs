@@ -2,24 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum Hitboxes
+{
+    SpinAttackHitbox,
+    SlashAttackHitboxes
+}
+
 public class EnemyAnimationEvents : MonoBehaviour
 {
     public EnemyStateManager stateManager;
-    public CapsuleCollider enemyHitbox;
+    public Collider[] spinAttackHitboxes;
+    public Collider[] slashAttackHitboxes;
 
     public void EndAttack()
     {
         stateManager.SwitchState(stateManager.idleState);
-    }
-
-    public void StartMove()
-    {
-        stateManager.meleeAttackState.move = true;
-    }
-
-    public void EndMove()
-    {
-        stateManager.meleeAttackState.move = false;
+        stateManager.attackCooldownEnd = Time.time + Random.Range(stateManager.timeBetweenAttacks.x, stateManager.timeBetweenAttacks.y);
     }
 
     public void StopRotate()
@@ -27,14 +25,26 @@ public class EnemyAnimationEvents : MonoBehaviour
         stateManager.meleeAttackState.rotate = false;
     }
 
-    public void EnableHitbox()
+    public void EnableHitbox(Hitboxes hitbox)
     {
-        enemyHitbox.enabled = true;
+        if (hitbox == Hitboxes.SpinAttackHitbox)
+        {
+            foreach (Collider collider in spinAttackHitboxes)
+            {
+                collider.enabled = true;
+            }
+        }
     }
 
-    public void DisableHitbox()
+    public void DisableHitbox(Hitboxes hitbox)
     {
-        enemyHitbox.enabled = false;
+        if (hitbox == Hitboxes.SpinAttackHitbox)
+        {
+            foreach (Collider collider in spinAttackHitboxes)
+            {
+                collider.enabled = false;
+            }
+        }
     }
 
     public void SpawnProjectile()

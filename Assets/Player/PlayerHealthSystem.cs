@@ -9,6 +9,7 @@ public class PlayerHealthSystem : MonoBehaviour
 {
     PlayerStateManager stateManager;
     public GameObject deathScreen;
+    public Animator healingChargesAnim;
 
     [Header("Health")]
     public Image healthBar;
@@ -53,6 +54,8 @@ public class PlayerHealthSystem : MonoBehaviour
 
         if (rechargeGem && healingGemImages[0].fillAmount == 1)
         {
+            healingChargesAnim.playableGraph.Play();
+            healingChargesAnim.Play("Recharge Gem");
             healingGemImages[0].color = new Color(1, 1, 1, 1);
             rechargeGem = false;
             healthCharges = 1;
@@ -63,6 +66,11 @@ public class PlayerHealthSystem : MonoBehaviour
 
         if (Time.time >= startHealthBarSmoothing && healthBarSmoothing)
             SmoothHealthBar();
+
+        if (healingChargesAnim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1 && healingChargesAnim.GetCurrentAnimatorStateInfo(0).IsName("Use Gem 1"))
+        {
+            healingChargesAnim.playableGraph.Stop();
+        }
     }
 
     public void DoDamage(float damage)
@@ -106,22 +114,23 @@ public class PlayerHealthSystem : MonoBehaviour
             return;
 
         healthBar.fillAmount += healAmount * (1 / maxHealth);
-        healthCharges--;
+
+        healingChargesAnim.Play("Use Gem " + healthCharges.ToString());
 
         if (!healthBarSmoothing)
             healthBarBackground.fillAmount = healthBar.fillAmount;
 
         if (healingGemImages.Count > 1)
         {
-            healingGemImages[0].gameObject.SetActive(false);
             healingGemImages.RemoveAt(0);
         }
         else
         {
+            healingGemImages[0].fillAmount = 0.999f;
             rechargeGem = true;
-            healingGemImages[0].color = new Color(1, 1, 1, 0.3f);
-            healingGemImages[0].fillAmount = 0;
         }
+
+        healthCharges--;
     }
 
     public void ConsumeStamina(float consumeAmount)
