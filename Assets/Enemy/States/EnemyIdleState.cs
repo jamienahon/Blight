@@ -30,7 +30,7 @@ public class EnemyIdleState : EnemyState
 
     public override void SetAnimationParameters()
     {
-        stateManager.animator.SetBool("IsMoving", false);
+
     }
 
     public override void HandleAudio()

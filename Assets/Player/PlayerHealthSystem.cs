@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
+using UnityEngine.Playables;
 
 public class PlayerHealthSystem : MonoBehaviour
 {
@@ -49,6 +50,7 @@ public class PlayerHealthSystem : MonoBehaviour
 
     private void Update()
     {
+        Debug.Log(healingChargesAnim.playableGraph.IsPlaying());
         if (Time.time >= refillStamina && staminaBar.fillAmount < 1)
             RefillStamina();
 
@@ -57,6 +59,7 @@ public class PlayerHealthSystem : MonoBehaviour
             healingChargesAnim.playableGraph.Play();
             healingChargesAnim.Play("Recharge Gem");
             healingGemImages[0].color = new Color(1, 1, 1, 1);
+            healingGemImages[0].fillAmount = 0.99f;
             rechargeGem = false;
             healthCharges = 1;
         }
@@ -67,7 +70,7 @@ public class PlayerHealthSystem : MonoBehaviour
         if (Time.time >= startHealthBarSmoothing && healthBarSmoothing)
             SmoothHealthBar();
 
-        if (healingChargesAnim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1 && healingChargesAnim.GetCurrentAnimatorStateInfo(0).IsName("Use Gem 1"))
+        if (rechargeGem && healingChargesAnim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1 && healingChargesAnim.GetCurrentAnimatorStateInfo(0).IsName("Use Gem 1"))
         {
             healingChargesAnim.playableGraph.Stop();
         }
@@ -126,7 +129,6 @@ public class PlayerHealthSystem : MonoBehaviour
         }
         else
         {
-            healingGemImages[0].fillAmount = 0.999f;
             rechargeGem = true;
         }
 

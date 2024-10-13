@@ -5,7 +5,7 @@ using UnityEngine;
 
 public enum Attacks
 {
-    SpinAttack,
+    SweepAttack,
     MineAttack
 }
 
@@ -26,7 +26,7 @@ public class EnemyStateManager : MonoBehaviour
     public EnemyStunnedState stunnedState = new EnemyStunnedState();
     public EnemyMineAttackState mineAttackState = new EnemyMineAttackState();
     public EnemyMoveTowardPlayerState moveTowardPlayerState = new EnemyMoveTowardPlayerState();
-    public EnemySweepAttackState sweepAttackState = new EnemySweepAttackState();
+    public EnemySpinAttackState sweepAttackState = new EnemySpinAttackState();
 
     [HideInInspector] public bool switchStates = false;
 
@@ -60,7 +60,9 @@ public class EnemyStateManager : MonoBehaviour
 
     public float stunnedLength;
     [HideInInspector] public float endStun;
-    int previousAttackNumber;
+
+    Attacks previousAttack;
+    Attacks desiredAttack;
 
 
     private void Start()
@@ -100,12 +102,20 @@ public class EnemyStateManager : MonoBehaviour
     {
         if (Time.time >= attackCooldownEnd)
         {
-            int attackType = UnityEngine.Random.Range(0, Enum.GetNames(typeof(Attacks)).Length);
+            int attackType;
+            do attackType = UnityEngine.Random.Range(0, Enum.GetNames(typeof(Attacks)).Length);
+            while (attackType == (int)previousAttack);
 
-            if (attackType == (int)Attacks.SpinAttack)
+            if (attackType == (int)Attacks.SweepAttack)
+            {
                 SwitchState(sweepAttackState);
+                previousAttack = Attacks.SweepAttack;
+            }
             else if (attackType == (int)Attacks.MineAttack)
+            {
                 SwitchState(mineAttackState);
+                previousAttack = Attacks.MineAttack;
+            }
         }
     }
 

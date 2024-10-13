@@ -72,4 +72,9 @@ public class PlayerAnimationEvents : MonoBehaviour
     {
         Instantiate(healVFX, stateManager.transform);
     }
+
+    public void Heal()
+    {
+        stateManager.healthSystem.Heal(stateManager.healAmount);
+    }
 }
