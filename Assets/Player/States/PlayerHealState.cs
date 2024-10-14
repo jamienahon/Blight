@@ -16,7 +16,6 @@ public class PlayerHealState : PlayerState
         HandleAudio();
 
         endHeal = Time.time + stateManager.healLengthSeconds;
-        stateManager.healthSystem.Heal(stateManager.healAmount);
     }
 
     public override void UpdateState()

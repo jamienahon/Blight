@@ -2,13 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemySweepAttackState : EnemyState
+public class EnemySpinAttackState : EnemyState
 {
     public override EnemyStateManager stateManager { get; set; }
 
     public override void EnterState(EnemyStateManager stateManager)
     {
         this.stateManager = stateManager;
+        stateManager.attackCooldownEnd = Time.time + Random.Range(stateManager.timeBetweenAttacks.x, stateManager.timeBetweenAttacks.y);
         HandleAnimations();
     }
 

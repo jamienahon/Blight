@@ -11,7 +11,7 @@ public class EnemyMineAttackState : EnemyState
     {
         this.stateManager = stateManager;
         endAttackTime = Time.time + stateManager.mineAttackLength;
-        stateManager.attackCooldownEnd = Time.time + Random.Range(stateManager.timeBetweenAttacks.x, stateManager.timeBetweenAttacks.y) + stateManager.mineAttackLength;
+        stateManager.attackCooldownEnd = Time.time + Random.Range(stateManager.timeBetweenAttacks.x, stateManager.timeBetweenAttacks.y);
         SpawnMines();
     }
 
