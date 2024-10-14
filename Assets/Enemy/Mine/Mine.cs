@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class Mine : MonoBehaviour
 {
@@ -8,17 +10,20 @@ public class Mine : MonoBehaviour
     public float timeToExplosion;
     public float damage;
     public Collider mineCollider;
+    public VisualEffect explosionVFX;
 
     private void Start()
     {
         animator = GetComponent<Animator>();
         animator.speed = 1 / timeToExplosion;
+        explosionVFX = GetComponent<VisualEffect>();
     }
 
     public void Explode()
     {
         animator.speed = 1;
         mineCollider.enabled = true;
+        explosionVFX.Play();
     }
 
     public void DestroyMine()
