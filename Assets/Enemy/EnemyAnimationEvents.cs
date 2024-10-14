@@ -5,14 +5,16 @@ using UnityEngine;
 public enum Hitboxes
 {
     SpinAttackHitbox,
-    SlashAttackHitboxes
+    RightArmHitboxes,
+    LeftArmHitboxes
 }
 
 public class EnemyAnimationEvents : MonoBehaviour
 {
     public EnemyStateManager stateManager;
     public Collider[] spinAttackHitboxes;
-    public Collider[] slashAttackHitboxes;
+    public Collider[] rightArmHitboxes;
+    public Collider[] leftArmHitboxes;
 
     public void EndAttack()
     {
@@ -34,6 +36,20 @@ public class EnemyAnimationEvents : MonoBehaviour
                 collider.enabled = true;
             }
         }
+        else if (hitbox == Hitboxes.RightArmHitboxes)
+        {
+            foreach (Collider collider in rightArmHitboxes)
+            {
+                collider.enabled = true;
+            }
+        }
+        else if (hitbox == Hitboxes.LeftArmHitboxes)
+        {
+            foreach (Collider collider in leftArmHitboxes)
+            {
+                collider.enabled = true;
+            }
+        }
     }
 
     public void DisableHitbox(Hitboxes hitbox)
@@ -41,6 +57,20 @@ public class EnemyAnimationEvents : MonoBehaviour
         if (hitbox == Hitboxes.SpinAttackHitbox)
         {
             foreach (Collider collider in spinAttackHitboxes)
+            {
+                collider.enabled = false;
+            }
+        }
+        else if (hitbox == Hitboxes.RightArmHitboxes)
+        {
+            foreach (Collider collider in rightArmHitboxes)
+            {
+                collider.enabled = false;
+            }
+        }
+        else if (hitbox == Hitboxes.LeftArmHitboxes)
+        {
+            foreach (Collider collider in leftArmHitboxes)
             {
                 collider.enabled = false;
             }
