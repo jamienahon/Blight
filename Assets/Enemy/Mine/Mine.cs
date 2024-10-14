@@ -9,12 +9,13 @@ public class Mine : MonoBehaviour
     Animator animator;
     public float timeToExplosion;
     public float damage;
-    public Collider mineCollider;
-    public VisualEffect explosionVFX;
+    Collider mineCollider;
+    VisualEffect explosionVFX;
 
     private void Start()
     {
         animator = GetComponent<Animator>();
+        mineCollider = GetComponent<Collider>();
         animator.speed = 1 / timeToExplosion;
         explosionVFX = GetComponent<VisualEffect>();
     }
@@ -24,6 +25,11 @@ public class Mine : MonoBehaviour
         animator.speed = 1;
         mineCollider.enabled = true;
         explosionVFX.Play();
+    }
+
+    public void DisableHitbox()
+    {
+        mineCollider.enabled = false;
     }
 
     public void DestroyMine()
