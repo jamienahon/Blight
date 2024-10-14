@@ -6,7 +6,8 @@ using UnityEngine;
 public enum Attacks
 {
     SweepAttack,
-    MineAttack
+    MineAttack,
+    SlashAttack
 }
 
 public class EnemyStateManager : MonoBehaviour
@@ -27,6 +28,7 @@ public class EnemyStateManager : MonoBehaviour
     public EnemyMineAttackState mineAttackState = new EnemyMineAttackState();
     public EnemyMoveTowardPlayerState moveTowardPlayerState = new EnemyMoveTowardPlayerState();
     public EnemySpinAttackState sweepAttackState = new EnemySpinAttackState();
+    public EnemySlashAttackState slashAttackState = new EnemySlashAttackState();
 
     [HideInInspector] public bool switchStates = false;
 
@@ -115,6 +117,11 @@ public class EnemyStateManager : MonoBehaviour
             {
                 SwitchState(mineAttackState);
                 previousAttack = Attacks.MineAttack;
+            }
+            else if (attackType == (int)Attacks.SlashAttack)
+            {
+                SwitchState(slashAttackState);
+                previousAttack = Attacks.SlashAttack;
             }
         }
     }
