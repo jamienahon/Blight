@@ -45,7 +45,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2182488338627037398}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 5441120410376187854, guid: 01e0b0ffd6bc4b242982d51f4534e49e, type: 3}
 --- !u!23 &2182488338627037397
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -123,8 +123,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeToExplosion: 0
   damage: 0
-  mineCollider: {fileID: 30255291046541509}
-  explosionVFX: {fileID: 8926484042661614526, guid: f1dc2fd85ff614346b171073eff12376, type: 3}
 --- !u!135 &30255291046541509
 SphereCollider:
   m_ObjectHideFlags: 0

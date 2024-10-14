@@ -5,7 +5,6 @@ using UnityEngine;
 public class EnemyMineAttackState : EnemyState
 {
     public override EnemyStateManager stateManager { get; set; }
-    float endAttackTime;
 
     public override void EnterState(EnemyStateManager stateManager)
     {
@@ -42,12 +41,11 @@ public class EnemyMineAttackState : EnemyState
             float zMin = stateManager.gameObject.transform.position.z - stateManager.mineSpawnRange;
             float zMax = stateManager.gameObject.transform.position.z + stateManager.mineSpawnRange;
 
-            Vector3 position = new Vector3(Random.Range(xMin, xMax), 33.0f, Random.Range(zMin, zMax));
+            Vector3 position = new Vector3(Random.Range(xMin, xMax), 32.6f, Random.Range(zMin, zMax));
             GameObject newMine = Object.Instantiate(stateManager.minePrefab);
             newMine.transform.position = position;
 
             Mine mine = newMine.GetComponent<Mine>();
-            mine.timeToExplosion = stateManager.timeToExplosion + Random.Range(-0.5f, 0.5f);
             mine.damage = stateManager.mineDamage;
         }
     }
