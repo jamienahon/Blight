@@ -81,4 +81,9 @@ public class EnemyAnimationEvents : MonoBehaviour
     {
         stateManager.SpawnProjectile();
     }
+
+    public void SpawnMines()
+    {
+        stateManager.mineAttackState.SpawnMines();
+    }
 }

@@ -9,7 +9,6 @@ public class EnemySlashAttackState : EnemyState
     public override void EnterState(EnemyStateManager stateManager)
     {
         this.stateManager = stateManager;
-        stateManager.attackCooldownEnd = Time.time + Random.Range(stateManager.timeBetweenAttacks.x, stateManager.timeBetweenAttacks.y);
         HandleAnimations();
     }
 

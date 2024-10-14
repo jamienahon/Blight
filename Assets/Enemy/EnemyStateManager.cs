@@ -102,7 +102,7 @@ public class EnemyStateManager : MonoBehaviour
 
     public void DecideState()
     {
-        if (Time.time >= attackCooldownEnd)
+        if (Time.time >= attackCooldownEnd && (currentState == idleState || currentState == moveState))
         {
             int attackType;
             do attackType = UnityEngine.Random.Range(0, Enum.GetNames(typeof(Attacks)).Length);
