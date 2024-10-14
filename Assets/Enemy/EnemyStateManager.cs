@@ -5,8 +5,9 @@ using UnityEngine;
 
 public enum Attacks
 {
-    SpinAttack,
-    MineAttack
+    SweepAttack,
+    MineAttack,
+    SlashAttack
 }
 
 public class EnemyStateManager : MonoBehaviour
@@ -26,7 +27,8 @@ public class EnemyStateManager : MonoBehaviour
     public EnemyStunnedState stunnedState = new EnemyStunnedState();
     public EnemyMineAttackState mineAttackState = new EnemyMineAttackState();
     public EnemyMoveTowardPlayerState moveTowardPlayerState = new EnemyMoveTowardPlayerState();
-    public EnemySweepAttackState sweepAttackState = new EnemySweepAttackState();
+    public EnemySpinAttackState sweepAttackState = new EnemySpinAttackState();
+    public EnemySlashAttackState slashAttackState = new EnemySlashAttackState();
 
     [HideInInspector] public bool switchStates = false;
 
@@ -60,7 +62,9 @@ public class EnemyStateManager : MonoBehaviour
 
     public float stunnedLength;
     [HideInInspector] public float endStun;
-    int previousAttackNumber;
+
+    Attacks previousAttack;
+    Attacks desiredAttack;
 
 
     private void Start()
@@ -98,14 +102,27 @@ public class EnemyStateManager : MonoBehaviour
 
     public void DecideState()
     {
-        if (Time.time >= attackCooldownEnd)
+        if (Time.time >= attackCooldownEnd && (currentState == idleState || currentState == moveState))
         {
-            int attackType = UnityEngine.Random.Range(0, Enum.GetNames(typeof(Attacks)).Length);
+            int attackType;
+            do attackType = UnityEngine.Random.Range(0, Enum.GetNames(typeof(Attacks)).Length);
+            while (attackType == (int)previousAttack);
 
-            if (attackType == (int)Attacks.SpinAttack)
+            if (attackType == (int)Attacks.SweepAttack)
+            {
                 SwitchState(sweepAttackState);
+                previousAttack = Attacks.SweepAttack;
+            }
             else if (attackType == (int)Attacks.MineAttack)
+            {
                 SwitchState(mineAttackState);
+                previousAttack = Attacks.MineAttack;
+            }
+            else if (attackType == (int)Attacks.SlashAttack)
+            {
+                SwitchState(slashAttackState);
+                previousAttack = Attacks.SlashAttack;
+            }
         }
     }
 

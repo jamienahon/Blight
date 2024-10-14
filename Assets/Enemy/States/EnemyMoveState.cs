@@ -34,7 +34,7 @@ public class EnemyMoveState : EnemyState
 
     public override void SetAnimationParameters()
     {
-        stateManager.animator.SetBool("IsMoving", true);
+
     }
 
     public override void HandleAudio()
