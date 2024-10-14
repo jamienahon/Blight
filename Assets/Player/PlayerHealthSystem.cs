@@ -50,7 +50,6 @@ public class PlayerHealthSystem : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(healingChargesAnim.playableGraph.IsPlaying());
         if (Time.time >= refillStamina && staminaBar.fillAmount < 1)
             RefillStamina();
 

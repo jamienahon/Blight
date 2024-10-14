@@ -13,8 +13,8 @@ public class Mine : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         mineCollider = GetComponent<Collider>();
-        animator.speed = 1 / timeToExplosion;
         explosionVFX = GetComponent<VisualEffect>();
+        animator.speed = Random.Range(0.9f, 1.1f);
     }
 
     public void Explode()
