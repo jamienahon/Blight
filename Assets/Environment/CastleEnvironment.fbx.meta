@@ -23,12 +23,12 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Platform_1_TEX
-    second: {fileID: 2100000, guid: 695e3beb058dec84590007d448acebfe, type: 2}
+    second: {fileID: 2100000, guid: b4948b290771840489bf970d98e7018e, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Platform_2_TEX
-    second: {fileID: 2100000, guid: b4948b290771840489bf970d98e7018e, type: 2}
+    second: {fileID: 2100000, guid: 695e3beb058dec84590007d448acebfe, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
@@ -54,6 +54,11 @@ ModelImporter:
       assembly: UnityEngine.CoreModule
       name: Square_Spire_TEX
     second: {fileID: 2100000, guid: d4c9c2bd147332e4cbc4dc8c195a1493, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: path
+    second: {fileID: 2100000, guid: 93b591380630fc64bbc7b5425f9725a6, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

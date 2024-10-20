@@ -8,6 +8,7 @@ public class Destroy : MonoBehaviour
     public EnemyStateManager enemyStateManager;
     public AudioSource Phase1;
     public AudioSource Ambience;
+    public Animation BossHP;
 
     private void Start()
     {
@@ -17,6 +18,7 @@ public class Destroy : MonoBehaviour
     public void OnTriggerEnter(Collider Player)
     {
         // GameObject.Find("Menu").GetComponent<UIController>().OpenTutorial();
+        BossHP.Play();
         enemyStateManager.enabled = true;
 
 
