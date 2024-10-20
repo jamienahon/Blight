@@ -66,7 +66,7 @@ public class CameraController : MonoBehaviour
         currentLockOnPoint = null;
         stateManager.isLockedOn = false;
         stateManager.SwitchState(stateManager.idleState);
-        followCam.m_XAxis.Value = cameraTarget.transform.rotation.eulerAngles.y;
+        followCam.m_XAxis.Value = stateManager.animator.transform.rotation.eulerAngles.y;
         followCam.m_YAxis.Value = 0.5f;
         cameraAnim.Play("FollowCamera");
     }
