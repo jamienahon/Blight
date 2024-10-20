@@ -36,10 +36,10 @@ public class EnemyMineAttackState : EnemyState
     {
         for(int i = 0; i < stateManager.numberOfMines; i++)
         {
-            float xMin = stateManager.gameObject.transform.position.x - stateManager.mineSpawnRange;
-            float xMax = stateManager.gameObject.transform.position.x + stateManager.mineSpawnRange;
-            float zMin = stateManager.gameObject.transform.position.z - stateManager.mineSpawnRange;
-            float zMax = stateManager.gameObject.transform.position.z + stateManager.mineSpawnRange;
+            float xMin = stateManager.player.gameObject.transform.position.x - stateManager.mineSpawnRange;
+            float xMax = stateManager.player.gameObject.transform.position.x + stateManager.mineSpawnRange;
+            float zMin = stateManager.player.gameObject.transform.position.z - stateManager.mineSpawnRange;
+            float zMax = stateManager.player.gameObject.transform.position.z + stateManager.mineSpawnRange;
 
             Vector3 position = new Vector3(Random.Range(xMin, xMax), 32.6f, Random.Range(zMin, zMax));
             GameObject newMine = Object.Instantiate(stateManager.minePrefab);
