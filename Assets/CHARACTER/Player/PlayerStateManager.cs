@@ -8,7 +8,7 @@ public class PlayerStateManager : MonoBehaviour
 
     [HideInInspector] public Animator animator;
     [HideInInspector] public PlayerHealthSystem healthSystem;
-    [HideInInspector]public AudioSource playerAudio;
+    [HideInInspector] public AudioSource playerAudio;
 
     public PlayerIdleState idleState = new PlayerIdleState();
     public PlayerWalkState walkState = new PlayerWalkState();
@@ -46,6 +46,7 @@ public class PlayerStateManager : MonoBehaviour
     public float damageFalloff;
     public bool allowMovementWhileAttacking;
     public float attackMovementSpeed;
+    public float arrowLifetime;
 
     [Header("Light Attack")]
     public GameObject projectile;
