@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Rendering.LookDev;
 using UnityEngine;
 
 public enum Attacks
@@ -46,6 +47,8 @@ public class EnemyStateManager : MonoBehaviour
     public GameObject projectile;
     public float arrowTrackingStrength;
     public float arrowMoveSpeed;
+    public float midAttackMoveSpeed;
+    public float maxAttackDistance;
 
     [Header("Mine Attack")]
     public GameObject minePrefab;
@@ -92,6 +95,10 @@ public class EnemyStateManager : MonoBehaviour
 
         currentState.UpdateState();
         DecideState();
+
+        Vector3 lookDir = new Vector3(player.transform.position.x, 0, player.transform.position.z);
+        animator.transform.LookAt(lookDir);
+        animator.transform.rotation = Quaternion.Euler(0, animator.transform.rotation.eulerAngles.y, 0);
     }
 
     public void SwitchState(EnemyState state)

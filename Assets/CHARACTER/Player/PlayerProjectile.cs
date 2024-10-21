@@ -1,18 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class PlayerProjectile : MonoBehaviour
 {
     public GameObject player;
     public GameObject target;
     PlayerStateManager stateManager;
+    TrailRenderer trail;
 
     public float damage;
     public float gemRechargeAmount;
     public float moveSpeed;
     public float trackingStrength;
     public float damageFalloff;
+    VisualEffect impactVFX;
+    public float deleteArrow;
+
+    private void Start()
+    {
+        impactVFX = GetComponentInChildren<VisualEffect>();
+    }
 
     private void Update()
     {
@@ -33,6 +42,9 @@ public class PlayerProjectile : MonoBehaviour
 
         if (damage <= 0)
             damage = 0;
+
+        if (Time.time >= deleteArrow)
+            Destroy(this);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -41,13 +53,17 @@ public class PlayerProjectile : MonoBehaviour
         {
             other.gameObject.GetComponentInParent<EnemyHealthSystem>().DoDamage(damage);
             player.GetComponent<PlayerHealthSystem>().RechargeGem(gemRechargeAmount);
+            impactVFX.Play();
+            enabled = false;
+            GetComponent<Collider>().enabled = false;
+            GetComponent<MeshRenderer>().enabled = false;
+            GetComponentInChildren<TrailRenderer>().gameObject.SetActive(false);
         }
         else if (other.gameObject.tag == "PlayerHit" || other.gameObject.tag == "Player")
             return;
-        Destroy(gameObject);
     }
 
-    public void InitialiseArrowValues(GameObject player, GameObject target, float damage, float gemRechargeAmount, float trackingStrength)
+    public void InitialiseArrowValues(GameObject player, GameObject target, float damage, float gemRechargeAmount, float trackingStrength, float arrowLifetime)
     {
         this.player = player;
         this.target = target;
@@ -59,5 +75,6 @@ public class PlayerProjectile : MonoBehaviour
 
         moveSpeed = stateManager.arrowMoveSpeed;
         damageFalloff = stateManager.damageFalloff;
+        deleteArrow = Time.time + arrowLifetime;
     }
 }

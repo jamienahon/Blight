@@ -16,6 +16,24 @@ public class EnemyAnimationEvents : MonoBehaviour
     public Collider[] rightArmHitboxes;
     public Collider[] leftArmHitboxes;
 
+    bool moveTowardPlayer = false;
+
+    private void Update()
+    {
+        if (moveTowardPlayer)
+        {
+            Vector3 enemyPos = new Vector3(stateManager.transform.position.x, 0, stateManager.transform.position.z);
+            Vector3 playerPos = new Vector3(stateManager.player.transform.position.x, 0, stateManager.player.transform.position.z);
+
+            if (Vector3.Distance(enemyPos, playerPos) > stateManager.maxAttackDistance)
+            {
+                float yPos = stateManager.transform.position.y;
+                Vector3 newPos = Vector3.MoveTowards(stateManager.transform.position, stateManager.player.transform.position, stateManager.midAttackMoveSpeed * Time.deltaTime);
+                stateManager.transform.position = new Vector3(newPos.x, yPos, newPos.z);
+            }
+        }
+    }
+
     public void EndAttack()
     {
         stateManager.SwitchState(stateManager.idleState);
@@ -85,5 +103,15 @@ public class EnemyAnimationEvents : MonoBehaviour
     public void SpawnMines()
     {
         stateManager.mineAttackState.SpawnMines();
+    }
+
+    public void StartMoveTowardPlayer()
+    {
+        moveTowardPlayer = true;
+    }
+
+    public void EndMoveTowardPlayer()
+    {
+        moveTowardPlayer = false;
     }
 }
