@@ -80,12 +80,12 @@ public class PlayerShootState : PlayerState
         if (stateManager.isLockedOn)
         {
             newProjectile.transform.up = (target.transform.position - newProjectile.transform.position).normalized;
-            newProjectile.GetComponent<PlayerProjectile>().InitialiseArrowValues(stateManager.gameObject, target, stateManager.lightAttackDamage, stateManager.lightAttackGemRecharge, stateManager.lockedOnArrowTrackingStrength);
+            newProjectile.GetComponent<PlayerProjectile>().InitialiseArrowValues(stateManager.gameObject, target, stateManager.lightAttackDamage, stateManager.lightAttackGemRecharge, stateManager.lockedOnArrowTrackingStrength, stateManager.arrowLifetime);
         }
         else
         {
             newProjectile.transform.up = stateManager.animator.transform.forward;
-            newProjectile.GetComponent<PlayerProjectile>().InitialiseArrowValues(stateManager.gameObject, target, stateManager.lightAttackDamage, stateManager.lightAttackGemRecharge, stateManager.arrowTrackingStrength);
+            newProjectile.GetComponent<PlayerProjectile>().InitialiseArrowValues(stateManager.gameObject, target, stateManager.lightAttackDamage, stateManager.lightAttackGemRecharge, stateManager.arrowTrackingStrength, stateManager.arrowLifetime);
         }
 
     }
