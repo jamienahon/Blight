@@ -11,11 +11,12 @@ TagManager:
   - Arrow
   - BackgroundAudioSource
   - FirstSelected
+  - Boss
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Boss
   - Water
   - UI
   - LockOnPoint
