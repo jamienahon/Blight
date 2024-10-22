@@ -79,7 +79,10 @@ public class UIController : MonoBehaviour
     public void OpenMenu(GameObject menu)
     {
         Time.timeScale = 0;
-        SetCursorMode(CursorLockMode.None, true);
+        SetCursorMode(CursorLockMode.Locked, true);
+
+
+        isCursorVisible = false;  //remove to enable cursor visibility during pause
 
         if (currentMenu != null)
         {
