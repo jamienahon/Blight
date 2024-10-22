@@ -9,6 +9,7 @@ public class Destroy : MonoBehaviour
     public AudioSource Phase1;
     public AudioSource Ambience;
     public Animation BossHP;
+    public Animation BossTheme;
 
     private void Start()
     {
@@ -25,6 +26,7 @@ public class Destroy : MonoBehaviour
 
 
         // PlaySounds
+        BossTheme.Play();
         Phase1.Play();
         Ambience.Stop();
 
