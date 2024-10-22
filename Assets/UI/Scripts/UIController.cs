@@ -152,6 +152,11 @@ public class UIController : MonoBehaviour
         tutorialScreen.SetActive(true);
         Time.timeScale = 1;
     }
+    public void CloseTutorial()
+    {
+        tutorialScreen.SetActive(false);
+        Time.timeScale = 1;
+    }
 
     public void QuitGame()
     {

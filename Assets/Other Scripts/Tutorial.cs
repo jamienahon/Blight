@@ -6,8 +6,15 @@ using UnityEngine;
 
 public class Tutorial : MonoBehaviour
 {
-    public void OnTriggerExit(Collider Player)
+    public Animation Closetutorial;
+    public void OnTriggerEnter(Collider Player)
     {
     GameObject.Find("Menu").GetComponent<UIController>().OpenTutorial();
     }
+    public void OnTriggerExit(Collider other)
+    {
+      Closetutorial.Play();
+      GameObject.Find("Menu").GetComponent<UIController>().CloseTutorial ();
+    }
+   
 }
