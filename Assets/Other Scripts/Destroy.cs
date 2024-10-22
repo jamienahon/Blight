@@ -9,6 +9,8 @@ public class Destroy : MonoBehaviour
     public AudioSource Phase1;
     public AudioSource Ambience;
     public Animation BossHP;
+    public Animation BossTheme;
+    public Animation FogWall;
 
     private void Start()
     {
@@ -21,21 +23,12 @@ public class Destroy : MonoBehaviour
         BossHP.Play();
         enemyStateManager.enabled = true;
 
-
-
-
-        // PlaySounds
+        // PlaySounds and Animations
+        FogWall.Play();
+        BossTheme.Play();
         Phase1.Play();
         Ambience.Stop();
 
-        //Destroy(barrier);
-
-    
-    
-    
-       // GameObject.Find("Menu").GetComponent<UIController>().OpenTutorial();
-
-        Destroy(barrier);
-        Destroy(gameObject);
+        Object.Destroy(barrier);
     }
 }
