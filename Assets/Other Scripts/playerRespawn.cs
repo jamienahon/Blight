@@ -1,17 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class playerRespawn : MonoBehaviour
 {
+    PlayerStateManager stateManager;
     public AudioSource Hurt; 
     public float fallThreshold = -10f; // The Y value below which the player will respawn
-    private Vector3 startPosition; // To store the starting position of the player
+    public GameObject deathScreen;
+    public Image healthBar;
+
+
 
     void Start()
     {
-        // Store the player's initial position when the game starts
-        startPosition = transform.position;
+        stateManager = GetComponent<PlayerStateManager>();
     }
 
     void Update()
@@ -19,14 +24,20 @@ public class playerRespawn : MonoBehaviour
         // Check if the player's Y position is below the threshold
         if (transform.position.y < fallThreshold)
         {
-            Respawn();
+            Die();
         }
     }
 
-    void Respawn()
+    void Die()
     {
-        // Reset the player's position to the starting position
-        Hurt.Play();
-        transform.position = startPosition;
+        GetComponent<PlayerHealthSystem>();
+        healthBar.fillAmount = 0;
+        deathScreen.SetActive(true);
+        stateManager.gameObject.SetActive(false);
+        CameraController camCont = Camera.main.GetComponent<CameraController>();
+        camCont.followCam.enabled = false;
+
+       // SceneManager.LoadScene(1);
+
     }
 }

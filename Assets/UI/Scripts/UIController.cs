@@ -26,6 +26,8 @@ public class UIController : MonoBehaviour
     public UIMenu mainMenu, settingsMenu, gameplaySettingsMenu, graphicsSettingsMenu, audioSettingsMenu,
         controlsScreenMenu;
 
+    public GameObject background;
+
     public GameObject tutorialScreen;
 
     UIMenu currentMenu = null;
@@ -55,7 +57,10 @@ public class UIController : MonoBehaviour
                 Time.timeScale = 1;
             }
             else if (currentMenu == null)
+            {
                 OpenMenu(mainMenu.menuScreen);
+                background.SetActive(true);
+            }
             else
                 GoBack();
         }
@@ -74,10 +79,15 @@ public class UIController : MonoBehaviour
     public void OpenMenu(GameObject menu)
     {
         Time.timeScale = 0;
-        SetCursorMode(CursorLockMode.None, true);
+        SetCursorMode(CursorLockMode.Locked, true);
+
+
+        isCursorVisible = false;  //remove to enable cursor visibility during pause
 
         if (currentMenu != null)
+        {
             currentMenu.menuScreen.SetActive(false);
+        }
 
         if (menu == mainMenu.menuScreen)
         {
@@ -125,6 +135,7 @@ public class UIController : MonoBehaviour
         {
             currentMenu.menuScreen.SetActive(false);
             currentMenu = null;
+            background.SetActive(false);
             Time.timeScale = 1;
             SetCursorMode(CursorLockMode.Locked, false);
         }
@@ -139,6 +150,11 @@ public class UIController : MonoBehaviour
     public void OpenTutorial()
     {
         tutorialScreen.SetActive(true);
+        Time.timeScale = 1;
+    }
+    public void CloseTutorial()
+    {
+        tutorialScreen.SetActive(false);
         Time.timeScale = 1;
     }
 
