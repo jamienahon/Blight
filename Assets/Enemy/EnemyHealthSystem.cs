@@ -11,6 +11,7 @@ public class EnemyHealthSystem : MonoBehaviour
     public Image healthBar;
     public Image healthBarBackground;
     public float maxHealth;
+    public Animation victoryDoor;
 
     [Header("BarSmoothing")]
     public float healthBarSmoothDelay;
@@ -39,20 +40,24 @@ public class EnemyHealthSystem : MonoBehaviour
             startHealthBarSmoothing = Time.time + healthBarSmoothDelay;
         }
 
+        //ALL COMMENTS ARE SECOND PHASE RELATED
+
+
         if (healthBar.fillAmount == 0)
-        {
-            if (!stateManager.isInSecondPhase)
-            {
-                stateManager.isInSecondPhase = true;
-                TransitionToSecondPhase();
-            }
-            else
+        //{
+         //   if (!stateManager.isInSecondPhase)
+       //     {
+       //         stateManager.isInSecondPhase = true;
+       //         TransitionToSecondPhase();
+        //    }
+            
             {
                 Destroy(gameObject);
                 camCont.EndLockOn();
                 victoryScreen.SetActive(true);
+                victoryDoor.Play();
             }
-        }
+    //    }
     }
 
     void SmoothHealthBar()
@@ -65,9 +70,9 @@ public class EnemyHealthSystem : MonoBehaviour
         }
     }
 
-    private void TransitionToSecondPhase()
-    {
-        healthBar.fillAmount = maxHealth;
-        stateManager.meshRenderer.material.color = stateManager.phase2Colour;
-    }
+   //  private void TransitionToSecondPhase()
+   //   {
+   //     healthBar.fillAmount = maxHealth;
+   //     stateManager.meshRenderer.material.color = stateManager.phase2Colour;
+   // }
 }

@@ -19,7 +19,9 @@ public class Destroy : MonoBehaviour
 
     public void OnTriggerEnter(Collider Player)
     {
-        // GameObject.Find("Menu").GetComponent<UIController>().OpenTutorial();
+        if (Player.CompareTag("Player"))
+        { 
+         // GameObject.Find("Menu").GetComponent<UIController>().OpenTutorial();
         BossHP.Play();
         enemyStateManager.enabled = true;
 
@@ -28,7 +30,10 @@ public class Destroy : MonoBehaviour
         BossTheme.Play();
         Phase1.Play();
         Ambience.Stop();
-
-        Object.Destroy(barrier);
+       
+            
+            Object.Destroy(barrier);
+        }  
     }
+   
 }
