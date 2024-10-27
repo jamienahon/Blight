@@ -5053,11 +5053,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6214123924445280522, guid: 9aedecf7a72f72f43949e907a539e3e4, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8984394300135884877, guid: 9aedecf7a72f72f43949e907a539e3e4, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9aedecf7a72f72f43949e907a539e3e4, type: 3}
@@ -5409,10 +5409,34 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2504376265898725108, guid: 2655f37be4f8998429e13c6454817152, type: 3}
+      propertyPath: InitialModule.rotation3D
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2504376265898725108, guid: 2655f37be4f8998429e13c6454817152, type: 3}
+      propertyPath: InitialModule.startRotation.scalar
+      value: 0.08726646
+      objectReference: {fileID: 0}
+    - target: {fileID: 2504376265898725108, guid: 2655f37be4f8998429e13c6454817152, type: 3}
+      propertyPath: InitialModule.startRotation.minMaxState
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2504376265898725108, guid: 2655f37be4f8998429e13c6454817152, type: 3}
+      propertyPath: InitialModule.startRotationX.minMaxState
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2504376265898725108, guid: 2655f37be4f8998429e13c6454817152, type: 3}
+      propertyPath: InitialModule.startRotationY.minMaxState
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4372320388492387069, guid: 2655f37be4f8998429e13c6454817152, type: 3}
       propertyPath: m_Name
       value: heal_vfx
       objectReference: {fileID: 0}
+    - target: {fileID: 5787442024909772918, guid: 2655f37be4f8998429e13c6454817152, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 97c6d3ea50d392145bf043884a0033e1, type: 2}
     - target: {fileID: 6329509666384515390, guid: 2655f37be4f8998429e13c6454817152, type: 3}
       propertyPath: m_RootOrder
       value: 5
