@@ -41,7 +41,7 @@ public class EnemyMineAttackState : EnemyState
             float zMin = stateManager.player.gameObject.transform.position.z - stateManager.mineSpawnRange;
             float zMax = stateManager.player.gameObject.transform.position.z + stateManager.mineSpawnRange;
 
-            Vector3 position = new Vector3(Random.Range(xMin, xMax), 32.6f, Random.Range(zMin, zMax));
+            Vector3 position = new Vector3(Random.Range(xMin, xMax), 35.042f, Random.Range(zMin, zMax));
             GameObject newMine = Object.Instantiate(stateManager.minePrefab);
             newMine.transform.position = position;
 

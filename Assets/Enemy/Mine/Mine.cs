@@ -7,13 +7,12 @@ public class Mine : MonoBehaviour
     public float timeToExplosion;
     public float damage;
     Collider mineCollider;
-    VisualEffect explosionVFX;
+    public VisualEffect explosionVFX;
 
     private void Start()
     {
         animator = GetComponent<Animator>();
         mineCollider = GetComponent<Collider>();
-        explosionVFX = GetComponent<VisualEffect>();
         animator.speed = Random.Range(0.9f, 1.1f);
     }
 
