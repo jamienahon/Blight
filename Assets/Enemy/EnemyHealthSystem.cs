@@ -11,6 +11,9 @@ public class EnemyHealthSystem : MonoBehaviour
     public Image healthBar;
     public Image healthBarBackground;
     public float maxHealth;
+    public Animation victoryDoor;
+    
+
 
     [Header("BarSmoothing")]
     public float healthBarSmoothDelay;
@@ -18,9 +21,11 @@ public class EnemyHealthSystem : MonoBehaviour
     public float healthBarSmoothSpeed;
     bool healthBarSmoothing = false;
 
+
+
     private void Start()
     {
-        stateManager = GetComponent<EnemyStateManager>();
+        stateManager = GetComponent<EnemyStateManager>(); 
     }
 
     private void Update()
@@ -28,6 +33,7 @@ public class EnemyHealthSystem : MonoBehaviour
         if (Time.time >= startHealthBarSmoothing && healthBarSmoothing)
             SmoothHealthBar();
     }
+
 
     public void DoDamage(float damage)
     {
@@ -39,20 +45,24 @@ public class EnemyHealthSystem : MonoBehaviour
             startHealthBarSmoothing = Time.time + healthBarSmoothDelay;
         }
 
+        //ALL COMMENTS ARE SECOND PHASE RELATED
+
+
         if (healthBar.fillAmount == 0)
-        {
-            if (!stateManager.isInSecondPhase)
+         //{
+         //   if (!stateManager.isInSecondPhase)
+         //     {
+         //         stateManager.isInSecondPhase = true;
+         //         TransitionToSecondPhase();
+         //     }
+              
             {
-                stateManager.isInSecondPhase = true;
-                TransitionToSecondPhase();
-            }
-            else
-            {
-                Destroy(gameObject);
-                camCont.EndLockOn();
-                victoryScreen.SetActive(true);
-            }
+            stateManager.SwitchState(stateManager.EnemyDeathState);
+    //        camCont.EndLockOn();
+      //      victoryDoor.Play();
+        //    victoryScreen.SetActive(true);
         }
+         //    }
     }
 
     void SmoothHealthBar()
@@ -65,9 +75,9 @@ public class EnemyHealthSystem : MonoBehaviour
         }
     }
 
-    private void TransitionToSecondPhase()
-    {
-        healthBar.fillAmount = maxHealth;
-        stateManager.meshRenderer.material.color = stateManager.phase2Colour;
-    }
+   //  private void TransitionToSecondPhase()
+   //   {
+   //     healthBar.fillAmount = maxHealth;
+   //     stateManager.meshRenderer.material.color = stateManager.phase2Colour;
+   // }
 }

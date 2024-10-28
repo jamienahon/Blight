@@ -121,11 +121,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Green_NRM:
-        m_Texture: {fileID: 2800000, guid: a18a8052fc0a4d248829dcb36487ad0a, type: 3}
+        m_Texture: {fileID: 2800000, guid: 9c8ac2347922f5149814b0ef45c5ab75, type: 3}
         m_Scale: {x: 0.3, y: 0.3}
         m_Offset: {x: 0, y: 0}
     - _Green_TEX:
-        m_Texture: {fileID: 2800000, guid: 711c429deaa451a4c9b053290e781c4b, type: 3}
+        m_Texture: {fileID: 2800000, guid: f8011d790a464a8468870ca78785b704, type: 3}
         m_Scale: {x: 0.3, y: 0.3}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
