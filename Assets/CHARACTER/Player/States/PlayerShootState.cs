@@ -18,16 +18,22 @@ public class PlayerShootState : PlayerState
         SetAnimationParameters();
         HandleAudio();
         LookAtCameraDirection();
+
+        stateManager.animator.SetLayerWeight(1, 1);
     }
 
     public override void UpdateState()
     {
+        stateManager.animator.SetFloat("HorizontalMovement", 0);
+        stateManager.animator.SetFloat("VerticalMovement", 0);
         if (stateManager.allowMovementWhileAttacking)
         {
             HandleInputs();
 
             if (stateManager.isLockedOn)
+            {
                 stateManager.movementDirection = Quaternion.Euler(0, stateManager.animator.transform.eulerAngles.y, 0) * stateManager.movementDirection;
+            }
             else
                 stateManager.movementDirection = Quaternion.Euler(0, Camera.main.transform.eulerAngles.y, 0) * stateManager.movementDirection;
 
