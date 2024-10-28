@@ -20,9 +20,14 @@ public class PlayerAnimationEvents : MonoBehaviour
         stateManager.animator.SetBool("IsDodging", false);
     }
 
-    public void EndLAttack()
+    public void EndAttack()
     {
-        stateManager.SwitchState(stateManager.idleState);
+        stateManager.animator.SetBool("IsLightAttacking", false);
+        stateManager.animator.SetBool("IsHeavyAttacking", false);
+        if (stateManager.animator.GetBool("IsMoving"))
+            stateManager.SwitchState(stateManager.walkState);
+        else
+            stateManager.SwitchState(stateManager.idleState);
     }
 
     public void StartMove()
@@ -76,5 +81,68 @@ public class PlayerAnimationEvents : MonoBehaviour
     public void Heal()
     {
         stateManager.healthSystem.Heal(stateManager.healAmount);
+    }
+
+    public void EndHeal()
+    {
+        stateManager.animator.SetBool("IsHealing", false);
+        stateManager.animator.SetLayerWeight(1, 0);
+
+        if (stateManager.animator.GetBool("IsMoving"))
+            stateManager.SwitchState(stateManager.walkState);
+        else
+            stateManager.SwitchState(stateManager.idleState);
+    }
+
+    public void SpawnProjectile()
+    {
+        stateManager.healthSystem.ConsumeStamina(stateManager.lightAttackStamCost);
+        stateManager.playerAudio.clip = stateManager.shootState.shootSound;
+        stateManager.playerAudio.loop = stateManager.shootState.loopSound;
+        stateManager.playerAudio.Play();
+
+        Vector3 position = new Vector3(stateManager.transform.position.x + 0.15f, stateManager.transform.position.y + 1.5f, stateManager.transform.position.z);
+        GameObject newProjectile = Instantiate(stateManager.projectile, position, stateManager.projectile.transform.rotation);
+
+        GameObject target = GameObject.Find("LockOn Point R");
+
+        if (stateManager.isLockedOn)
+        {
+            newProjectile.transform.up = (target.transform.position - newProjectile.transform.position).normalized;
+            newProjectile.GetComponent<PlayerProjectile>().InitialiseArrowValues(stateManager.gameObject, target, stateManager.lightAttackDamage, stateManager.lightAttackGemRecharge, stateManager.lockedOnArrowTrackingStrength, stateManager.arrowLifetime);
+        }
+        else
+        {
+            newProjectile.transform.up = stateManager.animator.transform.forward;
+            newProjectile.GetComponent<PlayerProjectile>().InitialiseArrowValues(stateManager.gameObject, target, stateManager.lightAttackDamage, stateManager.lightAttackGemRecharge, stateManager.arrowTrackingStrength, stateManager.arrowLifetime);
+        }
+
+    }
+
+    public void SpawnMultiProjectile()
+    {
+        stateManager.healthSystem.ConsumeStamina(stateManager.heavyAttackStamCost);
+        stateManager.playerAudio.clip = stateManager.heavyShootState.heavyShootSound;
+        stateManager.playerAudio.loop = stateManager.heavyShootState.loopSound;
+        stateManager.playerAudio.Play();
+
+        for (int rotation = -45; rotation <= 45; rotation += 45)
+        {
+            Vector3 position = new Vector3(stateManager.transform.position.x + 0.15f, stateManager.transform.position.y + 1.5f, stateManager.transform.position.z);
+            GameObject newProjectile = Instantiate(stateManager.projectile, position, stateManager.projectile.transform.rotation);
+
+            GameObject target = GameObject.Find("LockOn Point R");
+
+            if (stateManager.isLockedOn)
+            {
+                newProjectile.transform.up = Quaternion.Euler(0, rotation, 0) * (target.transform.position - newProjectile.transform.position).normalized;
+                newProjectile.GetComponent<PlayerProjectile>().InitialiseArrowValues(stateManager.gameObject, target, stateManager.lightAttackDamage, stateManager.lightAttackGemRecharge, stateManager.lockedOnArrowTrackingStrength, stateManager.arrowLifetime);
+            }
+            else
+            {
+                newProjectile.transform.up = Quaternion.Euler(0, rotation, 0) * stateManager.animator.transform.forward;
+                newProjectile.GetComponent<PlayerProjectile>().InitialiseArrowValues(stateManager.gameObject, target, stateManager.lightAttackDamage, stateManager.lightAttackGemRecharge, stateManager.arrowTrackingStrength, stateManager.arrowLifetime);
+            }
+        }
     }
 }

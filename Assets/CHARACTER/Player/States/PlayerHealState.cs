@@ -4,7 +4,6 @@ public class PlayerHealState : PlayerState
 {
     public AudioClip walkingSound;
     public bool loopSound;
-    float endHeal;
 
     public override PlayerStateManager stateManager { get; set; }
 
@@ -15,7 +14,7 @@ public class PlayerHealState : PlayerState
         SetAnimationParameters();
         HandleAudio();
 
-        endHeal = Time.time + stateManager.healLengthSeconds;
+        stateManager.animator.SetLayerWeight(1, 1);
     }
 
     public override void UpdateState()
@@ -35,27 +34,32 @@ public class PlayerHealState : PlayerState
 
 
         stateManager.transform.Translate(stateManager.movementDirection.normalized * stateManager.healingMoveSpeed * Time.deltaTime);
-
-        if (Time.time >= endHeal)
-            stateManager.SwitchState(stateManager.idleState);
     }
 
     public override void HandleInputs()
     {
         stateManager.movementDirection.x = Input.GetAxisRaw("Horizontal");
         stateManager.movementDirection.z = Input.GetAxisRaw("Vertical");
+
+        if (stateManager.movementDirection.x == 0 && stateManager.movementDirection.z == 0)
+            stateManager.animator.SetBool("IsMoving", false);
+        else
+            stateManager.animator.SetBool("IsMoving", true);
     }
 
     public override void HandleAnimations()
     {
-        stateManager.animator.Play("Healing");
     }
 
     public override void SetAnimationParameters()
     {
-        stateManager.animator.speed = 0.5f;
-        stateManager.animator.SetBool("IsMoving", false);
+        stateManager.animator.speed = 1.0f;
         stateManager.animator.SetBool("IsSprinting", false);
+        stateManager.animator.SetBool("IsDodging", false);
+        stateManager.animator.SetBool("IsLightAttacking", false);
+        stateManager.animator.SetBool("IsHealing", true);
+        stateManager.animator.SetFloat("HorizontalMovement", 0);
+        stateManager.animator.SetFloat("VerticalMovement", 0);
     }
 
     public override void HandleAudio()
