@@ -21,7 +21,7 @@ public class EnemyHealthSystem : MonoBehaviour
 
     private void Start()
     {
-        stateManager = GetComponent<EnemyStateManager>();
+        stateManager = GetComponent<EnemyStateManager>(); 
     }
 
     private void Update()
@@ -54,8 +54,9 @@ public class EnemyHealthSystem : MonoBehaviour
             {
                 Destroy(gameObject);
                 camCont.EndLockOn();
-                victoryScreen.SetActive(true);
                 victoryDoor.Play();
+                victoryScreen.SetActive(true);
+                
             }
     //    }
     }
