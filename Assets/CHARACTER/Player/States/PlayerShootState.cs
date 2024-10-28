@@ -24,8 +24,6 @@ public class PlayerShootState : PlayerState
 
     public override void UpdateState()
     {
-        stateManager.animator.SetFloat("HorizontalMovement", 0);
-        stateManager.animator.SetFloat("VerticalMovement", 0);
         if (stateManager.allowMovementWhileAttacking)
         {
             HandleInputs();
@@ -45,6 +43,8 @@ public class PlayerShootState : PlayerState
     {
         stateManager.movementDirection.x = Input.GetAxisRaw("Horizontal");
         stateManager.movementDirection.z = Input.GetAxisRaw("Vertical");
+        stateManager.animator.SetFloat("HorizontalMovement", Input.GetAxis("Horizontal"));
+        stateManager.animator.SetFloat("VerticalMovement", Input.GetAxis("Vertical"));
 
         if (stateManager.movementDirection.x == 0 && stateManager.movementDirection.z == 0)
             stateManager.animator.SetBool("IsMoving", false);

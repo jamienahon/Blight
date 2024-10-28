@@ -16,12 +16,16 @@ public class PlayerAnimationEvents : MonoBehaviour
     public void EndDodge()
     {
         stateManager.isInvincible = false;
-        stateManager.SwitchState(stateManager.idleState);
         stateManager.animator.SetBool("IsDodging", false);
+        if (stateManager.animator.GetBool("IsMoving"))
+            stateManager.SwitchState(stateManager.walkState);
+        else
+            stateManager.SwitchState(stateManager.idleState);
     }
 
     public void EndAttack()
     {
+        stateManager.animator.SetLayerWeight(1, 0);
         stateManager.animator.SetBool("IsLightAttacking", false);
         stateManager.animator.SetBool("IsHeavyAttacking", false);
         if (stateManager.animator.GetBool("IsMoving"))
@@ -34,12 +38,14 @@ public class PlayerAnimationEvents : MonoBehaviour
     {
         stateManager.hAttackState.move = true;
         stateManager.lAttackState.move = true;
+        stateManager.dodgeState.move = true;
     }
 
     public void EndMove()
     {
         stateManager.hAttackState.move = false;
         stateManager.lAttackState.move = false;
+        stateManager.dodgeState.move = false;
     }
 
     public void EndGetHit()
