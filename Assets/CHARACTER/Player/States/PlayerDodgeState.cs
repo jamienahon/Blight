@@ -7,6 +7,7 @@ public class PlayerDodgeState : PlayerState
     public override PlayerStateManager stateManager { get; set; }
     public AudioClip dodgeSound;
     public bool loopSound;
+    public bool move;
 
     public override void EnterState(PlayerStateManager stateManager)
     {
@@ -20,7 +21,13 @@ public class PlayerDodgeState : PlayerState
 
     public override void UpdateState()
     {
-        stateManager.transform.Translate(stateManager.animator.transform.forward * stateManager.dodgeMoveSpeed * Time.deltaTime);
+        if (move)
+            stateManager.transform.Translate(stateManager.animator.transform.forward * stateManager.dodgeMoveSpeed * Time.deltaTime);
+
+        if (stateManager.movementDirection.x == 0 && stateManager.movementDirection.z == 0)
+            stateManager.animator.SetBool("IsMoving", false);
+        else
+            stateManager.animator.SetBool("IsMoving", true);
     }
 
     public override void HandleInputs()
@@ -31,14 +38,12 @@ public class PlayerDodgeState : PlayerState
     public override void HandleAnimations()
     {
         LookAtDodgeDirection();
-        stateManager.animator.Play("Unarmed-DiveRoll-Forward1");
     }
 
     public override void SetAnimationParameters()
     {
         stateManager.animator.speed = 1f;
         stateManager.animator.SetBool("IsDodging", true);
-        stateManager.animator.SetBool("IsJumping", false);
     }
 
     public override void HandleAudio()
