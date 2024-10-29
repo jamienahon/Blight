@@ -30,15 +30,16 @@ public class PlayerHAttackState : PlayerState
 
     public override void HandleAnimations()
     {
-        stateManager.animator.Play("Unarmed-Attack-R1");
+
     }
 
     public override void SetAnimationParameters()
     {
-        stateManager.animator.speed = 1f;
+        stateManager.animator.speed = 0.5f;
         stateManager.animator.SetBool("IsMoving", false);
         stateManager.animator.SetBool("IsSprinting", false);
         stateManager.animator.SetBool("IsDodging", false);
+        stateManager.animator.SetBool("IsLightAttack", true);
         stateManager.animator.SetFloat("HorizontalMovement", 0);
         stateManager.animator.SetFloat("VerticalMovement", 0);
     }

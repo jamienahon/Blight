@@ -55,6 +55,7 @@ public class PlayerStateManager : MonoBehaviour
     public float lightAttackGemRecharge;
 
     [Header("Heavy Attack")]
+    public GameObject heavyProjectile;
     public float heavyAttackDamage;
     public float heavyAttackStamCost;
     public float heavyAttackGemRecharge;
@@ -82,6 +83,7 @@ public class PlayerStateManager : MonoBehaviour
             switchStates = false;
         }
         currentState.UpdateState();
+        Debug.Log(currentState);
     }
 
     public void SwitchState(PlayerState state)

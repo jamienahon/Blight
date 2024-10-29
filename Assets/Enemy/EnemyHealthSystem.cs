@@ -12,6 +12,8 @@ public class EnemyHealthSystem : MonoBehaviour
     public Image healthBarBackground;
     public float maxHealth;
     public Animation victoryDoor;
+    
+
 
     [Header("BarSmoothing")]
     public float healthBarSmoothDelay;
@@ -19,9 +21,11 @@ public class EnemyHealthSystem : MonoBehaviour
     public float healthBarSmoothSpeed;
     bool healthBarSmoothing = false;
 
+
+
     private void Start()
     {
-        stateManager = GetComponent<EnemyStateManager>();
+        stateManager = GetComponent<EnemyStateManager>(); 
     }
 
     private void Update()
@@ -29,6 +33,7 @@ public class EnemyHealthSystem : MonoBehaviour
         if (Time.time >= startHealthBarSmoothing && healthBarSmoothing)
             SmoothHealthBar();
     }
+
 
     public void DoDamage(float damage)
     {
@@ -44,20 +49,20 @@ public class EnemyHealthSystem : MonoBehaviour
 
 
         if (healthBar.fillAmount == 0)
-        //{
+         //{
          //   if (!stateManager.isInSecondPhase)
-       //     {
-       //         stateManager.isInSecondPhase = true;
-       //         TransitionToSecondPhase();
-        //    }
-            
+         //     {
+         //         stateManager.isInSecondPhase = true;
+         //         TransitionToSecondPhase();
+         //     }
+              
             {
-                Destroy(gameObject);
-                camCont.EndLockOn();
-                victoryScreen.SetActive(true);
-                victoryDoor.Play();
-            }
-    //    }
+            stateManager.SwitchState(stateManager.EnemyDeathState);
+    //        camCont.EndLockOn();
+      //      victoryDoor.Play();
+        //    victoryScreen.SetActive(true);
+        }
+         //    }
     }
 
     void SmoothHealthBar()

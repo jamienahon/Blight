@@ -34,6 +34,8 @@ public class Destroy : MonoBehaviour
             
             Object.Destroy(barrier);
         }  
+
+
     }
    
 }

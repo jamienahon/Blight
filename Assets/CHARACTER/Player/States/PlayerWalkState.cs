@@ -57,7 +57,7 @@ public class PlayerWalkState : PlayerState
         else
         {
             LookAtMovementDirection();
-            stateManager.animator.Play("Unarmed-Run-Forward");
+            //stateManager.animator.Play("Unarmed-Run-Forward");
         }
     }
 
@@ -65,6 +65,10 @@ public class PlayerWalkState : PlayerState
     {
         stateManager.animator.SetBool("IsMoving", true);
         stateManager.animator.SetBool("IsSprinting", false);
+        if (stateManager.isLockedOn)
+            stateManager.animator.SetBool("IsLockedOn", true);
+        else
+            stateManager.animator.SetBool("IsLockedOn", false);
     }
 
     public override void HandleAudio()
