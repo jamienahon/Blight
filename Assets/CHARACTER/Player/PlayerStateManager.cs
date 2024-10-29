@@ -82,6 +82,7 @@ public class PlayerStateManager : MonoBehaviour
             switchStates = false;
         }
         currentState.UpdateState();
+        Debug.Log(currentState);
     }
 
     public void SwitchState(PlayerState state)

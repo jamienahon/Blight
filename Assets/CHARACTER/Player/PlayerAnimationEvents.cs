@@ -50,7 +50,11 @@ public class PlayerAnimationEvents : MonoBehaviour
 
     public void EndGetHit()
     {
-        stateManager.SwitchState(stateManager.idleState);
+        stateManager.animator.SetBool("IsHit", false);
+        if (stateManager.animator.GetBool("IsMoving"))
+            stateManager.SwitchState(stateManager.walkState);
+        else
+            stateManager.SwitchState(stateManager.idleState);
     }
 
     public void EnableHitboxL()
