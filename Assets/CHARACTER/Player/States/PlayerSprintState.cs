@@ -58,7 +58,6 @@ public class PlayerSprintState : PlayerState
     public override void HandleAnimations()
     {
         LookAtMovementDirection();
-        stateManager.animator.Play("Unarmed-Run-Forward");
     }
 
     public override void SetAnimationParameters()

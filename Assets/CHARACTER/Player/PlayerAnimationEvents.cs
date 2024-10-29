@@ -139,7 +139,7 @@ public class PlayerAnimationEvents : MonoBehaviour
         for (int rotation = -45; rotation <= 45; rotation += 45)
         {
             Vector3 position = new Vector3(stateManager.transform.position.x + 0.15f, stateManager.transform.position.y + 1.5f, stateManager.transform.position.z);
-            GameObject newProjectile = Instantiate(stateManager.projectile, position, stateManager.projectile.transform.rotation);
+            GameObject newProjectile = Instantiate(stateManager.heavyProjectile, position, stateManager.heavyProjectile.transform.rotation);
 
             GameObject target = GameObject.Find("LockOn Point R");
 
