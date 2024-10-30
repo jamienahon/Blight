@@ -106,6 +106,7 @@ Material:
     - _BumpScale: 1
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
+    - _Colour: 1
     - _Cull: 2
     - _Cutoff: 0.5
     - _DecalMeshBiasType: 0
@@ -120,7 +121,9 @@ Material:
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
+    - _MaxColour: 0.296
     - _Metallic: 0
+    - _MinColour: 0.069
     - _OcclusionStrength: 1
     - _Parallax: 0.005
     - _QueueOffset: 0
@@ -137,7 +140,7 @@ Material:
     - _BaseColour: {r: 1, g: 1, b: 1, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _ColourMultiply1: {r: 1, g: 0, b: 0, a: 0}
-    - _ColourMultiply2: {r: 0.6603774, g: 0.6603774, b: 0.6603774, a: 0}
+    - _ColourMultiply2: {r: 0.8490566, g: 0.8490566, b: 0.8490566, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []
