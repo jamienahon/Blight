@@ -175,6 +175,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8319884191465718193}
+  - component: {fileID: 889078725428735670}
   m_Layer: 0
   m_Name: Clump1
   m_TagString: Untagged
@@ -214,6 +215,41 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!205 &889078725428735670
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 714791625501728486}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: -0.3144446, y: -0.11297977, z: -1.3086418}
+  m_Size: 3.7955525
+  m_FadeMode: 0
+  m_AnimateCrossFading: 0
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0.049480077
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 8387060371077953336}
+    - renderer: {fileID: 4349144862349869406}
+    - renderer: {fileID: 7503186751811366276}
+    - renderer: {fileID: 6076473261657721249}
+    - renderer: {fileID: 7803330445040156505}
+    - renderer: {fileID: 2781875045031451011}
+    - renderer: {fileID: 6259352447101451704}
+    - renderer: {fileID: 3211276654467664745}
+    - renderer: {fileID: 6360497815238959357}
+    - renderer: {fileID: 4142572658090695220}
+    - renderer: {fileID: 4402904367343962360}
+    - renderer: {fileID: 5371064902877485954}
+    - renderer: {fileID: 6310815626363741067}
+    - renderer: {fileID: 5848646604039648521}
+    - renderer: {fileID: 304542845544262150}
+    - renderer: {fileID: 1728308135444196481}
+    - renderer: {fileID: 3717402385503898125}
+  m_Enabled: 1
 --- !u!1 &760436870458589318
 GameObject:
   m_ObjectHideFlags: 0
