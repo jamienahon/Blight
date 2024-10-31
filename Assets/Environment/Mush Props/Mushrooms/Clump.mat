@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Mushroom
+  m_Name: Clump
   m_Shader: {fileID: -6465566751694194690, guid: cb58261f22f2e7b42adb64fd9d6058f1, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
@@ -107,16 +107,16 @@ Material:
     - _GlossyReflections: 0
     - _GradientBlend: 0.458
     - _GradientBlend_2: 0
-    - _GradientHeight: 0.542
+    - _GradientHeight: 0.447
     - _MaxWhite: 1
     - _Metallic: 0
-    - _MinWhite: 0.503
+    - _MinWhite: 0.5
     - _OcclusionStrength: 1
     - _Parallax: 0.005
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
-    - _Roughness: 0.5
+    - _Roughness: 0.458
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
@@ -128,7 +128,7 @@ Material:
     - _UseMetallicMap: 0
     - _UseNormalMap: 1
     - _UseRoughnessMap: 1
-    - _White: 0.45
+    - _White: 0.354
     - _WhiteLevels: 1
     - _White_Diff: 0.5
     - _WorkflowMode: 1
