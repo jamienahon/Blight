@@ -19,8 +19,8 @@ MonoBehaviour:
       m_RotationRangeMin: {x: 0, y: 0, z: 0}
       m_RotationRangeMax: {x: 0, y: 360, z: 0}
       m_ScaleRangeMin: {x: 6, y: 6, z: 6}
-      m_ScaleRangeMax: {x: 6, y: 12, z: 6}
-      m_UniformScale: {x: 6, y: 6}
+      m_ScaleRangeMax: {x: 6, y: 6, z: 6}
+      m_UniformScale: {x: 1, y: 1}
       m_UniformBool: 0
       m_XRotationBool: 0
       m_YRotationBool: 1
@@ -31,11 +31,11 @@ MonoBehaviour:
     name: grass1_geo
   - gameObject: {fileID: 4414853822391526180, guid: a33eac39655b3c1418f543c85761950a, type: 3}
     settings:
-      m_Strength: 83.390366
+      m_Strength: 50
       m_RotationRangeMin: {x: 0, y: 0, z: 0}
       m_RotationRangeMax: {x: 0, y: 360, z: 0}
-      m_ScaleRangeMin: {x: 3, y: 3, z: 3}
-      m_ScaleRangeMax: {x: 3, y: 3, z: 3}
+      m_ScaleRangeMin: {x: 6, y: 5, z: 6}
+      m_ScaleRangeMax: {x: 6, y: 5, z: 6}
       m_UniformScale: {x: 1, y: 1}
       m_UniformBool: 0
       m_XRotationBool: 0
@@ -45,3 +45,19 @@ MonoBehaviour:
       m_YScaleBool: 1
       m_ZScaleBool: 1
     name: grass2_geo
+  - gameObject: {fileID: 4935416644766851644, guid: f84e0da6c722c6d4aaeea59871461531, type: 3}
+    settings:
+      m_Strength: 50
+      m_RotationRangeMin: {x: 0, y: 0, z: 0}
+      m_RotationRangeMax: {x: 0, y: 360, z: 0}
+      m_ScaleRangeMin: {x: 4, y: 4, z: 4}
+      m_ScaleRangeMax: {x: 4, y: 4, z: 4}
+      m_UniformScale: {x: 1, y: 1}
+      m_UniformBool: 0
+      m_XRotationBool: 0
+      m_YRotationBool: 1
+      m_ZRotationBool: 0
+      m_XScaleBool: 1
+      m_YScaleBool: 1
+      m_ZScaleBool: 1
+    name: shrub1_geo
