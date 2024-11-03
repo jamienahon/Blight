@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1689372783267159631}
   - component: {fileID: 315943715164438827}
   - component: {fileID: 3717402385503898125}
+  - component: {fileID: 2181091114823541277}
   m_Layer: 0
   m_Name: mush1_low (7)
   m_TagString: Untagged
@@ -83,6 +84,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &2181091114823541277
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 84228292975561972}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -6091702535272497614, guid: d0a40fde5ff800b4bb77f9522dc0d4cc, type: 3}
 --- !u!1 &343929829476182893
 GameObject:
   m_ObjectHideFlags: 0
@@ -94,6 +109,7 @@ GameObject:
   - component: {fileID: 6627140403700939110}
   - component: {fileID: 5404469492360428309}
   - component: {fileID: 4402904367343962360}
+  - component: {fileID: 3719779530737008022}
   m_Layer: 0
   m_Name: BloatedShroom_low (2)
   m_TagString: Untagged
@@ -166,6 +182,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &3719779530737008022
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 343929829476182893}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -5071770119915381597, guid: d0a40fde5ff800b4bb77f9522dc0d4cc, type: 3}
 --- !u!1 &714791625501728486
 GameObject:
   m_ObjectHideFlags: 0
@@ -261,6 +291,7 @@ GameObject:
   - component: {fileID: 973392909016951280}
   - component: {fileID: 3114360322362926124}
   - component: {fileID: 5848646604039648521}
+  - component: {fileID: 2581939266358828414}
   m_Layer: 0
   m_Name: Chickenofthewood2_low (5)
   m_TagString: Untagged
@@ -333,6 +364,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &2581939266358828414
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 760436870458589318}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -7218217727479000344, guid: d0a40fde5ff800b4bb77f9522dc0d4cc, type: 3}
 --- !u!1 &869681754055698445
 GameObject:
   m_ObjectHideFlags: 0
@@ -344,6 +389,7 @@ GameObject:
   - component: {fileID: 595734532864068143}
   - component: {fileID: 2147079235561562753}
   - component: {fileID: 7503186751811366276}
+  - component: {fileID: 277486389953642815}
   m_Layer: 0
   m_Name: BloatedShroom_low
   m_TagString: Untagged
@@ -416,6 +462,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &277486389953642815
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 869681754055698445}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -5071770119915381597, guid: d0a40fde5ff800b4bb77f9522dc0d4cc, type: 3}
 --- !u!1 &1073726826727770023
 GameObject:
   m_ObjectHideFlags: 0
@@ -428,6 +488,7 @@ GameObject:
   - component: {fileID: 842152037890574968}
   - component: {fileID: 4349144862349869406}
   - component: {fileID: 1825252287421272943}
+  - component: {fileID: 5750348028828065533}
   m_Layer: 0
   m_Name: mush1_low (4)
   m_TagString: Untagged
@@ -2938,6 +2999,20 @@ MonoBehaviour:
   m_SkinMeshRef: {fileID: 0}
   m_OriginalMeshObject: {fileID: -6091702535272497614, guid: d0a40fde5ff800b4bb77f9522dc0d4cc, type: 3}
   m_Mode: 0
+--- !u!64 &5750348028828065533
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1073726826727770023}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -6091702535272497614, guid: d0a40fde5ff800b4bb77f9522dc0d4cc, type: 3}
 --- !u!1 &1103585455979196318
 GameObject:
   m_ObjectHideFlags: 0
@@ -2949,6 +3024,7 @@ GameObject:
   - component: {fileID: 11404091146449549}
   - component: {fileID: 1594447734168710571}
   - component: {fileID: 6259352447101451704}
+  - component: {fileID: 7492569656030386913}
   m_Layer: 0
   m_Name: mushlump_low (11)
   m_TagString: Untagged
@@ -3021,6 +3097,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &7492569656030386913
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1103585455979196318}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -5059537602585756777, guid: d0a40fde5ff800b4bb77f9522dc0d4cc, type: 3}
 --- !u!1 &1403384261549077744
 GameObject:
   m_ObjectHideFlags: 0
@@ -3032,6 +3122,7 @@ GameObject:
   - component: {fileID: 4027779490116616594}
   - component: {fileID: 3134701369802134185}
   - component: {fileID: 6076473261657721249}
+  - component: {fileID: 7089223396791536729}
   m_Layer: 0
   m_Name: InkShroom_low
   m_TagString: Untagged
@@ -3104,6 +3195,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &7089223396791536729
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1403384261549077744}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -4399353941958423300, guid: d0a40fde5ff800b4bb77f9522dc0d4cc, type: 3}
 --- !u!1 &2265079302921018796
 GameObject:
   m_ObjectHideFlags: 0
@@ -3115,6 +3220,7 @@ GameObject:
   - component: {fileID: 4319923150888544462}
   - component: {fileID: 2852552512191298549}
   - component: {fileID: 6360497815238959357}
+  - component: {fileID: 6178751574362015062}
   m_Layer: 0
   m_Name: InkShroom_low (1)
   m_TagString: Untagged
@@ -3187,6 +3293,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &6178751574362015062
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2265079302921018796}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -4399353941958423300, guid: d0a40fde5ff800b4bb77f9522dc0d4cc, type: 3}
 --- !u!1 &2542122637460766842
 GameObject:
   m_ObjectHideFlags: 0
@@ -3198,6 +3318,7 @@ GameObject:
   - component: {fileID: 2699653533860837902}
   - component: {fileID: 5874729706860839573}
   - component: {fileID: 5371064902877485954}
+  - component: {fileID: 4353555334319156202}
   m_Layer: 0
   m_Name: BloatedShroom_low (3)
   m_TagString: Untagged
@@ -3270,6 +3391,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &4353555334319156202
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2542122637460766842}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -5071770119915381597, guid: d0a40fde5ff800b4bb77f9522dc0d4cc, type: 3}
 --- !u!1 &3441839387141456567
 GameObject:
   m_ObjectHideFlags: 0
@@ -3281,6 +3416,7 @@ GameObject:
   - component: {fileID: 2939843749055720385}
   - component: {fileID: 1042070768181831197}
   - component: {fileID: 8387060371077953336}
+  - component: {fileID: 1183121055093383579}
   m_Layer: 0
   m_Name: Chickenofthewood2_low (4)
   m_TagString: Untagged
@@ -3353,6 +3489,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &1183121055093383579
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3441839387141456567}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -7218217727479000344, guid: d0a40fde5ff800b4bb77f9522dc0d4cc, type: 3}
 --- !u!1 &3875322676956540287
 GameObject:
   m_ObjectHideFlags: 0
@@ -3364,6 +3514,7 @@ GameObject:
   - component: {fileID: 4233334879656013932}
   - component: {fileID: 3222270098456883018}
   - component: {fileID: 7803330445040156505}
+  - component: {fileID: 3932308503794273003}
   m_Layer: 0
   m_Name: mushlump_low (9)
   m_TagString: Untagged
@@ -3436,6 +3587,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &3932308503794273003
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3875322676956540287}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -5059537602585756777, guid: d0a40fde5ff800b4bb77f9522dc0d4cc, type: 3}
 --- !u!1 &5502030130916694286
 GameObject:
   m_ObjectHideFlags: 0
@@ -3447,6 +3612,7 @@ GameObject:
   - component: {fileID: 5428123701517529208}
   - component: {fileID: 7921497736279571876}
   - component: {fileID: 1728308135444196481}
+  - component: {fileID: 3085700808840461312}
   m_Layer: 0
   m_Name: Chickenofthewood2_low (7)
   m_TagString: Untagged
@@ -3519,6 +3685,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &3085700808840461312
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5502030130916694286}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -7218217727479000344, guid: d0a40fde5ff800b4bb77f9522dc0d4cc, type: 3}
 --- !u!1 &6890217493493047177
 GameObject:
   m_ObjectHideFlags: 0
@@ -3530,6 +3710,7 @@ GameObject:
   - component: {fileID: 6381964277032974079}
   - component: {fileID: 9091372597188098851}
   - component: {fileID: 304542845544262150}
+  - component: {fileID: 3325981236960305412}
   m_Layer: 0
   m_Name: Chickenofthewood2_low (6)
   m_TagString: Untagged
@@ -3602,6 +3783,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &3325981236960305412
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6890217493493047177}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -7218217727479000344, guid: d0a40fde5ff800b4bb77f9522dc0d4cc, type: 3}
 --- !u!1 &7289469114410329458
 GameObject:
   m_ObjectHideFlags: 0
@@ -3613,6 +3808,7 @@ GameObject:
   - component: {fileID: 8319137239407359945}
   - component: {fileID: 6944600674259151021}
   - component: {fileID: 6310815626363741067}
+  - component: {fileID: 7327674147652830333}
   m_Layer: 0
   m_Name: mush1_low (6)
   m_TagString: Untagged
@@ -3685,6 +3881,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &7327674147652830333
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7289469114410329458}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -6091702535272497614, guid: d0a40fde5ff800b4bb77f9522dc0d4cc, type: 3}
 --- !u!1 &8439088028358908239
 GameObject:
   m_ObjectHideFlags: 0
@@ -3696,6 +3906,7 @@ GameObject:
   - component: {fileID: 8819617127536116828}
   - component: {fileID: 7813056222972975994}
   - component: {fileID: 3211276654467664745}
+  - component: {fileID: 3426454563179646163}
   m_Layer: 0
   m_Name: mushlump_low (12)
   m_TagString: Untagged
@@ -3768,6 +3979,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &3426454563179646163
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8439088028358908239}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -5059537602585756777, guid: d0a40fde5ff800b4bb77f9522dc0d4cc, type: 3}
 --- !u!1 &9103874167286589285
 GameObject:
   m_ObjectHideFlags: 0
@@ -3779,6 +4004,7 @@ GameObject:
   - component: {fileID: 6542371012484796935}
   - component: {fileID: 5093031968531398972}
   - component: {fileID: 4142572658090695220}
+  - component: {fileID: 5711379248638429253}
   m_Layer: 0
   m_Name: InkShroom_low (2)
   m_TagString: Untagged
@@ -3851,6 +4077,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &5711379248638429253
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9103874167286589285}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -4399353941958423300, guid: d0a40fde5ff800b4bb77f9522dc0d4cc, type: 3}
 --- !u!1 &9157544680953924517
 GameObject:
   m_ObjectHideFlags: 0
@@ -3862,6 +4102,7 @@ GameObject:
   - component: {fileID: 8101439767921465014}
   - component: {fileID: 7378592437203552656}
   - component: {fileID: 2781875045031451011}
+  - component: {fileID: 1635764898843665929}
   m_Layer: 0
   m_Name: mushlump_low (10)
   m_TagString: Untagged
@@ -3934,3 +4175,17 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &1635764898843665929
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9157544680953924517}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -5059537602585756777, guid: d0a40fde5ff800b4bb77f9522dc0d4cc, type: 3}

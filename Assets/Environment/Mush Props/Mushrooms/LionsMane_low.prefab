@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6875305144216420552}
   - component: {fileID: 3822533152495901053}
   - component: {fileID: 8500032308950075743}
+  - component: {fileID: 7465772004763998488}
   m_Layer: 0
   m_Name: LionsMane_low
   m_TagString: Untagged
@@ -83,3 +84,17 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &7465772004763998488
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5271475049350377641}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -6234535585248746006, guid: d0a40fde5ff800b4bb77f9522dc0d4cc, type: 3}
