@@ -77,4 +77,9 @@ public class PlayerAnimationEvents : MonoBehaviour
     {
         stateManager.healthSystem.Heal(stateManager.healAmount);
     }
+
+    public void PlayAudio()
+    {
+
+    }
 }

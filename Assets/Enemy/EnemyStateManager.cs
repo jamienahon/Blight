@@ -1,7 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.Rendering.LookDev;
 using UnityEngine;
 
 public enum Attacks
@@ -30,6 +27,8 @@ public class EnemyStateManager : MonoBehaviour
     public EnemyMoveTowardPlayerState moveTowardPlayerState = new EnemyMoveTowardPlayerState();
     public EnemySpinAttackState sweepAttackState = new EnemySpinAttackState();
     public EnemySlashAttackState slashAttackState = new EnemySlashAttackState();
+    public EnemyDeathState EnemyDeathState = new EnemyDeathState();
+    
 
     [HideInInspector] public bool switchStates = false;
 
@@ -132,6 +131,8 @@ public class EnemyStateManager : MonoBehaviour
             }
         }
     }
+
+
 
     public bool IsPlayerInRange()
     {

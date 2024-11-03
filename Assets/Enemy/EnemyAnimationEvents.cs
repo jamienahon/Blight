@@ -9,12 +9,22 @@ public enum Hitboxes
     LeftArmHitboxes
 }
 
+
+
 public class EnemyAnimationEvents : MonoBehaviour
 {
     public EnemyStateManager stateManager;
     public Collider[] spinAttackHitboxes;
     public Collider[] rightArmHitboxes;
     public Collider[] leftArmHitboxes;
+
+    //Death State variables
+    public Animation victoryDoor;
+    public CameraController camCont;
+    public GameObject victoryScreen;
+    public AudioSource Dying;
+
+
 
     bool moveTowardPlayer = false;
 
@@ -114,4 +124,14 @@ public class EnemyAnimationEvents : MonoBehaviour
     {
         moveTowardPlayer = false;
     }
+
+    public void Death()
+    {
+        Dying.Play();
+        camCont.EndLockOn();
+        victoryDoor.Play();
+        victoryScreen.SetActive(true);
+        Destroy(gameObject);
+    }
+
 }
