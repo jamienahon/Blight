@@ -107,7 +107,7 @@ MonoBehaviour:
   moveSpeed: 25
   trackingStrength: 0
   damageFalloff: 0
-  impactVFX: {fileID: 510610942211361935}
+  deleteArrow: 0
 --- !u!136 &2094107229589407655
 CapsuleCollider:
   m_ObjectHideFlags: 0

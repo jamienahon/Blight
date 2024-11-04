@@ -22,7 +22,8 @@ public class EnemyAnimationEvents : MonoBehaviour
     public Animation victoryDoor;
     public CameraController camCont;
     public GameObject victoryScreen;
-    public AudioSource Dying;
+
+
 
 
 
@@ -127,11 +128,11 @@ public class EnemyAnimationEvents : MonoBehaviour
 
     public void Death()
     {
-        Dying.Play();
+        
         camCont.EndLockOn();
         victoryDoor.Play();
         victoryScreen.SetActive(true);
-        Destroy(gameObject);
+       
     }
 
 }
