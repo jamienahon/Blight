@@ -126,11 +126,11 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _Green_NRM:
         m_Texture: {fileID: 2800000, guid: 9c8ac2347922f5149814b0ef45c5ab75, type: 3}
-        m_Scale: {x: 200, y: 200}
+        m_Scale: {x: 100, y: 300}
         m_Offset: {x: 0, y: 0}
     - _Green_TEX:
         m_Texture: {fileID: 2800000, guid: f8011d790a464a8468870ca78785b704, type: 3}
-        m_Scale: {x: 200, y: 200}
+        m_Scale: {x: 100, y: 300}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
         m_Texture: {fileID: 0}
