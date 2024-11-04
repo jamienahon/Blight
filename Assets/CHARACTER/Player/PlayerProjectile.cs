@@ -16,6 +16,7 @@ public class PlayerProjectile : MonoBehaviour
     public float trackingStrength;
     public float damageFalloff;
     VisualEffect impactVFX;
+   // VisualEffect bloodVFXBoss;
     public float deleteArrow;
 
     private void Start()
@@ -54,6 +55,7 @@ public class PlayerProjectile : MonoBehaviour
             other.gameObject.GetComponentInParent<EnemyHealthSystem>().DoDamage(damage);
             player.GetComponent<PlayerHealthSystem>().RechargeGem(gemRechargeAmount);
             impactVFX.Play();
+            //bloodVFXBoss.Play();
             enabled = false;
             GetComponent<Collider>().enabled = false;
             GetComponent<MeshRenderer>().enabled = false;

@@ -22,7 +22,8 @@ public class EnemyAnimationEvents : MonoBehaviour
     public Animation victoryDoor;
     public CameraController camCont;
     public GameObject victoryScreen;
-    
+
+
 
 
 
