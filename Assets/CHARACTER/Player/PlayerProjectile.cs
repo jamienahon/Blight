@@ -9,6 +9,7 @@ public class PlayerProjectile : MonoBehaviour
     public GameObject target;
     PlayerStateManager stateManager;
     TrailRenderer trail;
+    
 
     public float damage;
     public float gemRechargeAmount;
@@ -16,6 +17,7 @@ public class PlayerProjectile : MonoBehaviour
     public float trackingStrength;
     public float damageFalloff;
     VisualEffect impactVFX;
+   // VisualEffect bloodVFXBoss;
     public float deleteArrow;
 
     private void Start()
@@ -25,6 +27,7 @@ public class PlayerProjectile : MonoBehaviour
 
     private void Update()
     {
+        
         if (target)
         {
             if (Vector3.Distance(gameObject.transform.position, target.transform.position) <
@@ -54,10 +57,15 @@ public class PlayerProjectile : MonoBehaviour
             other.gameObject.GetComponentInParent<EnemyHealthSystem>().DoDamage(damage);
             player.GetComponent<PlayerHealthSystem>().RechargeGem(gemRechargeAmount);
             impactVFX.Play();
+            //bloodVFXBoss.Play();
             enabled = false;
             GetComponent<Collider>().enabled = false;
             GetComponent<MeshRenderer>().enabled = false;
             GetComponentInChildren<TrailRenderer>().gameObject.SetActive(false);
+        }
+        else if (other.gameObject.tag == "Barrier")
+            {
+            Destroy(gameObject);
         }
         else if (other.gameObject.tag == "PlayerHit" || other.gameObject.tag == "Player")
             return;

@@ -18,8 +18,8 @@ public class PlayerShootState : PlayerState
         SetAnimationParameters();
         HandleAudio();
         LookAtCameraDirection();
-        SpawnProjectile();
-        stateManager.healthSystem.ConsumeStamina(stateManager.lightAttackStamCost);
+
+        stateManager.animator.SetLayerWeight(1, 1);
     }
 
     public override void UpdateState()
@@ -29,7 +29,9 @@ public class PlayerShootState : PlayerState
             HandleInputs();
 
             if (stateManager.isLockedOn)
+            {
                 stateManager.movementDirection = Quaternion.Euler(0, stateManager.animator.transform.eulerAngles.y, 0) * stateManager.movementDirection;
+            }
             else
                 stateManager.movementDirection = Quaternion.Euler(0, Camera.main.transform.eulerAngles.y, 0) * stateManager.movementDirection;
 
@@ -41,53 +43,38 @@ public class PlayerShootState : PlayerState
     {
         stateManager.movementDirection.x = Input.GetAxisRaw("Horizontal");
         stateManager.movementDirection.z = Input.GetAxisRaw("Vertical");
+        stateManager.animator.SetFloat("HorizontalMovement", Input.GetAxis("Horizontal"));
+        stateManager.animator.SetFloat("VerticalMovement", Input.GetAxis("Vertical"));
+
+        if (stateManager.movementDirection.x == 0 && stateManager.movementDirection.z == 0)
+            stateManager.animator.SetBool("IsMoving", false);
+        else
+            stateManager.animator.SetBool("IsMoving", true);
     }
 
     public override void HandleAnimations()
     {
-        stateManager.animator.Play("Light Attack");
+        //stateManager.animator.Play("LightAttack");
     }
 
     public override void SetAnimationParameters()
     {
         stateManager.animator.speed = 1f;
-        stateManager.animator.SetBool("IsMoving", false);
         stateManager.animator.SetBool("IsSprinting", false);
         stateManager.animator.SetBool("IsDodging", false);
+        stateManager.animator.SetBool("IsLightAttacking", true);
         stateManager.animator.SetFloat("HorizontalMovement", 0);
         stateManager.animator.SetFloat("VerticalMovement", 0);
     }
 
     public override void HandleAudio()
     {
-        stateManager.playerAudio.clip = shootSound;
-        stateManager.playerAudio.loop = loopSound;
-        stateManager.playerAudio.Play();
+
     }
 
     void LookAtCameraDirection()
     {
         stateManager.animator.transform.rotation = Quaternion.Euler(0, Camera.main.transform.eulerAngles.y, 0);
-    }
-
-    public void SpawnProjectile()
-    {
-        Vector3 position = new Vector3(stateManager.transform.position.x, stateManager.transform.position.y + 2.25f, stateManager.transform.position.z);
-        GameObject newProjectile = Object.Instantiate(stateManager.projectile, position, stateManager.projectile.transform.rotation);
-
-        GameObject target = GameObject.Find("LockOn Point R");
-
-        if (stateManager.isLockedOn)
-        {
-            newProjectile.transform.up = (target.transform.position - newProjectile.transform.position).normalized;
-            newProjectile.GetComponent<PlayerProjectile>().InitialiseArrowValues(stateManager.gameObject, target, stateManager.lightAttackDamage, stateManager.lightAttackGemRecharge, stateManager.lockedOnArrowTrackingStrength, stateManager.arrowLifetime);
-        }
-        else
-        {
-            newProjectile.transform.up = stateManager.animator.transform.forward;
-            newProjectile.GetComponent<PlayerProjectile>().InitialiseArrowValues(stateManager.gameObject, target, stateManager.lightAttackDamage, stateManager.lightAttackGemRecharge, stateManager.arrowTrackingStrength, stateManager.arrowLifetime);
-        }
-
     }
 
     public override void OnCollisionEnter(Collider collider)
