@@ -32,8 +32,14 @@ public class PlayerAnimationEvents : MonoBehaviour
         stateManager.animator.SetBool("IsHeavyAttacking", false);
         if (stateManager.animator.GetBool("IsMoving"))
             stateManager.SwitchState(stateManager.walkState);
-        else
+        else if (!stateManager.animator.GetBool("IsMoving"))
             stateManager.SwitchState(stateManager.idleState);
+
+        if (Input.GetAxis("LAttack") > 0)
+        {
+            stateManager.SwitchState(stateManager.shootState);
+            stateManager.animator.SetBool("IsLightAttacking", true);
+        }
     }
 
     public void StartMove()
@@ -168,6 +174,6 @@ public class PlayerAnimationEvents : MonoBehaviour
             }
 
         }
-        
+
     }
 }
