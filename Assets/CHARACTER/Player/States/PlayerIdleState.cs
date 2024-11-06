@@ -51,6 +51,11 @@ public class PlayerIdleState : PlayerState
         stateManager.animator.SetBool("IsSprinting", false);
         stateManager.animator.SetFloat("HorizontalMovement", 0);
         stateManager.animator.SetFloat("VerticalMovement", 0);
+        stateManager.animator.SetBool("IsLightAttacking", false);
+        stateManager.animator.SetBool("IsHeavyAttacking", false);
+        stateManager.animator.SetBool("IsDodging", false);
+        stateManager.animator.SetBool("IsHit", false);
+        stateManager.animator.SetBool("IsHealing", false);
     }
 
     public override void HandleAudio()

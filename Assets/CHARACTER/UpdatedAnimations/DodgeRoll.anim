@@ -78641,15 +78641,15 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.76666665
-    functionName: EndMove
+  - time: 0.6666667
+    functionName: EndDodge
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.8
-    functionName: EndDodge
+  - time: 0.76666665
+    functionName: EndMove
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
