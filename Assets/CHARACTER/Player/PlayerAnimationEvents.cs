@@ -18,6 +18,7 @@ public class PlayerAnimationEvents : MonoBehaviour
     public void EndDodge()
     {
         stateManager.isInvincible = false;
+        stateManager.animator.SetLayerWeight(1, 1);
         stateManager.animator.SetBool("IsDodging", false);
         if (stateManager.animator.GetBool("IsMoving"))
             stateManager.SwitchState(stateManager.walkState);
@@ -27,7 +28,6 @@ public class PlayerAnimationEvents : MonoBehaviour
 
     public void EndAttack()
     {
-        stateManager.animator.SetLayerWeight(1, 0);
         stateManager.animator.SetBool("IsLightAttacking", false);
         stateManager.animator.SetBool("IsHeavyAttacking", false);
         if (stateManager.animator.GetBool("IsMoving"))
@@ -115,7 +115,6 @@ public class PlayerAnimationEvents : MonoBehaviour
     public void EndHeal()
     {
         stateManager.animator.SetBool("IsHealing", false);
-        stateManager.animator.SetLayerWeight(1, 0);
 
         if (stateManager.animator.GetBool("IsMoving"))
             stateManager.SwitchState(stateManager.walkState);
