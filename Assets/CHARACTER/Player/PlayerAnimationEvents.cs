@@ -7,6 +7,8 @@ public class PlayerAnimationEvents : MonoBehaviour
     public Collider lHitbox;
     public Collider hHitbox;
     public GameObject healVFX;
+    public GameObject BloodVFX;
+    public AudioSource Hurt;
 
     public void StartDodge()
     {
@@ -82,11 +84,22 @@ public class PlayerAnimationEvents : MonoBehaviour
     {
         stateManager.animator.speed = 0;
     }
+    public void PlayAudio()
+    {
+        Hurt.Play();
+        Debug.Log("PLAYHURT");
+    }
 
     public void SpawnHealVFX()
     {
         Instantiate(healVFX, stateManager.transform);
     }
+    public void SpawnBloodVFX()
+    {
+        Instantiate(BloodVFX, stateManager.transform);
+        Debug.Log("BloodSpawn");
+    }
+
 
     public void Heal()
     {
@@ -153,6 +166,8 @@ public class PlayerAnimationEvents : MonoBehaviour
                 newProjectile.transform.up = Quaternion.Euler(0, rotation, 0) * stateManager.animator.transform.forward;
                 newProjectile.GetComponent<PlayerProjectile>().InitialiseArrowValues(stateManager.gameObject, target, stateManager.lightAttackDamage, stateManager.lightAttackGemRecharge, stateManager.arrowTrackingStrength, stateManager.arrowLifetime);
             }
+
         }
+        
     }
 }

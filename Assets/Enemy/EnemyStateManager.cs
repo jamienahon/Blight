@@ -5,7 +5,8 @@ public enum Attacks
 {
     SweepAttack,
     MineAttack,
-    SlashAttack
+    SlashAttack,
+    RangedAttack
 }
 
 public class EnemyStateManager : MonoBehaviour
@@ -28,12 +29,18 @@ public class EnemyStateManager : MonoBehaviour
     public EnemySpinAttackState sweepAttackState = new EnemySpinAttackState();
     public EnemySlashAttackState slashAttackState = new EnemySlashAttackState();
     public EnemyDeathState EnemyDeathState = new EnemyDeathState();
-    
+
 
     [HideInInspector] public bool switchStates = false;
 
     [Header("Movement")]
     public float moveSpeed;
+    public float fastMoveSpeed;
+    public float tooClose;
+    public float tooFar;
+    public Vector2 changeMovementRange;
+    [HideInInspector] public float changeMovement;
+    public float timeToGetInRange;
 
     [Header("Attacking")]
     public Vector2 timeBetweenAttacks;
@@ -65,8 +72,9 @@ public class EnemyStateManager : MonoBehaviour
     public float stunnedLength;
     [HideInInspector] public float endStun;
 
-    Attacks previousAttack;
-    Attacks desiredAttack;
+    [HideInInspector] public Attacks previousAttack;
+    [HideInInspector] public Attacks desiredAttack;
+    int currentMoveDir = 0;
 
 
     private void Start()
@@ -93,11 +101,37 @@ public class EnemyStateManager : MonoBehaviour
         }
 
         currentState.UpdateState();
-        DecideState();
+        DecideAttack();
 
         Vector3 lookDir = new Vector3(player.transform.position.x, 0, player.transform.position.z);
         animator.transform.LookAt(lookDir);
         animator.transform.rotation = Quaternion.Euler(0, animator.transform.rotation.eulerAngles.y, 0);
+
+        if (currentState == idleState)
+        {
+            DecideMovementDirection();
+        }
+    }
+
+    private void DecideMovementDirection()
+    {
+        if (Vector3.Distance(player.transform.position, transform.position) > tooFar)
+            transform.Translate(animator.transform.forward * moveSpeed * Time.deltaTime);
+        else if (Vector3.Distance(player.transform.position, transform.position) < tooClose)
+            transform.Translate(-animator.transform.forward * moveSpeed * Time.deltaTime);
+        else if (Vector3.Distance(player.transform.position, transform.position) <= tooFar)
+        {
+            if (currentMoveDir == 0)
+                transform.Translate(-animator.transform.right * moveSpeed * Time.deltaTime);
+            else if (currentMoveDir == 1)
+                transform.Translate(animator.transform.right * moveSpeed * Time.deltaTime);
+        }
+
+        if (Time.time >= changeMovement)
+        {
+            currentMoveDir = UnityEngine.Random.Range(0, 3);
+            changeMovement = Time.time + UnityEngine.Random.Range(changeMovementRange.x, changeMovementRange.y);
+        }
     }
 
     public void SwitchState(EnemyState state)
@@ -106,7 +140,7 @@ public class EnemyStateManager : MonoBehaviour
         switchStates = true;
     }
 
-    public void DecideState()
+    public void DecideAttack()
     {
         if (Time.time >= attackCooldownEnd && (currentState == idleState || currentState == moveState))
         {
@@ -116,18 +150,31 @@ public class EnemyStateManager : MonoBehaviour
 
             if (attackType == (int)Attacks.SweepAttack)
             {
-                SwitchState(sweepAttackState);
-                previousAttack = Attacks.SweepAttack;
+                if (!IsPlayerInRange())
+                {
+                    desiredAttack = Attacks.SweepAttack;
+                    SwitchState(moveTowardPlayerState);
+                }
+                else
+                {
+                    SwitchState(sweepAttackState);
+                }
             }
             else if (attackType == (int)Attacks.MineAttack)
             {
                 SwitchState(mineAttackState);
-                previousAttack = Attacks.MineAttack;
             }
             else if (attackType == (int)Attacks.SlashAttack)
             {
-                SwitchState(slashAttackState);
-                previousAttack = Attacks.SlashAttack;
+                if (!IsPlayerInRange())
+                {
+                    desiredAttack = Attacks.SlashAttack;
+                    SwitchState(moveTowardPlayerState);
+                }
+                else
+                {
+                    SwitchState(slashAttackState);
+                }
             }
         }
     }

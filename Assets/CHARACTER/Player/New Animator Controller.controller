@@ -48,7 +48,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: ca211449ae788224c88575a5e7f49f76, type: 2}
+  m_Motion: {fileID: 7400000, guid: 9a4104330073a3f4b959b20ecd0ca595, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -117,7 +117,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 3b014e43554513a49b4db25c6154ba75, type: 2}
+  m_Motion: {fileID: 7400000, guid: 81ebd4270c6d934458b24378382e5f46, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -283,7 +283,7 @@ BlendTree:
   m_Name: Blend Tree
   m_Childs:
   - serializedVersion: 2
-    m_Motion: {fileID: 7400000, guid: 1396826782bf4ac45aeb27e01840ba89, type: 2}
+    m_Motion: {fileID: 7400000, guid: 4bd8219f9b1e58f418107035f994019d, type: 2}
     m_Threshold: 0
     m_Position: {x: 0, y: 1}
     m_TimeScale: 1
@@ -291,7 +291,7 @@ BlendTree:
     m_DirectBlendParameter: Blend
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: 7400000, guid: 16968c8c3d870fa45a089a8e4064710a, type: 2}
+    m_Motion: {fileID: 7400000, guid: 0526af7bbe4ce7c489f70da8b8da0430, type: 2}
     m_Threshold: 0.33333334
     m_Position: {x: 0, y: -1}
     m_TimeScale: 1
@@ -299,7 +299,7 @@ BlendTree:
     m_DirectBlendParameter: HorizontalMovement
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: 7400000, guid: aa69b7d0af9c7b341957363213bbbf16, type: 2}
+    m_Motion: {fileID: 7400000, guid: 29603ccd78332ca4cbe1881907ea8f5e, type: 2}
     m_Threshold: 0.6666667
     m_Position: {x: 1, y: 0}
     m_TimeScale: 1
@@ -307,7 +307,7 @@ BlendTree:
     m_DirectBlendParameter: HorizontalMovement
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: 7400000, guid: 7c424031c334758499b720e44b7d1a21, type: 2}
+    m_Motion: {fileID: 7400000, guid: d2d123e8201015049a8e8dcf14a6d7fc, type: 2}
     m_Threshold: 1
     m_Position: {x: -1, y: 0}
     m_TimeScale: 1
@@ -341,7 +341,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 1396826782bf4ac45aeb27e01840ba89, type: 2}
+  m_Motion: {fileID: 7400000, guid: 4bd8219f9b1e58f418107035f994019d, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -500,7 +500,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: DodgeRoll
-  m_Speed: 0.85
+  m_Speed: 1.2
   m_CycleOffset: 0
   m_Transitions: []
   m_StateMachineBehaviours: []
@@ -512,7 +512,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 25963cadeaa8c38458bbfe5331c93710, type: 2}
+  m_Motion: {fileID: 7400000, guid: 5ad9f88b228849648ace553ed5c06744, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -843,11 +843,11 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.25
-  m_TransitionOffset: 0
-  m_ExitTime: 0.75
+  m_TransitionDuration: 0.14609748
+  m_TransitionOffset: 0.0032679804
+  m_ExitTime: 0.83141667
   m_HasExitTime: 0
-  m_HasFixedDuration: 1
+  m_HasFixedDuration: 0
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 0
