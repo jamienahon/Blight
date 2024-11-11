@@ -58,6 +58,7 @@ public class PlayerAnimationEvents : MonoBehaviour
 
     public void EndGetHit()
     {
+        stateManager.animator.SetLayerWeight(1, 1);
         stateManager.animator.SetBool("IsHit", false);
         if (stateManager.animator.GetBool("IsMoving"))
             stateManager.SwitchState(stateManager.walkState);
