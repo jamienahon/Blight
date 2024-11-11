@@ -9,6 +9,7 @@ public class PlayerProjectile : MonoBehaviour
     public GameObject target;
     PlayerStateManager stateManager;
     TrailRenderer trail;
+    
 
     public float damage;
     public float gemRechargeAmount;
@@ -26,6 +27,7 @@ public class PlayerProjectile : MonoBehaviour
 
     private void Update()
     {
+        
         if (target)
         {
             if (Vector3.Distance(gameObject.transform.position, target.transform.position) <
