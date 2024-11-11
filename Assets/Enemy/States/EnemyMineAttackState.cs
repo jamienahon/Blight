@@ -10,6 +10,7 @@ public class EnemyMineAttackState : EnemyState
     {
         this.stateManager = stateManager;
         HandleAnimations();
+        stateManager.previousAttack = Attacks.MineAttack;
     }
 
     public override void UpdateState()

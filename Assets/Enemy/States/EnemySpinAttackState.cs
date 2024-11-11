@@ -10,6 +10,7 @@ public class EnemySpinAttackState : EnemyState
     {
         this.stateManager = stateManager;
         HandleAnimations();
+        stateManager.previousAttack = Attacks.SweepAttack;
     }
 
     public override void UpdateState()

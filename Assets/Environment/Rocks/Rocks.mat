@@ -151,7 +151,7 @@ Material:
     - _WorkflowMode: 1
     - _X: 88.8
     - _Y: 88.7
-    - _Y_OFFSET: -19.5
+    - _Y_OFFSET: -19.9
     - _ZWrite: 1
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
