@@ -161,7 +161,7 @@ Material:
         m_Scale: {x: 0.3, y: 0.3}
         m_Offset: {x: 0, y: 0}
     - _Red_TEX:
-        m_Texture: {fileID: 2800000, guid: f8011d790a464a8468870ca78785b704, type: 3}
+        m_Texture: {fileID: 2800000, guid: f973601ffbcf4a940a4d9ce213a2d0c2, type: 3}
         m_Scale: {x: 0.3, y: 0.3}
         m_Offset: {x: 0, y: 0}
     - _Secondarymap:
