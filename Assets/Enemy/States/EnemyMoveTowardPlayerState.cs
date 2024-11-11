@@ -36,9 +36,11 @@ public class EnemyMoveTowardPlayerState : EnemyState
 
         if (Time.time >= changeState)
         {
-            int attack = Random.Range(0, 1);
+            int attack = Random.Range(0, 2);
             if (attack == 0)
                 stateManager.SwitchState(stateManager.mineAttackState);
+            else if (attack == 1)
+                stateManager.SwitchState(stateManager.rangeAttackState);
         }
     }
 
