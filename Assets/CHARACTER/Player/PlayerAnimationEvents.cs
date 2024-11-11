@@ -9,6 +9,8 @@ public class PlayerAnimationEvents : MonoBehaviour
     public GameObject healVFX;
     public GameObject BloodVFX;
     public AudioSource Hurt;
+    public AudioSource HealSFX;
+    public AudioSource DeathSFX;
 
     public void StartDodge()
     {
@@ -84,10 +86,21 @@ public class PlayerAnimationEvents : MonoBehaviour
     {
         stateManager.animator.speed = 0;
     }
-    public void PlayAudio()
+    public void PlayHurt()
     {
         Hurt.Play();
         Debug.Log("PLAYHURT");
+    }
+
+    public void PlayDeathSFX()
+    {
+        DeathSFX.Play();
+        Debug.Log("PLAYDeath");
+    }
+    public void PlayHealSFX()
+    {
+        HealSFX.Play();
+        Debug.Log("PLAYHealSFX");
     }
 
     public void SpawnHealVFX()

@@ -23,6 +23,12 @@ public class EnemyAnimationEvents : MonoBehaviour
     public CameraController camCont;
     public GameObject victoryScreen;
 
+    //sounds
+    public AudioSource sweep;
+    public AudioSource SwipingSFX;
+    public AudioSource RoarSFX;
+    public AudioSource Deathsfx;
+
 
 
 
@@ -43,6 +49,27 @@ public class EnemyAnimationEvents : MonoBehaviour
                 stateManager.transform.position = new Vector3(newPos.x, yPos, newPos.z);
             }
         }
+    }
+    public void PlaySwiping()
+    {
+        SwipingSFX.Play();
+        Debug.Log("PLAYswipe");
+    }
+    public void PlayRoar()
+    {
+        RoarSFX.Play();
+        Debug.Log("PLAYroar");
+    }
+    public void PlaySweep()
+    {
+        sweep.Play();
+        Debug.Log("PLAYsweep");
+    }
+
+    public void PlayDeath()
+    {
+        Deathsfx.Play();
+        Debug.Log("PLAYDeath");
     }
 
     public void EndAttack()
