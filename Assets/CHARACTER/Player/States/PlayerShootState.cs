@@ -18,8 +18,6 @@ public class PlayerShootState : PlayerState
         SetAnimationParameters();
         HandleAudio();
         LookAtCameraDirection();
-
-        stateManager.animator.SetLayerWeight(1, 1);
     }
 
     public override void UpdateState()

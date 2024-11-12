@@ -33,6 +33,7 @@ public class PlayerGetHitState : PlayerState
 
     public override void SetAnimationParameters()
     {
+        stateManager.animator.SetLayerWeight(1, 0);
         stateManager.animator.SetBool("IsMoving", false);
         stateManager.animator.SetBool("IsSprinting", false);
         stateManager.animator.SetBool("IsDodging", false);

@@ -22,15 +22,25 @@ public class EnemyMoveTowardPlayerState : EnemyState
         {
             if (stateManager.desiredAttack == Attacks.SlashAttack)
                 stateManager.SwitchState(stateManager.slashAttackState);
+            else if (stateManager.desiredAttack == Attacks.DoubleSlashAttack)
+                stateManager.SwitchState(stateManager.doubleSlashAttackState);
+            else if (stateManager.desiredAttack == Attacks.FlickAttack)
+                stateManager.SwitchState(stateManager.flickAttackState);
+            else if (stateManager.desiredAttack == Attacks.FlipAttack)
+                stateManager.SwitchState(stateManager.flipAttackState);
+            else if (stateManager.desiredAttack == Attacks.FlurryAttack)
+                stateManager.SwitchState(stateManager.flurryAttackState);
             else if (stateManager.desiredAttack == Attacks.SweepAttack)
                 stateManager.SwitchState(stateManager.sweepAttackState);
         }
 
         if (Time.time >= changeState)
         {
-            int attack = Random.Range(0, 1);
+            int attack = Random.Range(0, 2);
             if (attack == 0)
                 stateManager.SwitchState(stateManager.mineAttackState);
+            else if (attack == 1)
+                stateManager.SwitchState(stateManager.rangeAttackState);
         }
     }
 

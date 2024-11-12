@@ -4,8 +4,12 @@ using UnityEngine;
 public enum Attacks
 {
     SweepAttack,
-    MineAttack,
     SlashAttack,
+    DoubleSlashAttack,
+    FlickAttack,
+    FlipAttack,
+    FlurryAttack,
+    MineAttack,
     RangedAttack
 }
 
@@ -29,7 +33,10 @@ public class EnemyStateManager : MonoBehaviour
     public EnemySpinAttackState sweepAttackState = new EnemySpinAttackState();
     public EnemySlashAttackState slashAttackState = new EnemySlashAttackState();
     public EnemyDeathState EnemyDeathState = new EnemyDeathState();
-
+    public EnemyFlickAttackState flickAttackState = new EnemyFlickAttackState();
+    public EnemyFlurryAttackState flurryAttackState = new EnemyFlurryAttackState();
+    public EnemyFlipAttackState flipAttackState = new EnemyFlipAttackState();
+    public EnemyDoubleSlashAttackState doubleSlashAttackState = new EnemyDoubleSlashAttackState();
 
     [HideInInspector] public bool switchStates = false;
 
@@ -41,6 +48,8 @@ public class EnemyStateManager : MonoBehaviour
     public Vector2 changeMovementRange;
     [HideInInspector] public float changeMovement;
     public float timeToGetInRange;
+    public bool facePlayer = true;
+    public float rotationSpeed;
 
     [Header("Attacking")]
     public Vector2 timeBetweenAttacks;
@@ -103,9 +112,12 @@ public class EnemyStateManager : MonoBehaviour
         currentState.UpdateState();
         DecideAttack();
 
-        Vector3 lookDir = new Vector3(player.transform.position.x, 0, player.transform.position.z);
-        animator.transform.LookAt(lookDir);
-        animator.transform.rotation = Quaternion.Euler(0, animator.transform.rotation.eulerAngles.y, 0);
+        if (facePlayer)
+        {
+            Quaternion lookRotation = Quaternion.LookRotation((player.transform.position - transform.position).normalized);
+            lookRotation.x = lookRotation.z = 0;
+            animator.transform.rotation = Quaternion.Slerp(animator.transform.rotation, lookRotation, rotationSpeed * Time.deltaTime);
+        }
 
         if (currentState == idleState)
         {
@@ -144,36 +156,37 @@ public class EnemyStateManager : MonoBehaviour
     {
         if (Time.time >= attackCooldownEnd && (currentState == idleState || currentState == moveState))
         {
-            int attackType;
-            do attackType = UnityEngine.Random.Range(0, Enum.GetNames(typeof(Attacks)).Length);
-            while (attackType == (int)previousAttack);
+            do desiredAttack = (Attacks)UnityEngine.Random.Range(0, Enum.GetNames(typeof(Attacks)).Length);
+            while (desiredAttack == previousAttack);
 
-            if (attackType == (int)Attacks.SweepAttack)
-            {
-                if (!IsPlayerInRange())
-                {
-                    desiredAttack = Attacks.SweepAttack;
-                    SwitchState(moveTowardPlayerState);
-                }
-                else
-                {
-                    SwitchState(sweepAttackState);
-                }
-            }
-            else if (attackType == (int)Attacks.MineAttack)
+            if (desiredAttack == Attacks.MineAttack)
             {
                 SwitchState(mineAttackState);
             }
-            else if (attackType == (int)Attacks.SlashAttack)
+            else if (desiredAttack == Attacks.RangedAttack)
+            {
+                SwitchState(rangeAttackState);
+            }
+            else
             {
                 if (!IsPlayerInRange())
                 {
-                    desiredAttack = Attacks.SlashAttack;
                     SwitchState(moveTowardPlayerState);
                 }
                 else
                 {
-                    SwitchState(slashAttackState);
+                    if (desiredAttack == Attacks.SlashAttack)
+                        SwitchState(slashAttackState);
+                    else if (desiredAttack == Attacks.DoubleSlashAttack)
+                        SwitchState(doubleSlashAttackState);
+                    else if (desiredAttack == Attacks.FlickAttack)
+                        SwitchState(flickAttackState);
+                    else if (desiredAttack == Attacks.FlipAttack)
+                        SwitchState(flipAttackState);
+                    else if (desiredAttack == Attacks.FlurryAttack)
+                        SwitchState(flurryAttackState);
+                    else if (desiredAttack == Attacks.SweepAttack)
+                        SwitchState(sweepAttackState);
                 }
             }
         }

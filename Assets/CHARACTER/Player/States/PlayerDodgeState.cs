@@ -24,7 +24,7 @@ public class PlayerDodgeState : PlayerState
         if (move)
             stateManager.transform.Translate(stateManager.animator.transform.forward * stateManager.dodgeMoveSpeed * Time.deltaTime);
 
-        if (stateManager.movementDirection.x == 0 && stateManager.movementDirection.z == 0)
+        if (Input.GetAxisRaw("Horizontal") == 0 && Input.GetAxisRaw("Vertical") == 0)
             stateManager.animator.SetBool("IsMoving", false);
         else
             stateManager.animator.SetBool("IsMoving", true);
@@ -43,6 +43,7 @@ public class PlayerDodgeState : PlayerState
     public override void SetAnimationParameters()
     {
         stateManager.animator.speed = 1f;
+        stateManager.animator.SetLayerWeight(1, 0);
         stateManager.animator.SetBool("IsDodging", true);
     }
 
