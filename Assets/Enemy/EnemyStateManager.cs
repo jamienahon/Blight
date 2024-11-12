@@ -165,7 +165,7 @@ public class EnemyStateManager : MonoBehaviour
             }
             else if (desiredAttack == Attacks.RangedAttack)
             {
-                SwitchState(mineAttackState);
+                SwitchState(rangeAttackState);
             }
             else
             {
