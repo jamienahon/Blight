@@ -19492,7 +19492,7 @@ GameObject:
   - component: {fileID: 6499905374223335275}
   - component: {fileID: 6499905374223335274}
   m_Layer: 0
-  m_Name: Heal_Shard_P
+  m_Name: shardVFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
