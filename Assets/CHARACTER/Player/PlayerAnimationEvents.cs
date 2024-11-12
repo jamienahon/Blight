@@ -7,6 +7,10 @@ public class PlayerAnimationEvents : MonoBehaviour
     public Collider lHitbox;
     public Collider hHitbox;
     public GameObject healVFX;
+    public GameObject BloodVFX;
+    public AudioSource Hurt;
+    public AudioSource HealSFX;
+    public AudioSource DeathSFX;
 
     public void StartDodge()
     {
@@ -16,6 +20,7 @@ public class PlayerAnimationEvents : MonoBehaviour
     public void EndDodge()
     {
         stateManager.isInvincible = false;
+        stateManager.animator.SetLayerWeight(1, 1);
         stateManager.animator.SetBool("IsDodging", false);
         if (stateManager.animator.GetBool("IsMoving"))
             stateManager.SwitchState(stateManager.walkState);
@@ -25,13 +30,18 @@ public class PlayerAnimationEvents : MonoBehaviour
 
     public void EndAttack()
     {
-        stateManager.animator.SetLayerWeight(1, 0);
         stateManager.animator.SetBool("IsLightAttacking", false);
         stateManager.animator.SetBool("IsHeavyAttacking", false);
         if (stateManager.animator.GetBool("IsMoving"))
             stateManager.SwitchState(stateManager.walkState);
-        else
+        else if (!stateManager.animator.GetBool("IsMoving"))
             stateManager.SwitchState(stateManager.idleState);
+
+        if (Input.GetAxis("LAttack") > 0)
+        {
+            stateManager.SwitchState(stateManager.shootState);
+            stateManager.animator.SetBool("IsLightAttacking", true);
+        }
     }
 
     public void StartMove()
@@ -50,6 +60,7 @@ public class PlayerAnimationEvents : MonoBehaviour
 
     public void EndGetHit()
     {
+        stateManager.animator.SetLayerWeight(1, 1);
         stateManager.animator.SetBool("IsHit", false);
         if (stateManager.animator.GetBool("IsMoving"))
             stateManager.SwitchState(stateManager.walkState);
@@ -82,11 +93,33 @@ public class PlayerAnimationEvents : MonoBehaviour
     {
         stateManager.animator.speed = 0;
     }
+    public void PlayHurt()
+    {
+        Hurt.Play();
+        Debug.Log("PLAYHURT");
+    }
+
+    public void PlayDeathSFX()
+    {
+        DeathSFX.Play();
+        Debug.Log("PLAYDeath");
+    }
+    public void PlayHealSFX()
+    {
+        HealSFX.Play();
+        Debug.Log("PLAYHealSFX");
+    }
 
     public void SpawnHealVFX()
     {
         Instantiate(healVFX, stateManager.transform);
     }
+    public void SpawnBloodVFX()
+    {
+        Instantiate(BloodVFX, stateManager.transform);
+        Debug.Log("BloodSpawn");
+    }
+
 
     public void Heal()
     {
@@ -96,7 +129,6 @@ public class PlayerAnimationEvents : MonoBehaviour
     public void EndHeal()
     {
         stateManager.animator.SetBool("IsHealing", false);
-        stateManager.animator.SetLayerWeight(1, 0);
 
         if (stateManager.animator.GetBool("IsMoving"))
             stateManager.SwitchState(stateManager.walkState);
@@ -146,13 +178,15 @@ public class PlayerAnimationEvents : MonoBehaviour
             if (stateManager.isLockedOn)
             {
                 newProjectile.transform.up = Quaternion.Euler(0, rotation, 0) * (target.transform.position - newProjectile.transform.position).normalized;
-                newProjectile.GetComponent<PlayerProjectile>().InitialiseArrowValues(stateManager.gameObject, target, stateManager.lightAttackDamage, stateManager.lightAttackGemRecharge, stateManager.lockedOnArrowTrackingStrength, stateManager.arrowLifetime);
+                newProjectile.GetComponent<PlayerProjectile>().InitialiseArrowValues(stateManager.gameObject, target, stateManager.heavyAttackDamage / 3.0f, stateManager.lightAttackGemRecharge, stateManager.lockedOnArrowTrackingStrength, stateManager.arrowLifetime);
             }
             else
             {
                 newProjectile.transform.up = Quaternion.Euler(0, rotation, 0) * stateManager.animator.transform.forward;
-                newProjectile.GetComponent<PlayerProjectile>().InitialiseArrowValues(stateManager.gameObject, target, stateManager.lightAttackDamage, stateManager.lightAttackGemRecharge, stateManager.arrowTrackingStrength, stateManager.arrowLifetime);
+                newProjectile.GetComponent<PlayerProjectile>().InitialiseArrowValues(stateManager.gameObject, target, stateManager.heavyAttackDamage / 3.0f, stateManager.lightAttackGemRecharge, stateManager.arrowTrackingStrength, stateManager.arrowLifetime);
             }
+
         }
+
     }
 }

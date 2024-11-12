@@ -89567,22 +89567,15 @@ AnimationClip:
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
   m_Events:
-  - time: 0.06666667
-    functionName: DisableHitbox
+  - time: 1.1
+    functionName: StopRotate
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
-    intParameter: 2
+    intParameter: 0
     messageOptions: 0
-  - time: 0.06666667
-    functionName: DisableHitbox
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 1
-    messageOptions: 0
-  - time: 0.06666667
-    functionName: DisableHitbox
+  - time: 0.43333334
+    functionName: PlayRoar
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
@@ -89602,22 +89595,8 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 2.9
-    functionName: EnableHitbox
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 1
-    messageOptions: 0
-  - time: 2.9
-    functionName: EnableHitbox
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 2
-    messageOptions: 0
-  - time: 2.9
-    functionName: EnableHitbox
+  - time: 2.9333334
+    functionName: StartRotate
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

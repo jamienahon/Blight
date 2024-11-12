@@ -10,6 +10,7 @@ public class EnemySlashAttackState : EnemyState
     {
         this.stateManager = stateManager;
         HandleAnimations();
+        stateManager.previousAttack = Attacks.SlashAttack;
     }
 
     public override void UpdateState()

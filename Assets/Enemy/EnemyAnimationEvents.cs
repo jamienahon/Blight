@@ -1,3 +1,4 @@
+using Autodesk.Fbx;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -22,7 +23,14 @@ public class EnemyAnimationEvents : MonoBehaviour
     public Animation victoryDoor;
     public CameraController camCont;
     public GameObject victoryScreen;
-    
+
+    //sounds
+    public AudioSource sweep;
+    public AudioSource SwipingSFX;
+    public AudioSource RoarSFX;
+    public AudioSource Deathsfx;
+
+
 
 
 
@@ -32,16 +40,30 @@ public class EnemyAnimationEvents : MonoBehaviour
     {
         if (moveTowardPlayer)
         {
-            Vector3 enemyPos = new Vector3(stateManager.transform.position.x, 0, stateManager.transform.position.z);
-            Vector3 playerPos = new Vector3(stateManager.player.transform.position.x, 0, stateManager.player.transform.position.z);
-
-            if (Vector3.Distance(enemyPos, playerPos) > stateManager.maxAttackDistance)
-            {
-                float yPos = stateManager.transform.position.y;
-                Vector3 newPos = Vector3.MoveTowards(stateManager.transform.position, stateManager.player.transform.position, stateManager.midAttackMoveSpeed * Time.deltaTime);
-                stateManager.transform.position = new Vector3(newPos.x, yPos, newPos.z);
-            }
+            if (Vector3.Distance(stateManager.transform.position, stateManager.player.transform.position) > stateManager.maxAttackDistance)
+                stateManager.transform.position += transform.forward * stateManager.midAttackMoveSpeed * Time.deltaTime;
         }
+    }
+    public void PlaySwiping()
+    {
+        SwipingSFX.Play();
+        Debug.Log("PLAYswipe");
+    }
+    public void PlayRoar()
+    {
+        RoarSFX.Play();
+        Debug.Log("PLAYroar");
+    }
+    public void PlaySweep()
+    {
+        sweep.Play();
+        Debug.Log("PLAYsweep");
+    }
+
+    public void PlayDeath()
+    {
+        Deathsfx.Play();
+        Debug.Log("PLAYDeath");
     }
 
     public void EndAttack()
@@ -50,9 +72,14 @@ public class EnemyAnimationEvents : MonoBehaviour
         stateManager.attackCooldownEnd = Time.time + Random.Range(stateManager.timeBetweenAttacks.x, stateManager.timeBetweenAttacks.y);
     }
 
+    public void StartRotate()
+    {
+        stateManager.facePlayer = true;
+    }
+
     public void StopRotate()
     {
-        stateManager.meleeAttackState.rotate = false;
+        stateManager.facePlayer = false;
     }
 
     public void EnableHitbox(Hitboxes hitbox)
@@ -115,9 +142,10 @@ public class EnemyAnimationEvents : MonoBehaviour
         stateManager.mineAttackState.SpawnMines();
     }
 
-    public void StartMoveTowardPlayer()
+    public void StartMoveTowardPlayer(float distance)
     {
         moveTowardPlayer = true;
+        stateManager.maxAttackDistance = distance;
     }
 
     public void EndMoveTowardPlayer()
@@ -127,11 +155,11 @@ public class EnemyAnimationEvents : MonoBehaviour
 
     public void Death()
     {
-        
+
         camCont.EndLockOn();
         victoryDoor.Play();
         victoryScreen.SetActive(true);
-       
+
     }
 
 }

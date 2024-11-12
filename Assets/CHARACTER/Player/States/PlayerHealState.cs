@@ -13,8 +13,6 @@ public class PlayerHealState : PlayerState
         HandleAnimations();
         SetAnimationParameters();
         HandleAudio();
-
-        stateManager.animator.SetLayerWeight(1, 1);
     }
 
     public override void UpdateState()

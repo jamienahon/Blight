@@ -4,8 +4,13 @@ using UnityEngine;
 public enum Attacks
 {
     SweepAttack,
+    SlashAttack,
+    DoubleSlashAttack,
+    FlickAttack,
+    FlipAttack,
+    FlurryAttack,
     MineAttack,
-    SlashAttack
+    RangedAttack
 }
 
 public class EnemyStateManager : MonoBehaviour
@@ -28,12 +33,23 @@ public class EnemyStateManager : MonoBehaviour
     public EnemySpinAttackState sweepAttackState = new EnemySpinAttackState();
     public EnemySlashAttackState slashAttackState = new EnemySlashAttackState();
     public EnemyDeathState EnemyDeathState = new EnemyDeathState();
-    
+    public EnemyFlickAttackState flickAttackState = new EnemyFlickAttackState();
+    public EnemyFlurryAttackState flurryAttackState = new EnemyFlurryAttackState();
+    public EnemyFlipAttackState flipAttackState = new EnemyFlipAttackState();
+    public EnemyDoubleSlashAttackState doubleSlashAttackState = new EnemyDoubleSlashAttackState();
 
     [HideInInspector] public bool switchStates = false;
 
     [Header("Movement")]
     public float moveSpeed;
+    public float fastMoveSpeed;
+    public float tooClose;
+    public float tooFar;
+    public Vector2 changeMovementRange;
+    [HideInInspector] public float changeMovement;
+    public float timeToGetInRange;
+    public bool facePlayer = true;
+    public float rotationSpeed;
 
     [Header("Attacking")]
     public Vector2 timeBetweenAttacks;
@@ -65,8 +81,9 @@ public class EnemyStateManager : MonoBehaviour
     public float stunnedLength;
     [HideInInspector] public float endStun;
 
-    Attacks previousAttack;
-    Attacks desiredAttack;
+    [HideInInspector] public Attacks previousAttack;
+    [HideInInspector] public Attacks desiredAttack;
+    int currentMoveDir = 0;
 
 
     private void Start()
@@ -93,11 +110,40 @@ public class EnemyStateManager : MonoBehaviour
         }
 
         currentState.UpdateState();
-        DecideState();
+        DecideAttack();
 
-        Vector3 lookDir = new Vector3(player.transform.position.x, 0, player.transform.position.z);
-        animator.transform.LookAt(lookDir);
-        animator.transform.rotation = Quaternion.Euler(0, animator.transform.rotation.eulerAngles.y, 0);
+        if (facePlayer)
+        {
+            Quaternion lookRotation = Quaternion.LookRotation((player.transform.position - transform.position).normalized);
+            lookRotation.x = lookRotation.z = 0;
+            animator.transform.rotation = Quaternion.Slerp(animator.transform.rotation, lookRotation, rotationSpeed * Time.deltaTime);
+        }
+
+        if (currentState == idleState)
+        {
+            DecideMovementDirection();
+        }
+    }
+
+    private void DecideMovementDirection()
+    {
+        if (Vector3.Distance(player.transform.position, transform.position) > tooFar)
+            transform.Translate(animator.transform.forward * moveSpeed * Time.deltaTime);
+        else if (Vector3.Distance(player.transform.position, transform.position) < tooClose)
+            transform.Translate(-animator.transform.forward * moveSpeed * Time.deltaTime);
+        else if (Vector3.Distance(player.transform.position, transform.position) <= tooFar)
+        {
+            if (currentMoveDir == 0)
+                transform.Translate(-animator.transform.right * moveSpeed * Time.deltaTime);
+            else if (currentMoveDir == 1)
+                transform.Translate(animator.transform.right * moveSpeed * Time.deltaTime);
+        }
+
+        if (Time.time >= changeMovement)
+        {
+            currentMoveDir = UnityEngine.Random.Range(0, 3);
+            changeMovement = Time.time + UnityEngine.Random.Range(changeMovementRange.x, changeMovementRange.y);
+        }
     }
 
     public void SwitchState(EnemyState state)
@@ -106,28 +152,42 @@ public class EnemyStateManager : MonoBehaviour
         switchStates = true;
     }
 
-    public void DecideState()
+    public void DecideAttack()
     {
         if (Time.time >= attackCooldownEnd && (currentState == idleState || currentState == moveState))
         {
-            int attackType;
-            do attackType = UnityEngine.Random.Range(0, Enum.GetNames(typeof(Attacks)).Length);
-            while (attackType == (int)previousAttack);
+            do desiredAttack = (Attacks)UnityEngine.Random.Range(0, Enum.GetNames(typeof(Attacks)).Length);
+            while (desiredAttack == previousAttack);
 
-            if (attackType == (int)Attacks.SweepAttack)
-            {
-                SwitchState(sweepAttackState);
-                previousAttack = Attacks.SweepAttack;
-            }
-            else if (attackType == (int)Attacks.MineAttack)
+            if (desiredAttack == Attacks.MineAttack)
             {
                 SwitchState(mineAttackState);
-                previousAttack = Attacks.MineAttack;
             }
-            else if (attackType == (int)Attacks.SlashAttack)
+            else if (desiredAttack == Attacks.RangedAttack)
             {
-                SwitchState(slashAttackState);
-                previousAttack = Attacks.SlashAttack;
+                SwitchState(rangeAttackState);
+            }
+            else
+            {
+                if (!IsPlayerInRange())
+                {
+                    SwitchState(moveTowardPlayerState);
+                }
+                else
+                {
+                    if (desiredAttack == Attacks.SlashAttack)
+                        SwitchState(slashAttackState);
+                    else if (desiredAttack == Attacks.DoubleSlashAttack)
+                        SwitchState(doubleSlashAttackState);
+                    else if (desiredAttack == Attacks.FlickAttack)
+                        SwitchState(flickAttackState);
+                    else if (desiredAttack == Attacks.FlipAttack)
+                        SwitchState(flipAttackState);
+                    else if (desiredAttack == Attacks.FlurryAttack)
+                        SwitchState(flurryAttackState);
+                    else if (desiredAttack == Attacks.SweepAttack)
+                        SwitchState(sweepAttackState);
+                }
             }
         }
     }

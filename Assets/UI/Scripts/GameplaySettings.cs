@@ -20,10 +20,10 @@ public class GameplaySettings : MonoBehaviour
         InitialiseGameplaySettings();
     }
 
-    private void Update()
-    {
-        UpdateFOV();
-    }
+ //   private void Update()
+ //   {
+ //       UpdateFOV();
+ //   }
 
     private void InitialiseGameplaySettings()
     {
