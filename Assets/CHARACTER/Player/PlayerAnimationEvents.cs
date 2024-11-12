@@ -11,6 +11,7 @@ public class PlayerAnimationEvents : MonoBehaviour
     public AudioSource Hurt;
     public AudioSource HealSFX;
     public AudioSource DeathSFX;
+    public GameObject shardVFX;
 
     public void StartDodge()
     {
@@ -120,6 +121,10 @@ public class PlayerAnimationEvents : MonoBehaviour
         Debug.Log("BloodSpawn");
     }
 
+    public void SpawnShardsVFX()
+    {
+        Instantiate(shardVFX, stateManager.animator.transform.position, stateManager.animator.transform.rotation);
+    }
 
     public void Heal()
     {
