@@ -31,12 +31,13 @@ public class PlayerAnimationEvents : MonoBehaviour
 
     public void EndAttack()
     {
+        stateManager.animator.SetLayerWeight(1, 1);
         stateManager.animator.SetBool("IsLightAttacking", false);
         stateManager.animator.SetBool("IsHeavyAttacking", false);
-        if (stateManager.animator.GetBool("IsMoving"))
-            stateManager.SwitchState(stateManager.walkState);
-        else if (!stateManager.animator.GetBool("IsMoving"))
+        if (Input.GetAxisRaw("Horizontal") == 0 && Input.GetAxisRaw("Vertical") == 0)
             stateManager.SwitchState(stateManager.idleState);
+        else
+            stateManager.SwitchState(stateManager.walkState);
 
         if (Input.GetAxis("LAttack") > 0)
         {
@@ -47,14 +48,24 @@ public class PlayerAnimationEvents : MonoBehaviour
 
     public void StartMove()
     {
-        stateManager.hAttackState.move = true;
+        stateManager.hAttackState.moveForward = true;
         stateManager.lAttackState.move = true;
         stateManager.dodgeState.move = true;
     }
 
+    public void StartMoveBack()
+    {
+        stateManager.heavyShootState.moveBack = true;
+    }
+
+    public void EndMoveBack()
+    {
+        stateManager.heavyShootState.moveBack = false;
+    }
+
     public void EndMove()
     {
-        stateManager.hAttackState.move = false;
+        stateManager.hAttackState.moveForward = false;
         stateManager.lAttackState.move = false;
         stateManager.dodgeState.move = false;
     }

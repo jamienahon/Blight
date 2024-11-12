@@ -59,6 +59,7 @@ public class PlayerStateManager : MonoBehaviour
     public float heavyAttackDamage;
     public float heavyAttackStamCost;
     public float heavyAttackGemRecharge;
+    public float heavyAttackMoveSpeed;
 
     [Header("Healing")]
     public float healLengthSeconds;
