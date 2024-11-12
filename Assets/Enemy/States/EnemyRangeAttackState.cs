@@ -10,6 +10,7 @@ public class EnemyRangeAttackState : EnemyState
     {
         this.stateManager = stateManager;
         HandleAnimations();
+        stateManager.previousAttack = Attacks.RangedAttack;
     }
 
     public override void UpdateState()
@@ -19,7 +20,7 @@ public class EnemyRangeAttackState : EnemyState
 
     public override void HandleAnimations()
     {
-        stateManager.animator.Play("Unarmed-Attack-L1 1");
+        stateManager.animator.Play("RangedAttack");
     }
 
     public override void SetAnimationParameters()

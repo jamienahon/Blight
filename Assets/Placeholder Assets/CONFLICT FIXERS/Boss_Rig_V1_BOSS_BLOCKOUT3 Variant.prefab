@@ -46,52 +46,6 @@ CapsuleCollider:
   m_Height: 205.7
   m_Direction: 0
   m_Center: {x: -108.5, y: 0, z: 0}
---- !u!1 &952649582
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 952649583}
-  - component: {fileID: 952649584}
-  m_Layer: 0
-  m_Name: Lower Body Hitbox
-  m_TagString: Enemy
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &952649583
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 952649582}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 5214870690945333100}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!136 &952649584
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 952649582}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 0
-  m_Radius: 134.8
-  m_Height: 430.7
-  m_Direction: 0
-  m_Center: {x: -31.4, y: 22.85, z: 0}
 --- !u!1001 &8812348703108256926
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -914,11 +868,6 @@ CapsuleCollider:
   m_Height: 291.1
   m_Direction: 0
   m_Center: {x: 127.1, y: 0, z: 0}
---- !u!4 &5214870690945333100 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3608844789484626930, guid: dc4d7e8282cb22a43af52681ba1e9881, type: 3}
-  m_PrefabInstance: {fileID: 8812348703108256926}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &5761097220515715250 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -5352450011727655892, guid: dc4d7e8282cb22a43af52681ba1e9881, type: 3}
@@ -1054,5 +1003,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stateManager: {fileID: 0}
   spinAttackHitboxes:
-  - {fileID: 952649584}
-  slashAttackHitboxes: []
+  - {fileID: 0}
+  rightArmHitboxes: []
+  leftArmHitboxes: []
+  victoryDoor: {fileID: 0}
+  camCont: {fileID: 0}
+  victoryScreen: {fileID: 0}
