@@ -7,6 +7,7 @@ public class PlayerHeavyShootState : PlayerState
     public override PlayerStateManager stateManager { get; set; }
     public AudioClip heavyShootSound;
     public bool loopSound;
+    public bool moveBack;
 
     public override void EnterState(PlayerStateManager stateManager)
     {
@@ -16,35 +17,20 @@ public class PlayerHeavyShootState : PlayerState
         HandleAudio();
         LookAtCameraDirection();
 
-        stateManager.animator.SetLayerWeight(1, 1);
+        stateManager.animator.SetLayerWeight(1, 0);
     }
 
     public override void UpdateState()
     {
-        if (stateManager.allowMovementWhileAttacking)
+        if (moveBack)
         {
-            HandleInputs();
-
-            if (stateManager.isLockedOn)
-                stateManager.movementDirection = Quaternion.Euler(0, stateManager.animator.transform.eulerAngles.y, 0) * stateManager.movementDirection;
-            else
-                stateManager.movementDirection = Quaternion.Euler(0, Camera.main.transform.eulerAngles.y, 0) * stateManager.movementDirection;
-
-            stateManager.transform.Translate(stateManager.movementDirection.normalized * stateManager.attackMovementSpeed * Time.deltaTime);
+            stateManager.transform.Translate(-stateManager.animator.transform.forward * stateManager.heavyAttackMoveSpeed * Time.deltaTime);
         }
     }
 
     public override void HandleInputs()
     {
-        stateManager.movementDirection.x = Input.GetAxisRaw("Horizontal");
-        stateManager.movementDirection.z = Input.GetAxisRaw("Vertical");
-        stateManager.animator.SetFloat("HorizontalMovement", Input.GetAxis("Horizontal"));
-        stateManager.animator.SetFloat("VerticalMovement", Input.GetAxis("Vertical"));
 
-        if (stateManager.movementDirection.x == 0 && stateManager.movementDirection.z == 0)
-            stateManager.animator.SetBool("IsMoving", false);
-        else
-            stateManager.animator.SetBool("IsMoving", true);
     }
 
     public override void HandleAnimations()
@@ -72,7 +58,7 @@ public class PlayerHeavyShootState : PlayerState
         stateManager.animator.transform.rotation = Quaternion.Euler(0, Camera.main.transform.eulerAngles.y, 0);
     }
 
-   
+
 
     public override void OnCollisionEnter(Collider collider)
     {

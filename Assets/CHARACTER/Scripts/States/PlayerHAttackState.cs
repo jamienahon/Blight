@@ -5,12 +5,13 @@ using UnityEngine;
 public class PlayerHAttackState : PlayerState
 {
     public override PlayerStateManager stateManager { get; set; }
-    public bool move;
+    public bool moveForward;
+    public bool moveBack;
 
     public override void EnterState(PlayerStateManager stateManager)
     {
         this.stateManager = stateManager;
-        move = false;
+        moveForward = false;
         HandleAnimations();
         SetAnimationParameters();
         stateManager.healthSystem.ConsumeStamina(stateManager.heavyAttackStamCost);
@@ -18,9 +19,13 @@ public class PlayerHAttackState : PlayerState
 
     public override void UpdateState()
     {
-        if(move)
+        if (moveForward)
         {
             stateManager.transform.Translate(stateManager.animator.transform.forward * stateManager.attackMoveSpeed * Time.deltaTime);
+        }
+        else if (moveBack)
+        {
+            stateManager.transform.Translate(-stateManager.animator.transform.forward * stateManager.attackMoveSpeed * Time.deltaTime);
         }
     }
 
