@@ -11,8 +11,6 @@ AvatarMask:
   m_Elements:
   - m_Path: 
     m_Weight: 1
-  - m_Path: Arrow_Bunch
-    m_Weight: 0
   - m_Path: CustomRig_BaseCharacter_Redo:Ctrl_grp
     m_Weight: 0
   - m_Path: CustomRig_BaseCharacter_Redo:Ctrl_grp/CustomRig_BaseCharacter_Redo:ikHandle_Arm_L
@@ -304,9 +302,9 @@ AvatarMask:
   - m_Path: CustomRig_BaseCharacter_Redo:Joint_grp/CustomRig_BaseCharacter_Redo:Main_jnt/CustomRig_BaseCharacter_Redo:Leg_1_R_jnt/CustomRig_BaseCharacter_Redo:Leg_2_R_jnt/CustomRig_BaseCharacter_Redo:Leg_3_R_jnt/CustomRig_BaseCharacter_Redo:Leg_4_R_jnt/CustomRig_BaseCharacter_Redo:Leg_5_R_jnt/CustomRig_BaseCharacter_Redo:Toe_R_int
     m_Weight: 0
   - m_Path: CustomRig_BaseCharacter_Redo:Joint_grp/CustomRig_BaseCharacter_Redo:Main_jnt/CustomRig_BaseCharacter_Redo:Quiver_1_jnt
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: CustomRig_BaseCharacter_Redo:Joint_grp/CustomRig_BaseCharacter_Redo:Main_jnt/CustomRig_BaseCharacter_Redo:Quiver_1_jnt/CustomRig_BaseCharacter_Redo:Quiver_2_jnt
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: CustomRig_BaseCharacter_Redo:Joint_grp/CustomRig_BaseCharacter_Redo:Main_jnt/CustomRig_BaseCharacter_Redo:Waist_1_jnt
     m_Weight: 1
   - m_Path: CustomRig_BaseCharacter_Redo:Joint_grp/CustomRig_BaseCharacter_Redo:Main_jnt/CustomRig_BaseCharacter_Redo:Waist_1_jnt/CustomRig_BaseCharacter_Redo:Waist_2_jnt
@@ -475,6 +473,8 @@ AvatarMask:
     m_Weight: 1
   - m_Path: CustomRig_BaseCharacter_Redo:NewCharacterMesh/CustomRig_BaseCharacter_Redo:Quiver
     m_Weight: 1
+  - m_Path: CustomRig_BaseCharacter_Redo:NewCharacterMesh/CustomRig_BaseCharacter_Redo:Quiver/CustomRig_BaseCharacter_Redo:pasted__Arrow_Bunch
+    m_Weight: 1
   - m_Path: CustomRig_BaseCharacter_Redo:NewCharacterMesh/CustomRig_BaseCharacter_Redo:Quiver/CustomRig_BaseCharacter_Redo:Quiver_lp
     m_Weight: 1
   - m_Path: CustomRig_BaseCharacter_Redo:NewCharacterMesh/CustomRig_BaseCharacter_Redo:Scarf_lp
@@ -604,4 +604,8 @@ AvatarMask:
   - m_Path: Final_Bow:Bow_grp_Dont_more_this_grp/Final_Bow:LHand_Holdpoint_grp/Final_Bow:LHand_Holdpoint/Final_Bow:Bow_Ctrl_grp/Final_Bow:Bow_Ctrl/Final_Bow:RHand_Holdpoint_grp/Final_Bow:RHand_Holdpoint/Final_Bow:BowTop_Indicator
     m_Weight: 1
   - m_Path: Final_Bow:pasted__Arrow
+    m_Weight: 1
+  - m_Path: HandArrow
+    m_Weight: 1
+  - m_Path: HandArrow/BaseArrow:Arrow
     m_Weight: 1
