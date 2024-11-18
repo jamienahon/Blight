@@ -12,6 +12,7 @@ public class PlayerAnimationEvents : MonoBehaviour
     public AudioSource HealSFX;
    // public AudioSource DeathSFX;
     public GameObject shardVFX;
+    public GameObject Glove;
 
     public void StartDodge()
     {
