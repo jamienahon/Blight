@@ -55,8 +55,8 @@ public class PlayerProjectile : MonoBehaviour
         if (other.gameObject.tag == "Enemy")
         {
             other.gameObject.GetComponentInParent<EnemyHealthSystem>().DoDamage(damage);
-            player.GetComponent<PlayerHealthSystem>().RechargeGem(gemRechargeAmount);
             impactVFX.Play();
+            player.GetComponent<PlayerHealthSystem>().RechargeGem(gemRechargeAmount);
             //bloodVFXBoss.Play();
             enabled = false;
             GetComponent<Collider>().enabled = false;

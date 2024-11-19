@@ -551,6 +551,9 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
+  - m_ConditionMode: 2
+    m_ConditionEvent: IsDodging
+    m_EventTreshold: 0
   - m_ConditionMode: 1
     m_ConditionEvent: IsHit
     m_EventTreshold: 0
@@ -723,9 +726,9 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.05
-  m_TransitionOffset: 0.2
-  m_ExitTime: 0.8314167
+  m_TransitionDuration: 0.01999998
+  m_TransitionOffset: 0.10763457
+  m_ExitTime: 0.69572735
   m_HasExitTime: 0
   m_HasFixedDuration: 1
   m_InterruptionSource: 0

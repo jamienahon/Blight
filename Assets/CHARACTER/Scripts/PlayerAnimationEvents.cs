@@ -10,20 +10,25 @@ public class PlayerAnimationEvents : MonoBehaviour
     public GameObject BloodVFX;
     public AudioSource Hurt;
     public AudioSource HealSFX;
-   // public AudioSource DeathSFX;
+    public AudioSource Dodge;
+    public AudioSource Step1;
+    public AudioSource Step2;
+    // public AudioSource DeathSFX;
     public GameObject shardVFX;
     public GameObject Glove;
 
     public void StartDodge()
     {
         stateManager.isInvincible = true;
+        Dodge.Play();
     }
 
     public void EndDodge()
     {
-        stateManager.isInvincible = false;
+        
         stateManager.animator.SetLayerWeight(1, 1);
         stateManager.animator.SetBool("IsDodging", false);
+        stateManager.isInvincible = false;
         if (stateManager.animator.GetBool("IsMoving"))
             stateManager.SwitchState(stateManager.walkState);
         else
@@ -45,6 +50,15 @@ public class PlayerAnimationEvents : MonoBehaviour
             stateManager.SwitchState(stateManager.shootState);
             stateManager.animator.SetBool("IsLightAttacking", true);
         }
+    }
+
+    public void PlayStep1()
+    {
+        Step1.Play();
+    }
+    public void PlayStep2()
+    {
+        Step2.Play();
     }
 
     public void StartMove()
