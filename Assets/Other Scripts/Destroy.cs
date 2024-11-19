@@ -7,7 +7,6 @@ public class Destroy : MonoBehaviour
     public GameObject barrier;
     public EnemyStateManager enemyStateManager;
     public AudioSource Phase1;
-    public AudioSource Ambience;
     public Animation BossHP;
     public Animation BossTheme;
     public Animation FogWall;
@@ -29,7 +28,6 @@ public class Destroy : MonoBehaviour
         FogWall.Play();
         BossTheme.Play();
         Phase1.Play();
-        Ambience.Stop();
        
             
             Object.Destroy(barrier);
