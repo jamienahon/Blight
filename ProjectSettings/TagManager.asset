@@ -12,7 +12,6 @@ TagManager:
   - BackgroundAudioSource
   - FirstSelected
   - Boss
-  - Barrier
   layers:
   - Default
   - TransparentFX
