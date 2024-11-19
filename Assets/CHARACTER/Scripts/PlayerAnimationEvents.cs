@@ -61,6 +61,15 @@ public class PlayerAnimationEvents : MonoBehaviour
         Step2.Play();
     }
 
+    public void StopStep1()
+    {
+        Step1.Stop();
+    }
+    public void StopStep2()
+    {
+        Step2.Stop();
+    }
+
     public void StartMove()
     {
         stateManager.hAttackState.moveForward = true;
