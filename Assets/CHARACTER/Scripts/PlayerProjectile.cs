@@ -63,10 +63,6 @@ public class PlayerProjectile : MonoBehaviour
             GetComponent<MeshRenderer>().enabled = false;
             GetComponentInChildren<TrailRenderer>().gameObject.SetActive(false);
         }
-        else if (other.gameObject.tag == "Barrier")
-            {
-            Destroy(gameObject);
-        }
         else if (other.gameObject.tag == "PlayerHit" || other.gameObject.tag == "Player")
             return;
     }
