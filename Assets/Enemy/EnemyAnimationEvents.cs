@@ -26,6 +26,9 @@ public class EnemyAnimationEvents : MonoBehaviour
     public AudioSource SwipingSFX;
     public AudioSource RoarSFX;
     public AudioSource Deathsfx;
+    public AudioSource Flick;
+    public AudioSource Flurry;
+    public AudioSource Flip;
 
 
 
@@ -41,27 +44,71 @@ public class EnemyAnimationEvents : MonoBehaviour
                 stateManager.transform.position += transform.forward * stateManager.midAttackMoveSpeed * Time.deltaTime;
         }
     }
+
+    //Play audios
     public void PlaySwiping()
     {
         SwipingSFX.Play();
-        Debug.Log("PLAYswipe");
     }
     public void PlayRoar()
     {
         RoarSFX.Play();
-        Debug.Log("PLAYroar");
+
     }
     public void PlaySweep()
     {
         sweep.Play();
-        Debug.Log("PLAYsweep");
     }
 
     public void PlayDeath()
     {
         Deathsfx.Play();
-        Debug.Log("PLAYDeath");
     }
+    public void PlayFlip()
+    {
+        Flip.Play();
+    }
+    public void PlayFlick()
+    {
+        Flick.Play();    
+    }
+    public void PlayFlurry()
+    {
+        Flurry.Play();
+    }
+
+    //Stop audios
+    public void StopSwiping()
+    {
+        SwipingSFX.Stop();
+    }
+    public void StopRoar()
+    {
+        RoarSFX.Stop();
+
+    }
+    public void StopSweep()
+    {
+        sweep.Stop();
+    }
+
+    public void StopDeath()
+    {
+        Deathsfx.Stop();
+    }
+    public void StopFlip()
+    {
+        Flip.Stop();
+    }
+    public void StopFlick()
+    {
+        Flick.Stop();
+    }
+    public void StopFlurry()
+    {
+        Flurry.Stop();
+    }
+
 
     public void EndAttack()
     {
