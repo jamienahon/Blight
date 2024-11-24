@@ -29,6 +29,7 @@ public class EnemyAnimationEvents : MonoBehaviour
     public AudioSource Flick;
     public AudioSource Flurry;
     public AudioSource Flip;
+    public AudioSource DBLSwipingSFX;
 
 
 
@@ -76,6 +77,11 @@ public class EnemyAnimationEvents : MonoBehaviour
     {
         Flurry.Play();
     }
+    public void PlayDBLSwiping()
+    {
+        DBLSwipingSFX.Play();
+    }
+
 
     //Stop audios
     public void StopSwiping()
@@ -107,6 +113,10 @@ public class EnemyAnimationEvents : MonoBehaviour
     public void StopFlurry()
     {
         Flurry.Stop();
+    }
+    public void StopDBLSwiping()
+    {
+        DBLSwipingSFX.Stop();
     }
 
 

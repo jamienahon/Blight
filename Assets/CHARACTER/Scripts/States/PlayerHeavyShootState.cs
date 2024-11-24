@@ -40,6 +40,7 @@ public class PlayerHeavyShootState : PlayerState
 
     public override void SetAnimationParameters()
     {
+        stateManager.animator.speed = 1;
         stateManager.animator.SetBool("IsMoving", false);
         stateManager.animator.SetBool("IsSprinting", false);
         stateManager.animator.SetBool("IsDodging", false);
