@@ -78767,18 +78767,25 @@ AnimationClip:
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
   m_Events:
-  - time: 1.3666667
+  - time: 1.7
+    functionName: StartMoveTowardPlayer
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 7
+    intParameter: 0
+    messageOptions: 0
+  - time: 1.7666667
     functionName: StopRotate
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 1.7
-    functionName: StartMoveTowardPlayer
+  - time: 1.9
+    functionName: StartCameraShake
     data: 
     objectReferenceParameter: {fileID: 0}
-    floatParameter: 7
+    floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 1.9333333
@@ -78797,6 +78804,13 @@ AnimationClip:
     messageOptions: 0
   - time: 2.0666666
     functionName: DisableHitbox
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 2.3
+    functionName: EndCameraShake
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

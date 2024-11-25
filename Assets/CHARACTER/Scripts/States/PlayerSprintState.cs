@@ -62,8 +62,13 @@ public class PlayerSprintState : PlayerState
 
     public override void SetAnimationParameters()
     {
-        stateManager.animator.speed = 1.5f;
+        stateManager.animator.SetLayerWeight(1, 0);
+        stateManager.animator.SetBool("IsMoving", false);
         stateManager.animator.SetBool("IsSprinting", true);
+        stateManager.animator.SetBool("IsLightAttacking", false);
+        stateManager.animator.SetBool("IsHeavyAttacking", false);
+        stateManager.animator.SetBool("IsDodging", false);
+        stateManager.animator.SetBool("IsHealing", false);
     }
 
     public override void HandleAudio()
