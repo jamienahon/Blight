@@ -60414,6 +60414,13 @@ AnimationClip:
     floatParameter: 3
     intParameter: 0
     messageOptions: 0
+  - time: 0.6
+    functionName: PlayDBLSwiping
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
   - time: 0.7
     functionName: EndMoveTowardPlayer
     data: 
@@ -60455,6 +60462,13 @@ AnimationClip:
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 2
+    messageOptions: 0
+  - time: 1.7333333
+    functionName: StopDBLSwiping
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
     messageOptions: 0
   - time: 2.2666667
     functionName: StartRotate
