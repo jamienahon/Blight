@@ -27,7 +27,7 @@ public class EnemyAnimationEvents : MonoBehaviour
     public AudioSource RoarSFX;
     public AudioSource Deathsfx;
 
-
+    GameObject proj;
 
 
 
@@ -132,6 +132,30 @@ public class EnemyAnimationEvents : MonoBehaviour
     public void SpawnProjectile()
     {
         stateManager.SpawnProjectile();
+    }
+
+    public void SpawnStillProjectile()
+    {
+        Vector3 position = new Vector3(transform.position.x, transform.position.y + 10.75f, transform.position.z - 3.0f);
+        proj = Instantiate(stateManager.projectile, position, stateManager.projectile.transform.rotation);
+        EnemyProjectile arrowScript = proj.GetComponent<EnemyProjectile>();
+        arrowScript.enemy = gameObject;
+        arrowScript.trackingStrength = stateManager.arrowTrackingStrength;
+        arrowScript.moveSpeed = 0;
+        arrowScript.damage = stateManager.rangedDamage;
+
+        arrowScript.target = stateManager.player.gameObject;
+        Vector3 targetPos = new Vector3(arrowScript.target.transform.position.x, arrowScript.target.transform.position.y + 2, arrowScript.target.transform.position.z);
+
+        proj.transform.up = (targetPos - proj.transform.position).normalized;
+    }
+
+    public void FireStillProjectile()
+    {
+        if(proj)
+        {
+            proj.GetComponent<EnemyProjectile>().moveSpeed = stateManager.arrowMoveSpeed;
+        }
     }
 
     public void SpawnMines()
