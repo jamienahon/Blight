@@ -1,3 +1,4 @@
+using Cinemachine;
 using UnityEngine;
 
 public enum Hitboxes
@@ -31,11 +32,16 @@ public class EnemyAnimationEvents : MonoBehaviour
     public AudioSource Flip;
     public AudioSource DBLSwipingSFX;
 
+    GameObject proj;
 
-
-
+    CinemachineBasicMultiChannelPerlin cameraNoise;
 
     bool moveTowardPlayer = false;
+
+    private void Start()
+    {
+        cameraNoise = camCont.lockOnCam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+    }
 
     private void Update()
     {
@@ -191,6 +197,30 @@ public class EnemyAnimationEvents : MonoBehaviour
         stateManager.SpawnProjectile();
     }
 
+    public void SpawnStillProjectile()
+    {
+        Vector3 position = new Vector3(transform.position.x, transform.position.y + 10.75f, transform.position.z - 3.0f);
+        proj = Instantiate(stateManager.projectile, position, stateManager.projectile.transform.rotation);
+        EnemyProjectile arrowScript = proj.GetComponent<EnemyProjectile>();
+        arrowScript.enemy = gameObject;
+        arrowScript.trackingStrength = stateManager.arrowTrackingStrength;
+        arrowScript.moveSpeed = 0;
+        arrowScript.damage = stateManager.rangedDamage;
+
+        arrowScript.target = stateManager.player.gameObject;
+        Vector3 targetPos = new Vector3(arrowScript.target.transform.position.x, arrowScript.target.transform.position.y + 2, arrowScript.target.transform.position.z);
+
+        proj.transform.up = (targetPos - proj.transform.position).normalized;
+    }
+
+    public void FireStillProjectile()
+    {
+        if(proj)
+        {
+            proj.GetComponent<EnemyProjectile>().moveSpeed = stateManager.arrowMoveSpeed;
+        }
+    }
+
     public void SpawnMines()
     {
         stateManager.mineAttackState.SpawnMines();
@@ -214,6 +244,16 @@ public class EnemyAnimationEvents : MonoBehaviour
         victoryDoor.Play();
         victoryScreen.SetActive(true);
 
+    }
+
+    public void StartCameraShake()
+    {
+        cameraNoise.m_AmplitudeGain = 10;
+    }
+
+    public void EndCameraShake()
+    {
+        cameraNoise.m_AmplitudeGain = 0;
     }
 
 }

@@ -78767,20 +78767,6 @@ AnimationClip:
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
   m_Events:
-  - time: 1.1333333
-    functionName: PlayFlip
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 1.3333334
-    functionName: PlayFlip
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
   - time: 1.7
     functionName: StartMoveTowardPlayer
     data: 
@@ -78790,6 +78776,13 @@ AnimationClip:
     messageOptions: 0
   - time: 1.7666667
     functionName: StopRotate
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 1.9
+    functionName: StartCameraShake
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
@@ -78816,15 +78809,8 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 2.8666666
-    functionName: StopFlip
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 3.7666667
-    functionName: StopFlip
+  - time: 2.3
+    functionName: EndCameraShake
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
