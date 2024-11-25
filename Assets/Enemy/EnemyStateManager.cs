@@ -167,6 +167,8 @@ public class EnemyStateManager : MonoBehaviour
             do desiredAttack = (Attacks)UnityEngine.Random.Range(0, Enum.GetNames(typeof(Attacks)).Length);
             while (desiredAttack == previousAttack);
 
+            desiredAttack = Attacks.SlashAttack;
+
             if (desiredAttack == Attacks.MineAttack)
             {
                 SwitchState(mineAttackState);
