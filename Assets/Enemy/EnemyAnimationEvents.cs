@@ -248,7 +248,7 @@ public class EnemyAnimationEvents : MonoBehaviour
 
     public void StartCameraShake()
     {
-        cameraNoise.m_AmplitudeGain = 10;
+        cameraNoise.m_AmplitudeGain = 3f;
     }
 
     public void EndCameraShake()

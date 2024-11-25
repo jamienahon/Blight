@@ -102581,18 +102581,18 @@ AnimationClip:
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
   m_Events:
+  - time: 0
+    functionName: PlayDBLSwiping
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
   - time: 1.6
     functionName: StartMoveTowardPlayer
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 7
-    intParameter: 0
-    messageOptions: 0
-  - time: 1.6666666
-    functionName: PlayDBLSwiping
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 1.8666667
@@ -102665,15 +102665,15 @@ AnimationClip:
     floatParameter: 0
     intParameter: 2
     messageOptions: 0
-  - time: 4.3
-    functionName: StopDBLSwiping
+  - time: 4.3333335
+    functionName: StartRotate
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 4.3333335
-    functionName: StartRotate
+  - time: 4.366667
+    functionName: StopDBLSwiping
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
