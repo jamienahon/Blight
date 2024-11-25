@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using Cinemachine;
 using UnityEngine;
 
 public enum Hitboxes
@@ -23,27 +22,109 @@ public class EnemyAnimationEvents : MonoBehaviour
     public CameraController camCont;
     public GameObject victoryScreen;
 
+    //sounds
+    public AudioSource sweep;
+    public AudioSource SwipingSFX;
+    public AudioSource RoarSFX;
+    public AudioSource Deathsfx;
+    public AudioSource Flick;
+    public AudioSource Flurry;
+    public AudioSource Flip;
+    public AudioSource DBLSwipingSFX;
 
+    GameObject proj;
 
-
+    CinemachineBasicMultiChannelPerlin cameraNoise;
 
     bool moveTowardPlayer = false;
+
+    private void Start()
+    {
+        cameraNoise = camCont.lockOnCam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+    }
 
     private void Update()
     {
         if (moveTowardPlayer)
         {
-            Vector3 enemyPos = new Vector3(stateManager.transform.position.x, 0, stateManager.transform.position.z);
-            Vector3 playerPos = new Vector3(stateManager.player.transform.position.x, 0, stateManager.player.transform.position.z);
-
-            if (Vector3.Distance(enemyPos, playerPos) > stateManager.maxAttackDistance)
-            {
-                float yPos = stateManager.transform.position.y;
-                Vector3 newPos = Vector3.MoveTowards(stateManager.transform.position, stateManager.player.transform.position, stateManager.midAttackMoveSpeed * Time.deltaTime);
-                stateManager.transform.position = new Vector3(newPos.x, yPos, newPos.z);
-            }
+            if (Vector3.Distance(stateManager.transform.position, stateManager.player.transform.position) > stateManager.maxAttackDistance)
+                stateManager.transform.position += transform.forward * stateManager.midAttackMoveSpeed * Time.deltaTime;
         }
     }
+
+    //Play audios
+    public void PlaySwiping()
+    {
+        SwipingSFX.Play();
+    }
+    public void PlayRoar()
+    {
+        RoarSFX.Play();
+
+    }
+    public void PlaySweep()
+    {
+        sweep.Play();
+    }
+
+    public void PlayDeath()
+    {
+        Deathsfx.Play();
+    }
+    public void PlayFlip()
+    {
+        Flip.Play();
+    }
+    public void PlayFlick()
+    {
+        Flick.Play();    
+    }
+    public void PlayFlurry()
+    {
+        Flurry.Play();
+    }
+    public void PlayDBLSwiping()
+    {
+        DBLSwipingSFX.Play();
+    }
+
+
+    //Stop audios
+    public void StopSwiping()
+    {
+        SwipingSFX.Stop();
+    }
+    public void StopRoar()
+    {
+        RoarSFX.Stop();
+
+    }
+    public void StopSweep()
+    {
+        sweep.Stop();
+    }
+
+    public void StopDeath()
+    {
+        Deathsfx.Stop();
+    }
+    public void StopFlip()
+    {
+        Flip.Stop();
+    }
+    public void StopFlick()
+    {
+        Flick.Stop();
+    }
+    public void StopFlurry()
+    {
+        Flurry.Stop();
+    }
+    public void StopDBLSwiping()
+    {
+        DBLSwipingSFX.Stop();
+    }
+
 
     public void EndAttack()
     {
@@ -51,9 +132,14 @@ public class EnemyAnimationEvents : MonoBehaviour
         stateManager.attackCooldownEnd = Time.time + Random.Range(stateManager.timeBetweenAttacks.x, stateManager.timeBetweenAttacks.y);
     }
 
+    public void StartRotate()
+    {
+        stateManager.facePlayer = true;
+    }
+
     public void StopRotate()
     {
-        stateManager.meleeAttackState.rotate = false;
+        stateManager.facePlayer = false;
     }
 
     public void EnableHitbox(Hitboxes hitbox)
@@ -111,14 +197,39 @@ public class EnemyAnimationEvents : MonoBehaviour
         stateManager.SpawnProjectile();
     }
 
+    public void SpawnStillProjectile()
+    {
+        Vector3 position = new Vector3(transform.position.x, transform.position.y + 10.75f, transform.position.z - 3.0f);
+        proj = Instantiate(stateManager.projectile, position, stateManager.projectile.transform.rotation);
+        EnemyProjectile arrowScript = proj.GetComponent<EnemyProjectile>();
+        arrowScript.enemy = gameObject;
+        arrowScript.trackingStrength = stateManager.arrowTrackingStrength;
+        arrowScript.moveSpeed = 0;
+        arrowScript.damage = stateManager.rangedDamage;
+
+        arrowScript.target = stateManager.player.gameObject;
+        Vector3 targetPos = new Vector3(arrowScript.target.transform.position.x, arrowScript.target.transform.position.y + 2, arrowScript.target.transform.position.z);
+
+        proj.transform.up = (targetPos - proj.transform.position).normalized;
+    }
+
+    public void FireStillProjectile()
+    {
+        if(proj)
+        {
+            proj.GetComponent<EnemyProjectile>().moveSpeed = stateManager.arrowMoveSpeed;
+        }
+    }
+
     public void SpawnMines()
     {
         stateManager.mineAttackState.SpawnMines();
     }
 
-    public void StartMoveTowardPlayer()
+    public void StartMoveTowardPlayer(float distance)
     {
         moveTowardPlayer = true;
+        stateManager.maxAttackDistance = distance;
     }
 
     public void EndMoveTowardPlayer()
@@ -128,11 +239,21 @@ public class EnemyAnimationEvents : MonoBehaviour
 
     public void Death()
     {
-        
+
         camCont.EndLockOn();
         victoryDoor.Play();
         victoryScreen.SetActive(true);
-       
+
+    }
+
+    public void StartCameraShake()
+    {
+        cameraNoise.m_AmplitudeGain = 10;
+    }
+
+    public void EndCameraShake()
+    {
+        cameraNoise.m_AmplitudeGain = 0;
     }
 
 }

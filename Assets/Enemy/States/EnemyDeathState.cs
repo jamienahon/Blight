@@ -24,6 +24,10 @@ public class EnemyDeathState : EnemyState
         stateManager.animator.Play("Death");
         //Dying.Play();
         stateManager.enabled = false;
+        stateManager.animator.gameObject.GetComponent<EnemyAnimationEvents>().enabled = false;
+        Collider[] colliders = stateManager.gameObject.GetComponentsInChildren<Collider>();
+        foreach (Collider col in colliders)
+            col.enabled = false;
     }
 
     public override void SetAnimationParameters()

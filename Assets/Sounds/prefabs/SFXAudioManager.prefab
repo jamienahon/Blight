@@ -1,0 +1,76 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4367936778024919023
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4367936778024919025}
+  - component: {fileID: 4367936778024919022}
+  m_Layer: 0
+  m_Name: SFXAudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4367936778024919025
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4367936778024919023}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 179.2, y: 0, z: -128}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4367936778024919022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4367936778024919023}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bf9b8cd3adffd6458768054a8afa4e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerStateManager: {fileID: 0}
+  enemyStateManager: {fileID: 0}
+  playerWalking:
+    SFX: {fileID: 24300002, guid: 9107a5625968b6246aeca35394cdb6e9, type: 2}
+    audioClip: {fileID: 8300000, guid: aaa5204e889e94f4590854ee6b9b5893, type: 3}
+    loop: 1
+  playerSprinting:
+    SFX: {fileID: 24300002, guid: 9107a5625968b6246aeca35394cdb6e9, type: 2}
+    audioClip: {fileID: 8300000, guid: d5b0135b7004aae408834399b385902f, type: 3}
+    loop: 1
+  playerDodging:
+    SFX: {fileID: 24300002, guid: 9107a5625968b6246aeca35394cdb6e9, type: 2}
+    audioClip: {fileID: 8300000, guid: 413bb618fa656084ca466ca71335e851, type: 3}
+    loop: 0
+  playerLightAttack:
+    SFX: {fileID: 24300002, guid: 9107a5625968b6246aeca35394cdb6e9, type: 2}
+    audioClip: {fileID: 8300000, guid: c7323c92a5c60714c941d866816d97ea, type: 3}
+    loop: 0
+  playerHeavyAttack:
+    SFX: {fileID: 24300002, guid: 9107a5625968b6246aeca35394cdb6e9, type: 2}
+    audioClip: {fileID: 8300000, guid: cefdeabfacb232747936c1235c0a9126, type: 3}
+    loop: 0
+  enemyWalking:
+    SFX: {fileID: 24300002, guid: 9107a5625968b6246aeca35394cdb6e9, type: 2}
+    audioClip: {fileID: 8300000, guid: 9acd8581d0861d84eada8483c440377e, type: 3}
+    loop: 0
+  enemyAttack:
+    SFX: {fileID: 24300002, guid: 9107a5625968b6246aeca35394cdb6e9, type: 2}
+    audioClip: {fileID: 8300000, guid: 9b9148f481253594d91ca32c98e3341b, type: 3}
+    loop: 0
