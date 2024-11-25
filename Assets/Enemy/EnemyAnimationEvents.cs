@@ -1,3 +1,4 @@
+using Cinemachine;
 using UnityEngine;
 
 public enum Hitboxes
@@ -29,9 +30,14 @@ public class EnemyAnimationEvents : MonoBehaviour
 
     GameObject proj;
 
-
+    CinemachineBasicMultiChannelPerlin cameraNoise;
 
     bool moveTowardPlayer = false;
+
+    private void Start()
+    {
+        cameraNoise = camCont.lockOnCam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+    }
 
     private void Update()
     {
@@ -181,6 +187,16 @@ public class EnemyAnimationEvents : MonoBehaviour
         victoryDoor.Play();
         victoryScreen.SetActive(true);
 
+    }
+
+    public void StartCameraShake()
+    {
+        cameraNoise.m_AmplitudeGain = 10;
+    }
+
+    public void EndCameraShake()
+    {
+        cameraNoise.m_AmplitudeGain = 0;
     }
 
 }
