@@ -22,32 +22,30 @@ public class PlayerShootState : PlayerState
 
     public override void UpdateState()
     {
-        if (stateManager.allowMovementWhileAttacking)
-        {
-            HandleInputs();
+        //if (stateManager.allowMovementWhileAttacking)
+        //{
+        //    HandleInputs();
 
-            if (stateManager.isLockedOn)
-            {
-                stateManager.movementDirection = Quaternion.Euler(0, stateManager.animator.transform.eulerAngles.y, 0) * stateManager.movementDirection;
-            }
-            else
-                stateManager.movementDirection = Quaternion.Euler(0, Camera.main.transform.eulerAngles.y, 0) * stateManager.movementDirection;
+        //    if (stateManager.isLockedOn)
+        //    {
+        //        stateManager.movementDirection = Quaternion.Euler(0, stateManager.animator.transform.eulerAngles.y, 0) * stateManager.movementDirection;
+        //    }
+        //    else
+        //        stateManager.movementDirection = Quaternion.Euler(0, Camera.main.transform.eulerAngles.y, 0) * stateManager.movementDirection;
 
-            stateManager.transform.Translate(stateManager.movementDirection.normalized * stateManager.attackMovementSpeed * Time.deltaTime);
-        }
+        //    stateManager.transform.Translate(stateManager.movementDirection.normalized * stateManager.attackMovementSpeed * Time.deltaTime);
+        //}
     }
 
     public override void HandleInputs()
     {
-        stateManager.movementDirection.x = Input.GetAxisRaw("Horizontal");
-        stateManager.movementDirection.z = Input.GetAxisRaw("Vertical");
-        stateManager.animator.SetFloat("HorizontalMovement", Input.GetAxis("Horizontal"));
-        stateManager.animator.SetFloat("VerticalMovement", Input.GetAxis("Vertical"));
+        //stateManager.animator.SetFloat("HorizontalMovement", Input.GetAxis("Horizontal"));
+        //stateManager.animator.SetFloat("VerticalMovement", Input.GetAxis("Vertical"));
 
-        if (stateManager.movementDirection.x == 0 && stateManager.movementDirection.z == 0)
-            stateManager.animator.SetBool("IsMoving", false);
-        else
-            stateManager.animator.SetBool("IsMoving", true);
+        //if (stateManager.movementDirection.x == 0 && stateManager.movementDirection.z == 0)
+        //    stateManager.animator.SetBool("IsMoving", false);
+        //else
+        //    stateManager.animator.SetBool("IsMoving", true);
     }
 
     public override void HandleAnimations()
@@ -58,6 +56,7 @@ public class PlayerShootState : PlayerState
     public override void SetAnimationParameters()
     {
         stateManager.animator.speed = 1f;
+        stateManager.animator.SetBool("IsMoving", false);
         stateManager.animator.SetBool("IsSprinting", false);
         stateManager.animator.SetBool("IsDodging", false);
         stateManager.animator.SetBool("IsLightAttacking", true);

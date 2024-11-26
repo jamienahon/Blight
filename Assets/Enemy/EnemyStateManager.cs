@@ -50,6 +50,8 @@ public class EnemyStateManager : MonoBehaviour
     public float timeToGetInRange;
     public bool facePlayer = true;
     public float rotationSpeed;
+    public GameObject arenaCentre;
+    public float maxDistanceFromCentre;
 
     [Header("Attacking")]
     public Vector2 timeBetweenAttacks;
@@ -127,6 +129,12 @@ public class EnemyStateManager : MonoBehaviour
 
     private void DecideMovementDirection()
     {
+        if (Vector3.Distance(transform.position, arenaCentre.transform.position) > maxDistanceFromCentre)
+        {
+            transform.Translate((arenaCentre.transform.position - transform.position).normalized * moveSpeed * Time.deltaTime);
+            return;
+        }
+
         if (Vector3.Distance(player.transform.position, transform.position) > tooFar)
             transform.Translate(animator.transform.forward * moveSpeed * Time.deltaTime);
         else if (Vector3.Distance(player.transform.position, transform.position) < tooClose)

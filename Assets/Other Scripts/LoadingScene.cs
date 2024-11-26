@@ -7,6 +7,7 @@ public class LoadingScene : MonoBehaviour
 {
     public GameObject loadingScreen;
     public Image LoadingBarFill;
+    public Image BossBGFill;
 
     public void LoadScene(int sceneId)
     {
@@ -24,6 +25,7 @@ public class LoadingScene : MonoBehaviour
             float progressValue = Mathf.Clamp01(operation.progress / 0.9f);
 
             LoadingBarFill.fillAmount = progressValue;
+            BossBGFill.fillAmount = progressValue;
 
             Time.timeScale = 1;
 

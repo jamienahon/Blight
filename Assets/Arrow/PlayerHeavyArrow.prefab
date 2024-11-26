@@ -193,7 +193,13 @@ VisualEffect:
     m_Vector3f:
       m_Array: []
     m_Vector4f:
-      m_Array: []
+      m_Array:
+      - m_Value: {x: 4, y: 0, z: 0, w: 0}
+        m_Name: Impact_Color
+        m_Overridden: 1
+      - m_Value: {x: 2, y: 0.95686275, z: 0, w: 0}
+        m_Name: Particle_Color
+        m_Overridden: 1
     m_Uint:
       m_Array: []
     m_Int:

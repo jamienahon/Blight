@@ -55,17 +55,13 @@ public class PlayerProjectile : MonoBehaviour
         if (other.gameObject.tag == "Enemy")
         {
             other.gameObject.GetComponentInParent<EnemyHealthSystem>().DoDamage(damage);
-            player.GetComponent<PlayerHealthSystem>().RechargeGem(gemRechargeAmount);
             impactVFX.Play();
+            player.GetComponent<PlayerHealthSystem>().RechargeGem(gemRechargeAmount);
             //bloodVFXBoss.Play();
             enabled = false;
             GetComponent<Collider>().enabled = false;
             GetComponent<MeshRenderer>().enabled = false;
             GetComponentInChildren<TrailRenderer>().gameObject.SetActive(false);
-        }
-        else if (other.gameObject.tag == "Barrier")
-            {
-            Destroy(gameObject);
         }
         else if (other.gameObject.tag == "PlayerHit" || other.gameObject.tag == "Player")
             return;

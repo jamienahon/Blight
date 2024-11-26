@@ -12,7 +12,6 @@ TagManager:
   - BackgroundAudioSource
   - FirstSelected
   - Boss
-  - Barrier
   layers:
   - Default
   - TransparentFX
@@ -22,7 +21,7 @@ TagManager:
   - UI
   - LockOnPoint
   - LockOnPointCam
-  - 
+  - TreesIgnoreMushLight
   - 
   - 
   - 
