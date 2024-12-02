@@ -16,7 +16,8 @@ public class PlayerAnimationEvents : MonoBehaviour
     // public AudioSource DeathSFX;
     public GameObject shardVFX;
     public GameObject Glove;
-
+    public Transform ShardParent;
+    public ParticleSystem shard;
     public void StartDodge()
     {
         stateManager.isInvincible = true;
@@ -143,12 +144,14 @@ public class PlayerAnimationEvents : MonoBehaviour
     public void PlayHealSFX()
     {
         HealSFX.Play();
+        shard.Play();
         Debug.Log("PLAYHealSFX");
     }
 
     public void SpawnHealVFX()
     {
         Instantiate(healVFX, stateManager.transform);
+        
     }
     public void SpawnBloodVFX()
     {
@@ -158,7 +161,7 @@ public class PlayerAnimationEvents : MonoBehaviour
 
     public void SpawnShardsVFX()
     {
-        Instantiate(shardVFX, stateManager.animator.transform.position, stateManager.animator.transform.rotation);
+        Instantiate(shardVFX, ShardParent);
     }
 
     public void Heal()
