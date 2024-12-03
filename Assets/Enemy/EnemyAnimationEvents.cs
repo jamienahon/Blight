@@ -35,6 +35,7 @@ public class EnemyAnimationEvents : MonoBehaviour
     //particle cue
     public ParticleSystem DustWave_P;
     public Transform DustWave;
+    
     GameObject proj;
 
     CinemachineBasicMultiChannelPerlin cameraNoise;

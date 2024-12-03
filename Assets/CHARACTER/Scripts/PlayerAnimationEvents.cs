@@ -17,7 +17,12 @@ public class PlayerAnimationEvents : MonoBehaviour
     public GameObject shardVFX;
     public GameObject Glove;
     public Transform ShardParent;
+
+    //Blood
     public ParticleSystem shard;
+    public ParticleSystem BloodSplatter_P;
+    public Transform BloodSpawn;
+
     public void StartDodge()
     {
         stateManager.isInvincible = true;
@@ -155,8 +160,9 @@ public class PlayerAnimationEvents : MonoBehaviour
     }
     public void SpawnBloodVFX()
     {
-        Instantiate(BloodVFX, stateManager.transform);
+        Instantiate(BloodVFX, BloodSpawn);
         Debug.Log("BloodSpawn");
+        BloodSplatter_P.Play();
     }
 
     public void SpawnShardsVFX()
