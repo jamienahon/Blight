@@ -32,10 +32,6 @@ public class EnemyAnimationEvents : MonoBehaviour
     public AudioSource Flip;
     public AudioSource DBLSwipingSFX;
 
-    //particle cue
-    public ParticleSystem DustWave_P;
-    public Transform DustWave;
-    
     GameObject proj;
 
     CinemachineBasicMultiChannelPerlin cameraNoise;
@@ -238,9 +234,7 @@ public class EnemyAnimationEvents : MonoBehaviour
 
     public void EndMoveTowardPlayer()
     {
-        
         moveTowardPlayer = false;
-        
     }
 
     public void Death()
@@ -262,8 +256,4 @@ public class EnemyAnimationEvents : MonoBehaviour
         cameraNoise.m_AmplitudeGain = 0;
     }
 
-    public void SpawnDust()
-    {
-        DustWave_P.Play();
-    }
 }
