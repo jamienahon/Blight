@@ -9,6 +9,10 @@ public class ScrollCredits : MonoBehaviour
     public float scrollSpeed;
     public float fastScrollSpeed;
     public float endCreditsPos;
+    public AudioSource Steps;
+    public AudioSource Steps2;
+    public AudioSource Music;
+    public AudioSource StopMusic;
 
     private void Start()
     {
@@ -17,6 +21,10 @@ public class ScrollCredits : MonoBehaviour
 
     void Update()
     {
+        Steps.Stop();
+        Steps2.Stop();
+        StopMusic.Stop();
+        Music.Play();
         if (creditsTransform.position.y >= endCreditsPos)
         {
             SceneManager.LoadScene(0);

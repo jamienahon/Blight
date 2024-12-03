@@ -1,5 +1,7 @@
 using Cinemachine;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public enum Hitboxes
 {
@@ -35,7 +37,12 @@ public class EnemyAnimationEvents : MonoBehaviour
     //particle cue
     public ParticleSystem DustWave_P;
     public Transform DustWave;
-    
+
+
+    //UI
+    public GameObject BossBar;
+
+
     GameObject proj;
 
     CinemachineBasicMultiChannelPerlin cameraNoise;
@@ -249,6 +256,7 @@ public class EnemyAnimationEvents : MonoBehaviour
         camCont.EndLockOn();
         victoryDoor.Play();
         victoryScreen.SetActive(true);
+        BossBar.SetActive (false);
 
     }
 
