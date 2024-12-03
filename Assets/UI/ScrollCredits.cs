@@ -9,10 +9,22 @@ public class ScrollCredits : MonoBehaviour
     public float scrollSpeed;
     public float fastScrollSpeed;
     public float endCreditsPos;
+    AudioSource creditsAudioSource;
 
     private void Start()
     {
         creditsTransform = GetComponent<RectTransform>();
+
+        GameObject.Find("Player").GetComponent<PlayerStateManager>().enabled = false;
+        GameObject.Find("Player").GetComponent<PlayerHealthSystem>().enabled = false;
+        GameObject.Find("Menu").GetComponent<UIController>().enabled = false;
+
+        AudioSource[] audioSources = FindObjectsOfType<AudioSource>();
+        foreach (AudioSource audioSource in audioSources)
+            audioSource.enabled = false;
+
+        creditsAudioSource = GetComponentInParent<AudioSource>();
+        creditsAudioSource.enabled = true;
     }
 
     void Update()
@@ -22,7 +34,7 @@ public class ScrollCredits : MonoBehaviour
             SceneManager.LoadScene(0);
         }
 
-        if(Input.GetAxis("Jump") > 0)
+        if(Input.GetAxis("Jump") > 0 && creditsTransform.position.y < endCreditsPos)
             creditsTransform.position = new Vector3(creditsTransform.position.x, creditsTransform.position.y + fastScrollSpeed * Time.deltaTime, creditsTransform.position.z);
         else
             creditsTransform.position = new Vector3(creditsTransform.position.x, creditsTransform.position.y + scrollSpeed * Time.deltaTime, creditsTransform.position.z);
