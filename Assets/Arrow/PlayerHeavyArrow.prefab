@@ -107,7 +107,8 @@ MonoBehaviour:
   moveSpeed: 25
   trackingStrength: 0
   damageFalloff: 0
-  deleteArrow: 0
+  deleteArrow: 5
+  bloodVFXBoss: {fileID: 8207930679642837442, guid: 58c667694d0bca647804408f2d46015a, type: 3}
 --- !u!136 &2094107229589407655
 CapsuleCollider:
   m_ObjectHideFlags: 0
