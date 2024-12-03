@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Net.NetworkInformation;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class EnemyDeathState : EnemyState
 {
@@ -21,6 +22,7 @@ public class EnemyDeathState : EnemyState
 
     public override void HandleAnimations()
     {
+        stateManager.transform.position = new Vector3(stateManager.transform.position.x, stateManager.transform.position.y + 0.75f, stateManager.transform.position.z);
         stateManager.animator.Play("Death");
         //Dying.Play();
         stateManager.enabled = false;
