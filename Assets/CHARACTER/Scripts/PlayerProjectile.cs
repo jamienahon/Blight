@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.VFX;
 
@@ -19,6 +20,7 @@ public class PlayerProjectile : MonoBehaviour
     VisualEffect impactVFX;
    // VisualEffect bloodVFXBoss;
     public float deleteArrow;
+    public GameObject bloodVFXBoss;
 
     private void Start()
     {
@@ -27,7 +29,6 @@ public class PlayerProjectile : MonoBehaviour
 
     private void Update()
     {
-        
         if (target)
         {
             if (Vector3.Distance(gameObject.transform.position, target.transform.position) <
@@ -47,18 +48,18 @@ public class PlayerProjectile : MonoBehaviour
             damage = 0;
 
         if (Time.time >= deleteArrow)
-            Destroy(this);
+            Destroy(gameObject);
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Enemy")
         {
+            Instantiate(bloodVFXBoss, other.gameObject.transform);
             other.gameObject.GetComponentInParent<EnemyHealthSystem>().DoDamage(damage);
             impactVFX.Play();
             player.GetComponent<PlayerHealthSystem>().RechargeGem(gemRechargeAmount);
-            //bloodVFXBoss.Play();
-            enabled = false;
+            //enabled = false;
             GetComponent<Collider>().enabled = false;
             GetComponent<MeshRenderer>().enabled = false;
             GetComponentInChildren<TrailRenderer>().gameObject.SetActive(false);

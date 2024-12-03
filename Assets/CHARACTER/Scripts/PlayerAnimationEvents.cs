@@ -16,6 +16,12 @@ public class PlayerAnimationEvents : MonoBehaviour
     // public AudioSource DeathSFX;
     public GameObject shardVFX;
     public GameObject Glove;
+    public Transform ShardParent;
+
+    //Blood
+    public ParticleSystem shard;
+    public ParticleSystem BloodSplatter_P;
+    public Transform BloodSpawn;
 
     public void StartDodge()
     {
@@ -143,22 +149,25 @@ public class PlayerAnimationEvents : MonoBehaviour
     public void PlayHealSFX()
     {
         HealSFX.Play();
+        shard.Play();
         Debug.Log("PLAYHealSFX");
     }
 
     public void SpawnHealVFX()
     {
         Instantiate(healVFX, stateManager.transform);
+        
     }
     public void SpawnBloodVFX()
     {
-        Instantiate(BloodVFX, stateManager.transform);
+        Instantiate(BloodVFX, BloodSpawn);
         Debug.Log("BloodSpawn");
+        BloodSplatter_P.Play();
     }
 
     public void SpawnShardsVFX()
     {
-        Instantiate(shardVFX, stateManager.animator.transform.position, stateManager.animator.transform.rotation);
+        Instantiate(shardVFX, ShardParent);
     }
 
     public void Heal()

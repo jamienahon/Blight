@@ -21,10 +21,9 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Hair
-  m_Shader: {fileID: 4800000, guid: d81d92adbb596cb4a97f126a17137e4d, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: 65ddd85c9176ed040908656bb5a7273c, type: 3}
   m_ValidKeywords: []
-  m_InvalidKeywords:
-  - _USEHASHING_OFF
+  m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -34,6 +33,14 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - _Alpha:
+        m_Texture: {fileID: 2800000, guid: 3cab8813e3efb4a47a4c0b56dd11c2c9, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BaseColour:
+        m_Texture: {fileID: 2800000, guid: dc1c19a2ae168bc4ab7f0eb16b0c961e, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _BaseMap:
         m_Texture: {fileID: 2800000, guid: dc1c19a2ae168bc4ab7f0eb16b0c961e, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -66,12 +73,20 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _Normal:
+        m_Texture: {fileID: 2800000, guid: bf19ec993f3bc0b46a6c8e6b77c9bdfb, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ParallaxMap:
         m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_e77c6c5716a04293a0614aba17f14701_Texture_1:
+        m_Texture: {fileID: 2800000, guid: d92abf9a75ea7ef4891b614658acc770, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SpecGlossMap:
@@ -97,10 +112,12 @@ Material:
     m_Ints: []
     m_Floats:
     - _AlphaClip: 0
+    - _AlphaThreshold: 0.332
     - _AnisoRot: 0.25
     - _AnisotropicFrequency: 1
     - _AnisotropicRoughness: 0.25
     - _Blend: 0
+    - _Brightness: 0.6
     - _BumpScale: 1
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
@@ -117,6 +134,7 @@ Material:
     - _OcclusionStrength: 1
     - _Parallax: 0.005
     - _PrimaryShift: 0.5
+    - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
     - _SecondaryShift: -0.5
@@ -133,5 +151,5 @@ Material:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
+    - _SpecColor: {r: 0.2735849, g: 0.2735849, b: 0.2735849, a: 1}
   m_BuildTextureStacks: []
