@@ -17,9 +17,6 @@ public class PlayerWin : MonoBehaviour
 
     public void OnTriggerEnter(Collider Player)
     {
-        GameObject.Find("Player").GetComponent<PlayerStateManager>().enabled = false;
-        GameObject.Find("Player").GetComponent<PlayerHealthSystem>().enabled = false;
-        GameObject.Find("Menu").GetComponent<UIController>().enabled = false;
         credits.SetActive(true);
     //    Steps.Stop();
     //    Steps2.Stop();
