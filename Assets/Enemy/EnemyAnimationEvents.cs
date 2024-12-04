@@ -33,6 +33,7 @@ public class EnemyAnimationEvents : MonoBehaviour
     public AudioSource Flurry;
     public AudioSource Flip;
     public AudioSource DBLSwipingSFX;
+    public AudioSource Ranged;
 
     //particle cue
     public ParticleSystem DustWave_P;
@@ -73,6 +74,11 @@ public class EnemyAnimationEvents : MonoBehaviour
         RoarSFX.Play();
 
     }
+    public void PlayRanged()
+    {
+        Ranged.Play();
+
+    }
     public void PlaySweep()
     {
         sweep.Play();
@@ -108,6 +114,11 @@ public class EnemyAnimationEvents : MonoBehaviour
     public void StopRoar()
     {
         RoarSFX.Stop();
+
+    }
+    public void StopRanged()
+    {
+        Ranged.Stop();
 
     }
     public void StopSweep()
