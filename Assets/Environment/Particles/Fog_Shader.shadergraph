@@ -73,9 +73,6 @@
             "m_Id": "52443b1101f24b5290b8dd765fc8bf22"
         },
         {
-            "m_Id": "4912cf3580014bdfb8da2e6cb1e2617a"
-        },
-        {
             "m_Id": "07e61e0b315a4178b8e1b0a881db4a22"
         },
         {
@@ -974,29 +971,6 @@
 
 {
     "m_SGVersion": 0,
-    "m_Type": "UnityEditor.ShaderGraph.Vector3MaterialSlot",
-    "m_ObjectId": "2fb1d02c789a43549edfaf5a46eadd81",
-    "m_Id": 0,
-    "m_DisplayName": "Out",
-    "m_SlotType": 1,
-    "m_Hidden": false,
-    "m_ShaderOutputName": "Out",
-    "m_StageCapability": 3,
-    "m_Value": {
-        "x": 0.0,
-        "y": 0.0,
-        "z": 0.0
-    },
-    "m_DefaultValue": {
-        "x": 0.0,
-        "y": 0.0,
-        "z": 0.0
-    },
-    "m_Labels": []
-}
-
-{
-    "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
     "m_ObjectId": "31c7985fb6fb415d80157a734b05b68b",
     "m_Id": 1,
@@ -1319,44 +1293,6 @@
     "m_Value": 0.0,
     "m_DefaultValue": 0.5,
     "m_Labels": []
-}
-
-{
-    "m_SGVersion": 0,
-    "m_Type": "UnityEditor.ShaderGraph.ViewVectorNode",
-    "m_ObjectId": "4912cf3580014bdfb8da2e6cb1e2617a",
-    "m_Group": {
-        "m_Id": ""
-    },
-    "m_Name": "View Vector",
-    "m_DrawState": {
-        "m_Expanded": true,
-        "m_Position": {
-            "serializedVersion": "2",
-            "x": -1744.9998779296875,
-            "y": 526.0000610351563,
-            "width": 207.9998779296875,
-            "height": 315.0
-        }
-    },
-    "m_Slots": [
-        {
-            "m_Id": "2fb1d02c789a43549edfaf5a46eadd81"
-        },
-        {
-            "m_Id": "c060eaeeb8034ddda394bffcc31e0bc0"
-        }
-    ],
-    "synonyms": [
-        "eye vector"
-    ],
-    "m_Precision": 0,
-    "m_PreviewExpanded": true,
-    "m_PreviewMode": 0,
-    "m_CustomColors": {
-        "m_SerializableColors": []
-    },
-    "m_Space": 1
 }
 
 {
@@ -2813,30 +2749,6 @@
         "e32": 0.0,
         "e33": 1.0
     }
-}
-
-{
-    "m_SGVersion": 0,
-    "m_Type": "UnityEditor.ShaderGraph.PositionMaterialSlot",
-    "m_ObjectId": "c060eaeeb8034ddda394bffcc31e0bc0",
-    "m_Id": 2,
-    "m_DisplayName": "View Space Position",
-    "m_SlotType": 0,
-    "m_Hidden": true,
-    "m_ShaderOutputName": "ViewSpacePosition",
-    "m_StageCapability": 3,
-    "m_Value": {
-        "x": 0.0,
-        "y": 0.0,
-        "z": 0.0
-    },
-    "m_DefaultValue": {
-        "x": 0.0,
-        "y": 0.0,
-        "z": 0.0
-    },
-    "m_Labels": [],
-    "m_Space": 1
 }
 
 {

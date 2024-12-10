@@ -115,7 +115,7 @@ Material:
     - _DrawOrder: 0
     - _DstBlend: 0
     - _EnvironmentReflections: 1
-    - _FadeDistance: 2
+    - _FadeDistance: 0.5
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
@@ -130,7 +130,7 @@ Material:
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _Surface: 0
-    - _Transparency: 0.1
+    - _Transparency: 0.12
     - _WorkflowMode: 1
     - _ZTest: 4
     - _ZWrite: 1

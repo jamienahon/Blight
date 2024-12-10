@@ -139,14 +139,14 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Brightness_1: {r: 0.2, g: 0.3, b: 0, a: 0}
+    - _Brightness_1: {r: 0.21, g: 0.3, b: 0, a: 0}
     - _Color: {r: 0.24528301, g: 0.24528301, b: 0.24528301, a: 1}
     - _ColourMultiply: {r: 0.5566038, g: 0.5566038, b: 0.5566038, a: 0}
     - _ColourMultiply1: {r: 1, g: 1, b: 1, a: 0}
     - _ColourMultiply2: {r: 0, g: 0, b: 0, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _EmissiveColour: {r: 1, g: 1, b: 1, a: 0}
-    - _Emmissive: {r: 0.05, g: 0.15, b: 0, a: 0}
+    - _Emmissive: {r: 0.1, g: 0.15, b: 0, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
     - _UvOffset: {r: 0, g: 0, b: 0, a: 0}
     - _UvTiling: {r: 1, g: 1, b: 0, a: 0}

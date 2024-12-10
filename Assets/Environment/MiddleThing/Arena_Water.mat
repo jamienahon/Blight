@@ -91,7 +91,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Alpha: 0.777
+    - _Alpha: 1
     - _AlphaClip: 0
     - _Blend: 1
     - _BumpScale: 1
@@ -112,11 +112,11 @@ Material:
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
-    - _Scale: 0.03
+    - _Scale: 0
     - _Smoothness: 0.384
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
-    - _Speed: 2
+    - _Speed: 0
     - _SrcBlend: 1
     - _Surface: 0
     - _WorkflowMode: 1
