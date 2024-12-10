@@ -41,12 +41,11 @@ public class PlayerHeavyShootState : PlayerState
     public override void SetAnimationParameters()
     {
         stateManager.animator.speed = 1;
-        stateManager.animator.SetBool("IsMoving", false);
+        stateManager.animator.SetBool("IsWalking", false);
         stateManager.animator.SetBool("IsSprinting", false);
         stateManager.animator.SetBool("IsDodging", false);
-        stateManager.animator.SetBool("IsHeavyAttacking", true);
-        stateManager.animator.SetFloat("HorizontalMovement", 0);
-        stateManager.animator.SetFloat("VerticalMovement", 0);
+        stateManager.animator.SetBool("IsAttacking", false);
+        stateManager.animator.SetBool("IsHeavyAttack", true);
     }
 
     public override void HandleAudio()

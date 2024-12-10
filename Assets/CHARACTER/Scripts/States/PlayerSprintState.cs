@@ -32,8 +32,10 @@ public class PlayerSprintState : PlayerState
 
         if (Input.GetAxis("Sprint") == 0)
         {
-            stateManager.animator.speed = 1;
-            stateManager.SwitchState(stateManager.walkState);
+            if (Input.GetAxis("Horizontal") == 0 && Input.GetAxis("Vertical") == 0)
+                stateManager.SwitchState(stateManager.idleState);
+            else
+                stateManager.SwitchState(stateManager.walkState);
         }
 
         if (Input.GetAxis("Dodge") > 0 && stateManager.healthSystem.staminaBar.fillAmount >= stateManager.dodgeStamCost * (1 / stateManager.healthSystem.maxHealth))
@@ -62,13 +64,11 @@ public class PlayerSprintState : PlayerState
 
     public override void SetAnimationParameters()
     {
-        stateManager.animator.SetLayerWeight(1, 0);
-        stateManager.animator.SetBool("IsMoving", false);
+        stateManager.animator.SetBool("IsWalking", false);
         stateManager.animator.SetBool("IsSprinting", true);
-        stateManager.animator.SetBool("IsLightAttacking", false);
-        stateManager.animator.SetBool("IsHeavyAttacking", false);
         stateManager.animator.SetBool("IsDodging", false);
-        stateManager.animator.SetBool("IsHealing", false);
+        stateManager.animator.SetBool("IsAttacking", false);
+        stateManager.animator.SetBool("IsHeavyAttack", false);
     }
 
     public override void HandleAudio()

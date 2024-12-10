@@ -48,35 +48,17 @@ public class PlayerWalkState : PlayerState
 
     public override void HandleAnimations()
     {
-        if (stateManager.isLockedOn)
-        {
-            LookAtLockOnPoint();
-            stateManager.animator.SetFloat("HorizontalMovement", Input.GetAxis("Horizontal"));
-            stateManager.animator.SetFloat("VerticalMovement", Input.GetAxis("Vertical"));
-        }
-        else
-        {
-            LookAtMovementDirection();
-            //stateManager.animator.Play("Unarmed-Run-Forward");
-        }
+        LookAtMovementDirection();
     }
 
     public override void SetAnimationParameters()
     {
         stateManager.animator.speed = 1;
-        stateManager.animator.SetBool("IsMoving", true);
+        stateManager.animator.SetBool("IsWalking", true);
         stateManager.animator.SetBool("IsSprinting", false);
-        if (stateManager.isLockedOn)
-            stateManager.animator.SetBool("IsLockedOn", true);
-        else
-            stateManager.animator.SetBool("IsLockedOn", false);
-        stateManager.animator.SetFloat("HorizontalMovement", 0);
-        stateManager.animator.SetFloat("VerticalMovement", 0);
-        stateManager.animator.SetBool("IsLightAttacking", false);
-        stateManager.animator.SetBool("IsHeavyAttacking", false);
         stateManager.animator.SetBool("IsDodging", false);
-        stateManager.animator.SetBool("IsHit", false);
-        stateManager.animator.SetBool("IsHealing", false);
+        stateManager.animator.SetBool("IsAttacking", false);
+        stateManager.animator.SetBool("IsHeavyAttack", false);
     }
 
     public override void HandleAudio()

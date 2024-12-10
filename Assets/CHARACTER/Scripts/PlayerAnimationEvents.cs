@@ -1,4 +1,5 @@
 
+using Unity.Burst.Intrinsics;
 using UnityEngine;
 
 public class PlayerAnimationEvents : MonoBehaviour
@@ -31,31 +32,50 @@ public class PlayerAnimationEvents : MonoBehaviour
 
     public void EndDodge()
     {
-        
-        stateManager.animator.SetLayerWeight(1, 1);
-        stateManager.animator.SetBool("IsDodging", false);
         stateManager.isInvincible = false;
         if (stateManager.animator.GetBool("IsMoving"))
             stateManager.SwitchState(stateManager.walkState);
+        else if (stateManager.animator.GetBool("IsSprinting"))
+            stateManager.SwitchState(stateManager.sprintState);
         else
             stateManager.SwitchState(stateManager.idleState);
     }
 
     public void EndAttack()
     {
-        stateManager.animator.SetLayerWeight(1, 1);
-        stateManager.animator.SetBool("IsLightAttacking", false);
-        stateManager.animator.SetBool("IsHeavyAttacking", false);
-        if (Input.GetAxisRaw("Horizontal") == 0 && Input.GetAxisRaw("Vertical") == 0)
-            stateManager.SwitchState(stateManager.idleState);
-        else
-            stateManager.SwitchState(stateManager.walkState);
-
-        if (Input.GetAxis("LAttack") > 0)
+        stateManager.animator.SetBool("IsHeavyAttack", false);
+        if (!stateManager.animator.GetBool("IsCombo"))
         {
-            stateManager.SwitchState(stateManager.shootState);
-            stateManager.animator.SetBool("IsLightAttacking", true);
+            stateManager.animator.SetBool("IsAttacking", false);
+            stateManager.animator.SetBool("IsCombo", false);
+
+            if (Input.GetAxis("Horizontal") == 0 && Input.GetAxis("Vertical") == 0)
+                stateManager.SwitchState(stateManager.idleState);
+            else
+                stateManager.SwitchState(stateManager.walkState);
         }
+        stateManager.animator.SetBool("IsCombo", false);
+    }
+
+    public void EndCombo()
+    {
+        stateManager.shootState.combo = false;
+        stateManager.animator.SetBool("IsCombo", false);
+    }
+
+    public void StartIdle()
+    {
+        stateManager.SwitchState(stateManager.idleState);
+    }
+
+    public void StartWalk()
+    {
+        stateManager.SwitchState(stateManager.walkState);
+    }
+
+    public void CheckCombo()
+    {
+        stateManager.shootState.combo = true;
     }
 
     public void PlayStep1()
@@ -141,11 +161,11 @@ public class PlayerAnimationEvents : MonoBehaviour
         Debug.Log("PLAYHURT");
     }
 
-  //  public void PlayDeathSFX()
-  //  {
- //       DeathSFX.Play();
- //       Debug.Log("PLAYDeath");
-  //  }
+    //  public void PlayDeathSFX()
+    //  {
+    //       DeathSFX.Play();
+    //       Debug.Log("PLAYDeath");
+    //  }
     public void PlayHealSFX()
     {
         HealSFX.Play();
@@ -156,7 +176,7 @@ public class PlayerAnimationEvents : MonoBehaviour
     public void SpawnHealVFX()
     {
         Instantiate(healVFX, stateManager.transform);
-        
+
     }
     public void SpawnBloodVFX()
     {

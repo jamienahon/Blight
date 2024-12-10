@@ -25,9 +25,20 @@ public class PlayerDodgeState : PlayerState
             stateManager.transform.Translate(stateManager.animator.transform.forward * stateManager.dodgeMoveSpeed * Time.deltaTime);
 
         if (Input.GetAxisRaw("Horizontal") == 0 && Input.GetAxisRaw("Vertical") == 0)
-            stateManager.animator.SetBool("IsMoving", false);
+        {
+            stateManager.animator.SetBool("IsSprinting", false);
+            stateManager.animator.SetBool("IsWalking", false);
+        }
+        else if (Input.GetAxis("Sprint") > 0)
+        {
+            stateManager.animator.SetBool("IsSprinting", true);
+            stateManager.animator.SetBool("IsWalking", false);
+        }
         else
-            stateManager.animator.SetBool("IsMoving", true);
+        {
+            stateManager.animator.SetBool("IsSprinting", false);
+            stateManager.animator.SetBool("IsWalking", true);
+        }
     }
 
     public override void HandleInputs()
@@ -43,8 +54,9 @@ public class PlayerDodgeState : PlayerState
     public override void SetAnimationParameters()
     {
         stateManager.animator.speed = 1f;
-        stateManager.animator.SetLayerWeight(1, 0);
         stateManager.animator.SetBool("IsDodging", true);
+        stateManager.animator.SetBool("IsAttacking", false);
+        stateManager.animator.SetBool("IsHeavyAttack", false);
     }
 
     public override void HandleAudio()
