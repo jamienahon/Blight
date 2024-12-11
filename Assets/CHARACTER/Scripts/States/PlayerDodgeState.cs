@@ -2,12 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+enum DodgeDirection
+{
+    forward,
+    back,
+    left,
+    right
+}
+
 public class PlayerDodgeState : PlayerState
 {
     public override PlayerStateManager stateManager { get; set; }
     public AudioClip dodgeSound;
     public bool loopSound;
     public bool move;
+    public bool check = false;
+    DodgeDirection dodgeDir;
 
     public override void EnterState(PlayerStateManager stateManager)
     {
@@ -17,6 +27,15 @@ public class PlayerDodgeState : PlayerState
 
         HandleAnimations();
         stateManager.healthSystem.ConsumeStamina(stateManager.dodgeStamCost);
+
+        if (Input.GetAxis("Horizontal") > 0)
+            dodgeDir = DodgeDirection.right;
+        else if(Input.GetAxis("Horizontal") < 0)
+            dodgeDir = DodgeDirection.left;
+        else if (Input.GetAxis("Vertical") > 0)
+            dodgeDir = DodgeDirection.forward;
+        else if (Input.GetAxis("Vertical") < 0)
+            dodgeDir = DodgeDirection.back;
     }
 
     public override void UpdateState()
@@ -39,6 +58,19 @@ public class PlayerDodgeState : PlayerState
             stateManager.animator.SetBool("IsSprinting", false);
             stateManager.animator.SetBool("IsWalking", true);
         }
+
+        if(check)
+            if(Input.GetAxis("LAttack") > 0)
+            {
+                if (dodgeDir == DodgeDirection.forward)
+                    stateManager.animator.SetFloat("WS", 1);
+                else if (dodgeDir == DodgeDirection.back)
+                    stateManager.animator.SetFloat("WS", -1);
+                if (dodgeDir == DodgeDirection.right)
+                    stateManager.animator.SetFloat("AD", 1);
+                if (dodgeDir == DodgeDirection.left)
+                    stateManager.animator.SetFloat("AD", -1);
+            }
     }
 
     public override void HandleInputs()

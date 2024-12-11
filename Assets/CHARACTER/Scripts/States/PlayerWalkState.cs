@@ -59,6 +59,8 @@ public class PlayerWalkState : PlayerState
         stateManager.animator.SetBool("IsDodging", false);
         stateManager.animator.SetBool("IsAttacking", false);
         stateManager.animator.SetBool("IsHeavyAttack", false);
+        stateManager.animator.SetFloat("WS", 0);
+        stateManager.animator.SetFloat("AD", 0);
     }
 
     public override void HandleAudio()

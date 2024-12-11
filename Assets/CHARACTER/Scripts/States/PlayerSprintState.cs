@@ -42,7 +42,7 @@ public class PlayerSprintState : PlayerState
             stateManager.SwitchState(stateManager.dodgeState);
 
         if (Input.GetAxis("LAttack") > 0 && stateManager.healthSystem.staminaBar.fillAmount >= stateManager.lightAttackStamCost * (1 / stateManager.healthSystem.maxHealth))
-            stateManager.SwitchState(stateManager.shootState);
+            stateManager.SwitchState(stateManager.altAttackState);
 
         if (Input.GetAxis("HAttack") > 0 && stateManager.healthSystem.staminaBar.fillAmount >= stateManager.heavyAttackStamCost * (1 / stateManager.healthSystem.maxHealth))
             stateManager.SwitchState(stateManager.heavyShootState);
@@ -69,6 +69,8 @@ public class PlayerSprintState : PlayerState
         stateManager.animator.SetBool("IsDodging", false);
         stateManager.animator.SetBool("IsAttacking", false);
         stateManager.animator.SetBool("IsHeavyAttack", false);
+        stateManager.animator.SetFloat("WS", 0);
+        stateManager.animator.SetFloat("AD", 0);
     }
 
     public override void HandleAudio()

@@ -20,6 +20,7 @@ public class PlayerStateManager : MonoBehaviour
     public PlayerShootState shootState = new PlayerShootState();
     public PlayerHeavyShootState heavyShootState = new PlayerHeavyShootState();
     public PlayerHealState healState = new PlayerHealState();
+    public PlayerAltAttackState altAttackState = new PlayerAltAttackState();
 
     [HideInInspector] public bool isLockedOn = false;
     [HideInInspector] public bool switchStates = false;
@@ -36,6 +37,7 @@ public class PlayerStateManager : MonoBehaviour
     [Header("Dodging")]
     public float dodgeMoveSpeed;
     public float dodgeStamCost;
+    public float slowSpeed;
 
     [Header("Attacking")]
     public float arrowTrackingStrength;

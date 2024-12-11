@@ -33,6 +33,14 @@ public class PlayerAnimationEvents : MonoBehaviour
     public void EndDodge()
     {
         stateManager.isInvincible = false;
+        stateManager.dodgeState.check = false;
+
+        if (stateManager.animator.GetFloat("WS") != 0 || stateManager.animator.GetFloat("AD") != 0)
+        {
+            stateManager.SwitchState(stateManager.altAttackState);
+            return;
+        }
+
         if (stateManager.animator.GetBool("IsMoving"))
             stateManager.SwitchState(stateManager.walkState);
         else if (stateManager.animator.GetBool("IsSprinting"))
@@ -55,6 +63,19 @@ public class PlayerAnimationEvents : MonoBehaviour
                 stateManager.SwitchState(stateManager.walkState);
         }
         stateManager.animator.SetBool("IsCombo", false);
+    }
+
+    public void EndAltAttack()
+    {
+        stateManager.animator.SetFloat("WS", 0);
+        stateManager.animator.SetFloat("AD", 0);
+
+        if (Input.GetAxis("Sprint") > 0)
+            stateManager.SwitchState(stateManager.sprintState);
+        else if (Input.GetAxis("Horizontal") > 0 || Input.GetAxis("Vertical") > 0)
+            stateManager.SwitchState(stateManager.walkState);
+        else
+            stateManager.SwitchState(stateManager.idleState);
     }
 
     public void EndCombo()
@@ -101,16 +122,44 @@ public class PlayerAnimationEvents : MonoBehaviour
         stateManager.hAttackState.moveForward = true;
         stateManager.lAttackState.move = true;
         stateManager.dodgeState.move = true;
+        stateManager.altAttackState.move = true;
     }
 
     public void StartMoveBack()
     {
         stateManager.heavyShootState.moveBack = true;
+        stateManager.altAttackState.moveBack = true;
     }
 
     public void EndMoveBack()
     {
         stateManager.heavyShootState.moveBack = false;
+        stateManager.altAttackState.moveBack = false;
+    }
+
+    public void StartMoveRight()
+    {
+        stateManager.altAttackState.moveRight = true;
+    }
+
+    public void EndMoveRight()
+    {
+        stateManager.altAttackState.moveRight = false;
+    }
+
+    public void StartMoveLeft()
+    {
+        stateManager.altAttackState.moveLeft = true;
+    }
+
+    public void EndMoveLeft()
+    {
+        stateManager.altAttackState.moveLeft = false;
+    }
+
+    public void DodgeCheck()
+    {
+        stateManager.dodgeState.check = true;
     }
 
     public void EndMove()
@@ -118,6 +167,7 @@ public class PlayerAnimationEvents : MonoBehaviour
         stateManager.hAttackState.moveForward = false;
         stateManager.lAttackState.move = false;
         stateManager.dodgeState.move = false;
+        stateManager.altAttackState.move = false;
     }
 
     public void EndGetHit()
