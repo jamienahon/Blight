@@ -130,7 +130,7 @@ Material:
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _Surface: 0
-    - _Transparency: 0.12
+    - _Transparency: 0.1
     - _WorkflowMode: 1
     - _ZTest: 4
     - _ZWrite: 1
