@@ -56,6 +56,7 @@ public class PlayerShootState : PlayerState
         stateManager.animator.SetBool("IsAttacking", true);
         stateManager.animator.SetBool("IsDodging", false);
         stateManager.animator.SetBool("IsHeavyAttack", false);
+        stateManager.animator.SetBool("IsHealing", false);
     }
 
     public override void HandleAudio()

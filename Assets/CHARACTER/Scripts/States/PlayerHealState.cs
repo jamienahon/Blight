@@ -17,32 +17,32 @@ public class PlayerHealState : PlayerState
 
     public override void UpdateState()
     {
-        HandleInputs();
+        //HandleInputs();
 
-        if (stateManager.isLockedOn)
-        {
-            LookAtLockOnPoint();
-            stateManager.animator.SetFloat("HorizontalMovement", 0);
-            stateManager.animator.SetFloat("VerticalMovement", 0);
-        }
-        else
-        {
-            LookAtMovementDirection();
-        }
+        //if (stateManager.isLockedOn)
+        //{
+        //    LookAtLockOnPoint();
+        //    stateManager.animator.SetFloat("HorizontalMovement", 0);
+        //    stateManager.animator.SetFloat("VerticalMovement", 0);
+        //}
+        //else
+        //{
+        //    LookAtMovementDirection();
+        //}
 
 
-        stateManager.transform.Translate(stateManager.movementDirection.normalized * stateManager.healingMoveSpeed * Time.deltaTime);
+        //stateManager.transform.Translate(stateManager.movementDirection.normalized * stateManager.healingMoveSpeed * Time.deltaTime);
     }
 
     public override void HandleInputs()
     {
-        stateManager.movementDirection.x = Input.GetAxisRaw("Horizontal");
-        stateManager.movementDirection.z = Input.GetAxisRaw("Vertical");
+        //stateManager.movementDirection.x = Input.GetAxisRaw("Horizontal");
+        //stateManager.movementDirection.z = Input.GetAxisRaw("Vertical");
 
-        if (stateManager.movementDirection.x == 0 && stateManager.movementDirection.z == 0)
-            stateManager.animator.SetBool("IsMoving", false);
-        else
-            stateManager.animator.SetBool("IsMoving", true);
+        //if (stateManager.movementDirection.x == 0 && stateManager.movementDirection.z == 0)
+        //    stateManager.animator.SetBool("IsMoving", false);
+        //else
+        //    stateManager.animator.SetBool("IsMoving", true);
     }
 
     public override void HandleAnimations()
@@ -51,13 +51,17 @@ public class PlayerHealState : PlayerState
 
     public override void SetAnimationParameters()
     {
-        stateManager.animator.speed = 1.0f;
+        stateManager.animator.speed = 1;
+        stateManager.animator.SetBool("IsWalking", false);
         stateManager.animator.SetBool("IsSprinting", false);
         stateManager.animator.SetBool("IsDodging", false);
-        stateManager.animator.SetBool("IsLightAttacking", false);
+        stateManager.animator.SetBool("IsAttacking", false);
+        stateManager.animator.SetBool("IsDodging", false);
+        stateManager.animator.SetBool("IsCombo", false);
+        stateManager.animator.SetBool("IsHeavyAttack", false);
         stateManager.animator.SetBool("IsHealing", true);
-        stateManager.animator.SetFloat("HorizontalMovement", 0);
-        stateManager.animator.SetFloat("VerticalMovement", 0);
+        stateManager.animator.SetFloat("WS", 0);
+        stateManager.animator.SetFloat("AD", 0);
     }
 
     public override void HandleAudio()

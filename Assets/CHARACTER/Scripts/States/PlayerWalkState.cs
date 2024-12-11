@@ -61,6 +61,7 @@ public class PlayerWalkState : PlayerState
         stateManager.animator.SetBool("IsHeavyAttack", false);
         stateManager.animator.SetFloat("WS", 0);
         stateManager.animator.SetFloat("AD", 0);
+        stateManager.animator.SetBool("IsHealing", false);
     }
 
     public override void HandleAudio()

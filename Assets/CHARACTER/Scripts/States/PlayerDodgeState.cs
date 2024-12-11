@@ -85,10 +85,17 @@ public class PlayerDodgeState : PlayerState
 
     public override void SetAnimationParameters()
     {
-        stateManager.animator.speed = 1f;
-        stateManager.animator.SetBool("IsDodging", true);
+        stateManager.animator.speed = 1;
+        stateManager.animator.SetBool("IsWalking", false);
+        stateManager.animator.SetBool("IsSprinting", false);
+        stateManager.animator.SetBool("IsDodging", false);
         stateManager.animator.SetBool("IsAttacking", false);
+        stateManager.animator.SetBool("IsDodging", true);
+        stateManager.animator.SetBool("IsCombo", false);
         stateManager.animator.SetBool("IsHeavyAttack", false);
+        stateManager.animator.SetBool("IsHealing", false);
+        stateManager.animator.SetFloat("WS", 0);
+        stateManager.animator.SetFloat("AD", 0);
     }
 
     public override void HandleAudio()

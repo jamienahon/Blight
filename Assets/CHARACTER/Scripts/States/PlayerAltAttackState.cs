@@ -49,6 +49,7 @@ public class PlayerAltAttackState : PlayerState
         stateManager.animator.SetBool("IsAttacking", false);
         stateManager.animator.SetBool("IsDodging", false);
         stateManager.animator.SetBool("IsHeavyAttack", false);
+        stateManager.animator.SetBool("IsHealing", false);
     }
 
     public override void HandleAudio()

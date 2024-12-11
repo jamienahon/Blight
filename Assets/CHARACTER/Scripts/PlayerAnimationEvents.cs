@@ -247,12 +247,7 @@ public class PlayerAnimationEvents : MonoBehaviour
 
     public void EndHeal()
     {
-        stateManager.animator.SetBool("IsHealing", false);
-
-        if (stateManager.animator.GetBool("IsMoving"))
-            stateManager.SwitchState(stateManager.walkState);
-        else
-            stateManager.SwitchState(stateManager.idleState);
+        stateManager.SwitchState(stateManager.idleState);
     }
 
     public void SpawnProjectile()
